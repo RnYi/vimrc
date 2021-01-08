@@ -1,0 +1,20 @@
+{
+    // 基础配置
+    "suggest.enablePreview": true,
+    "suggest.labelMaxLength": 40,
+    "suggest.detailMaxLength": 40,
+    "suggest.echodocSupport": true,
+    "suggest.removeDuplicateItems": true,
+    "diagnostic.warningSign": "!",
+    "coc.preferences.rootPatterns": [
+        ".root",
+        ".project",
+        ".svn",
+        ".git",
+        ".hg",
+        ".projections.json"
+    ],
+    "coc.source.buffer.ignoreGitignore": false,
+    // clangd配置
+    "clangd.semanticHighlighting": true
+}
