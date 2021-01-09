@@ -20,7 +20,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp','c++']}
 " 分隔符
 Plug 'Raimondi/delimitMate'
 " Django支持
-Plug 'tweekmonster/django-plus.vim'
+" Plug 'tweekmonster/django-plus.vim'
 " 显示函数签名
 Plug 'Shougo/echodoc.vim'
 " Markdown
@@ -71,6 +71,7 @@ call plug#end()
 """"""""""""""
 set mouse-=a                   " 使用鼠标模式
 set autoread
+set shellslash
 set shortmess+=c
 set nocompatible               " 非兼容模式
 set updatetime=300
@@ -107,8 +108,8 @@ autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
 "  显示设置  "
 """"""""""“”""
 set hidden
-set number  " 显示行号
-set showcmd " 不显示已经输入的键
+set nonumber  " 显示行号
+set noshowcmd " 不显示已经输入的键
 " 设置折行
 set wrap
 set linebreak
@@ -116,6 +117,7 @@ set breakat-=_
 set wildmenu
 set noshowmode       " 不显示当前模式
 set cursorline       " 快速找到当前行
+set scrolloff=1
 set sidescroll=1
 set sidescrolloff=5
 set laststatus=2     " 总是显示状态行
@@ -363,7 +365,7 @@ augroup fern-custom
     autocmd! *
     autocmd FileType fern call s:init_fern()
 augroup END
-nnoremap <silent> <Leader>e :Fern . -drawer -keep -toggle<CR>
+nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -449,7 +451,7 @@ let g:lightline={
             \   'colorscheme':'solarized',
             \   'active' : {
             \       'left': [['mode', 'paste'],['relativepath'],['cocstatus']],
-            \       'right' : [['filetype']]
+            \       'right' : [['filetype'],['lineinfo']]
             \   },
             \   'inactive':{
             \       'left':[['relativepath']],
@@ -474,11 +476,13 @@ function! LightlineMode()
 endfunction
 
 function! LightlinePath()
+    let l:rlpath=expand('%')
     return &filetype ==? 'fern' ? '' : 
                 \          &filetype ==? 'startify' ? '' :
                 \          &filetype ==? 'help' ? expand('%:t') :
                 \          &filetype == '' ? '' :
-                \          winwidth('%') > 40 ? expand('%') : ''
+                \          winwidth('%') < 40 ? '' :
+                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
 endfunction
 
 function! LightlineFiletype()
@@ -513,7 +517,7 @@ nnoremap <silent> <Leader>8 <Cmd>WintabsGo 8<CR>
 nnoremap <silent> <Leader>9 <Cmd>WintabsGo 9<CR>
 nnoremap <silent> <Leader>0 <Cmd>WintabsGo 0<CR>
 
-" COC
+" coc-nvim
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
 command! -nargs=0 Format :call CocAction('format')
@@ -578,6 +582,9 @@ inoremap <M-j> <Down>
 inoremap <M-k> <Up>
 inoremap <M-h> <Left>
 inoremap <M-l> <Right>
+
+cnoremap <M-h> <Left>
+cnoremap <M-l> <Right>
 
 inoremap <M-CR> <ESC>o
 inoremap <S-CR> <ESC>O
