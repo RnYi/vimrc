@@ -13,8 +13,6 @@ Plug 'itchyny/lightline.vim'
 " 标签栏
 Plug 'zefei/vim-wintabs'
 " 补全
-Plug 'Shougo/neoinclude.vim'
-Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp','c++']}
 " 分隔符
