@@ -73,7 +73,9 @@ if !has('win32')
     set shellslash
 endif
 set shortmess+=c
-set nocompatible               " 非兼容模式
+if !has('nvim')
+    set nocompatible               " 非兼容模式
+endif
 set updatetime=300
 set backspace=indent,eol,start " 设置退格键
 syntax on
