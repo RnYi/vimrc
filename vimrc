@@ -71,7 +71,9 @@ call plug#end()
 """"""""""""""
 set mouse-=a                   " 使用鼠标模式
 set autoread
-set shellslash
+if !has('win32')
+    set shellslash
+endif
 set shortmess+=c
 set nocompatible               " 非兼容模式
 set updatetime=300
