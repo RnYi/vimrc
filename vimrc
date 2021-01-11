@@ -119,8 +119,6 @@ set breakat-=_
 set wildmenu
 set noshowmode       " 不显示当前模式
 set cursorline       " 快速找到当前行
-set scrolloff=1
-set sidescroll=1
 set sidescrolloff=5
 set laststatus=2     " 总是显示状态行
 set showtabline=2
@@ -159,6 +157,7 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set guifont=MesloLGS\ NF:h14
+set guifontwide=等距更纱黑体\ SC:h14
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 
 """"""""""""""
@@ -189,6 +188,13 @@ endif
 "  折叠设置  "
 """"""""""""""
 set foldmethod=manual
+
+"""""""""""""""""""
+"  neovim-qt设置  "
+"""""""""""""""""""
+if has('nvim')
+    autocmd UIEnter * exe "GuiTabline 0" | exe "GuiPopupmenu 0"
+endif
 
 """"""""""""""
 "  插件设置  "
