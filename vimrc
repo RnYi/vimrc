@@ -17,8 +17,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp','c++']}
 " 分隔符
 Plug 'Raimondi/delimitMate'
-" Django支持
-" Plug 'tweekmonster/django-plus.vim'
 " 显示函数签名
 Plug 'Shougo/echodoc.vim'
 " Markdown
@@ -119,6 +117,7 @@ set breakat-=_
 set wildmenu
 set noshowmode       " 不显示当前模式
 set cursorline       " 快速找到当前行
+set scrolloff=1
 set sidescrolloff=5
 set laststatus=2     " 总是显示状态行
 set showtabline=2
@@ -174,7 +173,9 @@ set background=dark
 let g:solarized_italics=0
 colorscheme solarized8_flat
 if has('nvim')
-    autocmd UIEnter * if &background==#'dark' | hi IncSearch guibg=#cb4b16 guifg=bg gui=bold | endif
+    autocmd UIEnter * if &background==#'dark' |
+                \ hi IncSearch guibg=#cb4b16 guifg=bg gui=bold |
+                \ endif
 endif
 
 """"""""""""""
@@ -434,7 +435,9 @@ let g:rainbow_active=1
 let g:rainbow_conf={
             \   'guifgs':['white','gold','chocolate','magenta','OrangeRed'],
             \   'operators': '_,_',
-            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'parentheses': ['start=/(/ end=/)/ fold',
+            \                   'start=/\[/ end=/\]/ fold',
+            \                   'start=/{/ end=/}/ fold'],
             \   'separately': {
             \       '*': {},
             \       'nerdtree':0,
@@ -445,7 +448,13 @@ let g:rainbow_conf={
             \           'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
             \       },
             \       'vim': {
-            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \           'parentheses':
+            \               ['start=/(/ end=/)/',
+            \                'start=/\[/ end=/\]/',
+            \                'start=/{/ end=/}/ fold',
+            \                'start=/(/ end=/)/ containedin=vimFuncBody',
+            \                'start=/\[/ end=/\]/ containedin=vimFuncBody',
+            \                'start=/{/ end=/}/ fold containedin=vimFuncBody'],
             \       },
             \       'html': {
             \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
