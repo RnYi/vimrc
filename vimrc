@@ -11,7 +11,7 @@ Plug 'Yggdroot/indentLine'
 " 状态栏
 Plug 'itchyny/lightline.vim'
 " 标签栏
-Plug 'zefei/vim-wintabs'
+Plug 'ap/vim-buftabline'
 " 补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp','c++']}
@@ -31,14 +31,6 @@ Plug 'lambdalisue/fern-git-status.vim'
 if has('nvim')
     Plug 'antoinemadec/FixCursorHold.nvim'
 endif
-" if has('nvim')
-" Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-" Plug 'Shougo/defx.nvim'
-" Plug 'roxma/nvim-yarp'
-" Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" Plug 'kristijanhusak/defx-git'
 " 移动增强
 Plug 'justinmk/vim-sneak'
 " 启动界面
@@ -241,80 +233,6 @@ let delimitMate_quotes="\" ' `"
 autocmd FileType python let b:delimitMate_nesting_quotes=['"']
 autocmd FileType markdown,latex let b:delimitMate_quotes=delimitMate_quotes." \$"
 
-" defx
-" if !has('nvim') && has('win32')
-" let g:python3_host_prog="E:/Python38/python.exe"
-" endif
-" autocmd FileType defx call s:defx_my_settings() | setlocal nonumber
-" autocmd BufWritePost * call defx#redraw()
-" nnoremap <silent> <Leader>e :Defx -split=vertical -direction=topleft -winwidth=40 -toggle -columns=git:mark:indent:icon:filename<CR>
-" call defx#custom#column('git','raw_mode',1)
-" call defx#custom#column('git','show_ignored',1)
-" function! s:defx_my_settings() abort
-" " Define mappings
-" nnoremap <silent><buffer><expr> <CR>
-" \ defx#do_action('open')
-" nnoremap <silent><buffer><expr> c
-" \ defx#do_action('copy')
-" nnoremap <silent><buffer><expr> m
-" \ defx#do_action('move')
-" nnoremap <silent><buffer><expr> p
-" \ defx#do_action('paste')
-" nnoremap <silent><buffer><expr> l
-" \ defx#do_action('open')
-" nnoremap <silent><buffer><expr> E
-" \ defx#do_action('open', 'vsplit')
-" nnoremap <silent><buffer><expr> P
-" \ defx#do_action('preview')
-" nnoremap <silent><buffer><expr> o
-" \ defx#do_action('open_tree', 'toggle')
-" nnoremap <silent><buffer><expr> K
-" \ defx#do_action('new_directory')
-" nnoremap <silent><buffer><expr> N
-" \ defx#do_action('new_file')
-" nnoremap <silent><buffer><expr> M
-" \ defx#do_action('new_multiple_files')
-" nnoremap <silent><buffer><expr> C
-" \ defx#do_action('toggle_columns',
-" \                'mark:indent:icon:filename:type:size:time')
-" nnoremap <silent><buffer><expr> S
-" \ defx#do_action('toggle_sort', 'time')
-" nnoremap <silent><buffer><expr> d
-" \ defx#do_action('remove')
-" nnoremap <silent><buffer><expr> r
-" \ defx#do_action('rename')
-" nnoremap <silent><buffer><expr> !
-" \ defx#do_action('execute_command')
-" nnoremap <silent><buffer><expr> x
-" \ defx#do_action('execute_system')
-" nnoremap <silent><buffer><expr> yy
-" \ defx#do_action('yank_path')
-" nnoremap <silent><buffer><expr> .
-" \ defx#do_action('toggle_ignored_files')
-" nnoremap <silent><buffer><expr> ;
-" \ defx#do_action('repeat')
-" nnoremap <silent><buffer><expr> h
-" \ defx#do_action('cd', ['..'])
-" nnoremap <silent><buffer><expr> ~
-" \ defx#do_action('cd')
-" nnoremap <silent><buffer><expr> q
-" \ defx#do_action('quit')
-" nnoremap <silent><buffer><expr> <Space>
-" \ defx#do_action('toggle_select') . 'j'
-" nnoremap <silent><buffer><expr> *
-" \ defx#do_action('toggle_select_all')
-" nnoremap <silent><buffer><expr> j
-" \ line('.') == line('$') ? 'gg' : 'j'
-" nnoremap <silent><buffer><expr> k
-" \ line('.') == 1 ? 'G' : 'k'
-" nnoremap <silent><buffer><expr> <C-l>
-" \ defx#do_action('redraw')
-" nnoremap <silent><buffer><expr> <C-g>
-" \ defx#do_action('print')
-" nnoremap <silent><buffer><expr> cd
-" \ defx#do_action('change_vim_cwd')
-" endfunction
-
 " fern
 let g:fern#smart_cursor="hide"
 let g:fern#disable_default_mappings=1
@@ -504,32 +422,28 @@ function! LightlineLineinfo()
                 \          winwidth('%') > 70 ? printf("%d/%d", line('.'),line('$')) : ''
 endfunction
 
-" vim-wintabs
-let g:wintabs_switchbuf=''
-let g:wintabs_autoclose_vimtab=1
-let g:wintabs_ui_sep_inbetween=' '
-let g:wintabs_ui_sep_rightmost=''
-let g:wintabs_ui_buffer_name_format=" %o: %t "
-nmap <TAB> <Plug>(wintabs_next)
-nmap <S-TAB> <Plug>(wintabs_previous)
-nmap <Leader>d <Plug>(wintabs_close)
-nnoremap <silent> <Leader>1 <Cmd>WintabsGo 1<CR>
-nnoremap <silent> <Leader>2 <Cmd>WintabsGo 2<CR>
-nnoremap <silent> <Leader>3 <Cmd>WintabsGo 3<CR>
-nnoremap <silent> <Leader>4 <Cmd>WintabsGo 4<CR>
-nnoremap <silent> <Leader>5 <Cmd>WintabsGo 5<CR>
-nnoremap <silent> <Leader>6 <Cmd>WintabsGo 6<CR>
-nnoremap <silent> <Leader>7 <Cmd>WintabsGo 7<CR>
-nnoremap <silent> <Leader>8 <Cmd>WintabsGo 8<CR>
-nnoremap <silent> <Leader>9 <Cmd>WintabsGo 9<CR>
-nnoremap <silent> <Leader>0 <Cmd>WintabsGo 0<CR>
+" vim-buftabline
+let g:buftabline_numbers=2
+let g:buftabline_indicators=1
+nnoremap <silent> <TAB> <Cmd>bn<CR>
+nnoremap <silent> <S-TAB> <Cmd>bp<CR>
+nnoremap <silent> <Leader>d <Cmd>bd<CR>
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 " coc-nvim
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
-autocmd CursorHold * if &buftype!=#'terminal' | silent call CocActionAsync('highlight') | endif
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
