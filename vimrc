@@ -157,7 +157,7 @@ set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 """"""""""""""
 set viewoptions-=options
 set sessionoptions-=options
-set sessionoptions+=globals
+" set sessionoptions+=globals
 
 """"""""""“”“”
 "  主题设置  "
@@ -295,6 +295,7 @@ inoremap <C-x><C-k> <C-x><C-k>
 let g:startify_change_cmd='tcd'
 let g:startify_session_sort = 1
 let g:startify_files_number = 5
+let g:startify_custom_header = []
 let g:startify_session_number = 5
 let g:startify_update_oldfiles = 1
 let g:startify_session_persistence=1
@@ -324,7 +325,7 @@ autocmd BufRead,BufNewFile .tasks set filetype=tasks
 autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
 let g:asyncrun_open=6
 let g:asynctasks_term_reuse=1
-let g:asynctasks_term_pos='tab'
+" let g:asynctasks_term_pos='tab'
 let g:asynctasks_extra_config=[
             \ '~/vimfiles/tasks.ini',
             \ ]
@@ -425,8 +426,8 @@ endfunction
 " vim-buftabline
 let g:buftabline_numbers=2
 let g:buftabline_indicators=1
-nnoremap <silent> <TAB> <Cmd>bn<CR>
-nnoremap <silent> <S-TAB> <Cmd>bp<CR>
+" nnoremap <silent> <TAB> <Cmd>bn<CR>
+" nnoremap <silent> <S-TAB> <Cmd>bp<CR>
 nnoremap <silent> <Leader>d <Cmd>bd<CR>
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)
