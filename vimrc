@@ -108,7 +108,8 @@ autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
 "  显示设置  "
 """"""""""“”""
 set hidden
-set nonumber  " 显示行号
+" set relativenumber
+set nonumber  " 不显示行号
 set noshowcmd " 不显示已经输入的键
 " 设置折行
 set wrap
@@ -172,18 +173,10 @@ set sessionoptions+=globals
 set background=dark
 let g:solarized_italics=0
 colorscheme solarized8_flat
-if has('nvim')
-    autocmd UIEnter * if &background==#'dark' |
-                \ hi IncSearch guibg=#cb4b16 guifg=bg gui=bold |
-                \ endif
-endif
 
 """"""""""""""
 "  标题设置  "
 """"""""""""""
-if has('nvim')
-    autocmd UIEnter * set title | set titlestring=%{getcwd()}
-endif
 
 """"""""""""""
 "  折叠设置  "
@@ -193,9 +186,6 @@ set foldmethod=manual
 """""""""""""""""""
 "  neovim-qt设置  "
 """""""""""""""""""
-if has('nvim')
-    autocmd UIEnter * exe "GuiTabline 0" | exe "GuiPopupmenu 0"
-endif
 
 """"""""""""""
 "  插件设置  "
