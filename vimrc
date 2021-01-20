@@ -157,7 +157,6 @@ set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 """"""""""""""
 set viewoptions-=options
 set sessionoptions-=options
-" set sessionoptions+=globals
 
 """"""""""“”“”
 "  主题设置  "
@@ -169,6 +168,7 @@ colorscheme solarized8_flat
 """"""""""""""
 "  标题设置  "
 """"""""""""""
+" In ginit.vim
 
 """"""""""""""
 "  折叠设置  "
@@ -426,8 +426,8 @@ endfunction
 " vim-buftabline
 let g:buftabline_numbers=2
 let g:buftabline_indicators=1
-" nnoremap <silent> <TAB> <Cmd>bn<CR>
-" nnoremap <silent> <S-TAB> <Cmd>bp<CR>
+nnoremap <silent> <TAB> <Cmd>bn<CR>
+nnoremap <silent> <S-TAB> <Cmd>bp<CR>
 nnoremap <silent> <Leader>d <Cmd>bd<CR>
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)
