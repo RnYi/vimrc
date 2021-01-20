@@ -21,10 +21,10 @@ Plug 'Raimondi/delimitMate'
 Plug 'Shougo/echodoc.vim'
 " Markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Latex
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex',{'for':['tex','latex']}
 " 文件管理
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
@@ -231,7 +231,7 @@ let delimitMate_expand_cr=1
 let delimitMate_matchpairs=&matchpairs
 let delimitMate_quotes="\" ' `"
 autocmd FileType python let b:delimitMate_nesting_quotes=['"']
-autocmd FileType markdown,latex let b:delimitMate_quotes=delimitMate_quotes." \$"
+autocmd FileType markdown,latex,tex let b:delimitMate_quotes=delimitMate_quotes." \$"
 
 " fern
 let g:fern#smart_cursor="hide"
