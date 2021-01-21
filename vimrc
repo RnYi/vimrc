@@ -14,14 +14,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 " 补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp','c++']}
+Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp']}
 " 分隔符
 Plug 'Raimondi/delimitMate'
 " 显示函数签名
 Plug 'Shougo/echodoc.vim'
 " Markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown',{'for':'markdown'}
+Plug 'plasticboy/vim-markdown',{'for':['markdown']}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Latex
 Plug 'lervag/vimtex',{'for':['tex','latex']}
@@ -100,7 +100,6 @@ autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
 "  显示设置  "
 """"""""""“”""
 set hidden
-" set relativenumber
 set nonumber  " 不显示行号
 set noshowcmd " 不显示已经输入的键
 " 设置折行
@@ -114,12 +113,8 @@ set scrolloff=1
 set sidescrolloff=5
 set laststatus=2     " 总是显示状态行
 set showtabline=2
-set guioptions-=T    " 去掉工具栏
-set guioptions-=m    " 去掉菜单栏
-set guioptions-=e    " 去掉标签页
-set guioptions-=r    " 去掉右边滚动条
-set guioptions-=L    " 分屏时去掉左边滚动条
-set guioptions+=c    " 不弹出选项菜单
+set guioptions=
+set guioptions+=c
 set termguicolors
 set signcolumn=yes
 set display=lastline " 尽可能显示最后一行
@@ -128,6 +123,7 @@ if has('gui_running')
     set gcr=a:blinkon0
     autocmd GUIEnter * set lines=30 | set columns=90 | winpos 435 120
 endif
+
 """"""""“”""“”
 "  查找设置  "
 """"""""""“”“”
@@ -166,18 +162,9 @@ let g:solarized_italics=0
 colorscheme solarized8_flat
 
 """"""""""""""
-"  标题设置  "
-""""""""""""""
-" In ginit.vim
-
-""""""""""""""
 "  折叠设置  "
 """"""""""""""
 set foldmethod=manual
-
-"""""""""""""""""""
-"  neovim-qt设置  "
-"""""""""""""""""""
 
 """"""""""""""
 "  插件设置  "
@@ -219,6 +206,7 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_no_default_key_mappings = 1
+
 " markdown-preview
 let g:mkdp_auto_close=0
 nmap <Leader>p <Plug>MarkdownPreviewToggle
@@ -325,7 +313,6 @@ autocmd BufRead,BufNewFile .tasks set filetype=tasks
 autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
 let g:asyncrun_open=6
 let g:asynctasks_term_reuse=1
-" let g:asynctasks_term_pos='tab'
 let g:asynctasks_extra_config=[
             \ '~/vimfiles/tasks.ini',
             \ ]
@@ -486,8 +473,8 @@ noremap L $
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap <M-j> jzz
-nnoremap <M-k> kzz
+nnoremap <M-j> gj
+nnoremap <M-k> gk
 
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
