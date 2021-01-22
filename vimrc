@@ -373,7 +373,7 @@ let g:rainbow_conf={
 let g:lightline={
             \   'colorscheme':'solarized',
             \   'active' : {
-            \       'left': [['mode', 'paste'],['relativepath'],['cocstatus']],
+            \       'left': [['mode', 'paste'],['filename'],['cocstatus']],
             \       'right' : [['filetype'],['lineinfo']]
             \   },
             \   'inactive':{
@@ -387,7 +387,7 @@ let g:lightline={
             \   'component_function': {
             \       'mode':'LightlineMode',
             \       'cocstatus':'coc#status',
-            \       'relativepath':'LightlinePath',
+            \       'filename':'LightlineFilename',
             \       'filetype':'LightlineFiletype',
             \       'lineinfo':'LightlineLineinfo',
             \   },
@@ -398,15 +398,23 @@ function! LightlineMode()
                 \          lightline#mode()
 endfunction
 
-function! LightlinePath()
-    let l:rlpath=expand('%')
+function! LightlineFilename()
+    let l:filename=expand('%:t')
     return &filetype ==? 'fern' ? '' : 
                 \          &filetype ==? 'startify' ? '' :
-                \          &filetype ==? 'help' ? expand('%:t') :
                 \          &filetype == '' ? '' :
-                \          winwidth('%') < 40 ? '' :
-                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+                \          winwidth('%') < 40 ? '' : l:filename
 endfunction
+
+" function! LightlinePath()
+    " let l:rlpath=expand('%')
+    " return &filetype ==? 'fern' ? '' :
+                " \          &filetype ==? 'startify' ? '' :
+                " \          &filetype ==? 'help' ? expand('%:t') :
+                " \          &filetype == '' ? '' :
+                " \          winwidth('%') < 40 ? '' :
+                " \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+" endfunction
 
 function! LightlineFiletype()
     return &filetype ==? 'fern' ? '' :
@@ -423,6 +431,7 @@ endfunction
 " vim-buftabline
 let g:buftabline_numbers=2
 let g:buftabline_indicators=1
+let g:buftabline_separators=1
 nnoremap <silent> <TAB> <Cmd>bn<CR>
 nnoremap <silent> <S-TAB> <Cmd>bp<CR>
 nnoremap <silent> <Leader>d <Cmd>bd<CR>
