@@ -1,5 +1,6 @@
-autoload/
-plugged/
-session/
-vimspector-config/
-.netrwhist
+/*
+!ultisnips/
+!.gitignore
+!.coc-settings.json
+!.tasks.ini
+!vimrc
