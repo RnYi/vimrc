@@ -1,3 +1,10 @@
+" vimrc directory
+if has('win32')
+    let s:vimrc_path=expand("~/vimfiles")
+else
+    let s:vimrc_path=expand("~/.vim")
+endif
+
 """"""""""""""""""
 "  启用vim-plug  "
 """"""""""""""""""
@@ -50,6 +57,8 @@ Plug 'SirVer/ultisnips'
 " 异步任务
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
+" Debugger
+Plug 'puremourning/vimspector'
 " jk退出插入模式
 Plug 'jdhao/better-escape.vim'
 call plug#end()
@@ -96,9 +105,9 @@ set shiftwidth=4  " >>缩进4个空格
 set softtabstop=4 " 将制表符设为4个空格
 autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-""""""""""“”""
+""""""""""""""
 "  显示设置  "
-""""""""""“”""
+""""""""""""""
 set hidden
 set nonumber  " 不显示行号
 set noshowcmd " 不显示已经输入的键
@@ -124,9 +133,9 @@ if has('gui_running')
     autocmd GUIEnter * set lines=30 | set columns=90 | winpos 435 120
 endif
 
-""""""""“”""“”
+""""""""""""""
 "  查找设置  "
-""""""""""“”“”
+""""""""""""""
 set wrapscan
 set smartcase
 set nohlsearch 
@@ -136,9 +145,9 @@ if has('nvim')
     set inccommand=nosplit
 endif
 
-""""""""""""“”
+""""""""""""""
 "  编码设置  "
-""""""""""""“”
+""""""""""""""
 language en_US
 set langmenu=en_US    " 设置语言为en_US
 set encoding=utf-8
@@ -154,10 +163,14 @@ set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 set viewoptions-=options
 set sessionoptions-=options
 
-""""""""""“”“”
+""""""""""""""
 "  主题设置  "
-""""""""""“”“”
-set background=dark
+""""""""""""""
+if str2nr(strftime("%H")) >= 19
+    set background=dark
+else
+    set background=light
+endif
 let g:solarized_italics=0
 colorscheme solarized8_flat
 
@@ -314,22 +327,19 @@ autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
 let g:asyncrun_open=6
 let g:asynctasks_term_reuse=1
 let g:asynctasks_extra_config=[
-            \ '~/vimfiles/tasks.ini',
+            \ join([s:vimrc_path,"tasks.ini"],'/'),
             \ ]
 let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.json']
-nnoremap <silent> <F5> <Cmd>AsyncTask file-run<CR>
-nnoremap <silent> <F6> <Cmd>AsyncTask file-build<CR>
-nnoremap <silent> <F7> <Cmd>AsyncTask project-run<CR>
-nnoremap <silent> <F8> <Cmd>AsyncTask project-build<CR>
-inoremap <silent> <F5> <Cmd>AsyncTask file-run<CR>
-inoremap <silent> <F6> <Cmd>AsyncTask file-build<CR>
-inoremap <silent> <F7> <Cmd>AsyncTask project-run<CR>
-inoremap <silent> <F8> <Cmd>AsyncTask project-build<CR>
+nnoremap <silent> <F3> <Cmd>AsyncTask run<CR>
+nnoremap <silent> <F4> <Cmd>AsyncTask build<CR>
+inoremap <silent> <F3> <Cmd>AsyncTask run<CR>
+inoremap <silent> <F4> <Cmd>AsyncTask build<CR>
 
 " Rainbow Parentheses
 let g:rainbow_active=1
+let clr_st=&bg==#'dark'?'white':'black'
 let g:rainbow_conf={
-            \   'guifgs':['white','gold','chocolate','magenta','OrangeRed'],
+            \   'guifgs':[clr_st,'gold','chocolate','magenta','OrangeRed'],
             \   'operators': '_,_',
             \   'parentheses': ['start=/(/ end=/)/ fold',
             \                   'start=/\[/ end=/\]/ fold',
@@ -428,6 +438,7 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 " coc-nvim
+let g:coc_config_home=s:vimrc_path
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
 command! -nargs=0 Format :call CocAction('format')
@@ -463,10 +474,14 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" vimspector
+let g:vimspector_install_gadgets=['CodeLLDB','debugpy']
+let g:vimspector_base_dir=join([s:vimrc_path,'vimspector-config'],'/')
 
-""""""""""“”“”
+
+""""""""""""""
 "  按键映射  "
-""""""""""“”“”
+""""""""""""""
 noremap H ^
 noremap L $
 
