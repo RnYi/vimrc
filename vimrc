@@ -1,3 +1,6 @@
+if !has('nvim')
+    let &pythonthreedll="python38.dll"
+endif
 " vimrc directory
 if has('win32')
     let s:vimrc_path=expand("~/vimfiles")
