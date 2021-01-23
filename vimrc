@@ -125,7 +125,6 @@ set showtabline=2
 set guioptions=
 set guioptions+=c
 set termguicolors
-set signcolumn=yes
 set display=lastline " 尽可能显示最后一行
 set formatoptions+=mMj
 if has('gui_running')
@@ -166,10 +165,11 @@ set sessionoptions-=options
 """"""""""""""
 "  主题设置  "
 """"""""""""""
-if str2nr(strftime("%H")) >= 19
-    set background=dark
-else
+let s:cur_H=str2nr(strftime("%H"))
+if  s:cur_H>= 7 && s:cur_H <19
     set background=light
+else
+    set background=dark
 endif
 let g:solarized_italics=0
 colorscheme solarized8_flat
@@ -209,8 +209,8 @@ if !has('nvim')
     let g:shell_fullscreen_items='mT'
     let g:shell_fullscreen_always_on_top=0
     if has('gui_running') && has('win32')
-        nnoremap <silent> <F11> <Cmd>Fullscreen<CR>
-        inoremap <silent> <F11> <Cmd>Fullscreen<CR>
+        nnoremap <silent> <F1> <Cmd>Fullscreen<CR>
+        inoremap <silent> <F1> <Cmd>Fullscreen<CR>
     endif
 endif
 
@@ -325,6 +325,7 @@ let g:NERDCustomDelimiters={'json':{'left':'//'}}
 autocmd BufRead,BufNewFile .tasks set filetype=tasks
 autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
 let g:asyncrun_open=6
+let g:asynctasks_term_pos='right'
 let g:asynctasks_term_reuse=1
 let g:asynctasks_extra_config=[
             \ join([s:vimrc_path,"tasks.ini"],'/'),
@@ -431,7 +432,9 @@ endfunction
 " vim-buftabline
 let g:buftabline_numbers=2
 let g:buftabline_indicators=1
-let g:buftabline_separators=1
+if has('nvim')
+    let g:buftabline_separators=1
+endif
 nnoremap <silent> <TAB> <Cmd>bn<CR>
 nnoremap <silent> <S-TAB> <Cmd>bp<CR>
 nnoremap <silent> <Leader>d <Cmd>bd<CR>
@@ -446,7 +449,7 @@ nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 
-" coc-nvim
+" coc.nvim
 let g:coc_config_home=s:vimrc_path
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
@@ -482,11 +485,22 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+hi CocErrorHighlight gui=undercurl guisp=#ff0000
+hi CocWarningHighlight gui=undercurl guisp=#ff922b
+hi CocInfoHighlight gui=undercurl guisp=#fab005
+hi CocHintHighlight gui=undercurl guisp=#15aabf
 
 " vimspector
-let g:vimspector_install_gadgets=['CodeLLDB','debugpy']
+let g:vimspector_install_gadgets=['vscode-cpptools','debugpy']
 let g:vimspector_base_dir=join([s:vimrc_path,'vimspector-config'],'/')
-
+nmap <F5> <Plug>VimspectorContinue
+nmap <F6> <Plug>VimspectorStop
+nmap <F7> <Plug>VimspectorPause
+nmap <F8> <Cmd>VimspectorReset<CR>
+nmap <F9> <Plug>VimspectorToggleBreakpoint
+nmap <F10> <Plug>VimspectorStepOver
+nmap <F11> <Plug>VimspectorStepInto
+nmap <F12> <Plug>VimspectorStepOut
 
 """"""""""""""
 "  按键映射  "
@@ -541,8 +555,8 @@ if has('nvim')
     vnoremap <silent> <S-Insert> "+p
     inoremap <silent> <S-Insert> <C-r>+
     nnoremap <silent> <S-Insert> "+p
-    nnoremap <silent> <F11> <Cmd>call FullScreenToggle()<CR>
-    inoremap <silent> <F11> <Cmd>call FullScreenToggle()<CR>
+    nnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
+    inoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
     function! FullScreenToggle() abort
         if g:GuiWindowFullScreen
             call GuiWindowFullScreen(0)

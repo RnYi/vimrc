@@ -5,7 +5,7 @@
     "suggest.detailMaxLength": 40,
     "suggest.echodocSupport": true,
     "suggest.removeDuplicateItems": true,
-    "diagnostic.warningSign": "!",
+    "diagnostic.enableSign": false,
     "coc.preferences.rootPatterns": [
         ".root",
         ".project",
