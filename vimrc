@@ -168,12 +168,13 @@ set sessionoptions-=options
 """"""""""""""
 "  主题设置  "
 """"""""""""""
-let s:cur_H=str2nr(strftime("%H"))
-if  s:cur_H>= 7 && s:cur_H <19
-    set background=light
-else
-    set background=dark
-endif
+" let s:cur_H=str2nr(strftime("%H"))
+" if  s:cur_H>= 7 && s:cur_H <19
+    " set background=light
+" else
+    " set background=dark
+" endif
+set background=dark
 let g:solarized_italics=0
 colorscheme solarized8_flat
 
