@@ -24,17 +24,17 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 " 补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight',{'for':['c','cpp']}
+Plug 'jackguo380/vim-lsp-cxx-highlight', {'for':['c','cpp']}
 " 分隔符
 Plug 'Raimondi/delimitMate'
 " 显示函数签名
 Plug 'Shougo/echodoc.vim'
 " Markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown',{'for':['markdown']}
+Plug 'plasticboy/vim-markdown', {'for':'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Latex
-Plug 'lervag/vimtex',{'for':['tex','latex']}
+Plug 'lervag/vimtex', {'for':['tex','latex']}
 " 文件管理
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
@@ -61,7 +61,7 @@ Plug 'SirVer/ultisnips'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 " Debugger
-Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector',{'on':['<Plug>VimspectorContinue','<Plug>VimspectorToggleBreakpoint']}
 " jk退出插入模式
 Plug 'jdhao/better-escape.vim'
 call plug#end()
