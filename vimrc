@@ -131,8 +131,9 @@ set termguicolors
 set display=lastline " 尽可能显示最后一行
 set formatoptions+=mMj
 if has('gui_running')
-    set gcr=a:blinkon0
-    autocmd GUIEnter * set lines=30 | set columns=90 | winpos 435 120
+    set lines=30
+    set columns=85
+    winpos 350 50
 endif
 
 """"""""""""""
@@ -168,12 +169,6 @@ set sessionoptions-=options
 """"""""""""""
 "  主题设置  "
 """"""""""""""
-" let s:cur_H=str2nr(strftime("%H"))
-" if  s:cur_H>= 7 && s:cur_H <19
-    " set background=light
-" else
-    " set background=dark
-" endif
 set background=dark
 let g:solarized_italics=0
 colorscheme solarized8_flat
@@ -188,7 +183,7 @@ set foldmethod=manual
 """"""""""""""
 " IndentLien
 let g:indentLine_enabled=0
-nnoremap <silent> <F2> <Cmd>IndentLinesToggle<CR>
+nnoremap <F2> <Cmd>IndentLinesToggle<CR>
 
 " echodoc
 let g:echodoc_enable_at_startup=1
@@ -424,13 +419,13 @@ endfunction
 function! LightlineFiletype()
     return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
-                \          winwidth('%') > 70 ? &filetype : ''
+                \          winwidth('%') > 40 ? &filetype : ''
 endfunction
 
 function! LightlineLineinfo()
     return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
-                \          winwidth('%') > 70 ? printf("%d/%d", line('.'),line('$')) : ''
+                \          winwidth('%') > 40 ? printf("%d/%d", line('.'),line('$')) : ''
 endfunction
 
 " vim-buftabline

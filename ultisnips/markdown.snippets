@@ -1,3 +1,34 @@
+#############################
+#  Sections and Paragraphs  #
+#############################
+snippet sec "Section" b
+# ${1:Section Name}
+$0
+endsnippet
+
+snippet ssec "Sub Section" b
+## ${1:Section Name}
+$0
+endsnippet
+
+snippet sssec "SubSub Section" b
+### ${1:Section Name}
+$0
+endsnippet
+
+snippet par "Paragraph" b
+#### ${1:Paragraph Name}
+$0
+endsnippet
+
+snippet spar "Paragraph" b
+##### ${1:Paragraph Name}
+$0
+endsnippet
+
+##########
+#  Math  #
+##########
 snippet dm "Display math" b
 \$\$
 	$1
@@ -9,7 +40,9 @@ snippet frac "frac" i
 \\frac{$1}{$2}$0
 endsnippet
 
+############
+#  Format  #
+############
 snippet so "strikout" i
 ~~${1:${VISUAL}}~~$0
 endsnippet
-	
