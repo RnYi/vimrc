@@ -1,33 +1,34 @@
+" Point out python version in vim
 if !has('nvim')
     let &pythonthreedll="python38.dll"
 endif
-" vimrc directory
+" Vimrc directory
 if has('win32')
     let s:vimrc_path=expand("~/vimfiles")
 else
     let s:vimrc_path=expand("~/.vim")
 endif
 
-""""""""""""""""""
-"  启用vim-plug  "
-""""""""""""""""""
+""""""""""""""
+"  vim-plug  "
+""""""""""""""
 call plug#begin()
-" 颜色主题
+" Theme
 Plug 'lifepillar/vim-solarized8'
-" 彩色括号
+" Colorized parentheses
 Plug 'luochen1990/rainbow'
-" 缩进线
+" Indent line
 Plug 'Yggdroot/indentLine'
-" 状态栏
+" Statusline
 Plug 'itchyny/lightline.vim'
-" 标签栏
+" Show buffers on tabline
 Plug 'ap/vim-buftabline'
-" 补全
+" Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight', {'for':['c','cpp']}
-" 分隔符
+" Delimiter
 Plug 'Raimondi/delimitMate'
-" 显示函数签名
+" Show function signature on command line
 Plug 'Shougo/echodoc.vim'
 " Markdown
 Plug 'godlygeek/tabular'
@@ -35,21 +36,21 @@ Plug 'plasticboy/vim-markdown', {'for':'markdown'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Latex
 Plug 'lervag/vimtex', {'for':['tex','latex']}
-" 文件管理
+" File explorer
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 if has('nvim')
     Plug 'antoinemadec/FixCursorHold.nvim'
 endif
-" 移动增强
+" Enhanced motion
 Plug 'justinmk/vim-sneak'
-" 启动界面
+" Start-up
 Plug 'mhinz/vim-startify'
-" 快速注释
+" Comment
 Plug 'preservim/nerdcommenter'
-" 环绕符号
+" Surround
 Plug 'tpope/vim-surround'
-" 全屏
+" Fullscreen
 if !has('nvim')
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-shell'
@@ -57,78 +58,76 @@ endif
 " Snippets
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
-" 异步任务
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
-" Debugger
-Plug 'puremourning/vimspector',{'on':['<Plug>VimspectorContinue','<Plug>VimspectorToggleBreakpoint']}
-" jk退出插入模式
+" Async
+Plug 'skywind3000/asynctasks.vim', {'on':['AsyncTask', 'AsyncTaskMacro', 'AsyncTaskList', 'AsyncTaskEdit']}
+Plug 'skywind3000/asyncrun.vim', {'on':['AsyncRun','AsyncStop']}
+" Use jk to enter normal mod
 Plug 'jdhao/better-escape.vim'
 call plug#end()
 
-""""""""""""""
-"  基础设置  "
-""""""""""""""
-set mouse-=a                   " 使用鼠标模式
+"""""""""""
+"  Basic  "
+"""""""""""
+set mouse-=a
 set autoread
 if !has('win32')
     set shellslash
 endif
 set shortmess+=c
 if !has('nvim')
-    set nocompatible               " 非兼容模式
+    set nocompatible
 endif
 set updatetime=300
-set backspace=indent,eol,start " 设置退格键
+set backspace=indent,eol,start
 syntax on
-filetype on                    " 自动检测文件类型
+filetype on
 filetype plugin on
 filetype indent on
 let g:mapleader="\<Space>"
-" 打开文件时跳转到最后一次编辑的位置
-autocmd BufReadPost *
-            \   if line("'\"") > 0 && line ("'\"") <= line("$") |
-            \       exe "normal g'\"" |
-            \   endif
-" help文档始终以垂直分屏方式打开
-autocmd FileType help wincmd L
-" 高亮json里的注释
-autocmd FileType json syntax match Comment +\/\/.\+$+
+augroup myaug
+    autocmd!
+    autocmd BufReadPost *
+                \   if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \       exe "normal g'\"" |
+                \   endif
+    autocmd FileType help wincmd L
+    autocmd FileType json syntax match Comment +\/\/.\+$+
+augroup END
 
-""""""""""""""
-"  缩进设置  "
-""""""""""""""
+""""""""""""
+"  Indent  "
+""""""""""""
 set tabstop=4
 set smarttab
-set expandtab     " 空格代替制表符
+set expandtab
 set shiftround
-set autoindent    " 根据前面的行设置缩进
+set autoindent
 set smartindent
-set shiftwidth=4  " >>缩进4个空格
-set softtabstop=4 " 将制表符设为4个空格
-autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+set shiftwidth=4
+set softtabstop=4
+augroup myaug
+    autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
-""""""""""""""
-"  显示设置  "
-""""""""""""""
+"""""""""""""
+"  Display  "
+"""""""""""""
 set hidden
-set nonumber  " 不显示行号
-set noshowcmd " 不显示已经输入的键
-" 设置折行
+set noshowcmd
 set wrap
 set linebreak
 set breakat-=_
 set wildmenu
-set noshowmode       " 不显示当前模式
-set cursorline       " 快速找到当前行
+set noshowmode
+set cursorline
 set scrolloff=1
 set sidescrolloff=5
-set laststatus=2     " 总是显示状态行
+set laststatus=2
 set showtabline=2
 set guioptions=
 set guioptions+=c
 set termguicolors
-set display=lastline " 尽可能显示最后一行
+set display=lastline
 set formatoptions+=mMj
 if has('gui_running')
     set lines=30
@@ -136,23 +135,23 @@ if has('gui_running')
     winpos 350 50
 endif
 
-""""""""""""""
-"  查找设置  "
-""""""""""""""
+""""""""""""
+"  Search  "
+""""""""""""
 set wrapscan
 set smartcase
-set nohlsearch 
-set incsearch     " 增量搜索
-set ignorecase    " 忽略大小写
+set nohlsearch
+set incsearch
+set ignorecase
 if has('nvim')
     set inccommand=nosplit
 endif
 
 """"""""""""""
-"  编码设置  "
+"  Encoding  "
 """"""""""""""
 language en_US
-set langmenu=en_US    " 设置语言为en_US
+set langmenu=en_US
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -160,27 +159,27 @@ set guifont=MesloLGS\ NF:h14
 set guifontwide=等距更纱黑体\ SC:h14
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 
-""""""""""""""
-"  会话设置  "
-""""""""""""""
+"""""""""""""
+"  Session  "
+"""""""""""""
 set viewoptions-=options
 set sessionoptions-=options
 
-""""""""""""""
-"  主题设置  "
-""""""""""""""
+"""""""""""
+"  Theme  "
+"""""""""""
 set background=dark
 let g:solarized_italics=0
 colorscheme solarized8_flat
 
-""""""""""""""
-"  折叠设置  "
-""""""""""""""
+""""""""""
+"  Fold  "
+""""""""""
 set foldmethod=manual
 
-""""""""""""""
-"  插件设置  "
-""""""""""""""
+""""""""""""
+"  Plugin  "
+""""""""""""
 " IndentLien
 let g:indentLine_enabled=0
 nnoremap <F2> <Cmd>IndentLinesToggle<CR>
@@ -230,8 +229,10 @@ let g:tex_flavor='tex'
 let delimitMate_expand_cr=1
 let delimitMate_matchpairs=&matchpairs
 let delimitMate_quotes="\" ' `"
-autocmd FileType python let b:delimitMate_nesting_quotes=['"']
-autocmd FileType markdown,latex,tex let b:delimitMate_quotes=delimitMate_quotes." \$"
+augroup myaug
+    autocmd FileType python let b:delimitMate_nesting_quotes=['"']
+    autocmd FileType markdown,latex,tex let b:delimitMate_quotes=delimitMate_quotes." \$"
+augroup END
 
 " fern
 let g:fern#smart_cursor="hide"
@@ -306,23 +307,19 @@ let g:startify_lists=[
             \]
 
 " NERDCommenter
-" 注释符号后加一个空格
 let g:NERDSpaceDelims=1
-" 更好看的多行注释
 let g:NERDCompactSexyComs=1
-" 允许注释空行
 let g:NERDCommentEmptyLines=1
-" 取消默认键映射
 let g:NERDCreateDefaultMappings=1
-" 取消注释时删去空格
 let g:NERDTrimTrailingWhitespace=1
-" 检查所有行的状态
 let g:NERDToggleCheckAllLines=1
 let g:NERDCustomDelimiters={'json':{'left':'//'}}
 
 " AsyncTasks
-autocmd BufRead,BufNewFile .tasks set filetype=tasks
-autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
+augroup myaug
+    autocmd BufRead,BufNewFile .tasks set filetype=tasks
+    autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
+augroup END
 let g:asyncrun_open=6
 let g:asynctasks_term_pos='right'
 let g:asynctasks_term_reuse=1
@@ -332,8 +329,10 @@ let g:asynctasks_extra_config=[
 let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.json']
 nnoremap <silent> <F3> <Cmd>AsyncTask run<CR>
 nnoremap <silent> <F4> <Cmd>AsyncTask build<CR>
+nnoremap <silent> <F5> <Cmd>AsyncTask debug<CR>
 inoremap <silent> <F3> <Cmd>AsyncTask run<CR>
 inoremap <silent> <F4> <Cmd>AsyncTask build<CR>
+inoremap <silent> <F5> <Cmd>AsyncTask debug<CR>
 
 " Rainbow Parentheses
 let g:rainbow_active=1
@@ -400,7 +399,7 @@ endfunction
 
 function! LightlineFilename()
     let l:filename=expand('%:t')
-    return &filetype ==? 'fern' ? '' : 
+    return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
                 \          &filetype == '' ? '' :
                 \          winwidth('%') < 40 ? '' : l:filename
@@ -489,18 +488,6 @@ hi CocWarningHighlight gui=undercurl guisp=#ff922b
 hi CocInfoHighlight gui=undercurl guisp=#fab005
 hi CocHintHighlight gui=undercurl guisp=#15aabf
 
-" vimspector
-let g:vimspector_install_gadgets=['vscode-cpptools','debugpy']
-let g:vimspector_base_dir=join([s:vimrc_path,'vimspector-config'],'/')
-nmap <F5> <Plug>VimspectorContinue
-nmap <F6> <Plug>VimspectorStop
-nmap <F7> <Plug>VimspectorPause
-nmap <F8> <Cmd>VimspectorReset<CR>
-nmap <F9> <Plug>VimspectorToggleBreakpoint
-nmap <F10> <Plug>VimspectorStepOver
-nmap <F11> <Plug>VimspectorStepInto
-nmap <F12> <Plug>VimspectorStepOut
-
 """"""""""""""
 "  按键映射  "
 """"""""""""""
@@ -538,6 +525,10 @@ inoremap <S-CR> <ESC>O
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
 
+noremap <C-space> <ESC>
+noremap! <C-space> <ESC>
+tnoremap <C-space> <ESC>
+
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
 
@@ -563,8 +554,10 @@ if has('nvim')
             call GuiWindowFullScreen(1)
         endif
     endfunction
-    autocmd TermOpen * setlocal nonumber | startinsert
-    autocmd SessionLoadPost * let g:GuiWindowFullScreen=0
+    augroup myaug
+        autocmd TermOpen * setlocal nonumber | startinsert
+        autocmd SessionLoadPost * let g:GuiWindowFullScreen=0
+    augroup END
 else
     tnoremap <M-q> <C-w>N
     tnoremap <M-J> <C-w>j
