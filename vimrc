@@ -28,7 +28,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight', {'for':['c','cpp']}
 " Delimiter
 Plug 'Raimondi/delimitMate'
-" Show function signature on command line
+" Function signature on command line
 Plug 'Shougo/echodoc.vim'
 " Markdown
 Plug 'godlygeek/tabular'
@@ -547,6 +547,7 @@ if has('nvim')
     nnoremap <silent> <S-Insert> "+p
     nnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
     inoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
+    tnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
     function! FullScreenToggle() abort
         if g:GuiWindowFullScreen
             call GuiWindowFullScreen(0)
