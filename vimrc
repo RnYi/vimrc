@@ -113,6 +113,7 @@ augroup END
 "  Display  "
 """""""""""""
 set hidden
+set number
 set noshowcmd
 set wrap
 set linebreak
