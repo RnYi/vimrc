@@ -1,12 +1,12 @@
-" Point out python version in vim
-if !has('nvim')
-    let &pythonthreedll="python38.dll"
-endif
-" Vimrc directory
-if has('win32')
-    let s:vimrc_path=expand("~/vimfiles")
-else
-    let s:vimrc_path=expand("~/.vim")
+""""""""""""""""
+"  Var define  "
+""""""""""""""""
+if !exists('g:vimrc_path')
+    if has('win32')
+        let g:vimrc_path=expand("~/vimfiles")
+    else
+        let g:vimrc_path=expand("~/.vim")
+    endif
 endif
 
 """"""""""""""
@@ -321,7 +321,7 @@ let g:asyncrun_open=6
 let g:asynctasks_term_pos='right'
 let g:asynctasks_term_reuse=1
 let g:asynctasks_extra_config=[
-            \ join([s:vimrc_path,"tasks.ini"],'/'),
+            \ join([g:vimrc_path,"tasks.ini"],'/'),
             \ ]
 let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.json']
 nnoremap <silent> <F3> <Cmd>AsyncTask run<CR>
@@ -445,7 +445,7 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 " coc.nvim
-let g:coc_config_home=s:vimrc_path
+let g:coc_config_home=g:vimrc_path
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
 command! -nargs=0 Format :call CocAction('format')

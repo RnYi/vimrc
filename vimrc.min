@@ -1,16 +1,12 @@
 """"""""""""""""
-"  Pre-define  "
+"  Var define  "
 """"""""""""""""
-" Vimrc directory
-if has('win32')
-    let s:vimrc_path=expand("~/vimfiles")
-else
-    let s:vimrc_path=expand("~/.vim")
-endif
-
-" Point out python version in vim
-if !has('nvim')
-    let &pythonthreedll="python38.dll"
+if !exists('g:vimrc_path')
+    if has('win32')
+        let g:vimrc_path=expand("~/vimfiles")
+    else
+        let g:vimrc_path=expand("~/.vim")
+    endif
 endif
 
 """""""""""
@@ -18,14 +14,7 @@ endif
 """""""""""
 set mouse-=a
 set autoread
-if !has('win32')
-    set shellslash
-endif
 set shortmess+=c
-if !has('nvim')
-    set nocompatible
-endif
-set updatetime=300
 set backspace=indent,eol,start
 syntax on
 filetype on
@@ -63,7 +52,6 @@ set softtabstop=4
 """""""""""""
 set hidden
 set number
-set noshowcmd
 set wrap
 set linebreak
 set breakat-=_
@@ -79,11 +67,6 @@ set guioptions+=c
 set termguicolors
 set display=lastline
 set formatoptions+=mMj
-if has('gui_running')
-    set lines=30
-    set columns=85
-    winpos 350 50
-endif
 
 """"""""""""
 "  Search  "
@@ -114,13 +97,6 @@ set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 """""""""""""
 set viewoptions-=options
 set sessionoptions-=options
-
-"""""""""""
-"  Theme  "
-"""""""""""
-" set background=dark
-" let g:solarized_italics=0
-" colorscheme solarized8_flat
 
 """"""""""
 "  Fold  "
