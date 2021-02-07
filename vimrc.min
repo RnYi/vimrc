@@ -1,0 +1,212 @@
+""""""""""""""""
+"  Pre-define  "
+""""""""""""""""
+" Vimrc directory
+if has('win32')
+    let s:vimrc_path=expand("~/vimfiles")
+else
+    let s:vimrc_path=expand("~/.vim")
+endif
+
+" Point out python version in vim
+if !has('nvim')
+    let &pythonthreedll="python38.dll"
+endif
+
+"""""""""""
+"  Basic  "
+"""""""""""
+set mouse-=a
+set autoread
+if !has('win32')
+    set shellslash
+endif
+set shortmess+=c
+if !has('nvim')
+    set nocompatible
+endif
+set updatetime=300
+set backspace=indent,eol,start
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+let g:tex_flavor='tex'
+let g:mapleader="\<Space>"
+augroup myaug
+    autocmd!
+    autocmd BufReadPost *
+                \   if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \       exe "normal g'\"" |
+                \   endif
+    autocmd FileType help wincmd L
+    autocmd FileType json syntax match Comment +\/\/.\+$+
+    autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType markdown hi Error NONE
+    autocmd FileType json setlocal commentstring=//%s
+augroup END
+
+""""""""""""
+"  Indent  "
+""""""""""""
+set tabstop=4
+set smarttab
+set expandtab
+set shiftround
+set autoindent
+set smartindent
+set shiftwidth=4
+set softtabstop=4
+
+"""""""""""""
+"  Display  "
+"""""""""""""
+set hidden
+set number
+set noshowcmd
+set wrap
+set linebreak
+set breakat-=_
+set wildmenu
+set noshowmode
+set cursorline
+set scrolloff=1
+set sidescrolloff=5
+set laststatus=2
+set showtabline=2
+set guioptions=
+set guioptions+=c
+set termguicolors
+set display=lastline
+set formatoptions+=mMj
+if has('gui_running')
+    set lines=30
+    set columns=85
+    winpos 350 50
+endif
+
+""""""""""""
+"  Search  "
+""""""""""""
+set wrapscan
+set smartcase
+set nohlsearch
+set incsearch
+set ignorecase
+if has('nvim')
+    set inccommand=nosplit
+endif
+
+""""""""""""""
+"  Encoding  "
+""""""""""""""
+language en_US
+set langmenu=en_US
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set guifont=MesloLGS\ NF:h14
+set guifontwide=等距更纱黑体\ SC:h14
+set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
+
+"""""""""""""
+"  Session  "
+"""""""""""""
+set viewoptions-=options
+set sessionoptions-=options
+
+"""""""""""
+"  Theme  "
+"""""""""""
+" set background=dark
+" let g:solarized_italics=0
+" colorscheme solarized8_flat
+
+""""""""""
+"  Fold  "
+""""""""""
+set foldmethod=manual
+
+"""""""""""""""""
+"  Key mapping  "
+"""""""""""""""""
+noremap H ^
+noremap L $
+
+nnoremap n nzz
+nnoremap N Nzz
+
+nnoremap <M-j> gj
+nnoremap <M-k> gk
+
+nnoremap <M-J> <C-w>j
+nnoremap <M-K> <C-w>k
+nnoremap <M-H> <C-w>h
+nnoremap <M-L> <C-w>l
+nnoremap <M-Q> <C-w>q
+inoremap <M-J> <ESC><C-w>j
+inoremap <M-K> <ESC><C-w>k
+inoremap <M-H> <ESC><C-w>h
+inoremap <M-L> <ESC><C-w>l
+inoremap <M-Q> <ESC><C-w>q
+
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-h> <Left>
+inoremap <M-l> <Right>
+
+cnoremap <M-h> <Left>
+cnoremap <M-l> <Right>
+
+inoremap <M-CR> <ESC>o
+inoremap <S-CR> <ESC>O
+
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+
+noremap <C-space> <ESC>
+noremap! <C-space> <ESC>
+tnoremap <C-space> <ESC>
+
+nnoremap <silent> <M-s> <Cmd>update<CR>
+inoremap <silent> <M-s> <Cmd>update<CR>
+
+nnoremap <silent> <TAB> <Cmd>bn<CR>
+nnoremap <silent> <S-TAB> <Cmd>bp<CR>
+nnoremap <silent> <Leader>d <Cmd>bd<CR>
+
+nnoremap <silent><expr> q &filetype==#'help'?":bd\<CR>":'q'
+
+if has('nvim')
+    tnoremap <M-J> <C-\><C-N><C-w>j
+    tnoremap <M-K> <C-\><C-N><C-w>k
+    tnoremap <M-H> <C-\><C-N><C-w>h
+    tnoremap <M-L> <C-\><C-N><C-w>l
+    tnoremap <M-Q> <C-\><C-N><C-w>q
+    tnoremap <M-q> <C-\><C-N>
+    vnoremap <silent> <C-Insert> "+y
+    vnoremap <silent> <S-Insert> "+p
+    inoremap <silent> <S-Insert> <C-r>+
+    nnoremap <silent> <S-Insert> "+p
+    nnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
+    inoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
+    tnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
+    function! FullScreenToggle() abort
+        if g:GuiWindowFullScreen
+            call GuiWindowFullScreen(0)
+        else
+            call GuiWindowFullScreen(1)
+        endif
+    endfunction
+    augroup myaug
+        autocmd TermOpen * setlocal nonumber | startinsert
+        autocmd SessionLoadPost * let g:GuiWindowFullScreen=0
+    augroup END
+else
+    tnoremap <M-q> <C-w>N
+    tnoremap <M-J> <C-w>j
+    tnoremap <M-K> <C-w>k
+    tnoremap <M-H> <C-w>h
+    tnoremap <M-L> <C-w>l
+    tnoremap <M-Q> <C-w>q
+endif
