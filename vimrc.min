@@ -1,5 +1,5 @@
 """"""""""""""""
-"  Var define  "
+" Global vars  "
 """"""""""""""""
 if !exists('g:vimrc_path')
     if has('win32')
@@ -14,12 +14,11 @@ endif
 """""""""""
 set mouse-=a
 set autoread
-set shortmess+=c
 set backspace=indent,eol,start
-syntax on
-filetype on
-filetype plugin on
-filetype indent on
+" syntax on
+" filetype on
+" filetype plugin on
+" filetype indent on
 let g:tex_flavor='tex'
 let g:mapleader="\<Space>"
 augroup myaug
@@ -50,23 +49,22 @@ set softtabstop=4
 """""""""""""
 "  Display  "
 """""""""""""
+set wrap
+set title
 set hidden
 set number
-set wrap
+set wildmenu
+set noshowcmd
 set linebreak
 set breakat-=_
-set wildmenu
-set noshowmode
 set cursorline
 set scrolloff=1
-set sidescrolloff=5
 set laststatus=2
-set showtabline=2
-set guioptions=
-set guioptions+=c
+set guioptions=c
 set termguicolors
-set display=lastline
+set sidescrolloff=5
 set formatoptions+=mMj
+set titlestring=%{getcwd()}
 
 """"""""""""
 "  Search  "
@@ -88,9 +86,11 @@ set langmenu=en_US
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
-set guifont=MesloLGS\ NF:h14
-set guifontwide=等距更纱黑体\ SC:h14
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
+if has('gui_running')
+    set guifont=MesloLGS\ NF:h14
+    set guifontwide=等距更纱黑体\ SC:h14
+endif
 
 """""""""""""
 "  Session  "
@@ -114,6 +114,8 @@ nnoremap N Nzz
 
 nnoremap <M-j> gj
 nnoremap <M-k> gk
+
+inoremap jk <ESC>
 
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
@@ -142,7 +144,6 @@ imap <MiddleMouse> <Nop>
 
 noremap <C-space> <ESC>
 noremap! <C-space> <ESC>
-tnoremap <C-space> <ESC>
 
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
@@ -151,7 +152,9 @@ nnoremap <silent> <TAB> <Cmd>bn<CR>
 nnoremap <silent> <S-TAB> <Cmd>bp<CR>
 nnoremap <silent> <Leader>d <Cmd>bd<CR>
 
-nnoremap <silent><expr> q &filetype==#'help'?":bd\<CR>":'q'
+inoremap <C-x><C-k> <C-x><C-k>
+
+nnoremap <silent><expr> q &buftype==#'help'?":bd\<CR>":'q'
 
 if has('nvim')
     tnoremap <M-J> <C-\><C-N><C-w>j
@@ -186,3 +189,4 @@ else
     tnoremap <M-L> <C-w>l
     tnoremap <M-Q> <C-w>q
 endif
+

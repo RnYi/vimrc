@@ -1,5 +1,5 @@
 /*
-!autoload/
+!autoload/plug.vim
 !ultisnips/
 !.gitignore
 !.coc-settings.json

@@ -5,8 +5,14 @@ if !exists('g:vimrc_path')
         let g:vimrc_path=expand("~/.vim")
     endif
 endif
+exe "so ".g:vimrc_path."/vimrc.min"
+
+call plug#begin()
+Plug 'ayu-theme/ayu-vim'
+call plug#end()
+
 let &pythonthreedll="python38.dll"
-colorscheme slate
-exe "source ".g:vimrc_path."/vimrc.min"
 set showmode
-set showtabline=1
+
+let ayucolor="dark"
+colorscheme ayu
