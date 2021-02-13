@@ -1,0 +1,105 @@
+"""""""""""
+"  Basic  "
+"""""""""""
+set mouse-=a
+set autoread
+set backspace=indent,eol,start
+if !has('syntax_on')
+    syntax enable
+    syntax on
+endif
+let g:tex_flavor='tex'
+let g:mapleader="\<Space>"
+
+""""""""""""
+"  Indent  "
+""""""""""""
+set tabstop=4
+set smarttab
+set expandtab
+set shiftround
+set autoindent
+set smartindent
+set shiftwidth=4
+set softtabstop=4
+
+"""""""""""""
+"  Display  "
+"""""""""""""
+set wrap
+set title
+set hidden
+set number
+set wildmenu
+set noshowcmd
+set linebreak
+set breakat-=_
+set cursorline
+set scrolloff=1
+set laststatus=2
+set shortmess+=c
+set guioptions=c
+set termguicolors
+set sidescrolloff=5
+set formatoptions+=mMj
+set titlestring=%{getcwd()}
+
+"""""""""""
+"  Theme  "
+"""""""""""
+let ayucolor="mirage"
+colorscheme ayu
+
+""""""""""""
+"  Search  "
+""""""""""""
+set wrapscan
+set smartcase
+set nohlsearch
+set incsearch
+set ignorecase
+if has('nvim')
+    set inccommand=nosplit
+endif
+
+""""""""""""""
+"  Encoding  "
+""""""""""""""
+language en_US
+set langmenu=en_US
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
+if has('gui_running')
+    set guifont=MesloLGS\ NF:h14
+    set guifontwide=等距更纱黑体\ SC:h14
+endif
+
+"""""""""""""
+"  Session  "
+"""""""""""""
+set viewoptions-=options
+set sessionoptions-=options
+
+""""""""""
+"  Fold  "
+""""""""""
+set foldmethod=manual
+
+"""""""""""""
+"  Autocmd  "
+"""""""""""""
+augroup myaug
+    autocmd!
+    autocmd BufReadPost *
+                \   if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \       exe "normal g'\"" |
+                \   endif
+    autocmd FileType help wincmd L
+    autocmd FileType json syntax match Comment +\/\/.\+$+
+    autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType markdown hi Error NONE
+    autocmd FileType json setlocal commentstring=//%s
+augroup END
+

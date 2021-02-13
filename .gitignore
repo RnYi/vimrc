@@ -1,8 +1,12 @@
 /*
 !autoload/plug.vim
+!colors/
 !ultisnips/
+
 !.gitignore
 !.coc-settings.json
 !.tasks.ini
-!vimrc.min
-!vimrc.max
+!vimrc
+!vimrc.*
+!*.vim
+
