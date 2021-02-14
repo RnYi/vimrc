@@ -1,4 +1,7 @@
-let s:home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
+if !exists('g:vimrc_home')
+    let g:vimrc_home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    let g:init_home=g:vimrc_home."/init"
+endif
 
 """"""""""""""""""
 "  Load Plugins  "
@@ -58,6 +61,6 @@ Plug 'kana/vim-textobj-indent'
 Plug 'sgur/vim-textobj-parameter'
 call plug#end()
 
-exe "so ".s:home."/vimrc.min"
-exe "so ".s:home."/plugins.vim"
+exe "so ".g:vimrc_home."/vimrc.min"
+exe "so ".g:init_home."/plugins.vim"
 

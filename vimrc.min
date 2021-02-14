@@ -1,4 +1,8 @@
-let s:home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
-exe "so ".s:home."/config.vim"
-exe "so ".s:home."/keymaps.vim"
+if !exists('g:vimrc_home')
+    let g:vimrc_home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    let g:init_home=g:vimrc_home."/init"
+endif
+
+exe "so ".g:init_home."/config.vim"
+exe "so ".g:init_home."/keymaps.vim"
 

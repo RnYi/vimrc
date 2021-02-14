@@ -1,4 +1,7 @@
-let s:home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
+if !exists('g:vimrc_home')
+    let g:vimrc_home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    let g:init_home=g:vimrc_home."/init"
+endif
 
 " IndentLien
 let g:indentLine_enabled=0
@@ -121,7 +124,7 @@ let g:asyncrun_open=6
 let g:asynctasks_term_pos='right'
 let g:asynctasks_term_reuse=1
 let g:asynctasks_extra_config=[
-            \ join([s:home,"tasks.ini"],'/'),
+            \ join([g:vimrc_home,"tasks.ini"],'/'),
             \ ]
 let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.json']
 nnoremap <silent> <F3> <Cmd>AsyncTask run<CR>
@@ -241,7 +244,7 @@ nmap <Leader>9 <Plug>BufTabLine.Go(9)
 nmap <Leader>0 <Plug>BufTabLine.Go(10)
 
 " coc.nvim
-let g:coc_config_home=s:home
+let g:coc_config_home=g:vimrc_home
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
 command! -nargs=0 Format :call CocAction('format')

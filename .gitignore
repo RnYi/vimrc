@@ -2,11 +2,11 @@
 !autoload/plug.vim
 !colors/
 !ultisnips/
+!init/
 
 !.gitignore
 !.coc-settings.json
 !.tasks.ini
 !vimrc
 !vimrc.*
-!*.vim
 
