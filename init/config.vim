@@ -4,9 +4,8 @@
 set mouse-=a
 set autoread
 set backspace=indent,eol,start
-if !has('syntax_on')
+if !exists('g:syntax_on')
     syntax enable
-    syntax on
 endif
 let g:tex_flavor='tex'
 let g:mapleader="\<Space>"
@@ -40,6 +39,7 @@ set laststatus=2
 set shortmess+=c
 set guioptions=c
 set termguicolors
+set display+=lastline
 set sidescrolloff=5
 set formatoptions+=mMj
 set titlestring=%{getcwd()}
@@ -97,9 +97,8 @@ augroup myaug
                 \       exe "normal g'\"" |
                 \   endif
     autocmd FileType help wincmd L
-    autocmd FileType json syntax match Comment +\/\/.\+$+
+    " autocmd FileType json syntax match Comment +\/\/.\+$+
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType markdown hi Error NONE
-    autocmd FileType json setlocal commentstring=//%s
 augroup END
 

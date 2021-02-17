@@ -20,20 +20,23 @@ let g:sneak#label=1
 let g:sneak#use_ic_scs=1
 
 " vim-shell
-if !has('nvim') && has('gui_running')
+if has('gui_running') && has('win32')
     let g:shell_mappings_enabled=0
     let g:shell_fullscrejen_message=0
     let g:shell_fullscreen_items='mT'
     let g:shell_fullscreen_always_on_top=0
-    if has('gui_running') && has('win32')
-        nnoremap <silent> <F1> <Cmd>Fullscreen<CR>
-        inoremap <silent> <F1> <Cmd>Fullscreen<CR>
-    endif
+    nnoremap <silent> <F1> <Cmd>Fullscreen<CR>
+    inoremap <silent> <F1> <Cmd>Fullscreen<CR>
 endif
 
 " markdown-preview
 let g:mkdp_auto_close=0
 nmap <Leader>p <Plug>MarkdownPreviewToggle
+
+" vim-commentary
+augroup myaug
+    autocmd FileType json setlocal commentstring=//%s
+augroup END
 
 " delimitMate
 let delimitMate_expand_cr=1
@@ -89,11 +92,11 @@ function! s:init_fern() abort
 
     nmap <buffer><silent> q <Cmd>quit<CR>
 endfunction
+nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
 augroup fern-custom
     autocmd! *
     autocmd FileType fern call s:init_fern()
 augroup END
-nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -170,8 +173,10 @@ let g:rainbow_conf={
 set noshowmode
 let g:lightline={
             \   'colorscheme': 'ayu_mirage',
+            \ 'separator': { 'left': "\ue0b0", 'right': ''},
+            \ 'subseparator': { 'left': "\ue0b1", 'right': '|'},
             \   'active': {
-            \       'left': [['mode', 'paste'],['filename'],['cocstatus']],
+            \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
             \       'right' : [['filetype']]
             \   },
             \   'inactive': {
@@ -185,7 +190,7 @@ let g:lightline={
             \   'component_function': {
             \       'mode': 'LightlineMode',
             \       'cocstatus': 'coc#status',
-            \       'filename': 'LightlineFilename',
+            \       'fullpath': 'LightlinePath',
             \       'filetype': 'LightlineFiletype',
             \   },
             \}
@@ -195,23 +200,23 @@ function! LightlineMode()
                 \          lightline#mode()
 endfunction
 
-function! LightlineFilename()
-    let l:filename=expand('%:t')
+" function! LightlineFilename()
+"     let l:filename=expand('%:t')
+"     return &filetype ==? 'fern' ? '' :
+"                 \          &filetype ==? 'startify' ? '' :
+"                 \          &filetype == '' ? '' :
+"                 \          winwidth('%') < 40 ? '' : l:filename
+" endfunction
+
+function! LightlinePath()
+    let l:rlpath=expand('%')
     return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
+                \          &filetype ==? 'help' ? expand('%:t') :
                 \          &filetype == '' ? '' :
-                \          winwidth('%') < 40 ? '' : l:filename
+                \          winwidth('%') < 40 ? '' :
+                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
 endfunction
-
-" function! LightlinePath()
-    " let l:rlpath=expand('%')
-    " return &filetype ==? 'fern' ? '' :
-                " \          &filetype ==? 'startify' ? '' :
-                " \          &filetype ==? 'help' ? expand('%:t') :
-                " \          &filetype == '' ? '' :
-                " \          winwidth('%')  40 ? '' :
-                " \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
-" endfunction
 
 function! LightlineFiletype()
     return &filetype ==? 'fern' ? '' :

@@ -7,8 +7,6 @@ nnoremap N Nzz
 nnoremap <M-j> gj
 nnoremap <M-k> gk
 
-inoremap jk <ESC>
-
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
 nnoremap <M-H> <C-w>h
@@ -28,7 +26,7 @@ inoremap <M-l> <Right>
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
 
-inoremap <M-CR> <ESC>o
+inoremap <C-CR> <ESC>o
 inoremap <S-CR> <ESC>O
 
 map <MiddleMouse> <Nop>
