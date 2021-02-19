@@ -6,4 +6,4 @@ endif
 exe "so ".g:vimrc_home."/vimrc.min"
 let &pythonthreedll="python38.dll"
 set showmode
-
+" set guifont=*

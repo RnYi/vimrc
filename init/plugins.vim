@@ -174,13 +174,13 @@ set noshowmode
 let g:lightline={
             \   'colorscheme': 'ayu_mirage',
             \ 'separator': { 'left': "\ue0b0", 'right': ''},
-            \ 'subseparator': { 'left': "\ue0b1", 'right': '|'},
+            \ 'subseparator': { 'left': "\ue0b1", 'right': ''},
             \   'active': {
             \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
             \       'right' : [['filetype']]
             \   },
             \   'inactive': {
-            \       'left': [['relativepath']],
+            \       'left': [['fullpath']],
             \       'right': [['filetype']]
             \   },
             \   'enable': {
@@ -223,12 +223,6 @@ function! LightlineFiletype()
                 \          &filetype ==? 'startify' ? '' :
                 \          winwidth('%') > 40 ? &filetype : ''
 endfunction
-
-" function! LightlineLineinfo()
-"     return &filetype ==? 'fern' ? '' :
-"                 \          &filetype ==? 'startify' ? '' :
-"                 \          winwidth('%') < 40 ? printf("%d/%d", line('.'),line('$')) : ''
-" endfunction
 
 " vim-buftabline
 set showtabline=2
