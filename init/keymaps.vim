@@ -44,7 +44,7 @@ nnoremap <silent> <Leader>d <Cmd>bd<CR>
 
 inoremap <C-x><C-k> <C-x><C-k>
 
-nnoremap <silent><expr> q &buftype==#'help'?":bd\<CR>":'q'
+nnoremap <silent><expr> q index(['help','quickfix'], &buftype) >= 0 ? ":bd\<CR>":'q'
 
 if has('nvim')
     tnoremap <M-J> <C-\><C-N><C-w>j

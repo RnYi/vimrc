@@ -53,8 +53,8 @@ endif
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 " Asynctasks
-Plug 'skywind3000/asynctasks.vim', {'on': ['AsyncTask', 'AsyncTaskMacro', 'AsyncTaskList', 'AsyncTaskEdit']}
-Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun','AsyncStop']}
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'

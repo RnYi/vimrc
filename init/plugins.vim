@@ -197,6 +197,7 @@ let g:lightline={
 function! LightlineMode()
     return &filetype ==? 'fern' ? 'Fern' :
                 \          &filetype ==? 'startify' ? 'Startify' :
+                \           &buftype==? 'quickfix' ? 'QUICKFIX':
                 \          lightline#mode()
 endfunction
 
@@ -221,6 +222,7 @@ endfunction
 function! LightlineFiletype()
     return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
+                \           &filetype ==? 'qf' ? '' :
                 \          winwidth('%') > 40 ? &filetype : ''
 endfunction
 

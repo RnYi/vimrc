@@ -49,9 +49,7 @@ set titlestring=%{getcwd()}
 """""""""""
 let ayucolor="mirage"
 colorscheme ayu
-if g:colors_name ==# "ayu"
-    hi VertSplit guifg=black guibg=NONE
-endif
+hi VertSplit guifg=black guibg=NONE
 
 """"""""""""
 "  Search  "
