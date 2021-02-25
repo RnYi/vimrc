@@ -59,7 +59,7 @@ function! s:init_fern() abort
     nmap <buffer><expr>
                 \ <Plug>(fern-my-open-or-expand-or-collapse)
                 \ fern#smart#leaf(
-                \   "\<Plug>(fern-action-open)",
+                \   "\<Plug>(fern-action-open)\<Cmd>Fern . -drawer -keep -toggle\<CR>",
                 \   "\<Plug>(fern-action-expand:stay)",
                 \   "\<Plug>(fern-action-collapse)",
                 \ )

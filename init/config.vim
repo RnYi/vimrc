@@ -43,7 +43,7 @@ set display+=lastline
 set sidescrolloff=5
 set formatoptions+=mMj
 set titlestring=%{getcwd()}
-
+set guicursor+=a:blinkon0
 """""""""""
 "  Theme  "
 """""""""""
