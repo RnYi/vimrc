@@ -173,8 +173,6 @@ let g:rainbow_conf={
 set noshowmode
 let g:lightline={
             \   'colorscheme': 'ayu_mirage',
-            \ 'separator': { 'left': "\ue0b0", 'right': ''},
-            \ 'subseparator': { 'left': "\ue0b1", 'right': ''},
             \   'active': {
             \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
             \       'right' : [['filetype']]
