@@ -8,7 +8,7 @@ endif
 """"""""""""""""""
 call plug#begin()
 " Theme
-" Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim'
 " Colorized parentheses
 Plug 'luochen1990/rainbow'
 " Indent line
