@@ -228,9 +228,6 @@ endfunction
 set showtabline=2
 let g:buftabline_numbers=2
 let g:buftabline_indicators=1
-nnoremap <silent> <TAB> <Cmd>bn<CR>
-nnoremap <silent> <S-TAB> <Cmd>bp<CR>
-nnoremap <silent> <Leader>d <Cmd>bd<CR>
 nmap <Leader>1 <Plug>BufTabLine.Go(1)
 nmap <Leader>2 <Plug>BufTabLine.Go(2)
 nmap <Leader>3 <Plug>BufTabLine.Go(3)
