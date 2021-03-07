@@ -8,7 +8,7 @@ let g:indentLine_enabled=0
 nnoremap <F2> <Cmd>IndentLinesToggle<CR>
 
 " echodoc
-let g:echodoc_enable_at_startup=1
+" let g:echodoc_enable_at_startup=1
 
 " vim-lsp-cxx-highlight
 let g:cpp_class_decl_highlight=1
@@ -39,13 +39,13 @@ augroup myaug
 augroup END
 
 " delimitMate
-let delimitMate_expand_cr=1
-let delimitMate_matchpairs=&matchpairs
-let delimitMate_quotes="\" ' `"
-augroup myaug
-    autocmd FileType python let b:delimitMate_nesting_quotes=['"']
-    autocmd FileType markdown,latex,tex let b:delimitMate_quotes=delimitMate_quotes." \$"
-augroup END
+" let delimitMate_expand_cr=1
+" let delimitMate_matchpairs=&matchpairs
+" let delimitMate_quotes="\" ' `"
+" augroup myaug
+"     autocmd FileType python let b:delimitMate_nesting_quotes=['"']
+"     autocmd FileType markdown,latex,tex let b:delimitMate_quotes=delimitMate_quotes." \$"
+" augroup END
 
 " fern
 let g:fern#smart_cursor="hide"
@@ -245,20 +245,6 @@ let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', f-args)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-refrences)
-nmap <Leader>rn <Plug>(coc-rename)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
@@ -268,16 +254,22 @@ function! s:show_documentation()
         execute '!' . &keywordprg . " " . expand('<cword>')
     endif
 endfunction
-
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? coc#_select_confirm() :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+nmap <Leader>rn <Plug>(coc-rename)
+nmap <Leader>qf <Plug>(coc-fix-current)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-refrences)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : "\<TAB>"
 hi CocErrorHighlight gui=undercurl guisp=#ff0000
 hi CocWarningHighlight gui=undercurl guisp=#ff922b
 hi CocInfoHighlight gui=undercurl guisp=#fab005

@@ -7,8 +7,7 @@ nnoremap N Nzz
 nnoremap <M-j> gj
 nnoremap <M-k> gk
 
-nnoremap <TAB> %
-vnoremap <TAB> %
+noremap <TAB> %
 
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
@@ -41,9 +40,12 @@ noremap! <C-space> <ESC>
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
 
-nnoremap <silent> ]b <Cmd>bn<CR>
 nnoremap <silent> [b <Cmd>bp<CR>
-nnoremap <silent> <Leader>d <Cmd>bd<CR>
+nnoremap <silent> ]b <Cmd>bn<CR>
+nnoremap <silent> [B <Cmd>bf<CR>
+nnoremap <silent> ]B <Cmd>bl<CR>
+nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
+nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 
 inoremap <C-x><C-k> <C-x><C-k>
 

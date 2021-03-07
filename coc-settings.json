@@ -2,7 +2,6 @@
     "suggest.enablePreview": true,
     "suggest.labelMaxLength": 40,
     "suggest.detailMaxLength": 40,
-    "suggest.echodocSupport": true,
     "suggest.removeDuplicateItems": true,
     "diagnostic.enableSign": false,
     "coc.source.buffer.ignoreGitignore": false,

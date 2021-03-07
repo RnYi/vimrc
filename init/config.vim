@@ -82,7 +82,6 @@ endif
 """""""""""""
 set viewoptions-=options
 set sessionoptions-=options
-set sessionoptions-=buffers
 
 """"""""""
 "  Fold  "
