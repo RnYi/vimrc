@@ -45,7 +45,7 @@ Plug 'tpope/vim-commentary'
 " Surround
 Plug 'tpope/vim-surround'
 " Fullscreen
-if !has('nvim') && has('gui_running')
+if has('gui_running')
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-shell'
 endif
