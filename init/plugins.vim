@@ -108,11 +108,13 @@ let g:UltiSnipsListSnippets="<C-l>"
 let g:startify_change_cmd='tcd'
 let g:startify_session_sort = 1
 let g:startify_files_number = 5
+let g:startify_change_to_dir = 0
 let g:startify_custom_header = []
 let g:startify_session_number = 5
 let g:startify_update_oldfiles = 1
 let g:startify_session_persistence=1
 let g:startify_session_delete_buffers=1
+let g:startify_session_before_save = ["call setreg('#',@%)"]
 let g:startify_lists=[
             \   { 'type': 'sessions',  'header': ['   Sessions']       },
             \   { 'type': 'files',     'header': ['   MRU']            },
@@ -133,9 +135,9 @@ let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.j
 nnoremap <silent> <F3> <Cmd>AsyncTask run<CR>
 nnoremap <silent> <F4> <Cmd>AsyncTask build<CR>
 nnoremap <silent> <F5> <Cmd>AsyncTask debug<CR>
-inoremap <silent> <F3> <Cmd>AsyncTask run<CR>
-inoremap <silent> <F4> <Cmd>AsyncTask build<CR>
-inoremap <silent> <F5> <Cmd>AsyncTask debug<CR>
+inoremap <silent> <F3> <ESC><Cmd>AsyncTask run<CR>
+inoremap <silent> <F4> <ESC><Cmd>AsyncTask build<CR>
+inoremap <silent> <F5> <ESC><Cmd>AsyncTask debug<CR>
 
 " Rainbow Parentheses
 let g:rainbow_active=1
@@ -172,7 +174,7 @@ let g:rainbow_conf={
 " lightline
 set noshowmode
 let g:lightline={
-            \   'colorscheme': 'ayu_mirage',
+            \   'colorscheme': 'jellybeans',
             \   'active': {
             \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
             \       'right' : [['filetype']]

@@ -47,9 +47,11 @@ set guicursor+=a:blinkon0
 """""""""""
 "  Theme  "
 """""""""""
-let ayucolor="mirage"
-colorscheme ayu
-hi VertSplit guifg=black guibg=NONE
+let g:jellybeans_use_gui_italics = 0
+colorscheme jellybeans
+" let ayucolor="mirage"
+" colorscheme ayu
+" hi VertSplit guifg=black guibg=NONE
 
 """"""""""""
 "  Search  "
@@ -82,6 +84,7 @@ endif
 """""""""""""
 set viewoptions-=options
 set sessionoptions-=options
+set sessionoptions-=winsize
 
 """"""""""
 "  Fold  "
@@ -102,4 +105,10 @@ augroup myaug
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType markdown hi Error NONE
 augroup END
+
+if has('nvim')
+    augroup myaug
+        autocmd TermOpen * setlocal nonumber | startinsert
+    augroup END
+endif
 

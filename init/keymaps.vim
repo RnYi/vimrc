@@ -62,20 +62,6 @@ if has('nvim')
     vnoremap <silent> <S-Insert> "+p
     inoremap <silent> <S-Insert> <C-r>+
     nnoremap <silent> <S-Insert> "+p
-    nnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
-    inoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
-    tnoremap <silent> <F1> <Cmd>call FullScreenToggle()<CR>
-    function! FullScreenToggle() abort
-        if g:GuiWindowFullScreen
-            call GuiWindowFullScreen(0)
-        else
-            call GuiWindowFullScreen(1)
-        endif
-    endfunction
-    augroup myaug
-        autocmd TermOpen * setlocal nonumber | startinsert
-        autocmd SessionLoadPost * let g:GuiWindowFullScreen=0
-    augroup END
 else
     tnoremap <M-q> <C-w>N
     tnoremap <M-J> <C-w>j
