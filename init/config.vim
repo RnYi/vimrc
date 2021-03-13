@@ -102,6 +102,7 @@ augroup myaug
                 \   endif
     autocmd FileType help wincmd L
     " autocmd FileType json syntax match Comment +\/\/.\+$+
+    autocmd FileType c,cpp setlocal commentstring=//%s
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType markdown hi Error NONE
 augroup END
