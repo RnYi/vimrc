@@ -91,6 +91,9 @@ function! s:init_fern() abort
     nmap <buffer><silent> I    <Plug>(fern-action-hidden:toggle)
 
     nmap <buffer><silent> q <Cmd>quit<CR>
+
+    nmap <buffer><silent> <2-LeftMouse> <Plug>(fern-my-open-or-expand-or-collapse)
+
 endfunction
 nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
 augroup fern-custom

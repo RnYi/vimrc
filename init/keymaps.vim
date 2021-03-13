@@ -31,8 +31,13 @@ cnoremap <M-l> <Right>
 inoremap <C-CR> <ESC>o
 inoremap <S-CR> <ESC>O
 
-map <MiddleMouse> <Nop>
-imap <MiddleMouse> <Nop>
+noremap <C-c> "+y
+noremap <C-v> "+p
+inoremap <C-v> <C-o>"+p
+
+noremap <RightMouse> "+y
+noremap <MiddleMouse> <Nop>
+inoremap <MiddleMouse> <Nop>
 
 noremap <C-space> <ESC>
 noremap! <C-space> <ESC>
@@ -67,10 +72,6 @@ if has('nvim')
     tnoremap <M-L> <C-\><C-N><C-w>l
     tnoremap <M-Q> <C-\><C-N><C-w>q
     tnoremap <M-q> <C-\><C-N>
-    vnoremap <silent> <C-Insert> "+y
-    vnoremap <silent> <S-Insert> "+p
-    inoremap <silent> <S-Insert> <C-r>+
-    nnoremap <silent> <S-Insert> "+p
 else
     tnoremap <M-q> <C-w>N
     tnoremap <M-J> <C-w>j
