@@ -25,8 +25,8 @@ if has('gui_running') && has('win32')
     let g:shell_fullscrejen_message=0
     let g:shell_fullscreen_items='mT'
     let g:shell_fullscreen_always_on_top=0
-    nnoremap <silent> <F1> <Cmd>Fullscreen<CR>
-    inoremap <silent> <F1> <Cmd>Fullscreen<CR>
+    noremap <silent> <F11> <Cmd>Fullscreen<CR>
+    inoremap <silent> <F11> <Cmd>Fullscreen<CR>
 endif
 
 " markdown-preview

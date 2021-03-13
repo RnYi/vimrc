@@ -51,6 +51,15 @@ inoremap <C-x><C-k> <C-x><C-k>
 
 nnoremap <silent><expr> q index(['help','quickfix'], &buftype) >= 0 ? ":bd\<CR>":'q'
 
+function! FullscreenToggle() abort
+    if exists('g:GuiLoaded')
+        call GuiWindowFullScreen(1-g:GuiWindowFullScreen)
+    endif
+endfunction
+
+noremap <F11> <Cmd>call FullscreenToggle()<CR>
+inoremap <F11> <Cmd>call FullscreenToggle()<CR>
+
 if has('nvim')
     tnoremap <M-J> <C-\><C-N><C-w>j
     tnoremap <M-K> <C-\><C-N><C-w>k
