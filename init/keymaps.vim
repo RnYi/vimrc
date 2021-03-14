@@ -33,7 +33,7 @@ inoremap <S-CR> <ESC>O
 
 noremap <C-c> "+y
 noremap <C-v> "+p
-inoremap <C-v> <C-o>"+p
+inoremap <C-v> <C-r>+
 
 noremap <RightMouse> "+y
 noremap <MiddleMouse> <Nop>
