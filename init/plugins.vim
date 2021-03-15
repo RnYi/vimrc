@@ -197,6 +197,7 @@ let g:lightline={
             \       'filetype': 'LightlineFiletype',
             \   },
             \}
+
 function! LightlineMode()
     return &filetype ==? 'fern' ? 'Fern' :
                 \          &filetype ==? 'startify' ? 'Startify' :
