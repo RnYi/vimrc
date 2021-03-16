@@ -49,6 +49,10 @@ nnoremap <silent> [b <Cmd>bp<CR>
 nnoremap <silent> ]b <Cmd>bn<CR>
 nnoremap <silent> [B <Cmd>bf<CR>
 nnoremap <silent> ]B <Cmd>bl<CR>
+nnoremap <silent> [q <Cmd>cp<CR>
+nnoremap <silent> ]q <Cmd>cn<CR>
+nnoremap <silent> [Q <Cmd>cf<CR>
+nnoremap <silent> ]Q <Cmd>cl<CR>
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 

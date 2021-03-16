@@ -1,7 +1,7 @@
 """""""""""
 "  Basic  "
 """""""""""
-set mouse+=a
+set mouse=nvi
 set autoread
 set backspace=indent,eol,start
 if !exists('g:syntax_on')
