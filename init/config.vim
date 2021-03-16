@@ -1,7 +1,7 @@
 """""""""""
 "  Basic  "
 """""""""""
-set mouse+=nv
+set mouse+=a
 set autoread
 set backspace=indent,eol,start
 if !exists('g:syntax_on')
@@ -112,4 +112,3 @@ if has('nvim')
         autocmd TermOpen * setlocal nonumber | startinsert
     augroup END
 endif
-

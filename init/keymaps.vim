@@ -80,4 +80,3 @@ else
     tnoremap <M-L> <C-w>l
     tnoremap <M-Q> <C-w>q
 endif
-

@@ -110,10 +110,10 @@ let g:UltiSnipsListSnippets="<C-l>"
 " vim-startify
 let g:startify_change_cmd='tcd'
 let g:startify_session_sort = 1
-let g:startify_files_number = 5
+let g:startify_files_number = 0
 let g:startify_change_to_dir = 0
 let g:startify_custom_header = []
-let g:startify_session_number = 5
+let g:startify_session_number = 10
 let g:startify_update_oldfiles = 1
 let g:startify_session_persistence=1
 let g:startify_session_delete_buffers=1
@@ -283,4 +283,3 @@ hi CocHintHighlight gui=undercurl guisp=#15aabf
 
 " vim-textobj-user
 let g:vim_textobj_parameter_mapping = 'a'
-

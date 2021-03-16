@@ -63,4 +63,3 @@ call plug#end()
 
 exe "so ".g:vimrc_home."/vimrc.min"
 exe "so ".g:init_home."/plugins.vim"
-
