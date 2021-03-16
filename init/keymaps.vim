@@ -31,11 +31,13 @@ cnoremap <M-l> <Right>
 inoremap <C-CR> <ESC>o
 inoremap <S-CR> <ESC>O
 
-noremap <C-c> "+y
 noremap <C-v> "+p
+vnoremap <C-c> "+y
 inoremap <C-v> <C-r>+
 
-noremap <RightMouse> "+y
+nnoremap <RightMouse> "+p
+vnoremap <RightMouse> "+y
+inoremap <RightMouse> <C-r>+
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
