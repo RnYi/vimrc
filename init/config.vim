@@ -3,6 +3,7 @@
 """""""""""
 set mouse=nvi
 set autoread
+set mousemodel=extend
 set backspace=indent,eol,start
 if !exists('g:syntax_on')
     syntax enable

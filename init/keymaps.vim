@@ -35,9 +35,6 @@ noremap <C-v> "+p
 vnoremap <C-c> "+y
 inoremap <C-v> <C-r>+
 
-nnoremap <RightMouse> "+p
-vnoremap <RightMouse> "+y
-inoremap <RightMouse> <C-r>+
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
