@@ -8,7 +8,6 @@ endif
 """"""""""""""""""
 call plug#begin()
 " Theme
-" Plug 'ayu-theme/ayu-vim'
 " Colorized parentheses
 Plug 'luochen1990/rainbow'
 " Indent line
@@ -20,10 +19,6 @@ Plug 'ap/vim-buftabline'
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c','cpp']}
-" Delimiter
-" Plug 'Raimondi/delimitMate'
-" Function signature
-" Plug 'Shougo/echodoc.vim'
 " Markdown
 Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
 Plug 'iamcco/markdown-preview.nvim', {'do': {->mkdp#util#install()}, 'for':['markdown','vim-plug']}
@@ -44,11 +39,6 @@ Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
 Plug 'tpope/vim-commentary'
 " Surround
 Plug 'tpope/vim-surround'
-" Fullscreen
-if has('gui_running')
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-shell'
-endif
 " Snippets
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'

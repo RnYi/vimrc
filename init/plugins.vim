@@ -19,16 +19,6 @@ let g:cpp_member_variable_highlight=1
 let g:sneak#label=1
 let g:sneak#use_ic_scs=1
 
-" vim-shell
-if has('gui_running') && has('win32')
-    let g:shell_mappings_enabled=0
-    let g:shell_fullscrejen_message=0
-    let g:shell_fullscreen_items='mT'
-    let g:shell_fullscreen_always_on_top=0
-    noremap <silent> <F11> <Cmd>Fullscreen<CR>
-    inoremap <silent> <F11> <Cmd>Fullscreen<CR>
-endif
-
 " markdown-preview
 let g:mkdp_auto_close=0
 nmap <Leader>p <Plug>MarkdownPreviewToggle
@@ -117,7 +107,6 @@ let g:startify_session_number = 10
 let g:startify_update_oldfiles = 1
 let g:startify_session_persistence=1
 let g:startify_session_delete_buffers=1
-let g:startify_session_before_save = ["call setreg('#',@%)"]
 let g:startify_lists=[
             \   { 'type': 'sessions',  'header': ['   Sessions']       },
             \   { 'type': 'files',     'header': ['   MRU']            },

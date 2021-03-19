@@ -62,6 +62,8 @@ nnoremap <silent><expr> q index(['help','quickfix'], &buftype) >= 0 ? ":bd\<CR>"
 function! FullscreenToggle() abort
     if exists('g:GuiLoaded')
         call GuiWindowFullScreen(1-g:GuiWindowFullScreen)
+    elseif exists('g:loaded_shell')
+        silent exe "Fullscreen"
     endif
 endfunction
 
