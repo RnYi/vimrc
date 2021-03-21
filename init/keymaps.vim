@@ -43,6 +43,8 @@ noremap! <C-space> <ESC>
 
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
+nnoremap <silent> <M-d> <Cmd>bd<CR>
+inoremap <silent> <M-d> <Cmd>bd<CR>
 
 nnoremap <silent> [b <Cmd>bp<CR>
 nnoremap <silent> ]b <Cmd>bn<CR>
