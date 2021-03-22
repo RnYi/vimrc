@@ -5,7 +5,8 @@ endif
 
 " IndentLien
 let g:indentLine_enabled=0
-nnoremap <F2> <Cmd>IndentLinesToggle<CR>
+noremap <F2> <Cmd>IndentLinesToggle<CR>
+inoremap <F2> <Cmd>IndentLinesToggle<CR>
 
 " echodoc
 " let g:echodoc_enable_at_startup=1
