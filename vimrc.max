@@ -19,8 +19,9 @@ Plug 'ap/vim-buftabline'
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c','cpp']}
-" Markdown
+" Align
 Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
+" Markdown
 Plug 'iamcco/markdown-preview.nvim', {'do': {->mkdp#util#install()}, 'for':['markdown','vim-plug']}
 " Latex
 Plug 'lervag/vimtex', {'for': ['tex','latex']}
