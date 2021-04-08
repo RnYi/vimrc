@@ -10,6 +10,7 @@ if !exists('g:syntax_on')
 endif
 let g:tex_flavor='tex'
 let g:mapleader="\<Space>"
+let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
 
 """"""""""""

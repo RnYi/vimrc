@@ -271,5 +271,21 @@ hi CocWarningHighlight gui=undercurl guisp=#ff922b
 hi CocInfoHighlight gui=undercurl guisp=#fab005
 hi CocHintHighlight gui=undercurl guisp=#15aabf
 
+" vimtex
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_compiler_progname='nvr'
+let g:vimtex_complete_bib = { 'simple': 1 }
+function! SetServerName()
+    let nvim_server_file = has('win32')
+        \ ? $TEMP . "/curnvimserver.txt"
+        \ : "/tmp/curnvimserver.txt"
+    call system(printf("echo %s > %s", v:servername, nvim_server_file))
+endfunction
+
+augroup myaug
+    autocmd FileType tex nmap <buffer><silent> K <plug>(vimtex-doc-package)
+    autocmd FileType tex call SetServerName()
+augroup END
+
 " vim-textobj-user
 let g:vim_textobj_parameter_mapping = 'a'
