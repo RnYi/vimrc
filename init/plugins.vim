@@ -289,3 +289,7 @@ augroup END
 
 " vim-textobj-user
 let g:vim_textobj_parameter_mapping = 'a'
+
+" vim-xkbswitch
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchLib = g:vimrc_home . '/libxkbswitch64.dll'

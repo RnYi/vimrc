@@ -50,6 +50,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'sgur/vim-textobj-parameter'
+" Input method
+Plug 'lyokha/vim-xkbswitch'
 call plug#end()
 
 exe "so ".g:vimrc_home."/vimrc.min"
