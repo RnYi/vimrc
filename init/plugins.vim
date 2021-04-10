@@ -29,15 +29,6 @@ augroup myaug
     autocmd FileType json setlocal commentstring=//%s
 augroup END
 
-" delimitMate
-" let delimitMate_expand_cr=1
-" let delimitMate_matchpairs=&matchpairs
-" let delimitMate_quotes="\" ' `"
-" augroup myaug
-"     autocmd FileType python let b:delimitMate_nesting_quotes=['"']
-"     autocmd FileType markdown,latex,tex let b:delimitMate_quotes=delimitMate_quotes." \$"
-" augroup END
-
 " fern
 let g:fern#smart_cursor="hide"
 let g:fern#disable_default_mappings=1
@@ -87,7 +78,7 @@ function! s:init_fern() abort
 
 endfunction
 nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
-augroup fern-custom
+augroup Fern
     autocmd! *
     autocmd FileType fern call s:init_fern()
 augroup END
@@ -114,7 +105,8 @@ let g:startify_lists=[
             \]
 
 " AsyncTasks
-augroup myaug
+augroup AsyncTasks
+    autocmd!
     autocmd BufRead,BufNewFile .tasks set filetype=tasks
     autocmd BufRead,BufNewFile tasks.ini set filetype=tasks
 augroup END
@@ -275,16 +267,20 @@ hi CocHintHighlight gui=undercurl guisp=#15aabf
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_compiler_progname='nvr'
 let g:vimtex_complete_bib = { 'simple': 1 }
-function! SetServerName()
+function s:set_servername()
     let nvim_server_file = has('win32')
         \ ? $TEMP . "/curnvimserver.txt"
         \ : "/tmp/curnvimserver.txt"
     call system(printf("echo %s > %s", v:servername, nvim_server_file))
 endfunction
 
-augroup myaug
-    autocmd FileType tex nmap <buffer><silent> K <plug>(vimtex-doc-package)
-    autocmd FileType tex call SetServerName()
+function s:vimtex_keymap() abort
+    nmap <buffer><silent> K <plug>(vimtex-doc-package)
+    noremap <buffer><silent> <LocalLeader>lw <Cmd>VimtexCountWords!<CR><CR>
+endfunction
+augroup VimTex
+    autocmd!
+    autocmd FileType tex call s:vimtex_keymap() | call s:set_servername()
 augroup END
 
 " vim-textobj-user
