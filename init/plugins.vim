@@ -267,20 +267,31 @@ hi CocHintHighlight gui=undercurl guisp=#15aabf
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_compiler_progname='nvr'
 let g:vimtex_complete_bib = { 'simple': 1 }
+let g:vimtex_doc_handlers = ['TexdocHandler']
+function! TexdocHandler(context)
+    call vimtex#doc#make_selection(a:context)
+    if !empty(a:context.selected)
+        silent execute '!texdoc' a:context.selected '&'
+    endif
+    return 1
+endfunction
+function s:vimtex_keymap() abort
+    nmap <buffer><silent> K <plug>(vimtex-doc-package)
+    noremap <buffer><silent> <LocalLeader>lw <Cmd>VimtexCountWords!<CR><CR>
+endfunction
 function s:set_servername()
     let nvim_server_file = has('win32')
         \ ? $TEMP . "/curnvimserver.txt"
         \ : "/tmp/curnvimserver.txt"
     call system(printf("echo %s > %s", v:servername, nvim_server_file))
 endfunction
-
-function s:vimtex_keymap() abort
-    nmap <buffer><silent> K <plug>(vimtex-doc-package)
-    noremap <buffer><silent> <LocalLeader>lw <Cmd>VimtexCountWords!<CR><CR>
+function s:vimtex_config() abort
+    call s:vimtex_keymap()
+    call s:set_servername()
 endfunction
 augroup VimTex
     autocmd!
-    autocmd FileType tex call s:vimtex_keymap() | call s:set_servername()
+    autocmd FileType tex call s:vimtex_config()
 augroup END
 
 " vim-textobj-user
