@@ -267,6 +267,20 @@ hi CocHintHighlight gui=undercurl guisp=#15aabf
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_compiler_progname='nvr'
 let g:vimtex_complete_bib = { 'simple': 1 }
+let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : '.tmp',
+        \ 'callback' : 1,
+        \ 'continuous' : 0,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-pv',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
 let g:vimtex_doc_handlers = ['TexdocHandler']
 function! TexdocHandler(context)
     call vimtex#doc#make_selection(a:context)
@@ -300,3 +314,4 @@ let g:vim_textobj_parameter_mapping = 'a'
 " vim-xkbswitch
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchLib = g:vimrc_home . '/libxkbswitch64.dll'
+let g:XkbSwitchNLayout = 'us'
