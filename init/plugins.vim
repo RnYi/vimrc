@@ -120,9 +120,14 @@ let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.j
 nnoremap <silent> <F3> <Cmd>AsyncTask run<CR>
 nnoremap <silent> <F4> <Cmd>AsyncTask build<CR>
 nnoremap <silent> <F5> <Cmd>AsyncTask debug<CR>
+nnoremap <silent> <F6> <Cmd>AsyncTask git-add-commit<CR>
+nnoremap <silent> <F7> <Cmd>AsyncTask git-add-commit-push<CR>
 inoremap <silent> <F3> <ESC><Cmd>AsyncTask run<CR>
 inoremap <silent> <F4> <ESC><Cmd>AsyncTask build<CR>
 inoremap <silent> <F5> <ESC><Cmd>AsyncTask debug<CR>
+inoremap <silent> <F6> <Cmd>AsyncTask git-add-commit<CR>
+inoremap <silent> <F7> <ESC><Cmd>AsyncTask git-add-commit-push<CR>
+
 
 " Rainbow Parentheses
 let g:rainbow_active=1

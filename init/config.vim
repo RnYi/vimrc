@@ -12,6 +12,8 @@ let g:tex_flavor='tex'
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
+set undofile
+set undodir=~/vimundo
 
 """"""""""""
 "  Indent  "
