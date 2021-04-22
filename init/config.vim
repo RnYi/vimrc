@@ -13,7 +13,11 @@ let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
 set undofile
-set undodir=~/vimundo
+if has('nvim')
+    set undodir=~/nvimundo
+else
+    set undodir=~/vimundo
+endif
 
 """"""""""""
 "  Indent  "
@@ -40,7 +44,7 @@ set cursorline
 set scrolloff=1
 set laststatus=2
 set shortmess+=c
-set guioptions=c
+set guioptions=cr
 set termguicolors
 set display+=lastline
 set sidescrolloff=5
