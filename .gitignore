@@ -5,7 +5,9 @@
 !init/
 
 !.gitignore
-!.coc-settings.json
-!.tasks.ini
+!coc-settings.json
+!tasks.ini
 !vimrc
 !vimrc.*
+
+!libxkbswitch64.dll

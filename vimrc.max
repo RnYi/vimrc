@@ -52,6 +52,11 @@ Plug 'kana/vim-textobj-indent'
 Plug 'sgur/vim-textobj-parameter'
 " Input method
 Plug 'lyokha/vim-xkbswitch'
+" Vim Fullscreen
+if has('gui_running')
+    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-shell'
+endif
 call plug#end()
 
 exe "so ".g:vimrc_home."/vimrc.min"
