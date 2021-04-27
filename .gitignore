@@ -1,4 +1,5 @@
 /*
+.*
 !autoload/plug.vim
 !colors/
 !ultisnips/
@@ -10,4 +11,4 @@
 !vimrc
 !vimrc.*
 
-!libxkbswitch64.dll
+!/libxkbswitch64.dll
