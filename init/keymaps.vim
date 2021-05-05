@@ -4,8 +4,8 @@ noremap L $
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap <M-j> gj
-nnoremap <M-k> gk
+noremap <M-j> gj
+noremap <M-k> gk
 
 noremap <TAB> %
 
