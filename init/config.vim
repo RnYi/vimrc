@@ -14,9 +14,9 @@ let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
 set undofile
 if has('nvim')
-    set undodir=~/nvimundo
+    set undodir=~/undofiles/nvim
 else
-    set undodir=~/vimundo
+    set undodir=~/undofiles/vim
 endif
 
 """"""""""""
