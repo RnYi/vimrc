@@ -236,8 +236,8 @@ nmap <Leader>0 <Plug>BufTabLine.Go(10)
 let g:coc_config_home=g:vimrc_home
 let g:markdown_fenced_languages= ['vim','help','css', 'js=javascript']
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
-command! -nargs=0 Format :call CocAction('format')
-command! -nargs=? Fold :call CocAction('fold', f-args)
+" command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=? Fold :call CocAction('fold', f-args)
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
@@ -249,6 +249,7 @@ function! s:show_documentation()
 endfunction
 nmap <Leader>rn <Plug>(coc-rename)
 nmap <Leader>qf <Plug>(coc-fix-current)
+nmap <Leader>fm <Cmd>call CocAction('format')<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
