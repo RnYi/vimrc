@@ -8,8 +8,9 @@ endif
 """"""""""""""""""
 call plug#begin()
 " Theme
+Plug 'sainnhe/sonokai'
 " Colorized parentheses
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow'
 " Indent line
 Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
 " Statusline
@@ -18,7 +19,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c','cpp']}
+" Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c','cpp']}
 " Align
 Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
 " Markdown
@@ -56,6 +57,10 @@ Plug 'lyokha/vim-xkbswitch'
 if has('gui_running')
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-shell'
+endif
+" nvim-treesitter
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 call plug#end()
 

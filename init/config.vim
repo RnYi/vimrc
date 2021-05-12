@@ -54,8 +54,13 @@ set guicursor+=a:blinkon0
 """""""""""
 "  Theme  "
 """""""""""
-let g:jellybeans_use_gui_italics = 0
-colorscheme jellybeans
+if has('nvim')
+    let g:sonokai_disable_italic_comment = 1
+    colorscheme sonokai
+else
+    let g:jellybeans_use_gui_italics = 0
+    colorscheme jellybeans
+endif
 " let ayucolor="mirage"
 " colorscheme ayu
 " hi VertSplit guifg=black guibg=NONE
