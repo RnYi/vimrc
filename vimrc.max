@@ -58,7 +58,7 @@ if has('gui_running')
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-shell'
 endif
-" nvim-treesitter
+" Treesitter
 if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
