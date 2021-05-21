@@ -4,10 +4,12 @@ if !exists('g:vimrc_home')
 endif
 
 " load vim-shell
-call plug#begin()
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-shell'
-call plug#end()
+if has('win32')
+    call plug#begin()
+    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-shell'
+    call plug#end()
+endif
 
 " load config
 exe "so ".g:vimrc_home."/vimrc.min"

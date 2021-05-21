@@ -80,7 +80,7 @@ endif
 """"""""""""""
 "  Encoding  "
 """"""""""""""
-language en_US
+" language en_US
 set langmenu=en_US
 set encoding=utf-8
 set termencoding=utf-8
