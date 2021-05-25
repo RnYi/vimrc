@@ -323,14 +323,13 @@ let g:XkbSwitchLib = g:vimrc_home . '/libxkbswitch64.dll'
 let g:XkbSwitchNLayout = 'us'
 
 " vim-shell
-if has('gui_running')
-    let g:shell_mappings_enabled=0
-    let g:shell_fullscrejen_message=0
-    let g:shell_fullscreen_items='mT'
-    let g:shell_fullscreen_always_on_top=0
-endif    
+let g:shell_mappings_enabled=0
+let g:shell_fullscrejen_message=0
+let g:shell_fullscreen_items='mT'
+let g:shell_fullscreen_always_on_top=0
 
 " nvim-treesitter
+if has('nvim')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
     ensure_installed="maintained",
@@ -339,3 +338,4 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
+endif

@@ -3,21 +3,27 @@ if !exists('g:vimrc_home')
     let g:init_home=g:vimrc_home."/init"
 endif
 
-" load vim-shell
-if has('win32')
-    call plug#begin()
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-shell'
-    call plug#end()
+" 用vim/nvim打开文件时，加载简化配置
+if argc(-1) > 0
+    if has('win32')
+        if has('gui_running')
+            " 使gvim可以全屏
+            call plug#begin()
+            Plug 'xolox/vim-misc'
+            Plug 'xolox/vim-shell'
+            call plug#end()
+            let g:shell_mappings_enabled=0
+            let g:shell_fullscrejen_message=0
+            let g:shell_fullscreen_items='mT'
+            let g:shell_fullscreen_always_on_top=0
+        endif
+        if !has('nvim')
+            let &pythonthreedll="python38.dll"
+        endif
+    endif
+    exe "so ".g:vimrc_home."/vimrc.min"
+    set showmode
+" 直接启动时，加载完整配置
+else
+    exe "so ".g:vimrc_home."/vimrc.max"
 endif
-
-" load config
-exe "so ".g:vimrc_home."/vimrc.min"
-let &pythonthreedll="python38.dll"
-set showmode
-
-" set vim-shell
-let g:shell_mappings_enabled=0
-let g:shell_fullscrejen_message=0
-let g:shell_fullscreen_items='mT'
-let g:shell_fullscreen_always_on_top=0
