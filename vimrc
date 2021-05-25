@@ -3,6 +3,9 @@ if !exists('g:vimrc_home')
     let g:init_home=g:vimrc_home."/init"
 endif
 
+" vim-plug配置
+let g:plug_url_format='git@github.com:%s.git'
+
 " 用vim/nvim打开文件时，加载简化配置
 if argc(-1) > 0
     if has('win32')
