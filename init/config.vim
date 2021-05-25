@@ -12,6 +12,7 @@ let g:tex_flavor='tex'
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
+set ttimeout ttimeoutlen=100
 set undofile
 if has('nvim')
     set undodir=~/undofiles/nvim
@@ -51,6 +52,16 @@ set sidescrolloff=5
 set formatoptions+=mMj
 set titlestring=%{getcwd()}
 set guicursor+=a:blinkon0
+if &term =~ '^xterm'
+  let &t_SI .= "\<Esc>[5 q"
+  let &t_EI .= "\<Esc>[1 q"
+  " 1 or 0 -> blinking block
+  " 3 -> blinking underscore
+  " Recent versions of xterm (282 or above) also support
+  " 5 -> blinking vertical bar
+  " 6 -> solid vertical bar
+endif
+
 """""""""""
 "  Theme  "
 """""""""""

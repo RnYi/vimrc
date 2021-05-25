@@ -6,8 +6,8 @@ endif
 " vim-plug配置
 let g:plug_url_format='git@github.com:%s.git'
 
-" 用vim/nvim打开文件时，加载简化配置
 if argc(-1) > 0
+" 用vim/nvim打开文件时，加载简化配置
     if has('win32')
         if has('gui_running')
             " 使gvim可以全屏
@@ -26,7 +26,7 @@ if argc(-1) > 0
     endif
     exe "so ".g:vimrc_home."/vimrc.min"
     set showmode
-" 直接启动时，加载完整配置
 else
+" 直接启动时，加载完整配置
     exe "so ".g:vimrc_home."/vimrc.max"
 endif
