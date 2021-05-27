@@ -130,4 +130,14 @@ function! Terminal_MetaMode(mode)
     endif
 endfunc
 
+" 修正终端下的<F1>~<F4>
+function! Terminal_FunctionKey()
+    if &term =~ '^xterm'
+        exe "set <F1>=\eOP"
+        exe "set <F2>=\eOQ"
+        exe "set <F3>=\eOR"
+        exe "set <F4>=\eOS"
+    endif
+endfunction
 call Terminal_MetaMode(0)
+call Terminal_FunctionKey()

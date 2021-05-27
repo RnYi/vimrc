@@ -125,9 +125,8 @@ nnoremap <silent> <F7> <Cmd>AsyncTask git-add-commit-push<CR>
 inoremap <silent> <F3> <ESC><Cmd>AsyncTask run<CR>
 inoremap <silent> <F4> <ESC><Cmd>AsyncTask build<CR>
 inoremap <silent> <F5> <ESC><Cmd>AsyncTask debug<CR>
-inoremap <silent> <F6> <Cmd>AsyncTask git-add-commit<CR>
+inoremap <silent> <F6> <ESC><Cmd>AsyncTask git-add-commit<CR>
 inoremap <silent> <F7> <ESC><Cmd>AsyncTask git-add-commit-push<CR>
-
 
 " Rainbow Parentheses
 " let g:rainbow_active=1
