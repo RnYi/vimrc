@@ -65,13 +65,10 @@ endif
 """""""""""
 "  Theme  "
 """""""""""
-if has('nvim')
-    let g:sonokai_disable_italic_comment = 1
-    colorscheme sonokai
-else
-    let g:jellybeans_use_gui_italics = 0
-    colorscheme jellybeans
-endif
+let g:sonokai_disable_italic_comment = 1
+" let g:sonokai_transparent_background = 1
+let g:sonokai_better_performance = 1
+colorscheme sonokai
 " let ayucolor="mirage"
 " colorscheme ayu
 " hi VertSplit guifg=black guibg=NONE
