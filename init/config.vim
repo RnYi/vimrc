@@ -66,7 +66,6 @@ endif
 "  Theme  "
 """""""""""
 let g:sonokai_disable_italic_comment = 1
-let g:sonokai_transparent_background = 1
 let g:sonokai_better_performance = 1
 colorscheme sonokai
 " let ayucolor="mirage"

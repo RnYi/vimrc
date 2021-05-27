@@ -13,17 +13,18 @@ endif
 
 if argc(-1) > 0
 " 用vim/nvim打开文件时，加载简化配置
-    if has('win32') && has('gui_running')
         " 使gvim可以全屏
         call plug#begin()
-        Plug 'xolox/vim-misc'
-        Plug 'xolox/vim-shell'
+        if has('win32') && has('gui_running')
+            Plug 'xolox/vim-misc'
+            Plug 'xolox/vim-shell'
+        endif
+        Plug 'sainnhe/sonokai'
         call plug#end()
         let g:shell_mappings_enabled=0
         let g:shell_fullscrejen_message=0
         let g:shell_fullscreen_items='mT'
         let g:shell_fullscreen_always_on_top=0
-    endif
     exe "so ".g:vimrc_home."/vimrc.min"
     set showmode
 else
