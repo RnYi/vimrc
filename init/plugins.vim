@@ -328,13 +328,13 @@ let g:shell_fullscreen_items='mT'
 let g:shell_fullscreen_always_on_top=0
 
 " nvim-treesitter
-if has('nvim')
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    ensure_installed="maintained",
-    highlight = {
-        enable = true
-    },
-}
-EOF
-endif
+" if has('nvim')
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"     ensure_installed="maintained",
+"     highlight = {
+"         enable = true
+"     },
+" }
+" EOF
+" endif

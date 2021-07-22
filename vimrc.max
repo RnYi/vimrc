@@ -61,9 +61,9 @@ if has('win32') && has('gui_running')
     Plug 'xolox/vim-shell'
 endif
 " Treesitter
-if has('nvim')
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-endif
+" if has('nvim')
+"     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" endif
 call plug#end()
 
 exe "so ".g:vimrc_home."/vimrc.min"
