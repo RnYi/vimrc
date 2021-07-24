@@ -69,9 +69,10 @@ function! StlFilePath()
     let l:rlpath=expand('%')
     return &filetype ==? 'fern' ? 'Fern' :
                 \          &filetype ==? 'startify' ? 'Startify' :
-                \          &buftype ==? 'help' ? expand('%:t') :
                 \          &buftype ==? 'quickfix' ? '':
-                \          &filetype == '' ? '' :
+                \          &buftype ==? 'terminal' ? '' :
+                \          &buftype ==? 'help' ? expand('%:t') :
+                \          l:rlpath==?''?"[New File]":
                 \          winwidth('%') < 40 ? '' :
                 \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
 endfunction
@@ -82,7 +83,7 @@ function! StlFiletype()
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'help' ? '':
                 \          &buftype ==? 'terminal' ? '':
-                \          &filetype ==? ''?'':
+                \          &filetype ==? ''?"[noft]":
                 \          winwidth('%') > 40 ? '['.&filetype .']': ''
 endfunction
 
@@ -92,7 +93,6 @@ function! StlFormat()
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'help' ? '':
                 \          &buftype ==? 'terminal' ? '':
-                \          &filetype ==? ''?'':
                 \          &fileencoding?&fileencoding.'['.&fileformat.']':
                 \          &encoding.'['.&fileformat.']'
 endfunction

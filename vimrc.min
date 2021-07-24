@@ -5,4 +5,3 @@ endif
 
 exe "so ".g:init_home."/config.vim"
 exe "so ".g:init_home."/keymaps.vim"
-
