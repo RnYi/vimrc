@@ -62,6 +62,54 @@ if &term =~ '^xterm'
   " 6 -> solid vertical bar
 endif
 
+""""""""""""""""
+"  Statusline  "
+""""""""""""""""
+function! StlFilePath()
+    let l:rlpath=expand('%')
+    return &filetype ==? 'fern' ? 'Fern' :
+                \          &filetype ==? 'startify' ? 'Startify' :
+                \          &buftype ==? 'help' ? expand('%:t') :
+                \          &buftype ==? 'quickfix' ? '':
+                \          &filetype == '' ? '' :
+                \          winwidth('%') < 40 ? '' :
+                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+endfunction
+
+function! StlFiletype()
+    return &filetype ==? 'fern' ? '' :
+                \          &filetype ==? 'startify' ? '' :
+                \          &buftype ==? 'quickfix' ? '':
+                \          &buftype ==? 'help' ? '':
+                \          &buftype ==? 'terminal' ? '':
+                \          &filetype ==? ''?'':
+                \          winwidth('%') > 40 ? '['.&filetype .']': ''
+endfunction
+
+function! StlFormat()
+    return &filetype ==? 'fern' ? '' :
+                \          &filetype ==? 'startify' ? '' :
+                \          &buftype ==? 'quickfix' ? '':
+                \          &buftype ==? 'help' ? '':
+                \          &buftype ==? 'terminal' ? '':
+                \          &filetype ==? ''?'':
+                \          &fileencoding?&fileencoding.'['.&fileformat.']':
+                \          &encoding.'['.&fileformat.']'
+endfunction
+
+set statusline=
+set statusline+=%q
+set statusline+=%{StlFilePath()}
+set statusline+=\ 
+set statusline+=%h
+set statusline+=%r
+set statusline+=\ 
+set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
+set statusline+=%=
+set statusline+=%{StlFormat()}
+set statusline+=\ 
+set statusline+=%{StlFiletype()}
+
 """""""""""
 "  Theme  "
 """""""""""

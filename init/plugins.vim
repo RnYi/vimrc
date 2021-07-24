@@ -162,29 +162,29 @@ inoremap <silent> <F7> <ESC><Cmd>AsyncTask git-add-commit-push<CR>
 
 " lightline
 " set noshowmode
-let g:lightline={
-            \   'colorscheme': 'sonokai',
-            \   'active': {
-            \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
-            \       'right' : [['filetype']]
-            \   },
-            \   'enable': {
-            \       'statusline': 1,
-            \       'tabline': 0
-            \   },
-            \   'component_function': {
-            \       'mode': 'LightlineMode',
-            \       'cocstatus': 'coc#status',
-            \       'fullpath': 'LightlinePath',
-            \       'filetype': 'LightlineFiletype',
-            \   },
-            \}
+" let g:lightline={
+"             \   'colorscheme': 'sonokai',
+"             \   'active': {
+"             \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
+"             \       'right' : [['filetype']]
+"             \   },
+"             \   'enable': {
+"             \       'statusline': 1,
+"             \       'tabline': 0
+"             \   },
+"             \   'component_function': {
+"             \       'mode': 'LightlineMode',
+"             \       'cocstatus': 'coc#status',
+"             \       'fullpath': 'LightlinePath',
+"             \       'filetype': 'LightlineFiletype',
+"             \   },
+"             \}
 
-function! LightlineMode()
-    return &filetype ==? 'fern' ? 'Fern' :
-                \          &filetype ==? 'startify' ? 'Startify' :
-                \          lightline#mode()
-endfunction
+" function! LightlineMode()
+"     return &filetype ==? 'fern' ? 'Fern' :
+"                 \          &filetype ==? 'startify' ? 'Startify' :
+"                 \          lightline#mode()
+" endfunction
 
 " function! LightlineFilename()
 "     let l:filename=expand('%:t')
@@ -194,21 +194,21 @@ endfunction
 "                 \          winwidth('%') < 40 ? '' : l:filename
 " endfunction
 
-function! LightlinePath()
-    let l:rlpath=expand('%')
-    return &filetype ==? 'fern' ? '' :
-                \          &filetype ==? 'startify' ? '' :
-                \          &filetype ==? 'help' ? expand('%:t') :
-                \          &filetype == '' ? '' :
-                \          winwidth('%') < 40 ? '' :
-                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
-endfunction
+" function! LightlinePath()
+"     let l:rlpath=expand('%')
+"     return &filetype ==? 'fern' ? '' :
+"                 \          &filetype ==? 'startify' ? '' :
+"                 \          &filetype ==? 'help' ? expand('%:t') :
+"                 \          &filetype == '' ? '' :
+"                 \          winwidth('%') < 40 ? '' :
+"                 \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+" endfunction
 
-function! LightlineFiletype()
-    return &filetype ==? 'fern' ? '' :
-                \          &filetype ==? 'startify' ? '' :
-                \          winwidth('%') > 40 ? &filetype : ''
-endfunction
+" function! LightlineFiletype()
+"     return &filetype ==? 'fern' ? '' :
+"                 \          &filetype ==? 'startify' ? '' :
+"                 \          winwidth('%') > 40 ? &filetype : ''
+" endfunction
 
 " vim-buftabline
 set showtabline=2
