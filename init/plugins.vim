@@ -161,16 +161,12 @@ inoremap <silent> <F7> <ESC><Cmd>AsyncTask git-add-commit-push<CR>
 "             \}
 
 " lightline
-set noshowmode
+" set noshowmode
 let g:lightline={
             \   'colorscheme': 'sonokai',
             \   'active': {
             \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
             \       'right' : [['filetype']]
-            \   },
-            \   'inactive': {
-            \       'left': [['fullpath']],
-            \       'right': [['filetype']]
             \   },
             \   'enable': {
             \       'statusline': 1,

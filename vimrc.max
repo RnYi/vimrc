@@ -14,7 +14,7 @@ Plug 'sainnhe/sonokai'
 " Indent line
 Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
 " Statusline
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 " Show buffers on tabline
 Plug 'ap/vim-buftabline'
 " Completion
@@ -68,3 +68,36 @@ call plug#end()
 
 exe "so ".g:vimrc_home."/vimrc.min"
 exe "so ".g:init_home."/plugins.vim"
+
+" Statusline
+function! StlFilePath()
+    let l:rlpath=expand('%')
+    return &filetype ==? 'fern' ? 'Fern' :
+                \          &filetype ==? 'startify' ? 'Startify' :
+                \          &buftype ==? 'help' ? expand('%:t') :
+                \          &buftype ==? 'quickfix' ? '':
+                \          &filetype == '' ? '' :
+                \          winwidth('%') < 40 ? '' :
+                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+endfunction
+
+function! StlFiletype()
+    return &filetype ==? 'fern' ? '' :
+                \          &filetype ==? 'startify' ? '' :
+                \          &buftype ==? 'quickfix' ? '':
+                \          &buftype ==? 'help' ? '':
+                \          &buftype ==? 'terminal' ? '':
+                \          &filetype ==? ''?'':
+                \          winwidth('%') > 40 ? '['.&filetype .']': ''
+endfunction
+
+set statusline=
+set statusline+=%q
+set statusline+=%{StlFilePath()}
+set statusline+=\ 
+set statusline+=%h
+set statusline+=%r
+set statusline+=\ 
+set statusline+=%{coc#status()}
+set statusline+=%=
+set statusline+=%{StlFiletype()}

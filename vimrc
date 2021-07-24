@@ -28,7 +28,6 @@ if argc(-1) > 0
     exe "so ".g:vimrc_home."/vimrc.min"
     set showmode
 else
-
 " 直接启动时，加载完整配置
     exe "so ".g:vimrc_home."/vimrc.max"
 endif
