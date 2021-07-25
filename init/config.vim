@@ -67,8 +67,8 @@ endif
 """"""""""""""""
 function! StlFilePath()
     let l:rlpath=expand('%')
-    return &filetype ==? 'fern' ? 'Fern' :
-                \          &filetype ==? 'startify' ? 'Startify' :
+    return &filetype ==? 'fern' ? '[Fern]' :
+                \          &filetype ==? 'startify' ? '[Startify]' :
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'terminal' ? '' :
                 \          &buftype ==? 'help' ? expand('%:t') :
