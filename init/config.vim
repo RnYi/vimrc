@@ -80,6 +80,7 @@ endfunction
 function! StlFiletype()
     return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
+                \          &filetype ==? 'vim-plug' ? '':
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'help' ? '':
                 \          &buftype ==? 'terminal' ? '':
@@ -90,6 +91,7 @@ endfunction
 function! StlFormat()
     return &filetype ==? 'fern' ? '' :
                 \          &filetype ==? 'startify' ? '' :
+                \          &filetype ==? 'vim-plug' ? '':
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'help' ? '':
                 \          &buftype ==? 'terminal' ? '':
