@@ -38,19 +38,7 @@ let g:fern#renderer#default#expanded_symbol="\u25be "
 let g:fern#renderer#default#collapsed_symbol="\u25b8 "
 
 function! FernToggle() abort
-    if &filetype !=? 'fern'
-        let g:lastft=&filetype
-        let g:lastbufnr=bufnr()
-        execute 'Fern .'
-    else
-        if g:lastft ==? 'startify'
-            execute 'Startify'
-        elseif empty(bufname(g:lastbufnr))
-            execute 'enew'
-        else
-            execute 'b'.g:lastbufnr
-        endif
-    endif
+    execute "Fern . -drawer -keep -toggle"
 endfunction
 
 function! s:init_fern() abort
@@ -58,13 +46,12 @@ function! s:init_fern() abort
     nmap <buffer><expr>
                 \ <Plug>(fern-my-open-or-expand-or-collapse)
                 \ fern#smart#leaf(
-                \   "\<Plug>(fern-action-open)",
+                \   "\<Plug>(fern-action-open) \<Cmd>FernDo close -drawer -stay\<CR>",
                 \   "\<Plug>(fern-action-expand:stay)",
                 \   "\<Plug>(fern-action-collapse)",
                 \ )
-    nmap <buffer><silent> e    <Plug>(fern-action-open:tabedit)
     nmap <buffer><silent> o    <Plug>(fern-my-open-or-expand-or-collapse)
-    nmap <buffer><silent> go   <Plug>(fern-action-open:edit)<Cmd>b#<CR>
+    nmap <buffer><silent> go   <Plug>(fern-action-open:edit)<C-w>p
     nmap <buffer><silent> t    <Plug>(fern-action-open:tabedit)
     nmap <buffer><silent> T    <Plug>(fern-action-open:tabedit)gT
     nmap <buffer><silent> ma   <Plug>(fern-action-new-path)
@@ -89,7 +76,7 @@ function! s:init_fern() abort
     nmap <buffer><silent> _    <Plug>(fern-action-mark:clear)
     nmap <buffer><silent> I    <Plug>(fern-action-hidden:toggle)
 
-    nmap <buffer><silent> q <Cmd>call FernToggle()<CR>
+    nmap <buffer><silent> q <Cmd>close<CR>
 
     nmap <buffer><silent> <2-LeftMouse> <Plug>(fern-my-open-or-expand-or-collapse)
 
