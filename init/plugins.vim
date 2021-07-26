@@ -45,6 +45,8 @@ function! FernToggle() abort
     else
         if g:lastft ==? 'startify'
             execute 'Startify'
+        elseif empty(bufname(g:lastbufnr))
+            execute 'enew'
         else
             execute 'b'.g:lastbufnr
         endif
@@ -81,7 +83,7 @@ function! s:init_fern() abort
     nmap <buffer><silent> x    <Plug>(fern-action-collapse)
     nmap <buffer><silent> R  gg<Plug>(fern-action-reload)<C-o>
     nmap <buffer><silent> cd   <Plug>(fern-action-tcd:cursor)
-    nmap <buffer><silent> CD <Cmd>Fern . -drawer -keep<CR>
+    nmap <buffer><silent> CD <Cmd>Fern .<CR>
 
     nmap <buffer><silent> -    <Plug>(fern-action-mark:toggle)
     nmap <buffer><silent> _    <Plug>(fern-action-mark:clear)

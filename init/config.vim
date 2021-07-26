@@ -72,7 +72,7 @@ function! StlFilePath()
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'terminal' ? '' :
                 \          &buftype ==? 'help' ? expand('%:t') :
-                \          l:rlpath==?''?"[New File]":
+                \          l:rlpath==?''?"[No Name]":
                 \          winwidth('%') < 40 ? '' :
                 \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
 endfunction
