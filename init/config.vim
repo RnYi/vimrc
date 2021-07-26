@@ -67,7 +67,8 @@ endif
 """"""""""""""""
 function! StlFilePath()
     let l:rlpath=expand('%')
-    return &filetype ==? 'fern' ? '[Fern]'.'['.matchstr(expand('%:p'),'\V\.\+file:///\zs\.\+\ze\(;\.\+\)\{,1\}$\$').']' :
+    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\*\ze$\$'
+    return &filetype ==? 'fern' ? '[Fern]'.'['.matchstr(expand('%:p'),l:fern_path_pat).']':
                 \          &filetype ==? 'startify' ? '[Startify]' :
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'terminal' ? '' :
