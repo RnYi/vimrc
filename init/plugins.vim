@@ -37,10 +37,6 @@ let g:fern#renderer#default#leaf_symbol="| "
 let g:fern#renderer#default#expanded_symbol="\u25be "
 let g:fern#renderer#default#collapsed_symbol="\u25b8 "
 
-function! FernToggle() abort
-    execute "Fern . -drawer -keep -toggle"
-endfunction
-
 function! s:init_fern() abort
     setlocal nonu
     nmap <buffer><expr>
@@ -81,7 +77,7 @@ function! s:init_fern() abort
     nmap <buffer><silent> <2-LeftMouse> <Plug>(fern-my-open-or-expand-or-collapse)
 
 endfunction
-nnoremap <silent> <Leader>e <Cmd>call FernToggle()<CR>
+nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
 augroup Fern
     autocmd! *
     autocmd FileType fern call s:init_fern()
