@@ -336,4 +336,3 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 endif
-hi link TSError Normal
