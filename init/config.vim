@@ -73,9 +73,7 @@ function! StlFilePath()
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'terminal' ? '' :
                 \          &buftype ==? 'help' ? expand('%:t') :
-                \          l:rlpath==?''?"[No Name]":
-                \          winwidth('%') < 40 ? '' :
-                \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+                \          l:rlpath==?''?"[No Name]": l:rlpath
 endfunction
 
 function! StlFiletype()
@@ -85,8 +83,7 @@ function! StlFiletype()
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'help' ? '':
                 \          &buftype ==? 'terminal' ? '':
-                \          &filetype ==? ''?"[noft]":
-                \          winwidth('%') > 40 ? '['.&filetype .']': ''
+                \          &filetype ==? ''?"[noft]": '['.&filetype .']'
 endfunction
 
 function! StlFormat()
