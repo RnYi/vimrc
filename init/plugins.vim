@@ -17,8 +17,8 @@ inoremap <F2> <Cmd>IndentLinesToggle<CR>
 " let g:cpp_member_variable_highlight=1
 
 " vim-sneak
-let g:sneak#label=1
-let g:sneak#use_ic_scs=1
+" let g:sneak#label=1
+" let g:sneak#use_ic_scs=1
 
 " markdown-preview
 let g:mkdp_auto_close=0
@@ -28,6 +28,10 @@ nmap <Leader>p <Plug>MarkdownPreviewToggle
 augroup myaug
     autocmd FileType json setlocal commentstring=//%s
 augroup END
+
+" vim-sandwich
+nmap s <Nop>
+xmap s <Nop>
 
 " fern
 let g:fern#smart_cursor="hide"

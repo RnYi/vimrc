@@ -33,14 +33,14 @@ if has('nvim')
     Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 " Enhanced motion
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 " Start-up
 Plug 'mhinz/vim-startify'
 Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
 " Comment
 Plug 'tpope/vim-commentary'
 " Surround
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 " Snippets
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
