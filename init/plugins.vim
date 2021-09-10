@@ -21,6 +21,7 @@ inoremap <F2> <Cmd>IndentLinesToggle<CR>
 " let g:sneak#use_ic_scs=1
 
 " markdown-preview
+" 需设置win的脚本执行策略为Bypass
 let g:mkdp_auto_close=0
 nmap <Leader>p <Plug>MarkdownPreviewToggle
 
