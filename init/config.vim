@@ -142,8 +142,10 @@ set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 if has('gui_running')
-    set guifont=MesloLGS\ NF:h14
-    set guifontwide=等距更纱黑体\ SC:h14
+    if has('win32') || has('win64')
+        set guifont=MesloLGS\ NF:h14
+        set guifontwide=等距更纱黑体\ SC:h14
+    endif
 endif
 
 """""""""""""
