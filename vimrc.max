@@ -23,7 +23,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Align
 Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', {'do': {->mkdp#util#install()}, 'for':['markdown','vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
 " Latex
 Plug 'lervag/vimtex', {'for': ['tex','latex']}
 " File explorer
