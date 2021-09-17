@@ -299,7 +299,7 @@ function s:vimtex_keymap() abort
     noremap <buffer><silent> <LocalLeader>lw <Cmd>VimtexCountWords!<CR><CR>
 endfunction
 function s:set_servername()
-    let nvim_server_file = has('win32')
+    let nvim_server_file = g:sys_uname=='windows'
         \ ? $TEMP . "/curnvimserver.txt"
         \ : "/tmp/curnvimserver.txt"
     call system(printf("echo %s > %s", v:servername, nvim_server_file))
@@ -318,7 +318,11 @@ let g:vim_textobj_parameter_mapping = 'a'
 
 " vim-xkbswitch
 let g:XkbSwitchEnabled = 1
-let g:XkbSwitchLib = g:vimrc_home . '/libxkbswitch64.dll'
+if g:sys_uname=='windows'
+    let g:XkbSwitchLib=g:vimrc_home . '/libxkbswitch64.dll'
+elseif g:sys_uname=='linux'
+    let g:XkbSwitchLib='/usr/local/lib/libxkbswitch.so'
+endif
 let g:XkbSwitchNLayout = 'us'
 
 " vim-shell
