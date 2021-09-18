@@ -145,6 +145,9 @@ if has('gui_running')
     if g:sys_uname=='windows'
         set guifont=MesloLGS\ NF:h14
         set guifontwide=等距更纱黑体\ SC:h14
+    elseif g:sys_uname=='linux'
+        set guifont=MesloLGS\ Nerd\ Font\ 14
+        set guifont=等距更纱黑体\ SC\ 14
     endif
 endif
 
