@@ -316,15 +316,6 @@ augroup END
 " vim-textobj-user
 let g:vim_textobj_parameter_mapping = 'a'
 
-" vim-xkbswitch
-let g:XkbSwitchEnabled = 1
-if g:sys_uname=='windows'
-    let g:XkbSwitchLib=g:vimrc_home . '/libxkbswitch64.dll'
-elseif g:sys_uname=='linux'
-    let g:XkbSwitchLib='/usr/local/lib/libxkbswitch.so'
-endif
-let g:XkbSwitchNLayout = 'us'
-
 " vim-shell
 let g:shell_mappings_enabled=0
 let g:shell_fullscrejen_message=0

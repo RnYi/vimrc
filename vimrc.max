@@ -52,7 +52,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'sgur/vim-textobj-parameter'
 " Input method
-Plug 'lyokha/vim-xkbswitch'
+if g:sys_uname!='windows'
+    Plug 'rlue/vim-barbaric'
+endif
 " Vim Fullscreen
 if g:sys_uname=='windows' && has('gui_running')
     Plug 'xolox/vim-misc'

@@ -86,6 +86,7 @@ else
     tnoremap <M-H> <C-w>h
     tnoremap <M-L> <C-w>l
     tnoremap <M-Q> <C-w>q
+    tnoremap <C-v> <C-w>"+
 endif
 
 " 映射meta键
