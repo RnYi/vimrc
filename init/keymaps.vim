@@ -19,6 +19,13 @@ inoremap <M-K> <ESC><C-w>k
 inoremap <M-H> <ESC><C-w>h
 inoremap <M-L> <ESC><C-w>l
 inoremap <M-Q> <ESC><C-w>q
+tnoremap <M-J> <C-\><C-N><C-w>j
+tnoremap <M-K> <C-\><C-N><C-w>k
+tnoremap <M-H> <C-\><C-N><C-w>h
+tnoremap <M-L> <C-\><C-N><C-w>l
+tnoremap <M-Q> <C-\><C-N><C-w>q
+tnoremap <M-q> <C-\><C-N>
+tnoremap <C-v> <C-w>"+
 
 inoremap <M-j> <Down>
 inoremap <M-k> <Up>
@@ -77,23 +84,6 @@ endfunction
 noremap <F11> <Cmd>call MaximizeToggle()<CR>
 inoremap <F11> <Cmd>call MaximizeToggle()<CR>
 tnoremap <F11> <Cmd>call MaximizeToggle()<CR>
-
-if has('nvim')
-    tnoremap <M-J> <C-\><C-N><C-w>j
-    tnoremap <M-K> <C-\><C-N><C-w>k
-    tnoremap <M-H> <C-\><C-N><C-w>h
-    tnoremap <M-L> <C-\><C-N><C-w>l
-    tnoremap <M-Q> <C-\><C-N><C-w>q
-    tnoremap <M-q> <C-\><C-N>
-else
-    tnoremap <M-q> <C-w>N
-    tnoremap <M-J> <C-w>j
-    tnoremap <M-K> <C-w>k
-    tnoremap <M-H> <C-w>h
-    tnoremap <M-L> <C-w>l
-    tnoremap <M-Q> <C-w>q
-    tnoremap <C-v> <C-w>"+
-endif
 
 " 映射meta键
 function! Terminal_MetaMode(mode)
