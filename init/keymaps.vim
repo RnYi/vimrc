@@ -34,6 +34,7 @@ inoremap <S-CR> <ESC>O
 noremap <C-v> "+p
 vnoremap <C-c> "+y
 inoremap <C-v> <C-r>+
+vnoremap <C-x> "+x
 
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
@@ -61,16 +62,21 @@ inoremap <C-x><C-k> <C-x><C-k>
 
 nnoremap <silent><expr> q index(['help','quickfix'], &buftype) >= 0 ? ":bd\<CR>":'q'
 
-function! FullscreenToggle() abort
+function! MaximizeToggle() abort
+    " neovim-qt
     if exists('g:GuiLoaded')
         call GuiWindowFullScreen(1-g:GuiWindowFullScreen)
-    elseif exists('g:loaded_shell')
-        silent exe "Fullscreen"
+    " linux gvim
+    elseif has('gui_running') && g:wmctrl_exec
+        call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
+        redraw!
+    " windows TODO
     endif
 endfunction
 
-noremap <F11> <Cmd>call FullscreenToggle()<CR>
-inoremap <F11> <Cmd>call FullscreenToggle()<CR>
+noremap <F11> <Cmd>call MaximizeToggle()<CR>
+inoremap <F11> <Cmd>call MaximizeToggle()<CR>
+tnoremap <F11> <Cmd>call MaximizeToggle()<CR>
 
 if has('nvim')
     tnoremap <M-J> <C-\><C-N><C-w>j

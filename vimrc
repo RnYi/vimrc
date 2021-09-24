@@ -28,6 +28,9 @@ if !has('nvim') && g:sys_uname=='windows'
     let &pythonthreedll="python38.dll"
 endif
 
+" 最大化窗口要用到wmctrl
+let g:wmctrl_exec=executable('wmctrl')
+
 if argc(-1) > 0
 " 用vim/nvim打开文件时，加载简化配置
         " 使gvim可以全屏

@@ -56,10 +56,10 @@ if g:sys_uname!='windows'
     Plug 'rlue/vim-barbaric'
 endif
 " Vim Fullscreen
-if g:sys_uname=='windows' && has('gui_running')
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-shell'
-endif
+" if g:sys_uname=='windows' && has('gui_running')
+"     Plug 'xolox/vim-misc'
+"     Plug 'xolox/vim-shell'
+" endif
 " Treesitter
 if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
