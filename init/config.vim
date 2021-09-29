@@ -38,6 +38,7 @@ set title
 set hidden
 set number
 set wildmenu
+set showmode
 set noshowcmd
 set linebreak
 set breakat-=_
@@ -45,6 +46,7 @@ set cursorline
 set scrolloff=1
 set laststatus=2
 set shortmess+=c
+set shortmess-=S
 set guioptions=cr
 set termguicolors
 set display+=lastline
@@ -113,9 +115,6 @@ set statusline+=%{StlFiletype()}
 """""""""""
 "  Theme  "
 """""""""""
-let g:sonokai_disable_italic_comment = 1
-let g:sonokai_better_performance = 1
-colorscheme sonokai
 " let ayucolor="mirage"
 " colorscheme ayu
 " hi VertSplit guifg=black guibg=NONE

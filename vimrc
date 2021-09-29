@@ -1,3 +1,6 @@
+""""""""""""""""""
+"  操作系统辨别  "
+""""""""""""""""""
 if has('win32') || has('win64') || has('win95') || has('win16')
     let g:sys_uname='windows'
 elseif has('unix')
@@ -15,39 +18,90 @@ else
     let g:sys_uname = 'posix'
 endif
 
+"""""""""""""""""""""""
+"  设置vimrc所在目录  "
+"""""""""""""""""""""""
 if !exists('g:vimrc_home')
     let g:vimrc_home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
     let g:init_home=g:vimrc_home."/init"
 endif
 
-" vim-plug配置
+""""""""""""""""""
+"  vim-plug配置  "
+""""""""""""""""""
 let g:plug_url_format='git@github.com:%s.git'
 
-" win32下指定vim的py3的dll
+"""""""""""""
+"  win设置  "
+"""""""""""""
 if !has('nvim') && g:sys_uname=='windows'
     let &pythonthreedll="python38.dll"
 endif
 
-" 最大化窗口要用到wmctrl
-let g:wmctrl_exec=executable('wmctrl')
-
-if argc(-1) > 0
-" 用vim/nvim打开文件时，加载简化配置
-        " 使gvim可以全屏
-        call plug#begin()
-        if g:sys_uname=='windows' && has('gui_running')
-            Plug 'xolox/vim-misc'
-            Plug 'xolox/vim-shell'
-        endif
-        Plug 'sainnhe/sonokai'
-        call plug#end()
-        let g:shell_mappings_enabled=0
-        let g:shell_fullscrejen_message=0
-        let g:shell_fullscreen_items='mT'
-        let g:shell_fullscreen_always_on_top=0
-    exe "so ".g:vimrc_home."/vimrc.min"
-    set showmode
-else
-" 直接启动时，加载完整配置
-    exe "so ".g:vimrc_home."/vimrc.max"
+""""""""""""""
+"  添加插件  "
+""""""""""""""
+if !exists('g:bundle_name')
+    if argc(-1)>0
+        let g:bundle_name='basic'
+    else
+        let g:bundle_name='max'
+    endif
 endif
+call plug#begin()
+" Theme
+Plug 'sainnhe/sonokai'
+" Indent line
+Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
+" Comment
+Plug 'tpope/vim-commentary'
+" Surround
+Plug 'machakann/vim-sandwich'
+" Align
+Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
+" Input method
+if g:sys_uname!='windows'
+    Plug 'rlue/vim-barbaric'
+endif
+" Text objects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'sgur/vim-textobj-parameter'
+if g:bundle_name=='max'
+    " Show buffers on tabline
+    Plug 'ap/vim-buftabline'
+    " Completion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c','cpp']}
+    " Markdown
+    Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
+    " Latex
+    Plug 'lervag/vimtex', {'for': ['tex','latex']}
+    " File explorer
+    Plug 'lambdalisue/fern.vim'
+    Plug 'lambdalisue/fern-git-status.vim'
+    if has('nvim')
+        Plug 'antoinemadec/FixCursorHold.nvim'
+    endif
+    " Start-up
+    Plug 'mhinz/vim-startify'
+    Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
+    " Snippets
+    Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips'
+    " Asynctasks
+    Plug 'skywind3000/asynctasks.vim'
+    Plug 'skywind3000/asyncrun.vim'
+    " Treesitter
+    if has('nvim')
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    endif
+endif
+call plug#end()
+
+""""""""""""""""""
+"  加载所有设置  "
+""""""""""""""""""
+exe "so ".g:init_home."/config.vim"
+exe "so ".g:init_home."/keymaps.vim"
+exe "so ".g:init_home."/plugins.vim"

@@ -69,6 +69,8 @@ inoremap <C-x><C-k> <C-x><C-k>
 
 nnoremap <silent><expr> q index(['help','quickfix'], &buftype) >= 0 ? ":bd\<CR>":'q'
 
+" 最大化窗口要用到wmctrl
+let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
     " neovim-qt
     if exists('g:GuiLoaded')

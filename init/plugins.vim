@@ -1,12 +1,23 @@
-if !exists('g:vimrc_home')
-    let g:vimrc_home=fnamemodify(resolve(expand('<sfile>:p')), ':h')
-    let g:init_home=g:vimrc_home."/init"
+"""""""""""""""""
+"  定义HasPlug  "
+"""""""""""""""""
+function! HasPlug(name) abort
+    return index(g:plugs_order,a:name) != -1 "依赖vim-plug
+endfunction
+
+" sonokai
+if HasPlug('sonokai')
+let g:sonokai_disable_italic_comment = 1
+let g:sonokai_better_performance = 1
+colorscheme sonokai
 endif
 
-" IndentLien
-let g:indentLine_enabled=0
-noremap <F2> <Cmd>IndentLinesToggle<CR>
-inoremap <F2> <Cmd>IndentLinesToggle<CR>
+" indentLien
+if HasPlug('indentLine')
+    let g:indentLine_enabled=0
+    noremap <F2> <Cmd>IndentLinesToggle<CR>
+    inoremap <F2> <Cmd>IndentLinesToggle<CR>
+endif
 
 " echodoc
 " let g:echodoc_enable_at_startup=1
@@ -20,10 +31,12 @@ inoremap <F2> <Cmd>IndentLinesToggle<CR>
 " let g:sneak#label=1
 " let g:sneak#use_ic_scs=1
 
-" markdown-preview
+" markdown-preview.nvim
 " 需设置win的脚本执行策略为Bypass
+if HasPlug('markdown-preview.nvim')
 let g:mkdp_auto_close=0
 nmap <Leader>p <Plug>MarkdownPreviewToggle
+endif
 
 " vim-commentary
 augroup myaug
@@ -31,10 +44,13 @@ augroup myaug
 augroup END
 
 " vim-sandwich
+if HasPlug('vim-sandwich')
 nmap s <Nop>
 xmap s <Nop>
+endif
 
-" fern
+" fern.vim
+if HasPlug('fern.vim')
 let g:fern#smart_cursor="hide"
 let g:fern#disable_default_mappings=1
 let g:fern#disable_auto_buffer_delete=1
@@ -87,30 +103,36 @@ augroup Fern
     autocmd! *
     autocmd FileType fern call s:init_fern()
 augroup END
+endif
 
-" Ultisnips
+" ultisnips
+if HasPlug('ultisnips')
 let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:UltiSnipsListSnippets="<C-l>"
+endif
 
 " vim-startify
-let g:startify_change_cmd='tcd'
-let g:startify_session_sort = 1
-let g:startify_files_number = 0
-let g:startify_change_to_dir = 0
-let g:startify_custom_header = []
-let g:startify_session_number = 10
-let g:startify_update_oldfiles = 1
-let g:startify_session_persistence=1
-let g:startify_session_delete_buffers=1
-let g:startify_session_before_save = [ 'if g:fern_loaded | FernDo close -drawer -stay | endif','cclose' ]
-let g:startify_lists=[
-            \   { 'type': 'sessions',  'header': ['   Sessions']       },
-            \   { 'type': 'files',     'header': ['   MRU']            },
-            \]
+if HasPlug('vim-startify')
+    let g:startify_change_cmd='tcd'
+    let g:startify_session_sort = 1
+    let g:startify_files_number = 0
+    let g:startify_change_to_dir = 0
+    let g:startify_custom_header = []
+    let g:startify_session_number = 10
+    let g:startify_update_oldfiles = 1
+    let g:startify_session_persistence=1
+    let g:startify_session_delete_buffers=1
+    let g:startify_session_before_save = [ 'if g:fern_loaded | FernDo close -drawer -stay | endif','cclose' ]
+    let g:startify_lists=[
+                \   { 'type': 'sessions',  'header': ['   Sessions']       },
+                \   { 'type': 'files',     'header': ['   MRU']            },
+                \]
+endif
 
-" AsyncTasks
+" asynctasks.vim & asyncrun.vim
+if HasPlug('asynctasks.vim') && HasPlug('asyncrun.vim')
 augroup AsyncTasks
     autocmd!
     autocmd BufRead,BufNewFile .tasks set filetype=tasks
@@ -133,6 +155,7 @@ inoremap <silent> <F4> <ESC><Cmd>AsyncTask run<CR>
 inoremap <silent> <F5> <ESC><Cmd>AsyncTask debug<CR>
 inoremap <silent> <F6> <ESC><Cmd>AsyncTask git-add-commit<CR>
 inoremap <silent> <F7> <ESC><Cmd>AsyncTask git-add-commit-push<CR>
+endif
 
 " Rainbow Parentheses
 " let g:rainbow_active=1
@@ -217,6 +240,7 @@ inoremap <silent> <F7> <ESC><Cmd>AsyncTask git-add-commit-push<CR>
 " endfunction
 
 " vim-buftabline
+if HasPlug('vim-buftabline')
 set showtabline=2
 let g:buftabline_numbers=2
 let g:buftabline_indicators=1
@@ -230,8 +254,10 @@ nmap <Leader>7 <Plug>BufTabLine.Go(7)
 nmap <Leader>8 <Plug>BufTabLine.Go(8)
 nmap <Leader>9 <Plug>BufTabLine.Go(9)
 nmap <Leader>0 <Plug>BufTabLine.Go(10)
+endif
 
 " coc.nvim
+if HasPlug('coc.nvim')
 let g:coc_config_home=g:vimrc_home
 let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
 let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
@@ -267,8 +293,10 @@ hi CocErrorHighlight gui=undercurl guisp=#ff0000
 hi CocWarningHighlight gui=undercurl guisp=#ff922b
 hi CocInfoHighlight gui=undercurl guisp=#fab005
 hi CocHintHighlight gui=undercurl guisp=#15aabf
+endif
 
 " vimtex
+if HasPlug('vimtex')
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_compiler_progname='nvr'
 let g:vimtex_complete_bib = { 'simple': 1 }
@@ -312,9 +340,12 @@ augroup VimTex
     autocmd!
     autocmd FileType tex call s:vimtex_config()
 augroup END
+endif
 
 " vim-textobj-user
-let g:vim_textobj_parameter_mapping = 'a'
+if HasPlug('vim-textobj-user')
+    let g:vim_textobj_parameter_mapping = 'a'
+endif
 
 " vim-shell
 " let g:shell_mappings_enabled=0
@@ -323,6 +354,7 @@ let g:vim_textobj_parameter_mapping = 'a'
 " let g:shell_fullscreen_always_on_top=0
 
 " nvim-treesitter
+if HasPlug('nvim-treesitter')
 if has('nvim')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -332,4 +364,5 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
+endif
 endif
