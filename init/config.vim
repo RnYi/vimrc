@@ -15,9 +15,9 @@ set pastetoggle=<M-p>
 set ttimeout ttimeoutlen=100
 set undofile
 if has('nvim')
-    set undodir=~/undofiles/nvim
+    exe "set undodir=".g:vimrc_home."/undofiles/nvim"
 else
-    set undodir=~/undofiles/vim
+    exe "set undodir=".g:vimrc_home."/undofiles/vim"
 endif
 
 """"""""""""
@@ -105,6 +105,7 @@ set statusline+=%{StlFilePath()}
 set statusline+=\ 
 set statusline+=%h
 set statusline+=%r
+set statusline+=%m
 set statusline+=\ 
 set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
 set statusline+=%=

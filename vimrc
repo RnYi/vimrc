@@ -1,5 +1,5 @@
 """"""""""""""""""
-"  操作系统辨别  "
+"  操作系统辨识  "
 """"""""""""""""""
 if has('win32') || has('win64') || has('win95') || has('win16')
     let g:sys_uname='windows'
@@ -100,7 +100,7 @@ endif
 call plug#end()
 
 """"""""""""""""""
-"  加载所有设置  "
+"  加载其他设置  "
 """"""""""""""""""
 exe "so ".g:init_home."/config.vim"
 exe "so ".g:init_home."/keymaps.vim"
