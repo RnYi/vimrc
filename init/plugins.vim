@@ -355,14 +355,12 @@ endif
 
 " nvim-treesitter
 if HasPlug('nvim-treesitter')
-if has('nvim')
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
+lua << EOF
+    require'nvim-treesitter.configs'.setup {
     ensure_installed="maintained",
     highlight = {
-        enable = true
+    enable = true
     },
-}
+    }
 EOF
-endif
 endif

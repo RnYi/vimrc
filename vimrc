@@ -31,11 +31,15 @@ endif
 """"""""""""""""""
 let g:plug_url_format='git@github.com:%s.git'
 
-"""""""""""""
-"  win设置  "
-"""""""""""""
+"""""""""""""""""""
+"  pythondll设置  "
+"""""""""""""""""""
 if !has('nvim') && g:sys_uname=='windows'
-    let &pythonthreedll="python38.dll"
+    let ver_str=system("python -V")
+    let ver_str=split(ver_str)[1]
+    let ver_str=split(ver_str,'\.')
+    let ver_str=ver_str[0].ver_str[1]
+    let &pythonthreedll="python".ver_str.".dll"
 endif
 
 """"""""""""""
