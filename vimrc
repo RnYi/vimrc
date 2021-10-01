@@ -1,5 +1,5 @@
 """"""""""""""""""
-"  操作系统辨识  "
+"  操作系统识别  "
 """"""""""""""""""
 if has('win32') || has('win64') || has('win95') || has('win16')
     let g:sys_uname='windows'
