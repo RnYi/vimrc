@@ -31,9 +31,9 @@ endif
 """"""""""""""""""
 let g:plug_url_format='git@github.com:%s.git'
 
-"""""""""""""""""""
-"  pythondll设置  "
-"""""""""""""""""""
+""""""""""""""""""""""""
+"  pythonthreedll设置  "
+""""""""""""""""""""""""
 if !has('nvim') && g:sys_uname=='windows'
     let ver_str=system("python -V")
     let ver_str=split(ver_str)[1]

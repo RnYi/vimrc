@@ -1,8 +1,11 @@
 {
     "suggest.enablePreview": true,
+    "suggest.floatEnable": false,
     "suggest.labelMaxLength": 40,
     "suggest.detailMaxLength": 40,
-    "diagnostic.enableSign": false,
+    "suggest.removeDuplicateItems": true,
+    "diagnostic.enableSign": true,
+    "diagnostic.warningSign": "!!",
     "coc.source.buffer.ignoreGitignore": false,
     "coc.preferences.extensionUpdateCheck": "weekly",
     "coc.preferences.rootPatterns": [

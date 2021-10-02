@@ -1,29 +1,24 @@
 noremap H ^
 noremap L $
 
-nnoremap n nzz
-nnoremap N Nzz
-
 noremap <M-j> gj
 noremap <M-k> gk
-
-noremap <TAB> %
 
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
 nnoremap <M-H> <C-w>h
 nnoremap <M-L> <C-w>l
-nnoremap <M-Q> <C-w>q
-inoremap <M-J> <ESC><C-w>j
-inoremap <M-K> <ESC><C-w>k
-inoremap <M-H> <ESC><C-w>h
-inoremap <M-L> <ESC><C-w>l
-inoremap <M-Q> <ESC><C-w>q
+nnoremap <M-Q> <Cmd>close<CR>
+inoremap <M-J> <Esc><C-w>j
+inoremap <M-K> <Esc><C-w>k
+inoremap <M-H> <Esc><C-w>h
+inoremap <M-L> <Esc><C-w>l
+inoremap <M-Q> <Cmd>close<CR>
 tnoremap <M-J> <C-\><C-N><C-w>j
 tnoremap <M-K> <C-\><C-N><C-w>k
 tnoremap <M-H> <C-\><C-N><C-w>h
 tnoremap <M-L> <C-\><C-N><C-w>l
-tnoremap <M-Q> <C-\><C-N><C-w>q
+tnoremap <M-Q> <C-\><C-N><Cmd>close<CR>
 tnoremap <M-q> <C-\><C-N>
 tnoremap <C-v> <C-w>"+
 
@@ -35,8 +30,8 @@ inoremap <M-l> <Right>
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
 
-inoremap <C-CR> <ESC>o
-inoremap <S-CR> <ESC>O
+inoremap <C-CR> <Esc>o
+inoremap <S-CR> <Esc>O
 
 noremap <C-v> "+p
 vnoremap <C-c> "+y
@@ -46,8 +41,8 @@ vnoremap <C-x> "+x
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
-noremap <C-space> <ESC>
-noremap! <C-space> <ESC>
+noremap <C-space> <Esc>
+noremap! <C-space> <Esc>
 
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
@@ -79,7 +74,7 @@ function! MaximizeToggle() abort
     elseif has('gui_running') && g:wmctrl_exec
         call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
         redraw!
-    " windows TODO
+    " windows gvim
     endif
 endfunction
 

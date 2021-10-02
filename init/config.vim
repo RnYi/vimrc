@@ -39,7 +39,6 @@ set hidden
 set number
 set wildmenu
 set showmode
-set noshowcmd
 set linebreak
 set breakat-=_
 set cursorline
@@ -47,22 +46,22 @@ set scrolloff=1
 set laststatus=2
 set shortmess+=c
 set shortmess-=S
-set guioptions=cr
+set guioptions=crb
 set termguicolors
 set display+=lastline
 set sidescrolloff=5
 set formatoptions+=mMj
 set titlestring=%{getcwd()}
-set guicursor+=a:blinkon0
-if &term =~ '^xterm'
-  let &t_SI .= "\<Esc>[5 q"
-  let &t_EI .= "\<Esc>[1 q"
+" set guicursor+=a:blinkon0
+let &t_EI .= "\<Esc>[1 q"
+" if &term =~ '^xterm'
+"   let &t_SI .= "\<Esc>[5 q"
   " 1 or 0 -> blinking block
   " 3 -> blinking underscore
   " Recent versions of xterm (282 or above) also support
   " 5 -> blinking vertical bar
   " 6 -> solid vertical bar
-endif
+" endif
 
 """"""""""""""""
 "  Statusline  "
