@@ -126,7 +126,7 @@ set statusline+=%{StlFiletype()}
 let g:solarized_italics=0
 let g:solarized_extra_hi_groups=1
 let curTimeHour = strftime("%H")
-if curTimeHour > 7 && curTimeHour < 19
+if curTimeHour > 7 && curTimeHour < 18
     set background=light
 else
     set background=dark
