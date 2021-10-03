@@ -1,17 +1,3 @@
-"""""""""""""""""
-"  定义HasPlug  "
-"""""""""""""""""
-function! HasPlug(name) abort
-    return index(g:plugs_order,a:name) != -1 "依赖vim-plug
-endfunction
-
-" sonokai
-if HasPlug('sonokai')
-    let g:sonokai_disable_italic_comment = 1
-    let g:sonokai_better_performance = 1
-    colorscheme sonokai
-endif
-
 " indentLien
 if HasPlug('indentLine')
     let g:indentLine_enabled=0
@@ -39,7 +25,7 @@ if HasPlug('markdown-preview.nvim')
 endif
 
 " vim-commentary
-augroup myaug
+augroup MyAug
     autocmd FileType json setlocal commentstring=//%s
 augroup END
 
@@ -119,7 +105,7 @@ if HasPlug('vim-startify')
     let g:startify_session_sort = 1
     let g:startify_files_number = 0
     let g:startify_change_to_dir = 0
-    let g:startify_custom_header = []
+    " let g:startify_custom_header = []
     let g:startify_session_number = 10
     let g:startify_update_oldfiles = 1
     let g:startify_session_persistence=1
@@ -241,9 +227,10 @@ endif
 
 " vim-buftabline
 if HasPlug('vim-buftabline')
-    set showtabline=2
+    let g:buftabline_show=1
     let g:buftabline_numbers=2
     let g:buftabline_indicators=1
+    " let g:buftabline_separators=1
     nmap <Leader>1 <Plug>BufTabLine.Go(1)
     nmap <Leader>2 <Plug>BufTabLine.Go(2)
     nmap <Leader>3 <Plug>BufTabLine.Go(3)

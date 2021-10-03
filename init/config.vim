@@ -1,8 +1,9 @@
 """""""""""
 "  Basic  "
 """""""""""
-set mouse=nvi
+set mouse=a
 set autoread
+set winaltkeys=no
 set mousemodel=extend
 set backspace=indent,eol,start
 if !exists('g:syntax_on')
@@ -23,35 +24,31 @@ endif
 """"""""""""
 "  Indent  "
 """"""""""""
-set tabstop=4
+set tabstop=4 shiftwidth=4
 set expandtab
 set shiftround
-set autoindent
-set smartindent
-set shiftwidth=4
+set autoindent smartindent
 
 """""""""""""
 "  Display  "
 """""""""""""
 set wrap
-set title
+set title titlestring=%{getcwd()}
 set hidden
 set number
 set wildmenu
 set showmode
-set linebreak
-set breakat-=_
+set showmatch matchtime=1
 set cursorline
-set scrolloff=1
+set showbreak=↪
+set scrolloff=2 sidescrolloff=5
 set laststatus=2
-set shortmess+=c
-set shortmess-=S
-set guioptions=crb
+set shortmess+=c shortmess-=S
+set guioptions=crh
 set termguicolors
 set display+=lastline
-set sidescrolloff=5
 set formatoptions+=mMj
-set titlestring=%{getcwd()}
+set list listchars=nbsp:␣,trail:·,extends:⟩,precedes:⟨
 " set guicursor+=a:blinkon0
 let &t_EI .= "\<Esc>[1 q"
 " if &term =~ '^xterm'
@@ -115,9 +112,26 @@ set statusline+=%{StlFiletype()}
 """""""""""
 "  Theme  "
 """""""""""
-" let ayucolor="mirage"
+" sonokai
+" let g:sonokai_disable_italic_comment = 1
+" let g:sonokai_better_performance = 1
+" colorscheme sonokai
+
+" ayu
+" let ayucolor="light"
 " colorscheme ayu
-" hi VertSplit guifg=black guibg=NONE
+" hi VertSplit guifg=grey guibg=NONE
+
+" solarized8
+let g:solarized_italics=0
+let g:solarized_extra_hi_groups=1
+let curTimeHour = strftime("%H")
+if curTimeHour > 7 && curTimeHour < 19
+    set background=light
+else
+    set background=dark
+endif
+colorscheme solarized8_flat
 
 """"""""""""
 "  Search  "
@@ -137,6 +151,7 @@ endif
 " language en_US
 set langmenu=en_US
 set encoding=utf-8
+scriptencoding utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
@@ -165,13 +180,13 @@ set foldmethod=manual
 """""""""""""
 "  Autocmd  "
 """""""""""""
-augroup myaug
+augroup MyAug
     autocmd!
     autocmd BufReadPost *
                 \   if line("'\"") > 0 && line ("'\"") <= line("$") |
                 \       exe "normal g'\"" |
                 \   endif
-    autocmd FileType help wincmd L
+    autocmd BufEnter *.txt if &buftype=='help' | wincmd L | endif
     " autocmd FileType json syntax match Comment +\/\/.\+$+
     autocmd FileType c,cpp setlocal commentstring=//%s
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
@@ -179,7 +194,7 @@ augroup myaug
 augroup END
 
 if has('nvim')
-    augroup myaug
+    augroup MyAug
         autocmd TermOpen * setlocal nonumber | startinsert
     augroup END
 endif

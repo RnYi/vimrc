@@ -62,7 +62,10 @@ nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 
 inoremap <C-x><C-k> <C-x><C-k>
 
-nnoremap <silent><expr> q index(['help','quickfix'], &buftype) >= 0 ? ":bd\<CR>":'q'
+augroup MyAug
+    autocmd FileType qf nnoremap <buffer> q <Cmd>cclose<CR>
+    autocmd FileType help nnoremap <buffer> q <Cmd>bd<CR>
+augroup END
 
 " 最大化窗口要用到wmctrl
 let g:wmctrl_exec=executable('wmctrl')
@@ -70,11 +73,10 @@ function! MaximizeToggle() abort
     " neovim-qt
     if exists('g:GuiLoaded')
         call GuiWindowFullScreen(1-g:GuiWindowFullScreen)
-    " linux gvim
+        " linux gvim
     elseif has('gui_running') && g:wmctrl_exec
         call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
         redraw!
-    " windows gvim
     endif
 endfunction
 

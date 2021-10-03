@@ -26,6 +26,14 @@ if !exists('g:vimrc_home')
     let g:init_home=g:vimrc_home."/init"
 endif
 
+"""""""""""""""""
+"  定义HasPlug  "
+"""""""""""""""""
+function! HasPlug(name) abort
+    "依赖vim-plug
+    return exists('g:loaded_plug')?index(g:plugs_order,a:name) != -1:0
+endfunction
+
 """"""""""""""""""
 "  vim-plug配置  "
 """"""""""""""""""
@@ -54,7 +62,11 @@ if !exists('g:bundle_name')
 endif
 call plug#begin()
 " Theme
-Plug 'sainnhe/sonokai'
+" Plug 'sainnhe/sonokai', {'dir': g:vimrc_home.'/colors/sonokai'}
+" Plug 'ayu-theme/ayu-vim', {'dir': g:vimrc_home.'/colors/ayu-vim'}
+Plug 'lifepillar/vim-solarized8', {'dir': g:vimrc_home.'/colors/vim-solarized8'}
+" Plug 'nanotech/jellybeans.vim', {'dir': g:vimrc_home.'/colors/jellybeans'}
+" Plug 'joshdick/onedark.vim', {'dir': g:vimrc_home.'/colors/onedark'}
 " Indent line
 Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
 " Comment
