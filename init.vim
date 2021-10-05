@@ -89,6 +89,7 @@ if has_key(g:bundle_enabled, 'basic')
     if g:sys_uname!='windows'
         Plug 'rlue/vim-barbaric'
     endif
+    Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}
 endif
 
 """"""""""""""""""""""

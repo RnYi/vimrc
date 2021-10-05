@@ -7,21 +7,15 @@ if HasPlug('indentLine')
     inoremap <F2> <Cmd>IndentLinesToggle<CR>
 endif
 
-"""""""""""
-" echodoc "
-"""""""""""
-" let g:echodoc_enable_at_startup=1
-
-" vim-lsp-cxx-highlight
-" let g:cpp_class_decl_highlight=1
-" let g:cpp_class_scope_highlight=1
-" let g:cpp_member_variable_highlight=1
-
-"""""""""""""
-" vim-sneak "
-"""""""""""""
-" let g:sneak#label=1
-" let g:sneak#use_ic_scs=1
+""""""""""""""""""""""""""""""""
+"  vim-cpp-enhanced-highlight  "
+""""""""""""""""""""""""""""""""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
 
 """""""""""""""""""""""""
 " markdown-preview.nvim "
@@ -51,7 +45,7 @@ endif
 " fern.vim "
 """"""""""""
 if HasPlug('fern.vim')
-    let g:fern#smart_cursor="hide"
+    let g:fern#hide_cursor=1
     let g:fern#disable_default_mappings=1
     let g:fern#disable_auto_buffer_delete=1
     let g:fern#renderer#default#leaf_symbol="| "
@@ -253,7 +247,7 @@ endif
 " vim-buftabline "
 """"""""""""""""""
 if HasPlug('vim-buftabline')
-    let g:buftabline_show=1
+    let g:buftabline_show=2
     let g:buftabline_numbers=2
     let g:buftabline_indicators=1
     " let g:buftabline_separators=1
@@ -394,7 +388,7 @@ endif
 """""""""""""""""
 if HasPlug('vim-gutentags')
     let $GTAGSLABEL='native-pygments'
-    " let $GTAGSCONF=expand('~/.globalrc') " copy from gtags.conf
+    let $GTAGSCONF=expand('~/.globalrc') " copy from gtags.conf
     let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
     let g:gutentags_ctags_tagfile = '.tags'
     let g:gutentags_modules = []
@@ -421,17 +415,29 @@ if HasPlug('vim-gutentags')
     let g:gutentags_auto_add_gtags_cscope = 0
 
     " file list
-    let g:gutentags_file_list_command={
-                \ 'markers': {
-                    \ '.git': 'git ls-files',
-                    \ },
-                \}
+    " let g:gutentags_file_list_command={
+    "             \ 'markers': {
+    "                 \ '.git': 'git ls-files',
+    "                 \ },
+    "             \}
+    " .gutgtags can be used for gtags options, '-f' can specify file list
 
 endif
 
 """"""""""""""""""""
 "  gutentags_plus  "
 """"""""""""""""""""
+" key map prefix is <Leader>c
+" s: Find this symbol
+" g: Find this definition
+" d: Find functions called by this function
+" c: Find functions calling this function
+" t: Find this text string
+" e: Find this egrep pattern
+" f: Find this file
+" i: Find files #including this file
+" a: Find places where this symbol is assigned a value
+let g:gutentags_plus_switch = 1
 
 """""""""""""
 " vim-shell "

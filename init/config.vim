@@ -104,8 +104,14 @@ set statusline+=\
 set statusline+=%m
 set statusline+=%h
 set statusline+=%r
-set statusline+=\ 
-set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
+if HasPlug('coc.nvim')
+    set statusline+=\ 
+    set statusline+=%{coc#status()}
+endif
+if HasPlug('vim-gutentags')
+    set statusline+=\ 
+    set statusline+=%{gutentags#statusline('[',']')}
+endif
 set statusline+=%=
 set statusline+=%{StlFormat()}
 set statusline+=\ 

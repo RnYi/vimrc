@@ -6,6 +6,7 @@
 !init/
 
 !.gitignore
+!.notags
 !coc-settings.json
 !tasks.ini
 !*.vim
