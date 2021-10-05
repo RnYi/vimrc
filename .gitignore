@@ -8,7 +8,6 @@
 !.gitignore
 !coc-settings.json
 !tasks.ini
-!vimrc
-!vimrc.*
+!*.vim
 
 !/libxkbswitch64.dll

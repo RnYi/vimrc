@@ -20,6 +20,7 @@ if has('nvim')
 else
     exe "set undodir=".g:vimrc_home."/undofiles/vim"
 endif
+set tags=./.tags;,.tags
 
 """"""""""""
 "  Indent  "
@@ -48,8 +49,8 @@ set guioptions=crh
 set termguicolors
 set display+=lastline
 set formatoptions+=mMj
-set list listchars=nbsp:␣,trail:·,extends:⟩,precedes:⟨
-" set guicursor+=a:blinkon0
+set list listchars=trail:·,extends:⟩,precedes:⟨
+" set guicursor+=a:blinkon0 
 let &t_EI .= "\<Esc>[1 q"
 " if &term =~ '^xterm'
 "   let &t_SI .= "\<Esc>[5 q"
@@ -81,7 +82,7 @@ function! StlFiletype()
                 \          &buftype ==? 'quickfix' ? '':
                 \          &buftype ==? 'help' ? '':
                 \          &buftype ==? 'terminal' ? '':
-                \          &filetype ==? ''?"[noft]": '['.&filetype .']'
+                \          &filetype ==? ''?"[noft]": &filetype
 endfunction
 
 function! StlFormat()
@@ -96,18 +97,20 @@ function! StlFormat()
 endfunction
 
 set statusline=
+set statusline+=\ 
 set statusline+=%q
 set statusline+=%{StlFilePath()}
 set statusline+=\ 
+set statusline+=%m
 set statusline+=%h
 set statusline+=%r
-set statusline+=%m
 set statusline+=\ 
 set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
 set statusline+=%=
 set statusline+=%{StlFormat()}
 set statusline+=\ 
 set statusline+=%{StlFiletype()}
+set statusline+=\ 
 
 """""""""""
 "  Theme  "
@@ -132,6 +135,10 @@ else
     set background=dark
 endif
 colorscheme solarized8_flat
+if has('nvim')
+    hi IncSearch gui=reverse
+    hi! link Whitespace SpecialKey
+endif
 
 """"""""""""
 "  Search  "
@@ -186,7 +193,7 @@ augroup MyAug
                 \   if line("'\"") > 0 && line ("'\"") <= line("$") |
                 \       exe "normal g'\"" |
                 \   endif
-    autocmd BufEnter *.txt if &buftype=='help' | wincmd L | endif
+    " autocmd BufRead txt if &buftype=='help' | wincmd L | endif
     " autocmd FileType json syntax match Comment +\/\/.\+$+
     autocmd FileType c,cpp setlocal commentstring=//%s
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
@@ -195,6 +202,8 @@ augroup END
 
 if has('nvim')
     augroup MyAug
-        autocmd TermOpen * setlocal nonumber | startinsert
+        autocmd TermOpen * startinsert
+        autocmd TermEnter * setlocal nonumber
+        autocmd TermLeave * setlocal number
     augroup END
 endif

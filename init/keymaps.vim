@@ -22,10 +22,10 @@ tnoremap <M-Q> <C-\><C-N><Cmd>close<CR>
 tnoremap <M-q> <C-\><C-N>
 tnoremap <C-v> <C-w>"+
 
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-h> <Left>
-inoremap <M-l> <Right>
+" inoremap <M-j> <Down>
+" inoremap <M-k> <Up>
+" inoremap <M-h> <Left>
+" inoremap <M-l> <Right>
 
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
@@ -67,7 +67,6 @@ augroup MyAug
     autocmd FileType help nnoremap <buffer> q <Cmd>bd<CR>
 augroup END
 
-" 最大化窗口要用到wmctrl
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
     " neovim-qt
@@ -84,7 +83,7 @@ noremap <F11> <Cmd>call MaximizeToggle()<CR>
 inoremap <F11> <Cmd>call MaximizeToggle()<CR>
 tnoremap <F11> <Cmd>call MaximizeToggle()<CR>
 
-" 映射meta键
+" map meta key
 function! Terminal_MetaMode(mode)
     set ttimeout
     if $TMUX != ''
@@ -126,7 +125,7 @@ function! Terminal_MetaMode(mode)
     endif
 endfunc
 
-" 修正终端下的<F1>~<F4>
+" fix <F1>~<F4> under terminal
 function! Terminal_FunctionKey()
     if &term =~ '^xterm'
         exe "set <F1>=\eOP"

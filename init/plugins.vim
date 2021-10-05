@@ -1,11 +1,15 @@
-" indentLien
+""""""""""""""
+" indentLien "
+""""""""""""""
 if HasPlug('indentLine')
     let g:indentLine_enabled=0
     noremap <F2> <Cmd>IndentLinesToggle<CR>
     inoremap <F2> <Cmd>IndentLinesToggle<CR>
 endif
 
-" echodoc
+"""""""""""
+" echodoc "
+"""""""""""
 " let g:echodoc_enable_at_startup=1
 
 " vim-lsp-cxx-highlight
@@ -13,29 +17,39 @@ endif
 " let g:cpp_class_scope_highlight=1
 " let g:cpp_member_variable_highlight=1
 
-" vim-sneak
+"""""""""""""
+" vim-sneak "
+"""""""""""""
 " let g:sneak#label=1
 " let g:sneak#use_ic_scs=1
 
-" markdown-preview.nvim
+"""""""""""""""""""""""""
+" markdown-preview.nvim "
+"""""""""""""""""""""""""
 " 需设置win的脚本执行策略为Bypass
 if HasPlug('markdown-preview.nvim')
     let g:mkdp_auto_close=0
     nmap <Leader>p <Plug>MarkdownPreviewToggle
 endif
 
-" vim-commentary
+""""""""""""""""""
+" vim-commentary "
+""""""""""""""""""
 augroup MyAug
     autocmd FileType json setlocal commentstring=//%s
 augroup END
 
-" vim-sandwich
+""""""""""""""""
+" vim-sandwich "
+""""""""""""""""
 if HasPlug('vim-sandwich')
     nmap s <Nop>
     xmap s <Nop>
 endif
 
-" fern.vim
+""""""""""""
+" fern.vim "
+""""""""""""
 if HasPlug('fern.vim')
     let g:fern#smart_cursor="hide"
     let g:fern#disable_default_mappings=1
@@ -91,7 +105,9 @@ if HasPlug('fern.vim')
     augroup END
 endif
 
-" ultisnips
+"""""""""""""
+" ultisnips "
+"""""""""""""
 if HasPlug('ultisnips')
     let g:UltiSnipsExpandTrigger="<C-j>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
@@ -99,7 +115,9 @@ if HasPlug('ultisnips')
     let g:UltiSnipsListSnippets="<C-l>"
 endif
 
-" vim-startify
+""""""""""""""""
+" vim-startify "
+""""""""""""""""
 if HasPlug('vim-startify')
     let g:startify_change_cmd='tcd'
     let g:startify_session_sort = 1
@@ -117,7 +135,9 @@ if HasPlug('vim-startify')
                 \]
 endif
 
-" asynctasks.vim & asyncrun.vim
+"""""""""""""""""""""""""""""""""
+" asynctasks.vim & asyncrun.vim "
+"""""""""""""""""""""""""""""""""
 if HasPlug('asynctasks.vim') && HasPlug('asyncrun.vim')
     augroup AsyncTasks
         autocmd!
@@ -143,7 +163,9 @@ if HasPlug('asynctasks.vim') && HasPlug('asyncrun.vim')
     inoremap <silent> <F7> <Esc><Cmd>AsyncTask git-add-commit-push<CR>
 endif
 
-" Rainbow Parentheses
+"""""""""""""""""""""""
+" Rainbow Parentheses "
+"""""""""""""""""""""""
 " let g:rainbow_active=1
 " let g:rainbow_conf={
 "             \   'operators': '_,_',
@@ -175,7 +197,9 @@ endif
 "             \   }
 "             \}
 
-" lightline
+"""""""""""""
+" lightline "
+"""""""""""""
 " set noshowmode
 " let g:lightline={
 "             \   'colorscheme': 'sonokai',
@@ -225,7 +249,9 @@ endif
 "                 \          winwidth('%') > 40 ? &filetype : ''
 " endfunction
 
-" vim-buftabline
+""""""""""""""""""
+" vim-buftabline "
+""""""""""""""""""
 if HasPlug('vim-buftabline')
     let g:buftabline_show=1
     let g:buftabline_numbers=2
@@ -243,7 +269,9 @@ if HasPlug('vim-buftabline')
     nmap <Leader>0 <Plug>BufTabLine.Go(10)
 endif
 
-" coc.nvim
+""""""""""""
+" coc.nvim "
+""""""""""""
 if HasPlug('coc.nvim')
     let g:coc_config_home=g:vimrc_home
     let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
@@ -259,6 +287,10 @@ if HasPlug('coc.nvim')
             execute '!' . &keywordprg . " " . expand('<cword>')
         endif
     endfunction
+    " function! s:check_back_space() abort
+    "     let col = col('.') - 1
+    "     return !col || getline('.')[col - 1]  =~# '\s'
+    " endfunction
     nmap <Leader>rn <Plug>(coc-rename)
     nmap <Leader>qf <Plug>(coc-fix-current)
     nnoremap <Leader>fm <Cmd>call CocAction('format')<CR>
@@ -271,6 +303,11 @@ if HasPlug('coc.nvim')
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
     nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
+    " inoremap <silent><expr> <TAB>
+    "       \ pumvisible() ? "\<C-n>" :
+    "       \ <SID>check_back_space() ? "\<TAB>" :
+    "       \ coc#refresh()
+    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     if has('nvim-0.4.0') || has('patch-8.2.0750')
         nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
         nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -296,7 +333,9 @@ if HasPlug('coc.nvim')
     augroup END
 endif
 
-" vimtex
+""""""""""
+" vimtex "
+""""""""""
 if HasPlug('vimtex')
     let g:vimtex_quickfix_mode = 0
     let g:vimtex_compiler_progname='nvr'
@@ -343,25 +382,75 @@ if HasPlug('vimtex')
     augroup END
 endif
 
-" vim-textobj-user
+""""""""""""""""""""
+" vim-textobj-user "
+""""""""""""""""""""
 if HasPlug('vim-textobj-user')
     let g:vim_textobj_parameter_mapping = 'a'
 endif
 
-" vim-shell
+"""""""""""""""""
+" vim-gutentags "
+"""""""""""""""""
+if HasPlug('vim-gutentags')
+    let $GTAGSLABEL='native-pygments'
+    " let $GTAGSCONF=expand('~/.globalrc') " copy from gtags.conf
+    let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+    let g:gutentags_ctags_tagfile = '.tags'
+    let g:gutentags_modules = []
+    if executable('ctags')
+        let g:gutentags_modules += ['ctags']
+    endif
+    if executable('gtags-cscope') && executable('gtags')
+        let g:gutentags_modules += ['gtags_cscope']
+    endif
+    " tags cache dir
+    let s:tags_cache_dir = expand('~/.cache/tags')
+    let g:gutentags_cache_dir = s:tags_cache_dir
+    if !isdirectory(s:tags_cache_dir)
+        silent! call mkdir(s:tags_cache_dir, 'p')
+    endif
+    " ctags args
+    let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+    let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+    let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+    " only for universal ctags
+    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+    " disable auto load gtags database
+    let g:gutentags_auto_add_gtags_cscope = 0
+
+    " file list
+    let g:gutentags_file_list_command={
+                \ 'markers': {
+                    \ '.git': 'git ls-files',
+                    \ },
+                \}
+
+endif
+
+""""""""""""""""""""
+"  gutentags_plus  "
+""""""""""""""""""""
+
+"""""""""""""
+" vim-shell "
+"""""""""""""
 " let g:shell_mappings_enabled=0
 " let g:shell_fullscrejen_message=0
 " let g:shell_fullscreen_items='mT'
 " let g:shell_fullscreen_always_on_top=0
 
-" nvim-treesitter
-if HasPlug('nvim-treesitter')
-lua << EOF
-    require'nvim-treesitter.configs'.setup {
-    ensure_installed="maintained",
-    highlight = {
-    enable = true
-    },
-    }
-EOF
-endif
+"""""""""""""""""""
+" nvim-treesitter "
+"""""""""""""""""""
+" if HasPlug('nvim-treesitter')
+" lua << EOF
+"     require'nvim-treesitter.configs'.setup {
+"     ensure_installed="maintained",
+"     highlight = {
+"     enable = true
+"     },
+"     }
+" EOF
+" endif
