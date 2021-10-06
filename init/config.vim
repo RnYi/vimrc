@@ -50,7 +50,7 @@ set termguicolors
 set display+=lastline
 set formatoptions+=mMj
 set list listchars=trail:·,extends:⟩,precedes:⟨
-" set guicursor+=a:blinkon0 
+" set guicursor+=a:blinkon0
 let &t_EI .= "\<Esc>[1 q"
 " if &term =~ '^xterm'
 "   let &t_SI .= "\<Esc>[5 q"
@@ -66,7 +66,7 @@ let &t_EI .= "\<Esc>[1 q"
 """"""""""""""""
 function! StlFilePath()
     let l:rlpath=expand('%')
-    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\*\ze;\.\+$\$'
+    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\*\ze$\$'
     return &filetype ==? 'fern' ? '[Fern]'.'['.matchstr(expand('%:p'),l:fern_path_pat).']':
                 \          &filetype ==? 'startify' ? '[Startify]' :
                 \          &buftype ==? 'quickfix' ? '':
@@ -101,7 +101,7 @@ set statusline+=\
 set statusline+=%q
 set statusline+=%{StlFilePath()}
 set statusline+=\ 
-set statusline+=%m
+set statusline+=%{&modified?'[+]':''}
 set statusline+=%h
 set statusline+=%r
 if HasPlug('coc.nvim')

@@ -46,6 +46,8 @@ endif
 """"""""""""
 if HasPlug('fern.vim')
     let g:fern#hide_cursor=1
+    let g:fern#keepalt_on_edit=1
+    let g:fern#keepjumps_on_edit=1
     let g:fern#disable_default_mappings=1
     let g:fern#disable_auto_buffer_delete=1
     let g:fern#renderer#default#leaf_symbol="| "
@@ -57,14 +59,14 @@ if HasPlug('fern.vim')
         nmap <buffer><expr>
                     \ <Plug>(fern-my-open-or-expand-or-collapse)
                     \ fern#smart#leaf(
-                    \   "\<Plug>(fern-action-open) \<Cmd>FernDo close -drawer -stay\<CR>",
+                    \   "\<Plug>(fern-action-open)",
                     \   "\<Plug>(fern-action-expand:stay)",
                     \   "\<Plug>(fern-action-collapse)",
                     \ )
         nmap <buffer><silent> o    <Plug>(fern-my-open-or-expand-or-collapse)
-        nmap <buffer><silent> go   <Plug>(fern-action-open:edit)<C-w>p
-        nmap <buffer><silent> t    <Plug>(fern-action-open:tabedit)
-        nmap <buffer><silent> T    <Plug>(fern-action-open:tabedit)gT
+        nmap <buffer><silent> go   <Plug>(fern-action-open)<C-w>o
+        " nmap <buffer><silent> t    <Plug>(fern-action-open:tabedit)
+        " nmap <buffer><silent> T    <Plug>(fern-action-open:tabedit)gT
         nmap <buffer><silent> ma   <Plug>(fern-action-new-path)
         nmap <buffer><silent> mc   <Plug>(fern-action-copy)
         nmap <buffer><silent> md   <Plug>(fern-action-trash)
@@ -81,18 +83,18 @@ if HasPlug('fern.vim')
         nmap <buffer><silent> x    <Plug>(fern-action-collapse)
         nmap <buffer><silent> R  gg<Plug>(fern-action-reload)<C-o>
         nmap <buffer><silent> cd   <Plug>(fern-action-tcd:cursor)
-        nmap <buffer><silent> CD <Cmd>Fern . -drawer -keep<CR>
+        nmap <buffer><silent> CD <Cmd>Fern .<CR>
 
         nmap <buffer><silent> -    <Plug>(fern-action-mark:toggle)
         nmap <buffer><silent> _    <Plug>(fern-action-mark:clear)
         nmap <buffer><silent> I    <Plug>(fern-action-hidden:toggle)
 
-        nmap <buffer><silent> q <Cmd>close<CR>
+        " nmap <buffer><silent> q <Cmd>quit<CR>
 
         nmap <buffer><silent> <2-LeftMouse> <Plug>(fern-my-open-or-expand-or-collapse)
 
     endfunction
-    nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -keep -toggle<CR>
+    nnoremap <silent><expr> <Leader>e &filetype!='fern'?":\<C-u>Fern . -reveal=%\<CR>":""
     augroup Fern
         autocmd! *
         autocmd FileType fern call s:init_fern()
@@ -122,7 +124,7 @@ if HasPlug('vim-startify')
     let g:startify_update_oldfiles = 1
     let g:startify_session_persistence=1
     let g:startify_session_delete_buffers=1
-    let g:startify_session_before_save = [ 'if g:fern_loaded | FernDo close -drawer -stay | endif','cclose' ]
+    let g:startify_session_before_save = [ 'if g:fern_loaded | FernDo close| endif','cclose' ]
     let g:startify_lists=[
                 \   { 'type': 'sessions',  'header': ['   Sessions']       },
                 \   { 'type': 'files',     'header': ['   MRU']            },
