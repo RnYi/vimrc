@@ -124,7 +124,7 @@ if HasPlug('vim-startify')
     let g:startify_update_oldfiles = 1
     let g:startify_session_persistence=1
     let g:startify_session_delete_buffers=1
-    let g:startify_session_before_save = [ 'if g:fern_loaded | FernDo close| endif','cclose' ]
+    let g:startify_session_before_save = ["if exists('g:loaded_fern')|FernDo close|endif","cclose" ]
     let g:startify_lists=[
                 \   { 'type': 'sessions',  'header': ['   Sessions']       },
                 \   { 'type': 'files',     'header': ['   MRU']            },

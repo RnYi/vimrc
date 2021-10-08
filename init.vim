@@ -46,7 +46,7 @@ let g:plug_url_format='git@github.com:%s.git'
 """""""""""""""""""""""""""
 "  pythonthreedll setting "
 """""""""""""""""""""""""""
-if !has('nvim')&&!exists('g:pythree_version')&&executable('python')
+if !has('nvim')&&g:sys_uname=='windows'&&!exists('g:pythree_version')&&executable('python')
     let g:pythree_version=system("python -V")
     let g:pythree_version=split(g:pythree_version)[1]
     let g:pythree_version=split(g:pythree_version,'\.')
@@ -57,7 +57,7 @@ endif
 """""""""""""""""""
 "  load plug-ins  "
 """""""""""""""""""
-" bundle_group items: basic, textobj, snippet, comp
+" bundle_group items: basic, textobj, ui, snippet, comp
 if !exists('g:bundle_group')
     let g:bundle_group=[]
 endif
