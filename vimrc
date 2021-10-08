@@ -3,4 +3,4 @@ if argc(-1)>0
 else
     let g:bundle_group=['basic','textobj','ui','snippet','comp']
 endif
-source ./init.vim
+runtime rany.vim
