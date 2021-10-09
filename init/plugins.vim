@@ -56,15 +56,20 @@ if HasPlug('fern.vim')
 
     function! s:init_fern() abort
         setlocal nonu
+        setlocal guicursor+=a:blinkon0
         nmap <buffer><expr>
                     \ <Plug>(fern-my-open-or-expand-or-collapse)
                     \ fern#smart#leaf(
-                    \   "\<Plug>(fern-action-open)",
+                    \   "\<Plug>(fern-action-open) \<Cmd>FernDo close\<CR>",
                     \   "\<Plug>(fern-action-expand:stay)",
                     \   "\<Plug>(fern-action-collapse)",
                     \ )
         nmap <buffer><silent> o    <Plug>(fern-my-open-or-expand-or-collapse)
-        nmap <buffer><silent> go   <Plug>(fern-action-open)<C-w>o
+        nmap <buffer><silent> go   <Plug>(fern-action-open)<C-w>p
+        nmap <buffer><silent> i <Plug>(fern-action-open:split)
+        nmap <buffer><silent> gi <Plug>(fern-action-open:split)<C-w>p
+        nmap <buffer><silent> s <Plug>(fern-action-open:vsplit)
+        nmap <buffer><silent> gs <Plug>(fern-action-open:vsplit)<C-w>p
         " nmap <buffer><silent> t    <Plug>(fern-action-open:tabedit)
         " nmap <buffer><silent> T    <Plug>(fern-action-open:tabedit)gT
         nmap <buffer><silent> ma   <Plug>(fern-action-new-path)
@@ -83,18 +88,18 @@ if HasPlug('fern.vim')
         nmap <buffer><silent> x    <Plug>(fern-action-collapse)
         nmap <buffer><silent> R  gg<Plug>(fern-action-reload)<C-o>
         nmap <buffer><silent> cd   <Plug>(fern-action-tcd:cursor)
-        nmap <buffer><silent> CD <Cmd>Fern .<CR>
+        nmap <buffer><silent> CD <Cmd>Fern . -drawer<CR>
 
         nmap <buffer><silent> -    <Plug>(fern-action-mark:toggle)
         nmap <buffer><silent> _    <Plug>(fern-action-mark:clear)
         nmap <buffer><silent> I    <Plug>(fern-action-hidden:toggle)
 
-        " nmap <buffer><silent> q <Cmd>quit<CR>
+        nmap <buffer><silent> q <Cmd>FernDo close<CR>
 
         nmap <buffer><silent> <2-LeftMouse> <Plug>(fern-my-open-or-expand-or-collapse)
 
     endfunction
-    nnoremap <silent><expr> <Leader>e &filetype!='fern'?":\<C-u>Fern . -reveal=%\<CR>":""
+    nnoremap <silent> <Leader>e <Cmd>Fern . -drawer -toggle -keep<CR>
     augroup Fern
         autocmd! *
         autocmd FileType fern call s:init_fern()

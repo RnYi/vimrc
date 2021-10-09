@@ -16,10 +16,14 @@ set pastetoggle=<M-p>
 set ttimeout ttimeoutlen=100
 set undofile
 if has('nvim')
-    exe "set undodir=".g:vimrc_home."/undofiles/nvim"
+    let s:my_undo_dir=g:vimrc_home."/undofiles/nvim"
 else
-    exe "set undodir=".g:vimrc_home."/undofiles/vim"
+    let s:my_undo_dir=g:vimrc_home."/undofiles/vim"
 endif
+if !isdirectory(s:my_undo_dir)
+    silent! call mkdir(s:my_undo_dir, 'p')
+endif
+exe "set undodir=".s:my_undo_dir
 set tags=./.tags;,.tags
 
 """"""""""""
@@ -66,7 +70,7 @@ let &t_EI .= "\<Esc>[1 q"
 """"""""""""""""
 function! StlFilePath()
     let l:rlpath=expand('%')
-    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\*\ze$\$'
+    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
     return &filetype ==? 'fern' ? '[Fern]'.'['.matchstr(expand('%:p'),l:fern_path_pat).']':
                 \          &filetype ==? 'startify' ? '[Startify]' :
                 \          &buftype ==? 'quickfix' ? '':
