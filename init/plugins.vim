@@ -128,7 +128,6 @@ if HasPlug('vim-startify')
     let g:startify_session_number = 10
     let g:startify_update_oldfiles = 1
     let g:startify_session_persistence=1
-    let g:startify_session_delete_buffers=1
     let g:startify_session_before_save = ["if exists('g:loaded_fern')|FernDo close|endif","cclose" ]
     let g:startify_lists=[
                 \   { 'type': 'sessions',  'header': ['   Sessions']       },
@@ -268,6 +267,13 @@ if HasPlug('vim-buftabline')
     nmap <Leader>8 <Plug>BufTabLine.Go(8)
     nmap <Leader>9 <Plug>BufTabLine.Go(9)
     nmap <Leader>0 <Plug>BufTabLine.Go(10)
+endif
+
+""""""""""""""""""""
+"  vim-bufferline  "
+""""""""""""""""""""
+if HasPlug('vim-bufferline')
+    let g:bufferline_rotate = 2
 endif
 
 """"""""""""

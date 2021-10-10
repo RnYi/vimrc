@@ -110,6 +110,7 @@ if has_key(g:bundle_enabled, 'ui')
     Plug 'mhinz/vim-startify'
     " Show buffers on tabline
     Plug 'ap/vim-buftabline'
+    " Plug 'bling/vim-bufferline'
     " File explorer
     Plug 'lambdalisue/fern.vim'
     Plug 'lambdalisue/fern-git-status.vim'

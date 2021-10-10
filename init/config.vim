@@ -14,6 +14,7 @@ let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
 set ttimeout ttimeoutlen=100
+set updatetime=300
 set undofile
 if has('nvim')
     let s:my_undo_dir=g:vimrc_home."/undofiles/nvim"
@@ -187,8 +188,12 @@ endif
 "  Session  "
 """""""""""""
 set viewoptions-=options
+set sessionoptions-=blank
+set sessionoptions-=help
 set sessionoptions-=options
-set sessionoptions-=winsize
+" set sessionoptions-=tabpages
+set sessionoptions-=winpos
+set sessionoptions-=terminal
 
 """"""""""
 "  Fold  "
