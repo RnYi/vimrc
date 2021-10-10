@@ -34,6 +34,25 @@ set expandtab
 set shiftround
 set autoindent smartindent
 
+""""""""""""""
+"  Encoding  "
+""""""""""""""
+" language en_US
+set langmenu=en_US
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
+if has('gui_running')
+    if g:sys_uname=='windows'
+        set guifont=MesloLGS\ NF:h14
+        set guifontwide=等距更纱黑体\ SC:h14
+    elseif g:sys_uname=='linux'
+        set guifont=MesloLGS\ Nerd\ Font\ 14
+        set guifont=等距更纱黑体\ SC\ 14
+    endif
+endif
+
 """""""""""""
 "  Display  "
 """""""""""""
@@ -102,12 +121,13 @@ endfunction
 
 set statusline=
 set statusline+=\ 
-set statusline+=%q
+set statusline+=%q " [Quickfix List]
 set statusline+=%{StlFilePath()}
 set statusline+=\ 
 set statusline+=%{&modified?'[+]':''}
-set statusline+=%h
-set statusline+=%r
+set statusline+=%h " [help]
+set statusline+=%r " [R0]
+set statusline+=%{&paste?'[paste]':''}
 if HasPlug('coc.nvim')
     set statusline+=\ 
     set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
@@ -160,26 +180,6 @@ set incsearch
 set ignorecase
 if has('nvim')
     set inccommand=nosplit
-endif
-
-""""""""""""""
-"  Encoding  "
-""""""""""""""
-" language en_US
-set langmenu=en_US
-set encoding=utf-8
-scriptencoding utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
-if has('gui_running')
-    if g:sys_uname=='windows'
-        set guifont=MesloLGS\ NF:h14
-        set guifontwide=等距更纱黑体\ SC:h14
-    elseif g:sys_uname=='linux'
-        set guifont=MesloLGS\ Nerd\ Font\ 14
-        set guifont=等距更纱黑体\ SC\ 14
-    endif
 endif
 
 """""""""""""
