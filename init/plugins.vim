@@ -200,54 +200,66 @@ endif
 """""""""""""
 " lightline "
 """""""""""""
-" set noshowmode
-" let g:lightline={
-"             \   'colorscheme': 'sonokai',
-"             \   'active': {
-"             \       'left': [['mode', 'paste'],['fullpath'],['cocstatus']],
-"             \       'right' : [['filetype']]
-"             \   },
-"             \   'enable': {
-"             \       'statusline': 1,
-"             \       'tabline': 0
-"             \   },
-"             \   'component_function': {
-"             \       'mode': 'LightlineMode',
-"             \       'cocstatus': 'coc#status',
-"             \       'fullpath': 'LightlinePath',
-"             \       'filetype': 'LightlineFiletype',
-"             \   },
-"             \}
+set noshowmode
+let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
+let g:special_buf_list=['', 'nofile', 'quickfix', 'terminal', 'help']
+let g:lightline={
+            \   'colorscheme': 'one',
+            \   'active': {
+            \       'left': [ ['mode', 'paste'],
+            \                 ['path', 'readonly'],
+            \                 ['cocstatus'] ],
+            \       'right' : [ ['lineinfo'],
+            \                   ['percent'],
+            \                   ['fileformat', 'fileencoding', 'filetype']]
+            \   },
+            \  'component_function_visible_condition' : {
+            \       'path' : "(&filetype=='fern')||(index(g:special_ft_list,&filetype)<0)",
+            \       'fileformat' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+            \       'fileencoding' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+            \       'filetype' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+            \ },
+            \   'enable': {
+            \       'statusline': 1,
+            \       'tabline': 0
+            \   },
+            \   'component_function' : {
+            \       'cocstatus' : 'coc#status',
+            \       'mode' : 'LightlineMode',
+            \       'path' : 'LightlinePath',
+            \       'fileformat' : 'LightlineFm',
+            \       'fileencoding' : 'LightlineFec',
+            \       'filetype' : 'LightlineFt',
+            \   },
+            \}
 
-" function! LightlineMode()
-"     return &filetype ==? 'fern' ? 'Fern' :
-"                 \          &filetype ==? 'startify' ? 'Startify' :
-"                 \          lightline#mode()
-" endfunction
+function! LightlineMode()
+    return &filetype ==? 'fern' ? 'Fern' :
+                \          &filetype ==? 'startify' ? 'Startify' :
+                \          &buftype ==? 'quickfix' ? "Quickfix List" :
+                \          lightline#mode()
+endfunction
 
-" function! LightlineFilename()
-"     let l:filename=expand('%:t')
-"     return &filetype ==? 'fern' ? '' :
-"                 \          &filetype ==? 'startify' ? '' :
-"                 \          &filetype == '' ? '' :
-"                 \          winwidth('%') < 40 ? '' : l:filename
-" endfunction
+function! LightlinePath()
+    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
+    return &filetype ==? 'fern' ? matchstr(expand('%:p'),l:fern_path_pat) :
+                \          &buftype ==? 'help' ? expand('%:t') : 
+                \          index(g:special_ft_list,&filetype)>=0 ? '' : expand('%')
+                " \          winwidth('%') < 40 ? '' :
+                " \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+endfunction
 
-" function! LightlinePath()
-"     let l:rlpath=expand('%')
-"     return &filetype ==? 'fern' ? '' :
-"                 \          &filetype ==? 'startify' ? '' :
-"                 \          &filetype ==? 'help' ? expand('%:t') :
-"                 \          &filetype == '' ? '' :
-"                 \          winwidth('%') < 40 ? '' :
-"                 \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
-" endfunction
+function! LightlineFm()
+    return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &fileformat : ''
+endfunction
 
-" function! LightlineFiletype()
-"     return &filetype ==? 'fern' ? '' :
-"                 \          &filetype ==? 'startify' ? '' :
-"                 \          winwidth('%') > 40 ? &filetype : ''
-" endfunction
+function! LightlineFec()
+    return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &fileencoding : ''
+endfunction
+
+function! LightlineFt()
+    return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &filetype : ''
+endfunction
 
 """"""""""""""""""
 " vim-buftabline "
@@ -324,16 +336,10 @@ if HasPlug('coc.nvim')
         vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
         inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
     endif
-    if has("nvim-0.5.0") || has("patch-8.1.1564")
-        " Recently vim can merge signcolumn and number column into one
-        set signcolumn=number
-    else
-        set signcolumn=yes
         " hi CocErrorHighlight gui=undercurl guisp=#ff0000
         " hi CocWarningHighlight gui=undercurl guisp=#ff922b
         " hi CocInfoHighlight gui=undercurl guisp=#fab005
         " hi CocHintHighlight gui=undercurl guisp=#15aabf
-    endif
     augroup Coc
         autocmd! *
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')

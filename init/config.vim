@@ -39,6 +39,7 @@ set autoindent smartindent
 "  Encoding  "
 """"""""""""""
 " language en_US
+" set ambiwidth=double
 set langmenu=en_US
 set encoding=utf-8
 set termencoding=utf-8
@@ -46,27 +47,29 @@ set fileencoding=utf-8
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 if has('gui_running')
     if g:sys_uname=='windows'
-        set guifont=MesloLGS\ NF:h14
-        set guifontwide=等距更纱黑体\ SC:h14
+        " set guifont=MesloLGS\ NF:h14
+        set guifont=Sarasa\ Fixed\ SC:h15
     elseif g:sys_uname=='linux'
-        set guifont=MesloLGS\ Nerd\ Font\ 14
-        set guifont=等距更纱黑体\ SC\ 14
+        " set guifont=MesloLGS\ Nerd\ Font\ 14
+        set guifont=Sarasa\ Fixed\ SC\ 15
     endif
 endif
 
 """""""""""""
 "  Display  "
 """""""""""""
+set nonu
+set signcolumn=yes
 set wrap
 set title titlestring=%{getcwd()}
 set hidden
-set number
 set wildmenu
 set noshowcmd
 set showmode
 set showmatch matchtime=1
 set cursorline
 set showbreak=↪
+set showbreak=
 set scrolloff=2 sidescrolloff=5
 set laststatus=2
 set shortmess+=c shortmess-=S
@@ -89,60 +92,66 @@ let &t_EI .= "\<Esc>[1 q"
 """"""""""""""""
 "  Statusline  "
 """"""""""""""""
-function! StlFilePath()
-    let l:rlpath=expand('%')
-    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
-    return &filetype ==? 'fern' ? '[Fern]'.'['.matchstr(expand('%:p'),l:fern_path_pat).']':
-                \          &filetype ==? 'startify' ? '[Startify]' :
-                \          &buftype ==? 'quickfix' ? '':
-                \          &buftype ==? 'terminal' ? '' :
-                \          &buftype ==? 'help' ? expand('%:t') :
-                \          l:rlpath==?''?"[No Name]": l:rlpath
-endfunction
+if !HasPlug('lightline.vim')
+    function! StlFilePath()
+        let l:rlpath=expand('%')
+        let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
+        return &filetype ==? 'fern' ? '[Fern]'.'['.matchstr(expand('%:p'),l:fern_path_pat).']':
+                    \          &filetype ==? 'startify' ? '[Startify]' :
+                    \          &buftype ==? 'quickfix' ? '':
+                    \          &buftype ==? 'terminal' ? '' :
+                    \          &buftype ==? 'help' ? expand('%:t') :
+                    \          l:rlpath==?''?"[No Name]": l:rlpath
+    endfunction
 
-function! StlFiletype()
-    return &filetype ==? 'fern' ? '' :
-                \          &filetype ==? 'startify' ? '' :
-                \          &filetype ==? 'vim-plug' ? '':
-                \          &buftype ==? 'quickfix' ? '':
-                \          &buftype ==? 'help' ? '':
-                \          &buftype ==? 'terminal' ? '':
-                \          &filetype ==? ''?"[noft]": &filetype
-endfunction
+    function! StlFiletype()
+        return &filetype ==? 'fern' ? '' :
+                    \          &filetype ==? 'startify' ? '' :
+                    \          &filetype ==? 'vim-plug' ? '':
+                    \          &buftype ==? 'quickfix' ? '':
+                    \          &buftype ==? 'help' ? '':
+                    \          &buftype ==? 'terminal' ? '':
+                    \          &filetype ==? ''?"[noft]": &filetype
+    endfunction
 
-function! StlFormat()
-    return &filetype ==? 'fern' ? '' :
-                \          &filetype ==? 'startify' ? '' :
-                \          &filetype ==? 'vim-plug' ? '':
-                \          &buftype ==? 'quickfix' ? '':
-                \          &buftype ==? 'help' ? '':
-                \          &buftype ==? 'terminal' ? '':
-                \          &fileencoding?&fileencoding.'['.&fileformat.']':
-                \          &encoding.'['.&fileformat.']'
-endfunction
+    function! StlFormat()
+        return &filetype ==? 'fern' ? '' :
+                    \          &filetype ==? 'startify' ? '' :
+                    \          &filetype ==? 'vim-plug' ? '':
+                    \          &buftype ==? 'quickfix' ? '':
+                    \          &buftype ==? 'help' ? '':
+                    \          &buftype ==? 'terminal' ? '':
+                    \          &fileencoding?&fileencoding.'['.&fileformat.']':
+                    \          &encoding.'['.&fileformat.']'
+    endfunction
 
-set statusline=
-set statusline+=\ 
-set statusline+=%q " [Quickfix List]
-set statusline+=%{StlFilePath()}
-set statusline+=\ 
-set statusline+=%{&modified?'[+]':''}
-set statusline+=%h " [help]
-set statusline+=%r " [R0]
-set statusline+=%{&paste?'[paste]':''}
-if HasPlug('coc.nvim')
+    set statusline=
     set statusline+=\ 
-    set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
-endif
-if HasPlug('vim-gutentags')
+    set statusline+=%q " [Quickfix List]
+    set statusline+=%{StlFilePath()}
     set statusline+=\ 
-    set statusline+=%{exists('g:loaded_gutentags')?gutentags#statusline('[',']'):''}
+    set statusline+=%{&modified?'[+]':''}
+    set statusline+=%h " [help]
+    set statusline+=%r " [R0]
+    set statusline+=%{&paste?'[paste]':''}
+    if HasPlug('coc.nvim')
+        set statusline+=\ 
+        set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
+    endif
+    if HasPlug('vim-gutentags')
+        set statusline+=\ 
+        set statusline+=%{exists('g:loaded_gutentags')?gutentags#statusline('[',']'):''}
+    endif
+    set statusline+=%=
+    set statusline+=%{StlFormat()}\ \|
+    set statusline+=\ 
+    set statusline+=%{StlFiletype()}
+    set statusline+=\ 
+    set statusline+=\|\ 
+    set statusline+=%l/%L\ 
+    set statusline+=\(%p%%\)
+    set statusline+=\ 
 endif
-set statusline+=%=
-set statusline+=%{StlFormat()}
-set statusline+=\ 
-set statusline+=%{StlFiletype()}
-set statusline+=\ 
 
 """""""""""
 "  Theme  "
@@ -158,19 +167,22 @@ set statusline+=\
 " hi VertSplit guifg=grey guibg=NONE
 
 " solarized8
-let g:solarized_italics=0
-let g:solarized_extra_hi_groups=1
-let curTimeHour = strftime("%H")
-if curTimeHour > 7 && curTimeHour < 18
-    set background=light
-else
-    set background=dark
-endif
-colorscheme solarized8_flat
-if has('nvim')
-    hi IncSearch gui=reverse
-    hi! link Whitespace SpecialKey
-endif
+" let g:solarized_italics=0
+" let g:solarized_extra_hi_groups=1
+" let curTimeHour = strftime("%H")
+" if curTimeHour > 7 && curTimeHour < 18
+"     set background=light
+" else
+"     set background=dark
+" endif
+" colorscheme solarized8_flat
+" if has('nvim')
+"     hi IncSearch gui=reverse
+"     hi! link Whitespace SpecialKey
+" endif
+
+" onedark
+colorscheme onedark
 
 """"""""""""
 "  Search  "
