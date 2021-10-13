@@ -200,66 +200,97 @@ endif
 """""""""""""
 " lightline "
 """""""""""""
-set noshowmode
-let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
-let g:special_buf_list=['', 'nofile', 'quickfix', 'terminal', 'help']
-let g:lightline={
-            \   'colorscheme': 'one',
-            \   'active': {
-            \       'left': [ ['mode', 'paste'],
-            \                 ['path', 'readonly'],
-            \                 ['cocstatus'] ],
-            \       'right' : [ ['lineinfo'],
-            \                   ['percent'],
-            \                   ['fileformat', 'fileencoding', 'filetype']]
-            \   },
-            \  'component_function_visible_condition' : {
-            \       'path' : "(&filetype=='fern')||(index(g:special_ft_list,&filetype)<0)",
-            \       'fileformat' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
-            \       'fileencoding' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
-            \       'filetype' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
-            \ },
-            \   'enable': {
-            \       'statusline': 1,
-            \       'tabline': 0
-            \   },
-            \   'component_function' : {
-            \       'cocstatus' : 'coc#status',
-            \       'mode' : 'LightlineMode',
-            \       'path' : 'LightlinePath',
-            \       'fileformat' : 'LightlineFm',
-            \       'fileencoding' : 'LightlineFec',
-            \       'filetype' : 'LightlineFt',
-            \   },
-            \}
+if HasPlug('lightline.vim')
+    set noshowmode
+    let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
+    let g:special_buf_list=['', 'nofile', 'quickfix', 'terminal', 'help']
+    let g:lightline={
+                \   'colorscheme': 'one',
+                \   'active': {
+                    \       'left': [ ['mode', 'paste'],
+                    \                 ['path', 'readonly'],
+                    \                 ['cocstatus', 'gutstatus'] ],
+                    \       'right' : [ ['lineinfo'],
+                    \                   ['percent'],
+                    \                   ['fileformat', 'fileencoding', 'filetype']]
+                    \   },
+                    \   'component_expand' : {
+                    \       'lineinfo' : 'LightlineLineinfo',
+                    \       'percent' : 'LightlinePercent',
+                    \   },
+                    \  'component_visible_condition' : {
+                    \       'lineinfo' : "&filetype!='fern'",
+                    \       'percent' : "&filetype!='fern'",
+                    \  },
+                    \  'component_function_visible_condition' : {
+                        \       'path' : "(&filetype=='fern')||(index(g:special_ft_list,&filetype)<0)",
+                        \       'fileformat' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+                        \       'fileencoding' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+                        \       'filetype' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+                        \ },
+                        \   'enable': {
+                            \       'statusline': 1,
+                            \       'tabline': 0
+                            \   },
+                            \   'component_function' : {
+                                \       'cocstatus' : 'coc#status',
+                                \       'gutstatus' : 'LightlineGut',
+                                \       'mode' : 'LightlineMode',
+                                \       'path' : 'LightlinePath',
+                                \       'fileformat' : 'LightlineFm',
+                                \       'fileencoding' : 'LightlineFec',
+                                \       'filetype' : 'LightlineFt',
+                                \   },
+                                \}
 
-function! LightlineMode()
-    return &filetype ==? 'fern' ? 'Fern' :
-                \          &filetype ==? 'startify' ? 'Startify' :
-                \          &buftype ==? 'quickfix' ? "Quickfix List" :
-                \          lightline#mode()
-endfunction
+    function! LightlineMode()
+        return &filetype ==? 'fern' ? 'Fern' :
+                    \          &filetype ==? 'startify' ? 'Startify' :
+                    \          &buftype ==? 'quickfix' ? "Quickfix List" :
+                    \          lightline#mode()
+    endfunction
 
-function! LightlinePath()
-    let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
-    return &filetype ==? 'fern' ? matchstr(expand('%:p'),l:fern_path_pat) :
-                \          &buftype ==? 'help' ? expand('%:t') : 
-                \          index(g:special_ft_list,&filetype)>=0 ? '' : expand('%')
-                " \          winwidth('%') < 40 ? '' :
-                " \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
-endfunction
+    function! LightlinePath()
+        let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
+        return &filetype ==? 'fern' ? matchstr(expand('%:p'),l:fern_path_pat) :
+                    \          &buftype ==? 'help' ? expand('%:t') : 
+                    \          index(g:special_ft_list,&filetype)>=0 ? '' : expand('%')
+        " \          winwidth('%') < 40 ? '' :
+        " \          strchars(l:rlpath) < 20 ? l:rlpath : pathshorten(l:rlpath)
+    endfunction
 
-function! LightlineFm()
-    return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &fileformat : ''
-endfunction
+    function! LightlineLineinfo()
+        return &filetype!='fern'?'%3l:%-2c':''
+    endfunction
 
-function! LightlineFec()
-    return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &fileencoding : ''
-endfunction
+    function! LightlinePercent()
+        return &filetype!='fern'?'%3p%%':''
+    endfunction
 
-function! LightlineFt()
-    return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &filetype : ''
-endfunction
+    function! LightlineFm()
+        return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &fileformat : ''
+    endfunction
+
+    function! LightlineFec()
+        return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &fileencoding : ''
+    endfunction
+
+    function! LightlineFt()
+        return (&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0) ? &filetype : ''
+    endfunction
+
+    function! LightlineGut()
+        return exists('g:loaded_gutentags') ? gutentags#statusline('[',']'):''
+    endfunction
+
+    augroup Lightline
+        autocmd!
+        if exists('g:loaded_gutentags')
+            autocmd User GutentagsUpdating call lightline#update()
+            autocmd User GutentagsUpdated call lightline#update()
+        endif
+    augroup END
+endif
 
 """"""""""""""""""
 " vim-buftabline "

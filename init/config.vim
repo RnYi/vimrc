@@ -145,9 +145,8 @@ if !HasPlug('lightline.vim')
     set statusline+=%=
     set statusline+=%{StlFormat()}\ \|
     set statusline+=\ 
-    set statusline+=%{StlFiletype()}
+    set statusline+=%{StlFiletype()}\ \|
     set statusline+=\ 
-    set statusline+=\|\ 
     set statusline+=%l/%L\ 
     set statusline+=\(%p%%\)
     set statusline+=\ 
