@@ -197,9 +197,9 @@ endif
 "             \   }
 "             \}
 
-"""""""""""""
-" lightline "
-"""""""""""""
+"""""""""""""""""
+" lightline.vim "
+"""""""""""""""""
 if HasPlug('lightline.vim')
     set noshowmode
     let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
@@ -212,36 +212,38 @@ if HasPlug('lightline.vim')
                     \                 ['cocstatus', 'gutstatus'] ],
                     \       'right' : [ ['lineinfo'],
                     \                   ['percent'],
-                    \                   ['fileformat', 'fileencoding', 'filetype']]
-                    \   },
-                    \   'component_expand' : {
+                    \                   ['fileformat', 'fileencoding', 'filetype']],
+                \   },
+                \   'inactive' : {
+                    \        'left':[ ['path'] ],
+                    \        'right':[ ['lineinfo'], ['percent'],]
+                \   },
+                \   'component_expand' : {
                     \       'lineinfo' : 'LightlineLineinfo',
                     \       'percent' : 'LightlinePercent',
-                    \   },
-                    \  'component_visible_condition' : {
-                    \       'lineinfo' : "&filetype!='fern'",
-                    \       'percent' : "&filetype!='fern'",
-                    \  },
-                    \  'component_function_visible_condition' : {
-                        \       'path' : "(&filetype=='fern')||(index(g:special_ft_list,&filetype)<0)",
-                        \       'fileformat' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
-                        \       'fileencoding' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
-                        \       'filetype' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
-                        \ },
-                        \   'enable': {
-                            \       'statusline': 1,
-                            \       'tabline': 0
-                            \   },
-                            \   'component_function' : {
-                                \       'cocstatus' : 'coc#status',
-                                \       'gutstatus' : 'LightlineGut',
-                                \       'mode' : 'LightlineMode',
-                                \       'path' : 'LightlinePath',
-                                \       'fileformat' : 'LightlineFm',
-                                \       'fileencoding' : 'LightlineFec',
-                                \       'filetype' : 'LightlineFt',
-                                \   },
-                                \}
+                \   },
+                \  'component_function_visible_condition' : {
+                    \       'path' : "(&filetype=='fern')||(index(g:special_ft_list,&filetype)<0)",
+                    \       'fileformat' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+                    \       'fileencoding' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+                    \       'filetype' : "(&filetype=='help')||(&buftype!='terminal'&&index(g:special_ft_list,&filetype)<0)",
+                    \       'lineinfo' : "(&filetype!='fern')&&(&filtype!='startify')",
+                    \       'percent' : "(&filetype!='fern')&&(&filtype!='startify')",
+                \ },
+                \   'enable': {
+                    \       'statusline': 1,
+                    \       'tabline': 0
+                \   },
+                        \   'component_function' : {
+                            \       'cocstatus' : 'coc#status',
+                            \       'gutstatus' : 'LightlineGut',
+                            \       'mode' : 'LightlineMode',
+                            \       'path' : 'LightlinePath',
+                            \       'fileformat' : 'LightlineFm',
+                            \       'fileencoding' : 'LightlineFec',
+                            \       'filetype' : 'LightlineFt',
+                        \   },
+                                    \}
 
     function! LightlineMode()
         return &filetype ==? 'fern' ? 'Fern' :
@@ -260,11 +262,11 @@ if HasPlug('lightline.vim')
     endfunction
 
     function! LightlineLineinfo()
-        return &filetype!='fern'?'%3l:%-2c':''
+        return ((&filetype!='fern') && (&filetype!='startify'))?'%3l:%-2c':''
     endfunction
 
     function! LightlinePercent()
-        return &filetype!='fern'?'%3p%%':''
+        return ((&filetype!='fern') && (&filetype!='startify'))?'%3p%%':''
     endfunction
 
     function! LightlineFm()
