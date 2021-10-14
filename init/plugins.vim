@@ -291,6 +291,7 @@ if HasPlug('lightline.vim')
             autocmd User GutentagsUpdating call lightline#update()
             autocmd User GutentagsUpdated call lightline#update()
         endif
+        autocmd FileType startify call lightline#update()
     augroup END
 endif
 
