@@ -345,13 +345,12 @@ if HasPlug('coc.nvim')
     " endfunction
     nmap <Leader>rn <Plug>(coc-rename)
     nmap <Leader>qf <Plug>(coc-fix-current)
-    nnoremap <Leader>fm <Cmd>call CocAction('format')<CR>
+    nmap <Leader>fm <Plug>(coc-format)
+    xmap <Leader>fm <Plug>(coc-format-selected)
     nnoremap <silent><nowait> <Leader>ol  <Cmd>CocList outline<CR>
     nnoremap <silent><nowait> <Leader>ds  <Cmd>CocList diagnostics<CR>
     nmap <silent> gd <Plug>(coc-definition)
     nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-refrences)
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
     nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
@@ -462,10 +461,8 @@ if HasPlug('vim-gutentags')
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
     " only for universal ctags
     let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
     " disable auto load gtags database
     let g:gutentags_auto_add_gtags_cscope = 0
-
     " file list
     " let g:gutentags_file_list_command={
     "             \ 'markers': {
@@ -473,7 +470,6 @@ if HasPlug('vim-gutentags')
     "                 \ },
     "             \}
     " .gutgtags can be used for gtags options, '-f' can specify file list
-
 endif
 
 """"""""""""""""""""
