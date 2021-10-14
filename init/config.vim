@@ -161,7 +161,7 @@ endif
 " colorscheme sonokai
 
 " ayu
-" let ayucolor="light"
+" let ayucolor="mirage"
 " colorscheme ayu
 " hi VertSplit guifg=grey guibg=NONE
 
@@ -181,7 +181,12 @@ endif
 " endif
 
 " onedark
-colorscheme onedark
+" colorscheme onedark
+
+" edge
+let g:edge_better_performance=1
+let g:edge_disable_italic_comment=1
+colorscheme edge
 
 """"""""""""
 "  Search  "

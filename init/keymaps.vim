@@ -64,7 +64,7 @@ inoremap <C-x><C-k> <C-x><C-k>
 
 augroup MyAug
     autocmd FileType qf nnoremap <buffer> q <Cmd>cclose<CR>
-    autocmd FileType help nnoremap <buffer> q <Cmd>bd<CR>
+    autocmd FileType help nnoremap <buffer> q <Cmd>helpclose<CR>
 augroup END
 
 let g:wmctrl_exec=executable('wmctrl')

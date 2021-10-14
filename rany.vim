@@ -71,8 +71,7 @@ call plug#begin()
 """"""""""""""""""""
 if has_key(g:bundle_enabled, 'basic')
     " Theme
-    " Plug 'lifepillar/vim-solarized8', {'dir': g:vimrc_home.'/colors/vim-solarized8'}
-    Plug 'joshdick/onedark.vim', {'dir': g:vimrc_home.'/colors/onedark.vim'}
+    Plug 'sainnhe/edge', {'dir': g:vimrc_home.'/colors/edge'}
     " Statusline
     Plug 'itchyny/lightline.vim'
     " Indent line

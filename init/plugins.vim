@@ -88,7 +88,7 @@ if HasPlug('fern.vim')
         nmap <buffer><silent> x    <Plug>(fern-action-collapse)
         nmap <buffer><silent> R  gg<Plug>(fern-action-reload)<C-o>
         nmap <buffer><silent> cd   <Plug>(fern-action-tcd:cursor)
-        nmap <buffer><silent> CD <Cmd>Fern . -drawer<CR>
+        nmap <buffer><silent> CD <Cmd>Fern . -drawer -keep<CR>
 
         nmap <buffer><silent> -    <Plug>(fern-action-mark:toggle)
         nmap <buffer><silent> _    <Plug>(fern-action-mark:clear)
@@ -205,7 +205,7 @@ if HasPlug('lightline.vim')
     let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
     let g:special_buf_list=['', 'nofile', 'quickfix', 'terminal', 'help']
     let g:lightline={
-                \   'colorscheme': 'one',
+                \   'colorscheme': 'edge',
                 \   'active': {
                     \       'left': [ ['mode', 'paste'],
                     \                 ['path', 'readonly'],
@@ -312,8 +312,8 @@ if HasPlug('vim-buftabline')
     nmap <Leader>8 <Plug>BufTabLine.Go(8)
     nmap <Leader>9 <Plug>BufTabLine.Go(9)
     nmap <Leader>0 <Plug>BufTabLine.Go(10)
-    hi! link BufTabLineCurrent PmenuSel
-    hi! link BufTabLineActive TabLineSel
+    " hi! link BufTabLineCurrent PmenuSel
+    " hi! link BufTabLineActive TabLineSel
 endif
 
 """"""""""""""""""""
