@@ -41,7 +41,7 @@ endfunction
 """""""""""""""""""""""
 "  vim-plug setting  "
 """""""""""""""""""""""
-let g:plug_url_format='git@github.com:%s.git'
+" let g:plug_url_format='git@github.com:%s.git'
 
 """""""""""""""""""""""""""
 "  pythonthreedll setting "
