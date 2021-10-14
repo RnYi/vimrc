@@ -312,6 +312,8 @@ if HasPlug('vim-buftabline')
     nmap <Leader>8 <Plug>BufTabLine.Go(8)
     nmap <Leader>9 <Plug>BufTabLine.Go(9)
     nmap <Leader>0 <Plug>BufTabLine.Go(10)
+    hi! link BufTabLineCurrent PmenuSel
+    hi! link BufTabLineActive TabLineSel
 endif
 
 """"""""""""""""""""
