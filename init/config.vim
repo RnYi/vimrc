@@ -79,6 +79,7 @@ set formatoptions+=mMj
 set list listchars=trail:·,extends:⟩,precedes:⟨
 " set guicursor+=a:blinkon0
 let &t_EI .= "\<Esc>[1 q"
+let &t_SI .= "\<Esc>[5 q"
 " if &term =~ '^xterm'
 "   let &t_SI .= "\<Esc>[5 q"
   " 1 or 0 -> blinking block
