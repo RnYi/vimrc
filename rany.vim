@@ -75,7 +75,7 @@ if has_key(g:bundle_enabled, 'basic')
     " Statusline
     Plug 'itchyny/lightline.vim'
     " Indent line
-    Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
+    Plug 'Yggdroot/indentLine'
     " Comment
     Plug 'tpope/vim-commentary'
     " Surround

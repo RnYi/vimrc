@@ -2,7 +2,10 @@
 " indentLien "
 """"""""""""""
 if HasPlug('indentLine')
-    let g:indentLine_enabled=0
+    let g:indentLine_enabled=1
+    let g:indentLine_fileType=['vim', 'python']
+    let g:indentLine_fileTypeExclude=['startify', 'vim-plug', 'fern']
+    let g:indentLine_bufTypeExclude=['help', 'terminal', 'quickfix']
     noremap <F2> <Cmd>IndentLinesToggle<CR>
     inoremap <F2> <Cmd>IndentLinesToggle<CR>
 endif
