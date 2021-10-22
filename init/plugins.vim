@@ -206,12 +206,12 @@ endif
 if HasPlug('lightline.vim')
     set noshowmode
     let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
-    let g:special_buf_list=['', 'nofile', 'quickfix', 'terminal', 'help']
+    let g:special_buf_list=['nofile', 'quickfix', 'terminal', 'help']
     let g:lightline={
                 \   'colorscheme': 'edge',
                 \   'active': {
                     \       'left': [ ['mode', 'paste'],
-                    \                 ['path', 'readonly'],
+                    \                 ['path', 'readonly', 'modified'],
                     \                 ['cocstatus', 'gutstatus'] ],
                     \       'right' : [ ['lineinfo'],
                     \                   ['percent'],
@@ -245,6 +245,7 @@ if HasPlug('lightline.vim')
                             \       'fileformat' : 'LightlineFm',
                             \       'fileencoding' : 'LightlineFec',
                             \       'filetype' : 'LightlineFt',
+                            \       'modified' : 'LightlineModified',
                         \   },
                                     \}
 
@@ -286,6 +287,10 @@ if HasPlug('lightline.vim')
 
     function! LightlineGut()
         return exists('g:loaded_gutentags') ? gutentags#statusline('[',']'):''
+    endfunction
+
+    function! LightlineModified()
+        return index(g:special_ft_list, &filetype)<0 && index(g:special_buf_list, &buftype)<0 && &modified ? '+' : ''
     endfunction
 
     augroup Lightline
