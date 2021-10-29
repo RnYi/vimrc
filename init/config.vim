@@ -227,6 +227,7 @@ augroup MyAug
                 \   endif
     " autocmd BufRead txt if &buftype=='help' | wincmd L | endif
     " autocmd FileType json syntax match Comment +\/\/.\+$+
+    autocmd BufRead,BufNewFile *.h set filetype=c
     autocmd FileType c,cpp setlocal commentstring=//%s
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType markdown hi! ErrorMsg NONE
