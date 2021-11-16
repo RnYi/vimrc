@@ -60,7 +60,7 @@ nnoremap <silent> ]Q <Cmd>cl<CR>
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 
-inoremap <C-x><C-k> <C-x><C-k>
+" inoremap <C-x><C-k> <C-x><C-k>
 
 augroup MyAug
     autocmd FileType qf nnoremap <buffer> q <Cmd>cclose<CR>

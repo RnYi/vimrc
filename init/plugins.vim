@@ -154,6 +154,7 @@ if HasPlug('asynctasks.vim') && HasPlug('asyncrun.vim')
                 \ join([g:vimrc_home,"tasks.ini"],'/'),
                 \ ]
     let g:asyncrun_rootmarks=['.root','.project','.git','.hg','.svn','.projections.json']
+    let g:asynctasks_template={}
     nnoremap <silent> <F3> <Cmd>AsyncTask build<CR>
     nnoremap <silent> <F4> <Cmd>AsyncTask run<CR>
     nnoremap <silent> <F5> <Cmd>AsyncTask debug<CR>
@@ -164,6 +165,7 @@ if HasPlug('asynctasks.vim') && HasPlug('asyncrun.vim')
     inoremap <silent> <F5> <Esc><Cmd>AsyncTask debug<CR>
     inoremap <silent> <F6> <Esc><Cmd>AsyncTask git-add-commit<CR>
     inoremap <silent> <F7> <Esc><Cmd>AsyncTask git-add-commit-push<CR>
+    nnoremap <silent> <Leader>t :AsyncTask 
 endif
 
 """""""""""""""""""""""
@@ -505,6 +507,14 @@ let g:gutentags_plus_switch = 1
 " let g:shell_fullscrejen_message=0
 " let g:shell_fullscreen_items='mT'
 " let g:shell_fullscreen_always_on_top=0
+
+"""""""""""""""""""
+"  vim-xkbswitch  "
+"""""""""""""""""""
+if HasPlug('vim-xkbswitch')
+    let g:XkbSwitchEnabled=1
+    let g:XkbSwitchLib=g:vimrc_home."/libxkbswitch64.dll"
+endif
 
 """""""""""""""""""
 " nvim-treesitter "

@@ -90,6 +90,8 @@ if has_key(g:bundle_enabled, 'basic')
     " Input method
     if g:sys_uname!='windows'
         Plug 'rlue/vim-barbaric'
+    elseif has('nvim')
+        Plug 'lyokha/vim-xkbswitch'
     endif
     Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}
 endif
@@ -116,6 +118,7 @@ if has_key(g:bundle_enabled, 'ui')
     " File explorer
     Plug 'lambdalisue/fern.vim'
     Plug 'lambdalisue/fern-git-status.vim'
+    Plug 'lambdalisue/fern-hijack.vim'
     if has('nvim')
         Plug 'antoinemadec/FixCursorHold.nvim'
     endif
