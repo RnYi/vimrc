@@ -71,7 +71,7 @@ let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
     " neovim-qt
     if exists('g:GuiLoaded')
-        call GuiWindowFullScreen(1-g:GuiWindowFullScreen)
+        call GuiWindowMaximized(1-g:GuiWindowMaximized)
         " linux gvim
     elseif has('gui_running') && g:wmctrl_exec
         call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")

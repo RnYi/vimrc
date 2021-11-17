@@ -58,8 +58,8 @@ endif
 """""""""""""
 "  Display  "
 """""""""""""
-set nonu
-set signcolumn=yes
+set number
+set signcolumn=number
 set wrap
 set title titlestring=%{getcwd()}
 set hidden
