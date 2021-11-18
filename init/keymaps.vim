@@ -49,21 +49,25 @@ inoremap <silent> <M-s> <Cmd>update<CR>
 nnoremap <silent> <M-d> <Cmd>bd<CR>
 inoremap <silent> <M-d> <Cmd>bd<CR>
 
-nnoremap <silent> [b <Cmd>bp<CR>
-nnoremap <silent> ]b <Cmd>bn<CR>
-nnoremap <silent> [B <Cmd>bf<CR>
-nnoremap <silent> ]B <Cmd>bl<CR>
-nnoremap <silent> [q <Cmd>cp<CR>
-nnoremap <silent> ]q <Cmd>cn<CR>
-nnoremap <silent> [Q <Cmd>cf<CR>
-nnoremap <silent> ]Q <Cmd>cl<CR>
+nnoremap <silent> [b <Cmd>bprevious<CR>
+nnoremap <silent> ]b <Cmd>bnext<CR>
+nnoremap <silent> [B <Cmd>bfirst<CR>
+nnoremap <silent> ]B <Cmd>blast<CR>
+nnoremap <silent> [q <Cmd>cprevious<CR>
+nnoremap <silent> ]q <Cmd>cnext<CR>
+nnoremap <silent> [Q <Cmd>cfirst<CR>
+nnoremap <silent> ]Q <Cmd>clast<CR>
+nnoremap <silent> [l <Cmd>lprevious<CR>
+nnoremap <silent> ]l <Cmd>lnext<CR>
+nnoremap <silent> [L <Cmd>lfirst<CR>
+nnoremap <silent> ]L <Cmd>llast<CR>
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 
 " inoremap <C-x><C-k> <C-x><C-k>
 
 augroup MyAug
-    autocmd FileType qf nnoremap <buffer> q <Cmd>cclose<CR>
+    autocmd FileType qf nnoremap <buffer> q <Cmd>close<CR>
     autocmd FileType help nnoremap <buffer> q <Cmd>helpclose<CR>
 augroup END
 
