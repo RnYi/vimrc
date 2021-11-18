@@ -5,5 +5,5 @@ GuiAdaptiveFont 1
 GuiTabline 0
 GuiPopupmenu 0
 GuiScrollBar 1
-GuiWindowOpacity 0.85
+GuiWindowOpacity 0.9
 GuiAdaptiveStyle windowsvista
