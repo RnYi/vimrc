@@ -64,7 +64,7 @@ set wrap
 set title titlestring=%{getcwd()}
 set hidden
 set wildmenu
-set noshowcmd
+" set noshowcmd
 set showmode
 set showmatch matchtime=1
 set cursorline
