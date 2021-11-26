@@ -184,9 +184,11 @@ endif
 " colorscheme onedark
 
 " edge
-let g:edge_better_performance=1
-let g:edge_disable_italic_comment=1
-colorscheme edge
+if HasPlug('edge')
+    let g:edge_better_performance=1
+    let g:edge_disable_italic_comment=1
+    colorscheme edge
+endif
 
 """"""""""""
 "  Search  "
