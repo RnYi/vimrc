@@ -1,6 +1,7 @@
-""""""""""""""""""
-"  OS detection  "
-""""""""""""""""""
+"""""""""""""""""""""
+"  some detections  "
+"""""""""""""""""""""
+" OS
 if !exists('g:sys_uname')
     if has('win32') || has('win64') || has('win95') || has('win16')
         let g:sys_uname='windows'
@@ -19,6 +20,9 @@ if !exists('g:sys_uname')
         let g:sys_uname = 'posix'
     endif
 endif
+" neovim/vim
+let g:is_nvim=has('nvim')?1:0
+let g:is_vim=1-g:is_nvim
 
 """""""""""""""
 "  vimrc dir  "
@@ -43,15 +47,22 @@ endfunction
 """""""""""""""""""""""
 let g:plug_url_format='https://hub.fastgit.org/%s.git'
 
-"""""""""""""""""""""""""""
-"  pythonthreedll setting "
-"""""""""""""""""""""""""""
-if !has('nvim')&&g:sys_uname=='windows'&&!exists('g:pythree_version')&&executable('python')
-    let g:pythree_version=system("python -V")
-    let g:pythree_version=split(g:pythree_version)[1]
-    let g:pythree_version=split(g:pythree_version,'\.')
-    let g:pythree_version=g:pythree_version[0].g:pythree_version[1]
-    let &pythonthreedll="python".g:pythree_version.".dll"
+"""""""""""""""""""""
+"  langugae support "
+"""""""""""""""""""""
+" if g:is_vim&&g:sys_uname=='windows'&&!exists('g:pythree_version')
+"     let g:pythree_version=system("python -V")
+"     let g:pythree_version=split(g:pythree_version)[1]
+"     let g:pythree_version=split(g:pythree_version,'\.')
+"     let g:pythree_version=g:pythree_version[0].g:pythree_version[1]
+"     let &pythonthreedll="python".g:pythree_version.".dll"
+" endif
+
+if g:is_nvim
+    let g:loaded_perl_provider = 0
+    let g:loaded_ruby_provider=0
+    let g:loaded_python_provider = 0
+    let g:python3_host_prog='python'
 endif
 
 """""""""""""""""""
