@@ -34,14 +34,6 @@ if !exists('g:init_home')
     let g:init_home=g:vimrc_home."/init"
 endif
 
-""""""""""""""""""""
-"  define HasPlug  "
-""""""""""""""""""""
-function! HasPlug(name) abort
-    "depending on vim-plug
-    return exists('g:loaded_plug')?index(g:plugs_order,a:name) != -1:0
-endfunction
-
 """""""""""""""""""""""
 "  vim-plug setting  "
 """""""""""""""""""""""
@@ -164,6 +156,14 @@ if has_key(g:bundle_enabled, 'comp')
 endif
 
 call plug#end()
+
+"""""""""""""""""""
+"  plug-ins list  "
+"""""""""""""""""""
+let g:plugs_enabled={}
+if exists('g:loaded_plug')
+    for key in g:plugs_order | let g:plugs_enabled[key]=1|endfor
+endif
 
 """""""""""""""""""""""""""
 "  source other settings  "

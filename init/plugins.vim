@@ -1,7 +1,7 @@
 """"""""""""""
 " indentLien "
 """"""""""""""
-if HasPlug('indentLine')
+if has_key(g:plugs_enabled,'indentLine')
     let g:indentLine_enabled=1
     let g:indentLine_fileType=['vim', 'python']
     let g:indentLine_fileTypeExclude=['startify', 'vim-plug', 'fern']
@@ -13,18 +13,20 @@ endif
 """"""""""""""""""""""""""""""""
 "  vim-cpp-enhanced-highlight  "
 """"""""""""""""""""""""""""""""
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_posix_standard = 1
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
+if has_key(g:plugs_enabled, 'vim-cpp-enhanced-highlight')
+    let g:cpp_class_scope_highlight = 1
+    let g:cpp_member_variable_highlight = 1
+    let g:cpp_class_decl_highlight = 1
+    let g:cpp_posix_standard = 1
+    let g:cpp_experimental_template_highlight = 1
+    let g:cpp_concepts_highlight = 1
+endif
 
 """""""""""""""""""""""""
 " markdown-preview.nvim "
 """""""""""""""""""""""""
 " 需设置win的脚本执行策略为Bypass
-if HasPlug('markdown-preview.nvim')
+if has_key(g:plugs_enabled,'markdown-preview.nvim')
     let g:mkdp_auto_close=0
     nmap <Leader>p <Plug>MarkdownPreviewToggle
 endif
@@ -32,14 +34,16 @@ endif
 """"""""""""""""""
 " vim-commentary "
 """"""""""""""""""
-augroup MyAug
-    autocmd FileType json setlocal commentstring=//%s
-augroup END
+if has_key(g:plugs_enabled, 'vim-commentary')
+    augroup MyAug
+        autocmd FileType json setlocal commentstring=//%s
+    augroup END
+endif
 
 """"""""""""""""
 " vim-sandwich "
 """"""""""""""""
-if HasPlug('vim-sandwich')
+if has_key(g:plugs_enabled,'vim-sandwich')
     nmap s <Nop>
     xmap s <Nop>
 endif
@@ -47,7 +51,7 @@ endif
 """"""""""""
 " fern.vim "
 """"""""""""
-if HasPlug('fern.vim')
+if has_key(g:plugs_enabled,'fern.vim')
     let g:fern#hide_cursor=1
     let g:fern#keepalt_on_edit=1
     let g:fern#keepjumps_on_edit=1
@@ -112,7 +116,7 @@ endif
 """""""""""""
 " ultisnips "
 """""""""""""
-if HasPlug('ultisnips')
+if has_key(g:plugs_enabled,'ultisnips')
     let g:UltiSnipsExpandTrigger="<C-j>"
     let g:UltiSnipsJumpForwardTrigger="<C-j>"
     let g:UltiSnipsJumpBackwardTrigger="<C-k>"
@@ -122,7 +126,7 @@ endif
 """"""""""""""""
 " vim-startify "
 """"""""""""""""
-if HasPlug('vim-startify')
+if has_key(g:plugs_enabled,'vim-startify')
     let g:startify_change_cmd='tcd'
     let g:startify_session_sort = 1
     let g:startify_files_number = 0
@@ -141,7 +145,7 @@ endif
 """""""""""""""""""""""""""""""""
 " asynctasks.vim & asyncrun.vim "
 """""""""""""""""""""""""""""""""
-if HasPlug('asynctasks.vim') && HasPlug('asyncrun.vim')
+if has_key(g:plugs_enabled,'asynctasks.vim') && has_key(g:plugs_enabled,'asyncrun.vim')
     augroup AsyncTasks
         autocmd!
         autocmd BufRead,BufNewFile .tasks set filetype=tasks
@@ -205,7 +209,7 @@ endif
 """""""""""""""""
 " lightline.vim "
 """""""""""""""""
-if HasPlug('lightline.vim')
+if has_key(g:plugs_enabled,'lightline.vim')
     set noshowmode
     let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
     let g:special_buf_list=['nofile', 'quickfix', 'terminal', 'help']
@@ -308,7 +312,7 @@ endif
 """"""""""""""""""
 " vim-buftabline "
 """"""""""""""""""
-if HasPlug('vim-buftabline')
+if has_key(g:plugs_enabled,'vim-buftabline')
     let g:buftabline_show=1
     let g:buftabline_numbers=2
     let g:buftabline_indicators=1
@@ -330,14 +334,14 @@ endif
 """"""""""""""""""""
 "  vim-bufferline  "
 """"""""""""""""""""
-if HasPlug('vim-bufferline')
+if has_key(g:plugs_enabled,'vim-bufferline')
     let g:bufferline_rotate = 2
 endif
 
 """"""""""""
 " coc.nvim "
 """"""""""""
-if HasPlug('coc.nvim')
+if has_key(g:plugs_enabled,'coc.nvim')
     let g:coc_config_home=g:vimrc_home
     let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
     let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
@@ -394,7 +398,7 @@ endif
 """"""""""
 " vimtex "
 """"""""""
-if HasPlug('vimtex')
+if has_key(g:plugs_enabled,'vimtex')
     let g:vimtex_quickfix_mode = 0
     let g:vimtex_compiler_progname='nvr'
     let g:vimtex_complete_bib = { 'simple': 1 }
@@ -443,14 +447,14 @@ endif
 """"""""""""""""""""
 " vim-textobj-user "
 """"""""""""""""""""
-if HasPlug('vim-textobj-user')
+if has_key(g:plugs_enabled,'vim-textobj-user')
     let g:vim_textobj_parameter_mapping = 'a'
 endif
 
 """""""""""""""""
 " vim-gutentags "
 """""""""""""""""
-if HasPlug('vim-gutentags')
+if has_key(g:plugs_enabled,'vim-gutentags')
     let $GTAGSLABEL='native-pygments'
     let $GTAGSCONF=expand('~/.globalrc') " copy from gtags.conf
     let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
@@ -498,7 +502,9 @@ endif
 " f: Find this file
 " i: Find files #including this file
 " a: Find places where this symbol is assigned a value
-let g:gutentags_plus_switch = 1
+if has_key(g:plugs_enabled,'gutentags_plus')
+    let g:gutentags_plus_switch = 1
+endif
 
 """""""""""""
 " vim-shell "
@@ -511,7 +517,7 @@ let g:gutentags_plus_switch = 1
 """""""""""""""""""
 "  vim-xkbswitch  "
 """""""""""""""""""
-if HasPlug('vim-xkbswitch')
+if has_key(g:plugs_enabled,'vim-xkbswitch')
     let g:XkbSwitchEnabled=1
     let g:XkbSwitchLib=g:vimrc_home."/libxkbswitch64.dll"
 endif
@@ -519,7 +525,7 @@ endif
 """""""""""""""""""
 " nvim-treesitter "
 """""""""""""""""""
-" if HasPlug('nvim-treesitter')
+" if has_key(g:plugs_enabled,'nvim-treesitter')
 " lua << EOF
 "     require'nvim-treesitter.configs'.setup {
 "     ensure_installed="maintained",
