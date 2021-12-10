@@ -9,7 +9,6 @@
 !.notags
 !coc-settings.json
 !tasks.ini
-!vimrc
 !*.vim
 
 !/libxkbswitch64.dll

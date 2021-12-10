@@ -92,7 +92,7 @@ let &t_SI .= "\<Esc>[5 q"
 """"""""""""""""
 "  Statusline  "
 """"""""""""""""
-if !HasPlug('lightline.vim')
+if !has_key(g:plugs_enabled,'lightline.vim')
     function! StlFilePath()
         let l:rlpath=expand('%')
         let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
@@ -134,11 +134,11 @@ if !HasPlug('lightline.vim')
     set statusline+=%h " [help]
     set statusline+=%r " [R0]
     set statusline+=%{&paste?'[paste]':''}
-    if HasPlug('coc.nvim')
+    if has_key(g:plugs_enabled,'coc.nvim')
         set statusline+=\ 
         set statusline+=%{exists('g:did_coc_loaded')?coc#status():''}
     endif
-    if HasPlug('vim-gutentags')
+    if has_key(g:plugs_enabled,'vim-gutentags')
         set statusline+=\ 
         set statusline+=%{exists('g:loaded_gutentags')?gutentags#statusline('[',']'):''}
     endif
@@ -184,7 +184,7 @@ endif
 " colorscheme onedark
 
 " edge
-if HasPlug('edge')
+if has_key(g:plugs_enabled,'edge')
     let g:edge_better_performance=1
     let g:edge_disable_italic_comment=1
     colorscheme edge
