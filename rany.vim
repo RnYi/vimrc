@@ -49,13 +49,10 @@ let g:plug_url_format='https://hub.fastgit.org/%s.git'
 "     let g:pythree_version=g:pythree_version[0].g:pythree_version[1]
 "     let &pythonthreedll="python".g:pythree_version.".dll"
 " endif
-
-if g:is_nvim
-    let g:loaded_perl_provider = 0
-    let g:loaded_ruby_provider=0
-    let g:loaded_python_provider = 0
-    let g:python3_host_prog='python'
-endif
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider=0
+let g:loaded_python_provider = 0
+let g:python3_host_prog='python'
 
 """""""""""""""""""
 "  load plug-ins  "
