@@ -232,6 +232,7 @@ augroup MyAug
     autocmd FileType c,cpp setlocal commentstring=//%s
     autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType markdown hi! ErrorMsg NONE
+    autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
 augroup END
 
 if has('nvim')
