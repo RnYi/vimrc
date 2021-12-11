@@ -10,5 +10,6 @@
 !coc-settings.json
 !tasks.ini
 !*.vim
+!vimrc_template
 
 !/libxkbswitch64.dll

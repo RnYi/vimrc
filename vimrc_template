@@ -1,0 +1,22 @@
+""""""""""""""
+" vimrc home "
+""""""""""""""
+let g:vimrc_home=expand('<sfile>:p:h')
+
+if !has('nvim')
+    set pythonthreedll='python39.dll'
+endif
+let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
+
+""""""""""""""""""
+" default bundle "
+""""""""""""""""""
+if !exists('g:bundle_group')
+    if argc(-1)>0
+        let g:bundle_group=['basic', 'textobj']
+    else
+        let g:bundle_group=['basic', 'textobj', 'ui', 'snippet', 'comp']
+    endif
+endif
+
+runtime rany.vim
