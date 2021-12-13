@@ -344,7 +344,7 @@ endif
 if has_key(g:plugs_enabled,'coc.nvim')
     let g:coc_config_home=g:vimrc_home
     let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
-    let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex"]
+    let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex","coc-sumneko-lua"]
     " command! -nargs=0 Format :call CocAction('format')
     " command! -nargs=? Fold :call CocAction('fold', f-args)
     function! s:show_documentation()
