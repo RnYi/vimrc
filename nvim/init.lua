@@ -1,11 +1,8 @@
 ----------------------------
 --  Aliases for Nvim API  --
 ----------------------------
-local g=vim.g
 local fn=vim.fn
-local opt=vim.opt
-local cmd=vim.cmd
 
 if vimrc_home==nil then
-    vimrc_home=
+    vimrc_home=fn.fnamemodify(fn.resolve(fn.expand('<sfile>:p')),':h')
 end
