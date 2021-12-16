@@ -9,6 +9,5 @@ local opt=vim.opt
 ---------------
 -- define NvimHome
 NvimHome=g.vimrc_home
-
-require('config')
-require('keymaps')
+-- require('config')
+-- require('keymaps')
