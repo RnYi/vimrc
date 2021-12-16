@@ -9,7 +9,6 @@ local cmd=vim.cmd
 -------------
 --  Basic  --
 -------------
-g.tex_flavor='latex'
 opt.mouse='a'
 opt.autoread=true
 opt.winaltkeys=false
@@ -20,12 +19,20 @@ opt.updatetime=300
 opt.foldmethod='manual'
 -- enable undofile and set undodir
 opt.undofile=true
-local nvim_undo_dir=vimrc_home..'/undofiles/nvim'
+local nvim_undo_dir=NvimHome..'/undofiles/nvim'
 if fn.isdirectory(nvim_undo_dir)==0 then
     fn.mkdir(nvim_undo_dir,'p')
 end
 opt.undodir=nvim_undo_dir
+-- search path of tags file
 opt.tags={'./.tags;','.tags'}
+-- specify tex filetype
+g.tex_flavor='latex'
+-- language support
+g.loaded_perl_provider=0
+g.loaded_ruby_provider=0
+g.loaded_python_provider=0
+g.python3_host_prog='python'
 
 --------------
 --  Indent  --

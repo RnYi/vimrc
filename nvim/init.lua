@@ -1,14 +1,14 @@
 ----------------------------
 --  Aliases for Nvim API  --
 ----------------------------
+local g=vim.g
 local fn=vim.fn
-
+local opt=vim.opt
 ---------------
---  prepare  --
+--  Prepare  --
 ---------------
-if vimrc_home==nil then
-    vimrc_home=fn.fnamemodify(fn.resolve(fn.expand('<sfile>:p')),':h')
-end
+-- define NvimHome
+NvimHome=g.vimrc_home
 
 require('config')
 require('keymaps')
