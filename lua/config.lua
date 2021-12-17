@@ -11,9 +11,9 @@ local cmd=vim.cmd
 -------------
 opt.mouse='a'
 opt.autoread=true
-opt.winaltkeys=false
+opt.winaltkeys='no'
 opt.backspace={'indent','eol','start'}
-opt.ttimeout=100
+opt.ttimeout=true
 opt.ttimeoutlen=100
 opt.updatetime=300
 opt.foldmethod='manual'
@@ -49,7 +49,6 @@ opt.shiftround=true
 --  Encoding  --
 ----------------
 opt.encoding='utf-8'
-opt.termencoding='utf-8'
 opt.fileencoding='utf-8'
 opt.fileencodings={'utf-8','usc-bom','chinese','gb18030','gbk','gb2312','cp936'}
 
@@ -74,7 +73,7 @@ opt.laststatus=2
 opt.shortmess:append('c')
 opt.shortmess:remove('S')
 opt.termguicolors=true
-opt.formatoptions:append({'m','M','j'})
+opt.formatoptions:append('mMj')
 opt.list=true
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
 
@@ -86,7 +85,6 @@ opt.smartcase=true
 opt.hlsearch=false
 opt.incsearch=true
 opt.ignorecase=true
-opt.inccommand=true
 
 ---------------
 --  Session  --
@@ -102,7 +100,7 @@ opt.sessionoptions:remove('terminal')
 --  Autocmd  --
 ---------------
 cmd([[
-augroup MyAug
+augroup rany_aug
     autocmd!
     autocmd BufReadPost *
                 \   if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -117,5 +115,7 @@ augroup MyAug
     autocmd TermOpen * startinsert
     autocmd TermEnter * setlocal nonumber
     autocmd TermLeave * setlocal number
+    autocmd CmdlineEnter /,\? :set hlsearch
+    autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
 ]])

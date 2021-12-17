@@ -16,12 +16,12 @@ opt.pastetoggle=vim.api.nvim_replace_termcodes('<M-p>', true, true, true)
 -----------------
 --  Customize  --
 -----------------
+-- move between lines
 map('', 'H', '^', {noremap=true})
 map('', 'L', '$', {noremap=true})
-
 map('', '<M-j>', 'gj', {noremap=true})
 map('', '<M-k>', 'gk', {noremap=true})
-
+-- window operations
 map('n', '<M-J>', '<C-w>j', {noremap=true})
 map('n', '<M-K>', '<C-w>k', {noremap=true})
 map('n', '<M-H>', '<C-w>h', {noremap=true})
@@ -38,21 +38,27 @@ map('t', '<M-H>', '<C-\\><C-N><C-w>h', {noremap=true})
 map('t', '<M-L>', '<C-\\><C-N><C-w>l', {noremap=true})
 map('t', '<M-Q>', '<C-\\><C-N><Cmd>close<CR>', {noremap=true})
 map('t', '<M-q>', '<C-\\><C-N>', {noremap=true})
-
+-- newline above/below current position (cannot work in terminal)
 map('i', '<C-CR>', '<Esc>o', {noremap=true})
 map('i', '<S-CR>', '<Esc>O', {noremap=true})
-
+-- copy/paste/cut
 map('', '<C-v>', '"+p', {noremap=true})
 map('v', '<C-c>', '"+y', {noremap=true})
 map('i', '<C-v>', '<C-r>+', {noremap=true})
 map('v', '<C-x>', '"+x', {noremap=true})
-
+-- disable all <*-MiddleMouse>
 map('', '<MiddleMouse>', '<Nop>', {noremap=true})
 map('i', '<MiddleMouse>', '<Nop>', {noremap=true})
-
+map('', '<2-MiddleMouse>', '<Nop>', {noremap=true})
+map('i', '<2-MiddleMouse>', '<Nop>', {noremap=true})
+map('', '<3-MiddleMouse>', '<Nop>', {noremap=true})
+map('i', '<3-MiddleMouse>', '<Nop>', {noremap=true})
+map('', '<4-MiddleMouse>', '<Nop>', {noremap=true})
+map('i', '<4-MiddleMouse>', '<Nop>', {noremap=true})
+-- quit to normal mode
 map('n', '<C-space>', '<Esc>', {noremap=true})
 map('!', '<C-space>', '<Esc>', {noremap=true})
-
+-- save/delete buffer
 map('n', '<M-s>',  '<Cmd>update<CR>',  {noremap=true, silent=true})
 map('i', '<M-s>',  '<Cmd>update<CR>',  {noremap=true, silent=true})
 map('n', '<M-d>',  '<Cmd>bd<CR>',  {noremap=true, silent=true})
@@ -86,9 +92,9 @@ endfunction
 map('', '<F11>', '<Cmd>call MaximizeToggle()<CR>', {noremap=true})
 map('i', '<F11>', '<Cmd>call MaximizeToggle()<CR>', {noremap=true})
 map('t', '<F11>', '<Cmd>call MaximizeToggle()<CR>', {noremap=true})
--- quit quickfix and help
+-- use q to quit quickfix and help
 cmd([[
-augroup MyAug
+augroup rany_aug
     autocmd FileType qf nnoremap <buffer> q <Cmd>close<CR>
     autocmd FileType help nnoremap <buffer> q <Cmd>helpclose<CR>
 augroup END

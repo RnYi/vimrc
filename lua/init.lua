@@ -4,10 +4,15 @@
 local g=vim.g
 local fn=vim.fn
 local opt=vim.opt
+
 ---------------
 --  Prepare  --
 ---------------
--- define NvimHome
-NvimHome=g.vimrc_home
--- require('config')
--- require('keymaps')
+NvimHome=g.vimrc_home   -- define NvimHome
+
+--------------
+--  Others  --
+--------------
+require('config')
+require('keymaps')
+require('plugins')
