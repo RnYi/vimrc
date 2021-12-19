@@ -15,20 +15,20 @@ opt.winaltkeys='no'
 opt.backspace={'indent','eol','start'}
 opt.ttimeout=true
 opt.ttimeoutlen=100
-opt.updatetime=300
+opt.updatetime=200
 opt.foldmethod='manual'
--- enable undofile and set undodir
+-- Enable undofile and set undodir
 opt.undofile=true
 local nvim_undo_dir=NvimHome..'/undofiles/nvim'
 if fn.isdirectory(nvim_undo_dir)==0 then
     fn.mkdir(nvim_undo_dir,'p')
 end
 opt.undodir=nvim_undo_dir
--- search path of tags file
+-- Search path of tags file
 opt.tags={'./.tags;','.tags'}
--- specify tex filetype
+-- Specify tex filetype
 g.tex_flavor='latex'
--- language support
+-- Language support
 g.loaded_perl_provider=0
 g.loaded_ruby_provider=0
 g.loaded_python_provider=0
@@ -39,7 +39,7 @@ g.python3_host_prog='python'
 --------------
 opt.tabstop=4
 opt.shiftwidth=4
-opt.softtabstop=4
+opt.softtabstop=-1
 opt.expandtab=true
 opt.autoindent=true
 opt.smartindent=true
@@ -66,7 +66,6 @@ opt.showmode=true
 opt.showmatch=true
 opt.matchtime=1
 opt.cursorline=true
-opt.showbreak='↪'
 opt.scrolloff=5
 opt.sidescrolloff=5
 opt.laststatus=2
@@ -75,6 +74,7 @@ opt.shortmess:remove('S')
 opt.termguicolors=true
 opt.formatoptions:append('mMj')
 opt.list=true
+opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
 
 --------------

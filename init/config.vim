@@ -31,7 +31,9 @@ set tags=./.tags;,.tags
 "  Indent  "
 """"""""""""
 set expandtab
-set tabstop=4 softtabstop=4 shiftwidth=4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=-1
 set shiftround
 set autoindent smartindent
 
@@ -48,7 +50,7 @@ set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 if has('gui_running')
     if g:sys_uname=='windows'
         " set guifont=MesloLGS\ NF:h14
-        set guifont=Sarasa\ Fixed\ SC:h15
+        set guifont=Sarasa\ Mono\ SC\ Nerd:h15
     elseif g:sys_uname=='linux'
         " set guifont=MesloLGS\ Nerd\ Font\ 14
         set guifont=Sarasa\ Fixed\ SC\ 15

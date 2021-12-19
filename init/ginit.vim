@@ -1,4 +1,4 @@
-GuiFont! Sarasa\ Fixed\ SC:h15
+GuiFont! Sarasa\ Mono\ SC\ Nerd:h15
 GuiRenderLigatures 0
 GuiAdaptiveColor 1
 GuiAdaptiveFont 1
