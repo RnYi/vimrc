@@ -15,6 +15,7 @@ let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
 set ttimeout ttimeoutlen=100
 set updatetime=300
+set clipboard+=unnamedplus
 set undofile
 if has('nvim')
     let s:my_undo_dir=g:vimrc_home."/undofiles/nvim"
@@ -77,6 +78,7 @@ set shortmess+=c shortmess-=S
 set guioptions=crh
 set termguicolors
 set display+=lastline
+set formatoptions-=o
 set formatoptions+=mMj
 set list listchars=trail:·,extends:⟩,precedes:⟨
 " set guicursor+=a:blinkon0

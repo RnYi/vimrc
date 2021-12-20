@@ -2,7 +2,6 @@
 --  Aliases for Nvim API  --
 ----------------------------
 local g=vim.g
-local fn=vim.fn
 local opt=vim.opt
 local cmd=vim.cmd
 
@@ -16,14 +15,10 @@ opt.backspace={'indent','eol','start'}
 opt.ttimeout=true
 opt.ttimeoutlen=100
 opt.updatetime=200
+opt.clipboard:append('unnamedplus')
 opt.foldmethod='manual'
--- Enable undofile and set undodir
+-- Persistent undo
 opt.undofile=true
-local nvim_undo_dir=NvimHome..'/undofiles/nvim'
-if fn.isdirectory(nvim_undo_dir)==0 then
-    fn.mkdir(nvim_undo_dir,'p')
-end
-opt.undodir=nvim_undo_dir
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
 -- Specify tex filetype
@@ -72,6 +67,7 @@ opt.laststatus=2
 opt.shortmess:append('c')
 opt.shortmess:remove('S')
 opt.termguicolors=true
+opt.formatoptions:remove('o')
 opt.formatoptions:append('mMj')
 opt.list=true
 opt.showbreak='↪'

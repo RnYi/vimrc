@@ -33,10 +33,10 @@ cnoremap <M-l> <Right>
 inoremap <C-CR> <Esc>o
 inoremap <S-CR> <Esc>O
 
-noremap <C-v> "+p
-vnoremap <C-c> "+y
-inoremap <C-v> <C-r>+
-vnoremap <C-x> "+x
+" noremap <C-v> "+p
+" vnoremap <C-c> "+y
+" inoremap <C-v> <C-r>+
+" vnoremap <C-x> "+x
 
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>

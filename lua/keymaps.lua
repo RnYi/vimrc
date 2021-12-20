@@ -11,7 +11,7 @@ local cmd=vim.cmd
 ----------------
 g.mapleader=' '
 g.maplocalleader=' '
-opt.pastetoggle=vim.api.nvim_replace_termcodes('<M-p>', true, true, true)
+opt.pastetoggle=vim.api.nvim_replace_termcodes('<F12>', true, true, true)
 
 -----------------
 --  Customize  --
@@ -42,10 +42,10 @@ map('t', '<M-q>', '<C-\\><C-N>', {noremap=true})
 map('i', '<C-CR>', '<Esc>o', {noremap=true})
 map('i', '<S-CR>', '<Esc>O', {noremap=true})
 -- Copy/Paste/Cut
-map('', '<C-v>', '"+p', {noremap=true})
-map('v', '<C-c>', '"+y', {noremap=true})
-map('i', '<C-v>', '<C-r>+', {noremap=true})
-map('v', '<C-x>', '"+x', {noremap=true})
+-- map('', '<C-v>', '"+p', {noremap=true})
+-- map('v', '<C-c>', '"+y', {noremap=true})
+-- map('i', '<C-v>', '<C-r>+', {noremap=true})
+-- map('v', '<C-x>', '"+x', {noremap=true})
 -- Disable all <*-MiddleMouse>
 map('', '<MiddleMouse>', '<Nop>', {noremap=true})
 map('i', '<MiddleMouse>', '<Nop>', {noremap=true})
@@ -56,8 +56,8 @@ map('i', '<3-MiddleMouse>', '<Nop>', {noremap=true})
 map('', '<4-MiddleMouse>', '<Nop>', {noremap=true})
 map('i', '<4-MiddleMouse>', '<Nop>', {noremap=true})
 -- Quit to normal mode
-map('n', '<C-space>', '<Esc>', {noremap=true})
-map('!', '<C-space>', '<Esc>', {noremap=true})
+-- map('n', '<C-space>', '<Esc>', {noremap=true})
+-- map('!', '<C-space>', '<Esc>', {noremap=true})
 -- Save/delete buffer
 map('n', '<M-s>',  '<Cmd>update<CR>',  {noremap=true, silent=true})
 map('i', '<M-s>',  '<Cmd>update<CR>',  {noremap=true, silent=true})
