@@ -92,5 +92,5 @@ require('packer').startup({
 -- impatient.nvim requires to load packer_compiled manually
 local status, _ = pcall(require, 'packer_compiled')
 if not status then
-    vim.api.nvim_echo({'Failed to require packer_compiled.lua!', 'Type'}, true, {})
+    vim.api.nvim_echo({{'Failed to require packer_compiled.lua!', 'Error'}}, true, {})
 end

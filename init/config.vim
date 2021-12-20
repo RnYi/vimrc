@@ -15,7 +15,7 @@ let g:maplocalleader="\<Space>"
 set pastetoggle=<M-p>
 set ttimeout ttimeoutlen=100
 set updatetime=300
-set clipboard+=unnamedplus
+set clipboard+=unnamed,unnamedplus
 set undofile
 if has('nvim')
     let s:my_undo_dir=g:vimrc_home."/undofiles/nvim"

@@ -2,8 +2,6 @@
 --  Aliases for Nvim API  --
 ----------------------------
 local g=vim.g
-local fn=vim.fn
-local opt=vim.opt
 
 ---------------
 --  Prepare  --
