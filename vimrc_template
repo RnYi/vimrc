@@ -1,0 +1,14 @@
+let g:vimrc_home=expand('<sfile>:p:h')
+let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
+if has('nvim')
+    exe 'set runtimepath^='.g:vimrc_home
+    exe 'set runtimepath+='.g:vimrc_home.'/after'
+    lua require('init')
+else
+    set pythonthreedll='python39.dll'
+    if !exists('g:bundle_group')
+
+        let g:bundle_group=['basic', 'textobj']
+    endif
+    runtime rany.vim
+endif
