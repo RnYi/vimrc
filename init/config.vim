@@ -49,10 +49,10 @@ set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 if has('gui_running')
-    if g:sys_uname=='windows'
+    if g:sys_uname=='win'
         " set guifont=MesloLGS\ NF:h14
         set guifont=Sarasa\ Mono\ SC\ Nerd:h15
-    elseif g:sys_uname=='linux'
+    elseif g:sys_uname=='unix'
         " set guifont=MesloLGS\ Nerd\ Font\ 14
         set guifont=Sarasa\ Fixed\ SC\ 15
     endif

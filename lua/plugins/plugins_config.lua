@@ -15,7 +15,6 @@ end
 --  telescope  --
 -----------------
 M.telescope_setup = function ()
-
 end
 
 -----------------

@@ -40,12 +40,34 @@ require('packer').startup({
         }
 
         -- telescope
+        -- install rg and fd to improve performance:
+        -- rg -> https://github.com/BurntSushi/ripgrep/releases
+        -- fd -> https://github.com/sharkdp/fd/releases
         use {
             'nvim-telescope/telescope.nvim',
             cmd = 'Telescope',
             requires = { {'nvim-lua/plenary.nvim'} },
             config = pconf.telescope_setup
         }
+        -- telescope extensions
+        if vim.g.sys_uname=='win' then
+            use {
+                'Leandros/telescope-fzf-native.nvim',
+                branch = 'feature/windows_build_support',
+                run = 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && '..
+                      'cmake --build build --config Release && '..
+                      'cmake --install build',
+                after = 'telescope.nvim',
+                config = [[require('telescope').load_extension('fzf')]]
+            }
+        else
+            use {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                run = 'make',
+                after = 'telescope.nvim',
+                config = [[require('telescope').load_extension('fzf')]]
+            }
+        end
 
         -- snippet
         use {

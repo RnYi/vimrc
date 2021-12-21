@@ -56,6 +56,7 @@ opt.signcolumn='number'
 opt.title=true
 opt.titlestring='%{getcwd()}'
 opt.hidden=true
+opt.lazyredraw=true
 opt.wildmenu=true
 opt.showmode=true
 opt.showmatch=true
