@@ -1,6 +1,3 @@
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,noselect'
-
 local cmp = require('cmp')
 cmp.setup ({
     -- MUST specify a snippet engine
@@ -15,7 +12,10 @@ cmp.setup ({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
+        ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
         ['<Esc>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
@@ -29,5 +29,8 @@ cmp.setup ({
         { name = 'nvim_lsp'},
         { name = 'nvim_lua'},
         { name = 'ultisnips'},
+    },
+    completion = {
+        completeopt = 'menu,noselect'
     },
 })

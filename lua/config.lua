@@ -72,6 +72,9 @@ opt.formatoptions:append('mMj')
 opt.list=true
 opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
+cmd([[
+set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》
+]])
 
 --------------
 --  Search  --
