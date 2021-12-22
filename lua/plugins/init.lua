@@ -7,7 +7,6 @@ local pconf=require('plugins/plugins_config')
 --  Plugins  --
 ---------------
 -- Load packer.nvim
-vim.cmd('packadd packer.nvim')
 require('packer').startup({
     function(use)
         -- impatient.nvim
@@ -16,16 +15,12 @@ require('packer').startup({
             config = [[require('impatient')]]
         }
 
-        -- packer.nvim can manage itself
-        use {
-            'wbthomason/packer.nvim',
-            opt = true
-        }
+        -- Packer can manage itself
+        use 'wbthomason/packer.nvim'
 
         -- colorscheme
         use {
             'shaunsingh/nord.nvim',
-            event = 'VimEnter',
             config = [[vim.cmd('colorscheme nord')]]
         }
 
@@ -35,21 +30,20 @@ require('packer').startup({
             requires = {
                 'kyazdani42/nvim-web-devicons'
             },
-            event = 'VimEnter',
             config = pconf.lualine_setup
         }
 
         -- telescope
         -- install rg and fd to improve performance:
-        -- rg -> https://github.com/BurntSushi/ripgrep/releases
-        -- fd -> https://github.com/sharkdp/fd/releases
+        --     rg -> https://github.com/BurntSushi/ripgrep/releases
+        --     fd -> https://github.com/sharkdp/fd/releases
         use {
             'nvim-telescope/telescope.nvim',
-            requires = { {'nvim-lua/plenary.nvim'} },
-            cmd = 'Telescope',
+            requires = 'nvim-lua/plenary.nvim',
             config = pconf.telescope_setup
         }
         -- telescope extensions
+        -- telescope-fzf-native
         if vim.g.sys_uname=='win' then
             use {
                 'Leandros/telescope-fzf-native.nvim',
@@ -68,6 +62,12 @@ require('packer').startup({
                 config = [[require('telescope').load_extension('fzf')]]
             }
         end
+        -- session manager
+        use {
+            'Shatur/neovim-session-manager',
+            after = 'telescope.nvim',
+            config = [[require('telescope').load_extension('sessions')]]
+        }
 
         -- snippet
         use {
@@ -100,6 +100,21 @@ require('packer').startup({
             after = 'cmp-nvim-lsp',
             config = pconf.lsp_setup
         }
+        -- tasks
+        use {
+            'skywind3000/asynctasks.vim',
+            requires = 'skywind3000/asyncrun.vim',
+            setup = pconf.asynctasks_setup
+        }
+
+        -- markdown
+        use {
+            'iamcco/markdown-preview.nvim',
+            run = 'cd app && yarn install',
+            cmd = 'MarkdownPreview',
+            setup = pconf.mkdp_setup,
+        }
+
     end,
 
     config={

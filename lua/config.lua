@@ -50,7 +50,7 @@ opt.fileencodings={'utf-8','usc-bom','chinese','gb18030','gbk','gb2312','cp936'}
 ---------------
 --  Display  --
 ---------------
-opt.wrap=true
+opt.wrap=false
 opt.number=true
 opt.signcolumn='number'
 opt.title=true
@@ -60,7 +60,7 @@ opt.lazyredraw=true
 opt.wildmenu=true
 opt.showmode=true
 opt.showmatch=true
-opt.matchtime=1
+-- opt.matchtime=1
 opt.cursorline=true
 opt.scrolloff=5
 opt.sidescrolloff=5
@@ -71,7 +71,7 @@ opt.termguicolors=true
 opt.formatoptions:remove('o')
 opt.formatoptions:append('mMj')
 opt.list=true
-opt.showbreak='↪'
+-- opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
 cmd([[
 set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》

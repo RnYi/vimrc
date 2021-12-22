@@ -10,19 +10,25 @@ M.keybind = function()
     map_opt)
     -- live_grep
     map('n',
-    '<Leader>fg',
+    '<Leader>g',
     [[<Cmd>Telescope live_grep<CR>]],
     map_opt)
     -- buffers
     map('n',
-    '<Leader>fb',
+    '<Leader>b',
     [[<Cmd>Telescope buffers<CR>]],
     map_opt)
     -- file_browser
     map('n',
-    '<Leader>fe',
+    '<Leader>e',
     [[<Cmd>Telescope file_browser<CR>]],
     map_opt)
+    -- sessions
+    map('n',
+    '<Leader>s',
+    [[<Cmd>Telescope sessions save_current=true<CR>]],
+    map_opt)
+
     -- lsp_definitions
     map('n',
     'gd',

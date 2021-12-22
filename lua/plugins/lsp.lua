@@ -55,11 +55,9 @@ M.setup = function()
     lspconfig.clangd.setup {
         on_attach = custom_attach,
         capabilities = capabilities,
-        flags = {
-            debounce_text_changes = 500,
-        },
     }
-    -- Lua -> https://github.com/sumneko/lua-language-server/releases
+    -- Lua
+    --     -> https://github.com/sumneko/lua-language-server/releases
     local runtime_path = vim.split(package.path, ';')
     table.insert(runtime_path, 'lua/?.lua')
     table.insert(runtime_path, 'lua/?/init.lua')
@@ -83,12 +81,28 @@ M.setup = function()
                     -- Make the server aware of Neovim runtime files
                     library = vim.api.nvim_get_runtime_file('', true),
                 },
-                -- Do not send telemetry data containing a randomized but unique identifier
+                -- Do not send telemetry data containing a randomized
+                -- but unique identifier
                 telemetry = {
                     enable = false,
                 },
             },
         },
+    }
+    -- CMake
+    --     -> https://github.com/regen100/cmake-language-server
+    --     -> pip install cmake-language-server
+    lspconfig.cmake.setup {
+        on_attach = custom_attach,
+        capabilities = capabilities,
+    }
+
+    -- Python
+    --     -> https://github.com/microsoft/pyright
+    --     -> pip install pyright
+    lspconfig.pyright.setup {
+        on_attach = custom_attach,
+        capabilities = capabilities,
     }
 
     -- Global config for diagnostic
