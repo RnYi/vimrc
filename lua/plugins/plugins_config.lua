@@ -1,5 +1,4 @@
 local M={}
-
 ---------------
 --  lualine  --
 ---------------
@@ -15,6 +14,7 @@ end
 --  telescope  --
 -----------------
 M.telescope_setup = function ()
+    require('plugins/telescope').setup()
 end
 
 -----------------
@@ -31,14 +31,14 @@ end
 --  nvim-cmp  --
 ----------------
 M.nvim_cmp_setup = function ()
-    require('plugins/nvim-cmp')
+    require('plugins/nvim-cmp').setup()
 end
 
 -----------------
 --  lspconfig  --
 -----------------
 M.lsp_setup = function ()
-    require('plugins/lsp')
+    require('plugins/lsp').setup()
 end
 
 return M

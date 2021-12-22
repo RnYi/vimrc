@@ -45,8 +45,8 @@ require('packer').startup({
         -- fd -> https://github.com/sharkdp/fd/releases
         use {
             'nvim-telescope/telescope.nvim',
-            cmd = 'Telescope',
             requires = { {'nvim-lua/plenary.nvim'} },
+            cmd = 'Telescope',
             config = pconf.telescope_setup
         }
         -- telescope extensions
