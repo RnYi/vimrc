@@ -11,7 +11,8 @@ local map_opt={noremap=true, silent=true}
 vim.g.mapleader=' '
 vim.g.maplocalleader=' '
 -- pastetoggle
-vim.opt.pastetoggle=vim.api.nvim_replace_termcodes('<F12>', true, true, true)
+vim.opt.pastetoggle='<F12>'
+-- vim.opt.pastetoggle=vim.api.nvim_replace_termcodes('<F12>', true, true, true)
 -- Move between lines
 map('n', 'H', '^', map_opt)
 map('n', 'L', '$', map_opt)
@@ -82,9 +83,9 @@ map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>', {noremap=true, silent=true})
 -- Toggle window maximized
 vim.cmd([[
 function! MaximizeToggle() abort
-    if exists('g:GuiLoaded')
-        call GuiWindowMaximized(1-g:GuiWindowMaximized)
-    endif
+  if exists('g:GuiLoaded')
+    call GuiWindowMaximized(1-g:GuiWindowMaximized)
+  endif
 endfunction
 ]])
 map('', '<F11>', '<Cmd>call MaximizeToggle()<CR>', map_opt)
@@ -97,59 +98,58 @@ map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
 -- Map meta key
 vim.cmd([[
 function! Terminal_MetaMode(mode)
-    set ttimeout
-    if $TMUX != ''
-        set ttimeoutlen=30
-    elseif &ttimeoutlen > 80 || &ttimeoutlen <= 0
-        set ttimeoutlen=80
-    endif
-    if has('nvim') || has('gui_running')
-        return
-    endif
-    function! s:metacode(mode, key)
-        if a:mode == 0
-            exec "set <M-".a:key.">=\e".a:key
-        else
-            exec "set <M-".a:key.">=\e]{0}".a:key."~"
-        endif
-    endfunc
-    for i in range(10)
-        call s:metacode(a:mode, nr2char(char2nr('0') + i))
-    endfor
-    for i in range(26)
-        call s:metacode(a:mode, nr2char(char2nr('a') + i))
-        call s:metacode(a:mode, nr2char(char2nr('A') + i))
-    endfor
-    if a:mode != 0
-        for c in [',', '.', '/', ';', '[', ']', '{', '}']
-            call s:metacode(a:mode, c)
-        endfor
-        for c in ['?', ':', '-', '_']
-            call s:metacode(a:mode, c)
-        endfor
+  set ttimeout
+  if $TMUX != ''
+    set ttimeoutlen=30
+  elseif &ttimeoutlen > 80 || &ttimeoutlen <= 0
+    set ttimeoutlen=80
+  endif
+  if has('nvim') || has('gui_running')
+    return
+  endif
+  function! s:metacode(mode, key)
+    if a:mode == 0
+      exec "set <M-".a:key.">=\e".a:key
     else
-        for c in [',', '.', '/', ';', '{', '}']
-            call s:metacode(a:mode, c)
-        endfor
-        for c in ['?', ':', '-', '_']
-            call s:metacode(a:mode, c)
-        endfor
+      exec "set <M-".a:key.">=\e]{0}".a:key."~"
     endif
+  endfunc
+  for i in range(10)
+    call s:metacode(a:mode, nr2char(char2nr('0') + i))
+  endfor
+  for i in range(26)
+    call s:metacode(a:mode, nr2char(char2nr('a') + i))
+    call s:metacode(a:mode, nr2char(char2nr('A') + i))
+  endfor
+  if a:mode != 0
+    for c in [',', '.', '/', ';', '[', ']', '{', '}']
+      call s:metacode(a:mode, c)
+    endfor
+    for c in ['?', ':', '-', '_']
+      call s:metacode(a:mode, c)
+    endfor
+  else
+    for c in [',', '.', '/', ';', '{', '}']
+      call s:metacode(a:mode, c)
+    endfor
+    for c in ['?', ':', '-', '_']
+      call s:metacode(a:mode, c)
+    endfor
+  endif
 endfunc
 
 " fix <F1>~<F4> under terminal
 function! Terminal_FunctionKey()
-    if &term =~ '^xterm'
-        exe "set <F1>=\eOP"
-        exe "set <F2>=\eOQ"
-        exe "set <F3>=\eOR"
-        exe "set <F4>=\eOS"
-    endif
+  if &term =~ '^xterm'
+    exe "set <F1>=\eOP"
+    exe "set <F2>=\eOQ"
+    exe "set <F3>=\eOR"
+    exe "set <F4>=\eOS"
+  endif
 endfunction
 call Terminal_MetaMode(0)
 call Terminal_FunctionKey()
 ]])
-
 ---------------
 --  Plugins  --
 ---------------

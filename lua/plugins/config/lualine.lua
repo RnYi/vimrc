@@ -1,32 +1,32 @@
 local M = {}
 
 M.setup = function()
-    vim.opt.showmode=false
-    require('lualine').setup {
-        options={
-            theme='auto',
-            always_divide_middle = false,
+  vim.opt.showmode=false
+  require('lualine').setup {
+    options={
+      theme='auto',
+      always_divide_middle = false,
+    },
+    sections = {
+      lualine_b = {'branch', 'diff'},
+      lualine_c = {
+        'filename',
+        {
+          'diagnostics',
+          symbols = {
+            error = '',
+            warn = '',
+            info='',
+            hint = ''
+          },
         },
-        sections = {
-            lualine_b = {'branch', 'diff'},
-            lualine_c = {
-                'filename',
-                {
-                    'diagnostics',
-                    symbols = {
-                        error = '',
-                        warn = '',
-                        info='',
-                        hint = ''
-                    },
-                },
-            },
-            lualine_y = {},
-            lualine_z = {},
+      },
+      lualine_y = {},
+      lualine_z = {},
 
-        },
-        extensions={ 'quickfix', 'nvim-tree' }
-    }
+    },
+    extensions={ 'quickfix', 'nvim-tree' }
+  }
 end
 
 return M

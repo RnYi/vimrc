@@ -32,8 +32,8 @@ g.python3_host_prog='python'
 --------------
 --  Indent  --
 --------------
-opt.tabstop=4
-opt.shiftwidth=4
+-- opt.tabstop=4
+opt.shiftwidth=2
 opt.softtabstop=-1
 opt.expandtab=true
 opt.autoindent=true
@@ -101,21 +101,22 @@ opt.sessionoptions:remove('terminal')
 ---------------
 cmd([[
 augroup rany_aug
-    autocmd!
-    autocmd BufReadPost *
-                \   if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \       exe "normal g'\"" |
-                \   endif
-    " autocmd BufRead txt if &buftype=='help' | wincmd L | endif
-    " autocmd FileType json syntax match Comment +\/\/.\+$+
-    autocmd FileType c,cpp setlocal commentstring=//%s
-    autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd FileType markdown hi! ErrorMsg NONE
-    autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
-    autocmd TermOpen * startinsert
-    autocmd TermEnter * setlocal nonumber
-    autocmd TermLeave * setlocal number
-    autocmd CmdlineEnter /,\? :set hlsearch
-    autocmd CmdlineLeave /,\? :set nohlsearch
+autocmd!
+" autocmd BufReadPost *
+"             \   if line("'\"") > 0 && line ("'\"") <= line("$") |
+"             \       exe "normal g'\"" |
+"             \   endif
+" autocmd BufRead txt if &buftype=='help' | wincmd L | endif
+" autocmd FileType json syntax match Comment +\/\/.\+$+
+" autocmd FileType c,cpp setlocal commentstring=//%s
+" autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType markdown hi! ErrorMsg NONE
+autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
+autocmd BufNewFile,BufRead .gitignore setlocal filetype=gitignore
+autocmd TermOpen * startinsert
+autocmd TermEnter * setlocal nonumber
+autocmd TermLeave * setlocal number
+autocmd CmdlineEnter /,\? :set hlsearch
+autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
 ]])
