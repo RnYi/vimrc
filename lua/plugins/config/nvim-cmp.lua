@@ -1,4 +1,5 @@
 local M = {}
+
 M.setup = function()
     local cmp = require('cmp')
     cmp.setup ({

@@ -41,13 +41,32 @@ M.setup = function()
 
         -- Enable show_line_diagnostics
         -- vim.cmd([[
-        -- autocmd CursorHold <buffer> lua require('plugins/lsp').show_line_diagnostics()
+        -- autocmd CursorHold <buffer> lua require('plugins/config/lsp').show_line_diagnostics()
         -- ]])
     end
-
     -- Add additional capabilities supported by nvim-cmp
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    -- Global config for diagnostic
+    vim.diagnostic.config({
+        underline = true,
+        virtual_text = true,
+        signs = true,
+        severity_sort = true,
+    })
+    -- Change border of documentation hover window
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+    })
+-- Change diagnostic signs
+vim.fn.sign_define("DiagnosticSignError",
+{text = "", texthl = "DiagnosticSignError"})
+vim.fn.sign_define("DiagnosticSignWarn",
+{text = "", texthl = "DiagnosticSignWarn"})
+vim.fn.sign_define("DiagnosticSignInformation",
+{text = "", texthl = "DiagnosticSignInformation"})
+vim.fn.sign_define("DiagnosticSignHint",
+{text = "", texthl = "DiagnosticSignHint"})
 
     -- Setup language servers
     local lspconfig = require('lspconfig')
@@ -96,7 +115,6 @@ M.setup = function()
         on_attach = custom_attach,
         capabilities = capabilities,
     }
-
     -- Python
     --     -> https://github.com/microsoft/pyright
     --     -> pip install pyright
@@ -105,18 +123,6 @@ M.setup = function()
         capabilities = capabilities,
     }
 
-    -- Global config for diagnostic
-    vim.diagnostic.config({
-        underline = true,
-        virtual_text = true,
-        signs = true,
-        severity_sort = true,
-    })
-
-    -- Change border of documentation hover window
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
 end
 -- return M
 return M

@@ -1,50 +1,6 @@
-local M={}
----------------
---  lualine  --
----------------
-M.lualine_setup = function ()
-    vim.opt.showmode=false
-    require('lualine').setup {
-        options={ theme='nord' },
-        extensions={ 'quickfix', 'nvim-tree' }
-    }
-end
+local M = {}
 
------------------
---  telescope  --
------------------
-M.telescope_setup = function ()
-    require('plugins/telescope').setup()
-end
-
------------------
---  ultisnips  --
------------------
-M.ultisnips_setup = function ()
-    vim.g.UltiSnipsExpandTrigger = '<C-j>'
-    vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
-    vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
-    vim.g.UltiSnipsListSnippets='<C-l>'
-end
-
-----------------
---  nvim-cmp  --
-----------------
-M.nvim_cmp_setup = function ()
-    require('plugins/nvim-cmp').setup()
-end
-
------------------
---  lspconfig  --
------------------
-M.lsp_setup = function ()
-    require('plugins/lsp').setup()
-end
-
-------------------
---  asynctasks  --
-------------------
-M.asynctasks_setup = function ()
+M.setup = function()
     vim.cmd([[
     augroup AsyncTasks
         autocmd!
@@ -59,6 +15,9 @@ M.asynctasks_setup = function ()
     vim.g.asyncrun_rootmarks={'.root','.project','.git','.hg',
                               '.svn','.projections.json'}
     vim.g.asynctasks_template={}
+end
+
+M.keybind = function ()
     local map=vim.api.nvim_set_keymap
     local map_opt={noremap=true, silent=true}
     map('n', '<F3>', '<Cmd>AsyncTask build<CR>', map_opt)
@@ -72,19 +31,5 @@ M.asynctasks_setup = function ()
     map('n', '<F7>', '<Cmd>AsyncTask git-add-commit-push<CR>', map_opt)
     map('i', '<F7>', '<Esc><Cmd>AsyncTask git-add-commit-push<CR>', map_opt)
 end
-
-------------------------
---  markdown-preview  --
-------------------------
-M.mkdp_setup = function()
-    vim.g.mkdp_auto_close=0
-    vim.api.nvim_set_keymap(
-        'n',
-        '<Leader>p',
-        '<Plug>MarkdownPreviewToggle',
-        {noremap=false}
-        )
-end
-
 
 return M

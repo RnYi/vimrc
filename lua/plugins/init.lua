@@ -1,13 +1,5 @@
----------------
---  Prepare  --
----------------
-local pconf=require('plugins/plugins_config')
-
----------------
---  Plugins  --
----------------
--- Load packer.nvim
 require('packer').startup({
+    -- add plugins
     function(use)
         -- impatient.nvim
         use {
@@ -27,10 +19,16 @@ require('packer').startup({
         -- lualine
         use {
             'nvim-lualine/lualine.nvim',
-            requires = {
-                'kyazdani42/nvim-web-devicons'
-            },
-            config = pconf.lualine_setup
+            requires = { 'kyazdani42/nvim-web-devicons' },
+            config = [[require('plugins/config/lualine').setup()]]
+        }
+
+        -- nvim-tree
+        use {
+            'kyazdani42/nvim-tree.lua',
+            requires = { 'kyazdani42/nvim-web-devicons' },
+            cmd = 'NvimTreeToggle',
+            config = [[require('nvim-tree').setup{}]]
         }
 
         -- telescope
@@ -40,7 +38,7 @@ require('packer').startup({
         use {
             'nvim-telescope/telescope.nvim',
             requires = 'nvim-lua/plenary.nvim',
-            config = pconf.telescope_setup
+            config = [[require('plugins/config/telescope').setup()]]
         }
         -- telescope extensions
         -- telescope-fzf-native
@@ -73,7 +71,12 @@ require('packer').startup({
         use {
             "SirVer/ultisnips",
             event = 'BufEnter',
-            setup = pconf.ultisnips_setup
+            setup = function()
+                vim.g.UltiSnipsExpandTrigger = '<C-j>'
+                vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
+                vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
+                vim.g.UltiSnipsListSnippets='<C-l>'
+            end
         }
         use({ "honza/vim-snippets", after = 'ultisnips'})
 
@@ -81,7 +84,7 @@ require('packer').startup({
         use {
             'hrsh7th/nvim-cmp',
             event = 'BufEnter',
-            config = pconf.nvim_cmp_setup
+            config = [[require('plugins/config/nvim-cmp').setup()]]
         }
         -- nvim-cmp completion sources
         use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
@@ -98,13 +101,13 @@ require('packer').startup({
         use {
             'neovim/nvim-lspconfig',
             after = 'cmp-nvim-lsp',
-            config = pconf.lsp_setup
+            config = [[require('plugins/config/lsp').setup()]]
         }
         -- tasks
         use {
             'skywind3000/asynctasks.vim',
             requires = 'skywind3000/asyncrun.vim',
-            setup = pconf.asynctasks_setup
+            setup = [[require('plugins/config/asynctasks').setup()]]
         }
 
         -- markdown
@@ -112,11 +115,19 @@ require('packer').startup({
             'iamcco/markdown-preview.nvim',
             run = 'cd app && yarn install',
             cmd = 'MarkdownPreview',
-            setup = pconf.mkdp_setup,
+            setup = function()
+                vim.g.mkdp_auto_close=0
+                vim.api.nvim_set_keymap(
+                'n',
+                '<Leader>p',
+                '<Plug>MarkdownPreviewToggle',
+                {noremap=false}
+                )
+            end
         }
-
     end,
 
+    -- config packer
     config={
         compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
         git={

@@ -61,9 +61,6 @@ M.setup=function()
 local action_layout = require('telescope.actions.layout')
 require('telescope').setup {
     defaults = {
-        path_display = {
-            smart = true
-        },
         dynamic_preview_title = true,
         mappings = {
             n = {

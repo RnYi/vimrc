@@ -1,4 +1,7 @@
-GuiFont! Sarasa\ Mono\ SC\ Nerd:h15
+" GuiFont! Sarasa\ Mono\ SC\ Nerd:h15
+" GuiFont! MesloLGM\ NF:h13
+" GuiFont! Hack\ NF:h14
+GuiFont! FiraCode\ NF:h14
 GuiRenderLigatures 0
 GuiAdaptiveColor 1
 GuiAdaptiveFont 1

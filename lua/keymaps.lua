@@ -13,8 +13,8 @@ vim.g.maplocalleader=' '
 -- pastetoggle
 vim.opt.pastetoggle=vim.api.nvim_replace_termcodes('<F12>', true, true, true)
 -- Move between lines
-map('', 'H', '^', map_opt)
-map('', 'L', '$', map_opt)
+map('n', 'H', '^', map_opt)
+map('n', 'L', '$', map_opt)
 map('', '<M-j>', 'gj', map_opt)
 map('', '<M-k>', 'gk', map_opt)
 -- Window operations
@@ -151,5 +151,6 @@ call Terminal_FunctionKey()
 ---------------
 --  Plugins  --
 ---------------
--- Telescope
-require('plugins/telescope').keybind()
+require('plugins/config/telescope').keybind()
+require('plugins/config/asynctasks').keybind()
+require('plugins/config/nvim-tree').keybind()
