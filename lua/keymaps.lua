@@ -15,6 +15,8 @@ vim.opt.pastetoggle=vim.api.nvim_replace_termcodes('<F12>', true, true, true)
 -- Move between lines
 map('n', 'H', '^', map_opt)
 map('n', 'L', '$', map_opt)
+map('x', 'H', '^', map_opt)
+map('x', 'L', '$', map_opt)
 map('', '<M-j>', 'gj', map_opt)
 map('', '<M-k>', 'gk', map_opt)
 -- Window operations

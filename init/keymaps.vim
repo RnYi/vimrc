@@ -1,5 +1,7 @@
-noremap H ^
-noremap L $
+nnoremap H ^
+nnoremap L $
+xnoremap H ^
+xnoremap L $
 
 noremap <M-j> gj
 noremap <M-k> gk

@@ -5,21 +5,19 @@ M.setup = function()
     require('lualine').setup {
         options={
             theme='auto',
-            section_separators = '',
             always_divide_middle = false,
         },
         sections = {
-            lualine_b = {'branch'},
+            lualine_b = {'branch', 'diff'},
             lualine_c = {
                 'filename',
-                'diff',
                 {
                     'diagnostics',
                     symbols = {
-                        error = ' ',
-                        warn = ' ',
-                        info=' ',
-                        hint = ' '
+                        error = '',
+                        warn = '',
+                        info='',
+                        hint = ''
                     },
                 },
             },
