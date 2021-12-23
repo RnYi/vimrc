@@ -31,7 +31,7 @@ require('packer').startup({
         use {
             'nvim-lualine/lualine.nvim',
             requires = { 'kyazdani42/nvim-web-devicons' },
-            config = [[require('plugins/config/lualine').setup()]]
+            config = require('plugins/config/lualine').setup()
         }
 
         -- nvim-tree
@@ -39,7 +39,7 @@ require('packer').startup({
             'kyazdani42/nvim-tree.lua',
             requires = { 'kyazdani42/nvim-web-devicons' },
             cmd = 'NvimTreeToggle',
-            config = [[require('nvim-tree').setup{}]]
+            config = require('plugins/config/nvim-tree').setup
         }
 
         -- telescope
@@ -49,7 +49,7 @@ require('packer').startup({
         use {
             'nvim-telescope/telescope.nvim',
             requires = 'nvim-lua/plenary.nvim',
-            config = [[require('plugins/config/telescope').setup()]]
+            config = require('plugins/config/telescope').setup
         }
         -- telescope extensions
         -- telescope-fzf-native
@@ -98,7 +98,7 @@ require('packer').startup({
             {
                 'hrsh7th/nvim-cmp',
                 event = 'BufEnter',
-                config = [[require('plugins/config/nvim-cmp').setup()]]
+                config = require('plugins/config/nvim-cmp').setup
             },
             -- nvim-cmp completion sources
             {'hrsh7th/cmp-path', after = 'nvim-cmp'},
@@ -116,14 +116,14 @@ require('packer').startup({
         use {
             'neovim/nvim-lspconfig',
             after = 'cmp-nvim-lsp',
-            config = [[require('plugins/config/lsp').setup()]]
+            config = require('plugins/config/lsp').setup
         }
 
         -- tasks
         use {
             'skywind3000/asynctasks.vim',
             requires = 'skywind3000/asyncrun.vim',
-            setup = [[require('plugins/config/asynctasks').setup()]]
+            setup = require('plugins/config/asynctasks').setup
         }
 
         -- markdown

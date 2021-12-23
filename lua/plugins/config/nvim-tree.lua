@@ -2,7 +2,9 @@ local M = {}
 
 M.setup = function ()
     require('nvim-tree').setup {
-
+        git = {
+            enable = false
+        },
     }
 end
 

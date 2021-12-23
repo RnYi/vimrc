@@ -66,7 +66,7 @@ vim.fn.sign_define("DiagnosticSignWarn",
 vim.fn.sign_define("DiagnosticSignInformation",
 {text = "", texthl = "DiagnosticSignInformation"})
 vim.fn.sign_define("DiagnosticSignHint",
-{text = "", texthl = "DiagnosticSignHint"})
+{text = "", texthl = "DiagnosticSignHint"})
 
     -- Setup language servers
     local lspconfig = require('lspconfig')

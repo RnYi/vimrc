@@ -17,7 +17,7 @@ M.setup = function()
                         error = '',
                         warn = '',
                         info='',
-                        hint = ''
+                        hint = ''
                     },
                 },
             },
