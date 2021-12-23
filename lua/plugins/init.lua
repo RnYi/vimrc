@@ -31,7 +31,7 @@ require('packer').startup({
         use {
             'nvim-lualine/lualine.nvim',
             requires = { 'kyazdani42/nvim-web-devicons' },
-            config = require('plugins/config/lualine').setup()
+            config = require('plugins/config/lualine').setup
         }
 
         -- nvim-tree
@@ -48,6 +48,7 @@ require('packer').startup({
         --     fd -> https://github.com/sharkdp/fd/releases
         use {
             'nvim-telescope/telescope.nvim',
+            event = 'BufEnter',
             requires = 'nvim-lua/plenary.nvim',
             config = require('plugins/config/telescope').setup
         }
@@ -122,6 +123,7 @@ require('packer').startup({
         -- tasks
         use {
             'skywind3000/asynctasks.vim',
+            event = 'BufEnter',
             requires = 'skywind3000/asyncrun.vim',
             setup = require('plugins/config/asynctasks').setup
         }
@@ -145,6 +147,7 @@ require('packer').startup({
         -- comment
         use {
             'numToStr/Comment.nvim',
+            event = 'BufEnter',
             config = function ()
                 require('Comment').setup {
                     mappings = {
@@ -169,9 +172,16 @@ require('packer').startup({
 
         -- text object
         use {
-            'kana/vim-textobj-user',
-            'kana/vim-textobj-indent',
-            'sgur/vim-textobj-parameter'
+            {
+                'kana/vim-textobj-indent',
+                requires={ 'kana/vim-textobj-user'},
+                event='BufEnter'
+            },
+            {
+                'sgur/vim-textobj-parameter',
+                requires={ 'kana/vim-textobj-user'},
+                event='BufEnter'
+            },
         }
     end,
 
