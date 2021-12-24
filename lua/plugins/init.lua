@@ -13,17 +13,24 @@ require('packer').startup({
     -- UI hooks
     use {'stevearc/dressing.nvim'}
 
-    -- colorscheme
-    -- use {
-    --     'shaunsingh/nord.nvim',
-    --     config = [[vim.cmd('colorscheme nord')]]
-    -- }
+    -- treesitter
     use {
-      'folke/tokyonight.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      config = require('plugins/config/treesitter').setup
+    }
+
+    -- colorscheme
+    use {
+      'rmehri01/onenord.nvim',
       config = function ()
-        vim.g.tokyonight_style='storm'
-        vim.g.tokyonight_lualine_bold=true
-        vim.cmd('colorscheme tokyonight')
+        require('onenord').setup({
+          theme = 'dark',
+          styles = {
+            diagnostics = 'undercurl',
+          },
+        })
+        vim.cmd('colorscheme onenord')
       end
     }
 
@@ -54,7 +61,7 @@ require('packer').startup({
     }
     -- telescope extensions
     -- telescope-fzf-native
-    if vim.g.sys_uname=='win' then
+    if OSName == 'win' then
       use {
         'Leandros/telescope-fzf-native.nvim',
         branch = 'feature/windows_build_support',
@@ -97,7 +104,12 @@ require('packer').startup({
     -- nvim-cmp
     use {
       {
+        'onsails/lspkind-nvim',
+        event = 'BufEnter',
+      },
+      {
         'hrsh7th/nvim-cmp',
+        after = 'lspkind-nvim',
         event = 'BufEnter',
         config = require('plugins/config/nvim-cmp').setup
       },
@@ -183,6 +195,30 @@ require('packer').startup({
         event='BufEnter'
       },
     }
+
+    -- indent line
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      cmd = 'IndentBlanklineToggle',
+      config = require('plugins/config/indent-blankline').setup
+    }
+
+    -- auto switch input method
+    if OSName == 'win' then
+      use {
+        'lyokha/vim-xkbswitch',
+        event = 'BufEnter',
+        setup = function ()
+          vim.g.XkbSwitchEnabled=1
+          vim.g.XkbSwitchLib=NvimHome..'/libxkbswitch64.dll'
+        end
+      }
+    else
+      use {
+        'rlue/vim-barbaric',
+        event = 'BufEnter'
+      }
+    end
   end,
 
   -- config packer
@@ -196,7 +232,7 @@ require('packer').startup({
     profile = {enable=true},
     git={
       -- use fastgit for git clone
-      default_url_format='https://hub.fastgit.org/%s'
+      default_url_format=GitRepoUrl..'/%s'
     }
   }
 })

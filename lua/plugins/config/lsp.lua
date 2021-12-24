@@ -40,17 +40,14 @@ M.setup = function()
     buf_set_keymap('n', '<space>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
     -- Enable show_line_diagnostics
-    -- vim.cmd([[
-    -- autocmd CursorHold <buffer> lua require('plugins/config/lsp').show_line_diagnostics()
-    -- ]])
+    vim.cmd([[
+    autocmd CursorHold <buffer> lua require('plugins/config/lsp').show_line_diagnostics()
+    ]])
   end
-  -- Add additional capabilities supported by nvim-cmp
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
   -- Global config for diagnostic
   vim.diagnostic.config({
     underline = true,
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     severity_sort = true,
   })
@@ -67,6 +64,10 @@ M.setup = function()
   {text = "", texthl = "DiagnosticSignInformation"})
   vim.fn.sign_define("DiagnosticSignHint",
   {text = "", texthl = "DiagnosticSignHint"})
+
+  -- Add additional capabilities supported by nvim-cmp
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
   -- Setup language servers
   local lspconfig = require('lspconfig')

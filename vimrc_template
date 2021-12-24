@@ -1,5 +1,6 @@
 let g:vimrc_home=expand('<sfile>:p:h')
 let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
+let g:repo_url='https://github.com.cnpmjs.org'
 if has('windows')
     let g:sys_uname='win'
 else

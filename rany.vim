@@ -37,7 +37,7 @@ endif
 """""""""""""""""""""""
 "  vim-plug setting  "
 """""""""""""""""""""""
-let g:plug_url_format='https://hub.fastgit.org/%s.git'
+let g:plug_url_format=g:repo_url.'/%s.git'
 
 """""""""""""""""""""
 "  langugae support "
@@ -88,9 +88,9 @@ if has_key(g:bundle_enabled, 'basic')
   " Latex
   Plug 'lervag/vimtex', {'for': ['tex','latex']}
   " Input method
-  if g:sys_uname!='windows'
+  if g:sys_uname!='win'
     Plug 'rlue/vim-barbaric'
-  elseif has('nvim')
+  elseif g:is_nvim
     Plug 'lyokha/vim-xkbswitch'
   endif
   Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}

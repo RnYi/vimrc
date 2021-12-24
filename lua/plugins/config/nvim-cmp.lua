@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function()
     local cmp = require('cmp')
+    local lspkind = require('lspkind')
     cmp.setup ({
         -- MUST specify a snippet engine
         snippet = {
@@ -32,9 +33,22 @@ M.setup = function()
             { name = 'ultisnips'},
         },
         completion = {
-            completeopt = 'menu,noselect'
-        },
-    })
-end
+            completeopt = 'menuone,noselect'
+          },
+          formatting = {
+            format = lspkind.cmp_format({
+              with_text = true,
+              menu = {
+                nvim_lsp = "[LSP]",
+                ultisnips = "[US]",
+                nvim_lua = "[Lua]",
+                path = "[Path]",
+                buffer = "[Buffer]",
+                emoji = "[Emoji]",
+              },
+            }),
+          },
+        })
+      end
 
-return M
+      return M

@@ -8,9 +8,9 @@ M.setup = function()
       always_divide_middle = false,
     },
     sections = {
-      lualine_b = {'branch', 'diff'},
-      lualine_c = {
-        'filename',
+      lualine_b = {
+        'branch',
+        'diff',
         {
           'diagnostics',
           symbols = {
