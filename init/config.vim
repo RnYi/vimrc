@@ -148,40 +148,7 @@ endif
 """""""""""
 "  Theme  "
 """""""""""
-" sonokai
-" let g:sonokai_disable_italic_comment = 1
-" let g:sonokai_better_performance = 1
-" colorscheme sonokai
-
-" ayu
-" let ayucolor="mirage"
-" colorscheme ayu
-" hi VertSplit guifg=grey guibg=NONE
-
-" solarized8
-" let g:solarized_italics=0
-" let g:solarized_extra_hi_groups=1
-" let curTimeHour = strftime("%H")
-" if curTimeHour > 7 && curTimeHour < 18
-"     set background=light
-" else
-"     set background=dark
-" endif
-" colorscheme solarized8_flat
-" if has('nvim')
-"     hi IncSearch gui=reverse
-"     hi! link Whitespace SpecialKey
-" endif
-
-" onedark
-" colorscheme onedark
-
-" edge
-if has_key(g:plugs_enabled,'edge')
-  let g:edge_better_performance=1
-  let g:edge_disable_italic_comment=1
-  colorscheme edge
-endif
+colorscheme slate
 
 """"""""""""
 "  Search  "

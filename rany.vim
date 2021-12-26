@@ -1,28 +1,6 @@
 """""""""""""""""""""
 "  some detections  "
 """""""""""""""""""""
-" OS
-if !exists('g:sys_uname')
-  if has('win32') || has('win64') || has('win95') || has('win16')
-    let g:sys_uname='windows'
-  elseif has('unix')
-    let s:uname = substitute(system("uname"), '\s*\n$', '', 'g')
-    if v:shell_error == 0 && match(s:uname, 'Linux') >= 0
-      let g:sys_uname = 'linux'
-    elseif v:shell_error == 0 && match(s:uname, 'FreeBSD') >= 0
-      let g:sys_uname = 'freebsd'
-    elseif v:shell_error == 0 && match(s:uname, 'Darwin') >= 0
-      let g:sys_uname = 'darwin'
-    else
-      let g:sys_uname = 'posix'
-    endif
-  else
-    let g:sys_uname = 'posix'
-  endif
-endif
-" neovim/vim
-let g:is_nvim=has('nvim')?1:0
-let g:is_vim=1-g:is_nvim
 
 """""""""""""""
 "  vimrc dir  "
@@ -71,7 +49,7 @@ call plug#begin()
 """"""""""""""""""""
 if has_key(g:bundle_enabled, 'basic')
   " Theme
-  Plug 'sainnhe/edge'
+  " Plug 'rmehri01/onenord.nvim'
   " Statusline
   Plug 'itchyny/lightline.vim'
   " Indent line
@@ -84,13 +62,13 @@ if has_key(g:bundle_enabled, 'basic')
   Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
   Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
   " Markdown
-  Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+  " Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   " Latex
-  Plug 'lervag/vimtex', {'for': ['tex','latex']}
+  " Plug 'lervag/vimtex', {'for': ['tex','latex']}
   " Input method
   if g:sys_uname!='win'
     Plug 'rlue/vim-barbaric'
-  elseif g:is_nvim
+  else
     Plug 'lyokha/vim-xkbswitch'
   endif
   Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}

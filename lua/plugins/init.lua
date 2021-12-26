@@ -13,19 +13,24 @@ require('packer').startup({
     -- UI hooks
     use {'stevearc/dressing.nvim'}
 
-    -- treesitter
+    -- Treesitter
     use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-      config = require('plugins/config/treesitter').setup
+      {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        -- event='BufEnter',
+      },
+      {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = require('plugins/config/treesitter').setup
+      },
     }
 
-    -- colorscheme
+    -- Colorscheme
     use {
       'rmehri01/onenord.nvim',
       config = function ()
         require('onenord').setup({
-          theme = 'dark',
           styles = {
             diagnostics = 'undercurl',
           },
@@ -34,14 +39,22 @@ require('packer').startup({
       end
     }
 
-    -- lualine
+    -- Statusline
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = require('plugins/config/lualine').setup
     }
 
-    -- nvim-tree
+    -- Tabline
+    use {
+      'romgrk/barbar.nvim',
+      requires = {'kyazdani42/nvim-web-devicons'},
+      event = 'BufEnter',
+      setup = require('plugins/config/barbar').setup
+    }
+
+    -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',
       requires = { 'kyazdani42/nvim-web-devicons' },
@@ -49,7 +62,14 @@ require('packer').startup({
       config = require('plugins/config/nvim-tree').setup
     }
 
-    -- telescope
+    -- Move
+    use {
+      'phaazon/hop.nvim',
+      cmd = {'HopWord', 'HopPattern', 'HopChar1', 'HopChar2', 'HopLine'},
+      config = require('plugins/config/hop').setup
+    }
+
+    -- Telescope
     -- install rg and fd to improve performance:
     --     rg -> https://github.com/BurntSushi/ripgrep/releases
     --     fd -> https://github.com/sharkdp/fd/releases
@@ -59,8 +79,8 @@ require('packer').startup({
       requires = 'nvim-lua/plenary.nvim',
       config = require('plugins/config/telescope').setup
     }
-    -- telescope extensions
-    -- telescope-fzf-native
+    -- Telescope extensions
+    -- Telescope-fzf-native
     if OSName == 'win' then
       use {
         'Leandros/telescope-fzf-native.nvim',
@@ -86,7 +106,7 @@ require('packer').startup({
       config = [[require('telescope').load_extension('sessions')]]
     }
 
-    -- snippet
+    -- Snippet
     use {
       {
         "SirVer/ultisnips",
@@ -132,7 +152,7 @@ require('packer').startup({
       config = require('plugins/config/lsp').setup
     }
 
-    -- tasks
+    -- Tasks
     use {
       'skywind3000/asynctasks.vim',
       event = 'BufEnter',
@@ -140,7 +160,7 @@ require('packer').startup({
       setup = require('plugins/config/asynctasks').setup
     }
 
-    -- markdown
+    -- Markdown
     use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app && yarn install',
@@ -149,14 +169,14 @@ require('packer').startup({
         vim.g.mkdp_auto_close=0
         vim.api.nvim_set_keymap(
         'n',
-        '<Leader>p',
+        '<Leader>mp',
         '<Plug>MarkdownPreviewToggle',
         {noremap=false}
         )
       end
     }
 
-    -- comment
+    -- Comment
     use {
       'numToStr/Comment.nvim',
       event = 'BufEnter',
@@ -171,7 +191,7 @@ require('packer').startup({
       end
     }
 
-    -- surround
+    -- Surround
     use {
       'machakann/vim-sandwich',
       event = 'BufEnter',
@@ -182,28 +202,15 @@ require('packer').startup({
       end
     }
 
-    -- text object
-    use {
-      {
-        'kana/vim-textobj-indent',
-        requires={ 'kana/vim-textobj-user'},
-        event='BufEnter'
-      },
-      {
-        'sgur/vim-textobj-parameter',
-        requires={ 'kana/vim-textobj-user'},
-        event='BufEnter'
-      },
-    }
 
-    -- indent line
+    -- Indent line
     use {
       'lukas-reineke/indent-blankline.nvim',
       cmd = 'IndentBlanklineToggle',
       config = require('plugins/config/indent-blankline').setup
     }
 
-    -- auto switch input method
+    -- Auto switch input method
     if OSName == 'win' then
       use {
         'lyokha/vim-xkbswitch',
@@ -221,7 +228,7 @@ require('packer').startup({
     end
   end,
 
-  -- config packer
+  -- Configure packer
   config={
     compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     display = {

@@ -1,12 +1,12 @@
 local M = {}
 -- Define a function for showing diagnostics on a float window
-M.show_line_diagnostics = function()
+M.show_diagnostics = function()
   local opts = {
-    focusable = false,
-    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    focus=false,
+    focusable=false,
+    scope = 'cursor',
     border = 'rounded',
     source = 'always',  -- show source in diagnostic popup window
-    prefix = ' '
   }
   vim.diagnostic.open_float(nil, opts)
 end
@@ -39,11 +39,11 @@ M.setup = function()
     -- buf_set_keymap('n', '<space>dl', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', '<space>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-    -- Enable show_line_diagnostics
-    vim.cmd([[
-    autocmd CursorHold <buffer> lua require('plugins/config/lsp').show_line_diagnostics()
-    ]])
   end
+  -- Enable show_line_diagnostics
+  vim.cmd([[
+  autocmd CursorHold,CursorHoldI * lua require('plugins/config/lsp').show_diagnostics()
+  ]])
   -- Global config for diagnostic
   vim.diagnostic.config({
     underline = true,
@@ -120,6 +120,12 @@ M.setup = function()
   --     -> https://github.com/microsoft/pyright
   --     -> pip install pyright
   lspconfig.pyright.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+  }
+  -- viml
+  --    -> npm install -g vim-language-server
+  lspconfig.vimls.setup{
     on_attach = custom_attach,
     capabilities = capabilities,
   }
