@@ -1,22 +1,19 @@
-""""""""""""""
-" vimrc home "
-""""""""""""""
 let g:vimrc_home=expand('<sfile>:p:h')
-
-if !has('nvim')
-    set pythonthreedll='python39.dll'
-endif
 let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
-
-""""""""""""""""""
-" default bundle "
-""""""""""""""""""
-if !exists('g:bundle_group')
-    if argc(-1)>0
-        let g:bundle_group=['basic', 'textobj']
-    else
-        let g:bundle_group=['basic', 'textobj', 'ui', 'snippet', 'comp']
-    endif
+let g:repo_url='https://github.com.cnpmjs.org'
+if has('windows')
+    let g:sys_uname='win'
+else
+    let g:sys_uname='unix'
 endif
-
-runtime rany.vim
+if has('nvim')
+    exe 'set runtimepath^='.g:vimrc_home
+    exe 'set runtimepath+='.g:vimrc_home.'/after'
+    lua require('init')
+else
+    let &pythonthreedll='python39.dll'
+    if !exists('g:bundle_group')
+        let g:bundle_group=['basic', 'textobj']
+    endif
+    runtime rany.vim
+endif

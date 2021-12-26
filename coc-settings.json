@@ -14,5 +14,6 @@
         ".git",
         ".hg",
         ".projections.json"
-    ]
+    ],
+    "sumneko-lua.checkUpdate": false
 }

@@ -1,5 +1,7 @@
-noremap H ^
-noremap L $
+nnoremap H ^
+nnoremap L $
+xnoremap H ^
+xnoremap L $
 
 noremap <M-j> gj
 noremap <M-k> gk
@@ -33,10 +35,10 @@ cnoremap <M-l> <Right>
 inoremap <C-CR> <Esc>o
 inoremap <S-CR> <Esc>O
 
-noremap <C-v> "+p
-vnoremap <C-c> "+y
-inoremap <C-v> <C-r>+
-vnoremap <C-x> "+x
+" noremap <C-v> "+p
+" vnoremap <C-c> "+y
+" inoremap <C-v> <C-r>+
+" vnoremap <C-x> "+x
 
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
@@ -67,20 +69,20 @@ nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 " inoremap <C-x><C-k> <C-x><C-k>
 
 augroup MyAug
-    autocmd FileType qf nnoremap <buffer> q <Cmd>close<CR>
-    autocmd FileType help nnoremap <buffer> q <Cmd>helpclose<CR>
+  autocmd FileType qf nnoremap <buffer> q <Cmd>close<CR>
+  autocmd FileType help nnoremap <buffer> q <Cmd>helpclose<CR>
 augroup END
 
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
-    " neovim-qt
-    if exists('g:GuiLoaded')
-        call GuiWindowMaximized(1-g:GuiWindowMaximized)
-        " linux gvim
-    elseif has('gui_running') && g:wmctrl_exec
-        call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
-        redraw!
-    endif
+  " neovim-qt
+  if exists('g:GuiLoaded')
+    call GuiWindowMaximized(1-g:GuiWindowMaximized)
+    " linux gvim
+  elseif has('gui_running') && g:wmctrl_exec
+    call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
+    redraw!
+  endif
 endfunction
 
 noremap <F11> <Cmd>call MaximizeToggle()<CR>
@@ -89,54 +91,54 @@ tnoremap <F11> <Cmd>call MaximizeToggle()<CR>
 
 " map meta key
 function! Terminal_MetaMode(mode)
-    set ttimeout
-    if $TMUX != ''
-        set ttimeoutlen=30
-    elseif &ttimeoutlen > 80 || &ttimeoutlen <= 0
-        set ttimeoutlen=80
-    endif
-    if has('nvim') || has('gui_running')
-        return
-    endif
-    function! s:metacode(mode, key)
-        if a:mode == 0
-            exec "set <M-".a:key.">=\e".a:key
-        else
-            exec "set <M-".a:key.">=\e]{0}".a:key."~"
-        endif
-    endfunc
-    for i in range(10)
-        call s:metacode(a:mode, nr2char(char2nr('0') + i))
-    endfor
-    for i in range(26)
-        call s:metacode(a:mode, nr2char(char2nr('a') + i))
-        call s:metacode(a:mode, nr2char(char2nr('A') + i))
-    endfor
-    if a:mode != 0
-        for c in [',', '.', '/', ';', '[', ']', '{', '}']
-            call s:metacode(a:mode, c)
-        endfor
-        for c in ['?', ':', '-', '_']
-            call s:metacode(a:mode, c)
-        endfor
+  set ttimeout
+  if $TMUX != ''
+    set ttimeoutlen=30
+  elseif &ttimeoutlen > 80 || &ttimeoutlen <= 0
+    set ttimeoutlen=80
+  endif
+  if has('nvim') || has('gui_running')
+    return
+  endif
+  function! s:metacode(mode, key)
+    if a:mode == 0
+      exec "set <M-".a:key.">=\e".a:key
     else
-        for c in [',', '.', '/', ';', '{', '}']
-            call s:metacode(a:mode, c)
-        endfor
-        for c in ['?', ':', '-', '_']
-            call s:metacode(a:mode, c)
-        endfor
+      exec "set <M-".a:key.">=\e]{0}".a:key."~"
     endif
+  endfunc
+  for i in range(10)
+    call s:metacode(a:mode, nr2char(char2nr('0') + i))
+  endfor
+  for i in range(26)
+    call s:metacode(a:mode, nr2char(char2nr('a') + i))
+    call s:metacode(a:mode, nr2char(char2nr('A') + i))
+  endfor
+  if a:mode != 0
+    for c in [',', '.', '/', ';', '[', ']', '{', '}']
+      call s:metacode(a:mode, c)
+    endfor
+    for c in ['?', ':', '-', '_']
+      call s:metacode(a:mode, c)
+    endfor
+  else
+    for c in [',', '.', '/', ';', '{', '}']
+      call s:metacode(a:mode, c)
+    endfor
+    for c in ['?', ':', '-', '_']
+      call s:metacode(a:mode, c)
+    endfor
+  endif
 endfunc
 
 " fix <F1>~<F4> under terminal
 function! Terminal_FunctionKey()
-    if &term =~ '^xterm'
-        exe "set <F1>=\eOP"
-        exe "set <F2>=\eOQ"
-        exe "set <F3>=\eOR"
-        exe "set <F4>=\eOS"
-    endif
+  if &term =~ '^xterm'
+    exe "set <F1>=\eOP"
+    exe "set <F2>=\eOQ"
+    exe "set <F3>=\eOR"
+    exe "set <F4>=\eOS"
+  endif
 endfunction
 call Terminal_MetaMode(0)
 call Terminal_FunctionKey()
