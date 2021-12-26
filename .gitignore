@@ -4,11 +4,14 @@
 !colors/
 !ultisnips/
 !init/
+!lua/
 
 !.gitignore
 !.notags
 !coc-settings.json
 !tasks.ini
 !*.vim
+!*.lua
+!vimrc_template
 
 !/libxkbswitch64.dll

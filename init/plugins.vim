@@ -136,7 +136,7 @@ if has_key(g:plugs_enabled,'vim-startify')
     let g:startify_update_oldfiles = 1
     let g:startify_session_persistence=1
     let g:startify_session_before_save = ["if exists('g:loaded_fern')|FernDo close|endif","cclose","lclose" ]
-    let g:startify_lists=[
+let g:startify_lists=[
                 \   { 'type': 'sessions',  'header': ['   Sessions']       },
                 \   { 'type': 'files',     'header': ['   MRU']            },
                 \]
@@ -182,29 +182,29 @@ endif
 "             \                   'start=/\[/ end=/\]/ fold',
 "             \                   'start=/{/ end=/}/ fold'],
 "             \   'separately': {
-"             \       '*': {},
-"             \       'nerdtree':0,
-"             \       'tex': {
-"             \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-"             \       },
-"             \       'lisp': {
-"             \           'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
-"             \       },
-"             \       'vim': {
-"             \           'parentheses':
-"             \               ['start=/(/ end=/)/',
-"             \                'start=/\[/ end=/\]/',
-"             \                'start=/{/ end=/}/ fold',
-"             \                'start=/(/ end=/)/ containedin=vimFuncBody',
-"             \                'start=/\[/ end=/\]/ containedin=vimFuncBody',
-"             \                'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-"             \       },
-"             \       'html': {
-"             \           'parentheses': ['start=/\v\((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ ])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'=`]*))?)*\/ end=#/\z1# fold'],
-"             \       },
-"             \       'css': 0,
-"             \   }
-"             \}
+  "             \       '*': {},
+  "             \       'nerdtree':0,
+  "             \       'tex': {
+    "             \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    "             \       },
+    "             \       'lisp': {
+      "             \           'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+      "             \       },
+      "             \       'vim': {
+        "             \           'parentheses':
+        "             \               ['start=/(/ end=/)/',
+        "             \                'start=/\[/ end=/\]/',
+        "             \                'start=/{/ end=/}/ fold',
+        "             \                'start=/(/ end=/)/ containedin=vimFuncBody',
+        "             \                'start=/\[/ end=/\]/ containedin=vimFuncBody',
+        "             \                'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+        "             \       },
+        "             \       'html': {
+          "             \           'parentheses': ['start=/\v\((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ ])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'=`]*))?)*\/ end=#/\z1# fold'],
+          "             \       },
+          "             \       'css': 0,
+          "             \   }
+          "             \}
 
 """""""""""""""""
 " lightline.vim "
@@ -214,7 +214,7 @@ if has_key(g:plugs_enabled,'lightline.vim')
     let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
     let g:special_buf_list=['nofile', 'quickfix', 'terminal', 'help']
     let g:lightline={
-                \   'colorscheme': 'edge',
+        \ 'colorscheme': 'nord',
                 \   'active': {
                     \       'left': [ ['mode', 'paste'],
                     \                 ['path', 'readonly', 'modified'],
@@ -487,7 +487,7 @@ if has_key(g:plugs_enabled,'vim-gutentags')
     "                 \ },
     "             \}
     " .gutgtags can be used for gtags options, '-f' can specify file list
-endif
+  endif
 
 """"""""""""""""""""
 "  gutentags_plus  "
