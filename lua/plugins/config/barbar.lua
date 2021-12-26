@@ -32,6 +32,7 @@ end
 M.setup = function ()
   vim.g.bufferline = {
     closable = false,
+    exclude_ft={'qf'},
   }
 end
 
