@@ -17,6 +17,11 @@ set ttimeout ttimeoutlen=100
 set updatetime=300
 set clipboard+=unnamed,unnamedplus
 set undofile
+let s:undo_dir=g:vimrc_home.'/undo'
+if !isdirectory(s:undo_dir)
+  call mkdir(s:undo_dir)
+endif
+let &undodir=s:undo_dir
 set tags=./.tags;,.tags
 
 """"""""""""
