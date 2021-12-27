@@ -92,10 +92,8 @@ opt.ignorecase=true
 ---------------
 --  Session  --
 ---------------
-opt.viewoptions:remove('options')
 opt.sessionoptions:remove('blank')
 opt.sessionoptions:remove('help')
-opt.sessionoptions:remove('options')
 opt.sessionoptions:remove('winpos')
 opt.sessionoptions:remove('terminal')
 
