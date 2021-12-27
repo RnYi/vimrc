@@ -30,7 +30,7 @@ g.loaded_python_provider=0
 g.python3_host_prog='python'
 -- Font
 opt.guifont = 'FiraCode NF:h14'
-opt.guifontwide='Source Han Sans CN:h14'
+opt.guifontwide = '黑体:h14'
 
 --------------
 --  Indent  --
@@ -105,15 +105,7 @@ opt.sessionoptions:remove('terminal')
 cmd([[
 augroup rany_aug
 autocmd!
-" autocmd BufReadPost *
-"             \   if line("'\"") > 0 && line ("'\"") <= line("$") |
-"             \       exe "normal g'\"" |
-"             \   endif
-" autocmd BufRead txt if &buftype=='help' | wincmd L | endif
-" autocmd FileType json syntax match Comment +\/\/.\+$+
-" autocmd FileType c,cpp setlocal commentstring=//%s
-" autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType markdown hi! ErrorMsg NONE
+autocmd FileType markdown hi! Error NONE
 autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
 autocmd BufNewFile,BufRead .gitignore setlocal filetype=gitignore
 autocmd TermOpen * startinsert

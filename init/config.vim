@@ -86,7 +86,8 @@ let &t_SI .= "\<Esc>[5 q"
 """"""""""""""""
 "  Statusline  "
 """"""""""""""""
-if !has_key(g:plugs_enabled,'lightline.vim')
+" if !has_key(g:plugs_enabled,'lightline.vim')
+if 0
   function! StlFilePath()
     let l:rlpath=expand('%')
     let l:fern_path_pat='\Vfern://\.\+/file:///\zs\.\+\ze;keep$\$'
@@ -149,7 +150,9 @@ endif
 """""""""""
 "  Theme  "
 """""""""""
-colorscheme slate
+if has_key(g:plugs_enabled, 'nord-vim')
+  colorscheme nord
+end
 
 """"""""""""
 "  Search  "
@@ -181,14 +184,13 @@ set foldmethod=manual
 """""""""""""
 augroup MyAug
   autocmd!
-  autocmd BufReadPost *
-        \   if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \       exe "normal g'\"" |
-        \   endif
+  " autocmd BufReadPost *
+  "       \   if line("'\"") > 0 && line ("'\"") <= line("$") |
+  "       \       exe "normal g'\"" |
+  "       \   endif
   " autocmd BufRead txt if &buftype=='help' | wincmd L | endif
   " autocmd FileType json syntax match Comment +\/\/.\+$+
-  autocmd FileType c,cpp setlocal commentstring=//%s
   autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd FileType markdown hi! ErrorMsg NONE
+  autocmd FileType markdown hi! Error NONE
   autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
 augroup END
