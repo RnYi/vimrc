@@ -1,4 +1,3 @@
-GuiFont! FiraCode\ NF:h14
 GuiRenderLigatures 0
 GuiAdaptiveColor 1
 GuiAdaptiveFont 1

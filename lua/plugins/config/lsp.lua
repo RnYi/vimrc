@@ -123,7 +123,7 @@ M.setup = function()
     on_attach = custom_attach,
     capabilities = capabilities,
   }
-  -- viml
+  -- VimL
   --    -> npm install -g vim-language-server
   lspconfig.vimls.setup{
     on_attach = custom_attach,

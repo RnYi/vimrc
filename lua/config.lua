@@ -28,6 +28,9 @@ g.loaded_perl_provider=0
 g.loaded_ruby_provider=0
 g.loaded_python_provider=0
 g.python3_host_prog='python'
+-- Font
+opt.guifont = 'FiraCode NF:h14'
+opt.guifontwide='Source Han Sans CN:h14'
 
 --------------
 --  Indent  --
