@@ -70,10 +70,10 @@ require('packer').startup({
     }
 
     -- Git
-    -- use {
-    --   'tpope/vim-fugitive',
-    --   setup = require('plugins/config/fugitive').setup,
-    -- }
+    use {
+      'tpope/vim-fugitive',
+      setup = require('plugins/config/fugitive').setup,
+    }
 
     -- Telescope
     -- install rg and fd to improve performance:

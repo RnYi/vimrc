@@ -25,7 +25,7 @@ M.setup = function()
       lualine_z = {},
 
     },
-    extensions={ 'quickfix', 'nvim-tree' }
+    extensions={ 'quickfix', 'nvim-tree', 'fugitive' }
   }
 end
 
