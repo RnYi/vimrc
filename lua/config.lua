@@ -93,9 +93,9 @@ opt.ignorecase=true
 --  Session  --
 ---------------
 opt.sessionoptions:remove('blank')
-opt.sessionoptions:remove('help')
 opt.sessionoptions:remove('winpos')
 opt.sessionoptions:remove('terminal')
+opt.sessionoptions:remove('options')
 
 ---------------
 --  Autocmd  --
