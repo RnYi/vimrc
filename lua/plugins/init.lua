@@ -62,11 +62,17 @@ require('packer').startup({
       config = require('plugins/config/nvim-tree').setup
     }
 
-    -- Move
+    -- Searh and Move
     use {
       'phaazon/hop.nvim',
       cmd = {'HopWord', 'HopPattern', 'HopChar1', 'HopChar2', 'HopLine'},
       config = require('plugins/config/hop').setup
+    }
+
+    -- Better qf
+    use {
+      'kevinhwang91/nvim-bqf',
+      ft = 'qf',
     }
 
     -- Telescope
@@ -243,5 +249,5 @@ require('packer').startup({
 -- impatient.nvim requires to load packer_compiled manually
 local status, _ = pcall(require, 'packer_compiled')
 if not status then
-  vim.api.nvim_echo({{'Failed to require packer_compiled.lua!', 'Error'}}, true, {})
+  vim.notify('Failed to require packer_compiled.lua!', 'error', nil)
 end

@@ -38,12 +38,27 @@ M.setup = function()
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     -- buf_set_keymap('n', '<space>dl', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', '<space>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('x', '<space>fm', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 
+    -- Show diagnostics with float window
+    vim.cmd([[
+    autocmd CursorHold <buffer> lua require('plugins/config/lsp').show_diagnostics()
+    ]])
+
+    -- Highlight the variable under current cursor
+    if client.resolved_capabilities.document_highlight then
+      vim.cmd([[
+      hi! link LspReferenceRead Visual
+      hi! link LspReferenceText Visual
+      hi! link LspReferenceWrite Visual
+      augroup LspDocumentHighlight
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved,InsertEnter <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+      ]])
+    end
   end
-  -- Enable show_line_diagnostics
-  vim.cmd([[
-  autocmd CursorHold,CursorHoldI * lua require('plugins/config/lsp').show_diagnostics()
-  ]])
   -- Global config for diagnostic
   vim.diagnostic.config({
     underline = true,
