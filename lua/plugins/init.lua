@@ -193,13 +193,9 @@ require('packer').startup({
 
     -- Surround
     use {
-      'machakann/vim-sandwich',
+      'tpope/vim-surround',
+      requires = 'tpope/vim-repeat',
       event = 'BufEnter',
-      setup = function ()
-        local map = vim.api.nvim_set_keymap
-        map('n', 's', '<Nop>',{})
-        map('x', 's', '<Nop>',{})
-      end
     }
 
 

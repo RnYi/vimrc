@@ -5,13 +5,13 @@ M.keybind = function ()
   local map_opt = {noremap=true, silent=true}
   map(
     'n',
-    '<Leader>s',
+    's',
     '<Cmd>HopChar2<CR>',
     map_opt
     )
   map(
     'x',
-    '<Leader>s',
+    's',
     '<Cmd>HopChar2<CR>',
     map_opt
     )
