@@ -69,11 +69,11 @@ require('packer').startup({
       config = require('plugins/config/hop').setup
     }
 
-    -- Better qf
-    use {
-      'kevinhwang91/nvim-bqf',
-      ft = 'qf',
-    }
+    -- Git
+    -- use {
+    --   'tpope/vim-fugitive',
+    --   setup = require('plugins/config/fugitive').setup,
+    -- }
 
     -- Telescope
     -- install rg and fd to improve performance:
@@ -105,7 +105,7 @@ require('packer').startup({
         config = [[require('telescope').load_extension('fzf')]]
       }
     end
-    -- session manager
+    -- Session manager
     use {
       'Shatur/neovim-session-manager',
       after = 'telescope.nvim',

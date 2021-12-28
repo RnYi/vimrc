@@ -95,6 +95,10 @@ map('t', '<F11>', '<Cmd>call MaximizeToggle()<CR>', map_opt)
 map('n', 'qq', '<Cmd>cclose<CR>', map_opt)
 map('n', 'ql', '<Cmd>lclose<CR>', map_opt)
 map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
+-- Open terminal
+map('n', '<M-=>', '<Cmd>terminal<CR>', map_opt)
+-- Single leader key does nothing
+map('n', '<Leader>', '<Nop>', map_opt)
 -- Map meta key
 vim.cmd([[
 function! Terminal_MetaMode(mode)
