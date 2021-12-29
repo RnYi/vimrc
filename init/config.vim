@@ -157,8 +157,10 @@ endif
 """""""""""
 "  Theme  "
 """""""""""
-if has_key(g:plugs_enabled, 'nord-vim')
-  colorscheme nord
+if has_key(g:plugs_enabled, 'gruvbox-material')
+  let g:gruvbox_material_enable_bold=1
+  let g:gruvbox_material_better_performance=1
+  colorscheme gruvbox-material
 end
 
 """"""""""""

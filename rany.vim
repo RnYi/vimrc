@@ -49,7 +49,7 @@ call plug#begin()
 """"""""""""""""""""
 if has_key(g:bundle_enabled, 'basic')
   " Theme
-  Plug 'arcticicestudio/nord-vim'
+  Plug 'sainnhe/gruvbox-material'
   " Statusline
   Plug 'itchyny/lightline.vim'
   " Indent line

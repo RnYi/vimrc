@@ -214,7 +214,7 @@ if has_key(g:plugs_enabled,'lightline.vim')
     let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
     let g:special_buf_list=['nofile', 'quickfix', 'terminal', 'help']
     let g:lightline={
-        \ 'colorscheme': 'nord',
+        \ 'colorscheme': 'gruvbox_material',
                 \   'active': {
                     \       'left': [ ['mode', 'paste'],
                     \                 ['path', 'readonly', 'modified'],
