@@ -170,7 +170,7 @@ require('packer').startup({
     use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app && yarn install',
-      cmd = 'MarkdownPreview',
+      ft = 'markdown',
       setup = function()
         vim.g.mkdp_auto_close=0
         vim.api.nvim_set_keymap(
