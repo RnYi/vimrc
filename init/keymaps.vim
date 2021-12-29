@@ -24,27 +24,14 @@ tnoremap <M-Q> <C-\><C-N><Cmd>close<CR>
 tnoremap <M-q> <C-\><C-N>
 tnoremap <C-v> <C-w>"+
 
-" inoremap <M-j> <Down>
-" inoremap <M-k> <Up>
-" inoremap <M-h> <Left>
-" inoremap <M-l> <Right>
-
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
 
 inoremap <C-CR> <Esc>o
 inoremap <S-CR> <Esc>O
 
-" noremap <C-v> "+p
-" vnoremap <C-c> "+y
-" inoremap <C-v> <C-r>+
-" vnoremap <C-x> "+x
-
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
-
-noremap <C-space> <Esc>
-noremap! <C-space> <Esc>
 
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
@@ -65,13 +52,14 @@ nnoremap <silent> [L <Cmd>lfirst<CR>
 nnoremap <silent> ]L <Cmd>llast<CR>
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
-
-" inoremap <C-x><C-k> <C-x><C-k>
-
-augroup MyAug
-  autocmd FileType qf nnoremap <buffer> q <Cmd>close<CR>
-  autocmd FileType help nnoremap <buffer> q <Cmd>helpclose<CR>
-augroup END
+" Quickly quit
+nnoremap <silent> qq <Cmd>cclose<CR>
+nnoremap <silent> ql <Cmd>lclose<CR>
+nnoremap <silent> qh <Cmd>helpclose<CR>
+" Open terminal
+nnoremap <silent> <M-=> <Cmd>terminal<CR>
+" Single leader key does nothing
+nnoremap <Leader> <Nop>
 
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
@@ -88,6 +76,24 @@ endfunction
 noremap <F11> <Cmd>call MaximizeToggle()<CR>
 inoremap <F11> <Cmd>call MaximizeToggle()<CR>
 tnoremap <F11> <Cmd>call MaximizeToggle()<CR>
+
+" Grep
+function s:bufferlist() " get all listed buffers
+  let res = getbufinfo({'listed':1})
+  let bufs = []
+  for item in res
+    call add(buf, item.name)
+  endfor
+  return bufs
+endfunction
+
+function GrepOnBuffers(str)
+  silent! exec 'vimgrep/'.a:str.'/g '.join(s:bufferlist())
+  " silent! exec 'grep '.a:str.' '.join(s:bufferlist())
+endfunction
+nnoremap <M-f> <Cmd>call GrepOnBuffers(expand('<cword>'))
+      \ <bar> copen
+      \ <bar> wincmd p<CR>
 
 " map meta key
 function! Terminal_MetaMode(mode)

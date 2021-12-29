@@ -33,7 +33,7 @@ M.setup = function()
             { name = 'ultisnips'},
         },
         completion = {
-            completeopt = 'menuone,noselect'
+            completeopt = 'menu,noselect'
           },
           formatting = {
             format = lspkind.cmp_format({

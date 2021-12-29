@@ -240,7 +240,7 @@ require('packer').startup({
     },
     profile = {enable=true},
     git={
-      -- use fastgit for git clone
+      -- github mirror
       default_url_format=GitRepoUrl..'/%s'
     }
   }

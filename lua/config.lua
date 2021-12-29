@@ -31,6 +31,10 @@ g.python3_host_prog='python'
 -- Font
 opt.guifont = 'FiraCode NF:h14'
 opt.guifontwide = '黑体:h14'
+-- Diff
+opt.diffopt:append('vertical')
+-- Grepper
+opt.grepprg = 'rg --vimgrep'
 
 --------------
 --  Indent  --

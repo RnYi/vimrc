@@ -23,6 +23,8 @@ if !isdirectory(s:undo_dir)
 endif
 let &undodir=s:undo_dir
 set tags=./.tags;,.tags
+set diffopt+=vertical
+set grepprg=rg\ --vimgrep
 
 """"""""""""
 "  Indent  "
@@ -173,9 +175,7 @@ set ignorecase
 """""""""""""
 set viewoptions-=options
 set sessionoptions-=blank
-set sessionoptions-=help
 set sessionoptions-=options
-" set sessionoptions-=tabpages
 set sessionoptions-=winpos
 set sessionoptions-=terminal
 
