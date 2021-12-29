@@ -7,6 +7,7 @@ M.setup = function()
       theme='auto',
       always_divide_middle = false,
     },
+    extensions={ 'quickfix', 'nvim-tree', 'fugitive' },
     sections = {
       lualine_b = {
         'branch',
@@ -19,13 +20,18 @@ M.setup = function()
             info='',
             hint = ''
           },
+          diagnostics_color = {
+            error = 'DiagnosticSignError',
+            warn = 'DiagnosticSignWarn',
+            info = 'DiagnosticSignInfo',
+            hint = 'DiagnosticSignHint',
+          },
         },
       },
       lualine_y = {},
       lualine_z = {},
 
-    },
-    extensions={ 'quickfix', 'nvim-tree', 'fugitive' }
+    }
   }
 end
 
