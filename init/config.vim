@@ -23,7 +23,7 @@ if !isdirectory(s:undo_dir)
 endif
 let &undodir=s:undo_dir
 set tags=./.tags;,.tags
-set diffopt+=vertical
+set diffopt+=vertical,followwrap
 set grepprg=rg\ --vimgrep
 if g:sys_uname=='win'
   set shell=pwsh
@@ -63,7 +63,7 @@ endif
 """""""""""""
 set number
 set signcolumn=number
-" set wrap
+set wrap
 set title titlestring=%{getcwd()}
 set hidden
 set wildmenu

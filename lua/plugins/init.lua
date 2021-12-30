@@ -32,6 +32,11 @@ require('packer').startup({
       },
     }
 
+    -- Icon
+    use {
+       'kyazdani42/nvim-web-devicons'
+    }
+
     -- Colorscheme
     use{
       'sainnhe/gruvbox-material',
@@ -46,22 +51,20 @@ require('packer').startup({
     use {
       'nvim-lualine/lualine.nvim',
       event = 'VimEnter',
-      requires = 'kyazdani42/nvim-web-devicons',
       config = require('plugins/config/lualine').setup
     }
 
     -- Tabline
     use {
       'romgrk/barbar.nvim',
+      disable=true,
       event = 'VimEnter',
-      requires = 'kyazdani42/nvim-web-devicons',
       setup = require('plugins/config/barbar').setup
     }
 
     -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons',
       cmd = 'NvimTreeToggle',
       config = require('plugins/config/nvim-tree').setup
     }
@@ -87,8 +90,8 @@ require('packer').startup({
     --     fd -> https://github.com/sharkdp/fd/releases
     use {
       'nvim-telescope/telescope.nvim',
-      event = 'BufEnter',
-      requires = { {'nvim-lua/plenary.nvim'} },
+      event = 'VimEnter',
+      requires = 'nvim-lua/plenary.nvim' ,
       config = require('plugins/config/telescope').setup
     }
     -- Telescope extensions
@@ -126,42 +129,39 @@ require('packer').startup({
 
     -- Snippet
     use {
-      {
-        "SirVer/ultisnips",
-        event = 'BufEnter',
-        setup = function()
-          vim.g.UltiSnipsExpandTrigger = '<C-j>'
-          vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
-          vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
-          vim.g.UltiSnipsListSnippets='<C-l>'
-        end
-      },
-      { "honza/vim-snippets", after = 'ultisnips'}
+      "SirVer/ultisnips",
+      event = 'VimEnter',
+      setup = function()
+        vim.g.UltiSnipsExpandTrigger = '<C-j>'
+        vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
+        vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
+        vim.g.UltiSnipsListSnippets='<C-l>'
+      end
     }
+    use { "honza/vim-snippets", after = 'ultisnips'}
+
 
     -- nvim-cmp
     use {
-      {
-        'onsails/lspkind-nvim',
-        event = 'BufEnter',
-      },
-      {
-        'hrsh7th/nvim-cmp',
-        after = 'lspkind-nvim',
-        event = 'BufEnter',
-        config = require('plugins/config/nvim-cmp').setup
-      },
-      -- nvim-cmp completion sources
-      {'hrsh7th/cmp-path', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-cmdline', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'},
-      {
-        'quangnguyen30192/cmp-nvim-ultisnips',
-        after = {'nvim-cmp', 'ultisnips'}
-      },
+      'onsails/lspkind-nvim',
+      event = 'VimEnter',
     }
+    use {
+      'hrsh7th/nvim-cmp',
+      after = 'lspkind-nvim',
+      config = require('plugins/config/nvim-cmp').setup
+    }
+    -- nvim-cmp completion sources
+    use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'}
+    use {
+      'quangnguyen30192/cmp-nvim-ultisnips',
+      after = {'nvim-cmp', 'ultisnips'}
+    }
+
 
     -- nvim-lspconfig
     use {
@@ -171,16 +171,14 @@ require('packer').startup({
     }
 
     -- Tasks
+    use       {
+      'skywind3000/asyncrun.vim',
+      event = 'VimEnter',
+    }
     use {
-      {
-        'skywind3000/asyncrun.vim',
-        event = 'VimEnter',
-      },
-      {
-        'skywind3000/asynctasks.vim',
-        event = 'BufEnter',
-        setup = require('plugins/config/asynctasks').setup
-      }
+      'skywind3000/asynctasks.vim',
+      after = 'asyncrun.vim',
+      setup = require('plugins/config/asynctasks').setup
     }
 
     -- Markdown
@@ -202,7 +200,7 @@ require('packer').startup({
     -- Comment
     use {
       'numToStr/Comment.nvim',
-      event = 'BufEnter',
+      event = 'VimEnter',
       config = function ()
         require('Comment').setup {
           mappings = {
@@ -216,15 +214,14 @@ require('packer').startup({
 
     -- Surround
     use {
-      {
-        'tpope/vim-repeat',
-        event = 'BufEnter',
-      },
-      {
-        'tpope/vim-surround',
-        event = 'BufEnter',
-      }
+      'tpope/vim-repeat',
+      event = 'VimEnter',
     }
+    use {
+      'tpope/vim-surround',
+      event = 'VimEnter',
+    }
+
 
     -- Indent line
     use {
@@ -237,7 +234,7 @@ require('packer').startup({
     if OSName == 'win' then
       use {
         'lyokha/vim-xkbswitch',
-        event = 'BufEnter',
+        event = 'VimEnter',
         setup = function ()
           vim.g.XkbSwitchEnabled=1
           vim.g.XkbSwitchLib=NvimHome..'/libxkbswitch64.dll'
@@ -246,7 +243,7 @@ require('packer').startup({
     else
       use {
         'rlue/vim-barbaric',
-        event = 'BufEnter'
+        event = 'VimEnter'
       }
     end
   end,

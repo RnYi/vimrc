@@ -61,7 +61,7 @@ opt.fileencodings={'utf-8','usc-bom','chinese','gb18030','gbk','gb2312','cp936'}
 ---------------
 --  Display  --
 ---------------
-opt.wrap=false
+opt.wrap=true
 opt.number=true
 opt.signcolumn='number'
 opt.title=true
