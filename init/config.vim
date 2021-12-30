@@ -25,6 +25,9 @@ let &undodir=s:undo_dir
 set tags=./.tags;,.tags
 set diffopt+=vertical
 set grepprg=rg\ --vimgrep
+if g:sys_uname=='win'
+  set shell=pwsh
+endif
 
 """"""""""""
 "  Indent  "

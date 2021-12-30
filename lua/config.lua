@@ -21,13 +21,6 @@ opt.foldmethod='manual'
 opt.undofile=true
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
--- Specify tex filetype
-g.tex_flavor='latex'
--- Language support
-g.loaded_perl_provider=0
-g.loaded_ruby_provider=0
-g.loaded_python_provider=0
-g.python3_host_prog='python'
 -- Font
 opt.guifont = 'FiraCode NF:h14'
 opt.guifontwide = '黑体:h14'
@@ -35,6 +28,17 @@ opt.guifontwide = '黑体:h14'
 opt.diffopt:append('vertical')
 -- Grepper
 opt.grepprg = 'rg --vimgrep'
+-- Shell
+if OSName=='win' then
+  opt.shell='pwsh'
+end
+-- Specify tex filetype
+g.tex_flavor='latex'
+-- Language support
+g.loaded_perl_provider=0
+g.loaded_ruby_provider=0
+g.loaded_python_provider=0
+g.python3_host_prog='python'
 
 --------------
 --  Indent  --
