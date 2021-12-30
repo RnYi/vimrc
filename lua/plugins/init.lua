@@ -78,7 +78,8 @@ require('packer').startup({
     -- Git
     use {
       'tpope/vim-fugitive',
-      event = 'BufEnter',
+      fn = 'fugitive#*',
+      cmd = {'G', 'Git', 'Gedit', 'Gread', 'Gwrite', 'Gdiffsplit',  'Gvdiffsplit'},
       setup = require('plugins/config/fugitive').setup,
     }
 
@@ -116,7 +117,13 @@ require('packer').startup({
     use {
       'Shatur/neovim-session-manager',
       after = 'telescope.nvim',
-      config = [[require('telescope').load_extension('sessions')]]
+      config = function ()
+        require('session_manager').setup({
+          -- autoload_mode = require('session_manager.config').AutoloadMode.Disabled,
+          autosave_only_in_session = true
+        })
+        require('telescope').load_extension('sessions')
+      end
     }
 
     -- Snippet
