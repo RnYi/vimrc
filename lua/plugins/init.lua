@@ -1,26 +1,37 @@
+-- Manage plugins
 require('packer').startup({
   -- add plugins
   function(use)
     -- impatient.nvim
     use {
       'lewis6991/impatient.nvim',
-      config = [[require('impatient')]]
+      config = [[require('impatient')]],
+    }
+    -- Packer can manage itself
+    use {
+      'wbthomason/packer.nvim',
     }
 
-    -- Packer can manage itself
-    use {'wbthomason/packer.nvim'}
+    -- Icons
+    use {
+      'kyazdani42/nvim-web-devicons',
+    }
 
     -- UI hooks
-    use {'stevearc/dressing.nvim'}
+    use {
+      'stevearc/dressing.nvim',
+      event = 'VimEnter',
+    }
 
     -- Treesitter
     use {
       {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        -- event='BufEnter',
+        event = 'VimEnter',
       },
       {
         'nvim-treesitter/nvim-treesitter',
+        event = 'VimEnter',
         run = ':TSUpdate',
         config = require('plugins/config/treesitter').setup
       },
@@ -29,8 +40,8 @@ require('packer').startup({
     -- Colorscheme
     use{
       'sainnhe/gruvbox-material',
+      event = 'VimEnter',
       config = function ()
-        -- vim.g.gruvbox_material_palette='mix'
         vim.g.gruvbox_material_better_performance=1
         vim.cmd('colorscheme gruvbox-material')
       end
@@ -39,22 +50,20 @@ require('packer').startup({
     -- Statusline
     use {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons' },
+      event = 'VimEnter',
       config = require('plugins/config/lualine').setup
     }
 
     -- Tabline
     use {
       'romgrk/barbar.nvim',
-      requires = {'kyazdani42/nvim-web-devicons'},
-      event = 'BufEnter',
+      event = 'VimEnter',
       setup = require('plugins/config/barbar').setup
     }
 
     -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',
-      requires = { 'kyazdani42/nvim-web-devicons' },
       cmd = 'NvimTreeToggle',
       config = require('plugins/config/nvim-tree').setup
     }
@@ -69,6 +78,7 @@ require('packer').startup({
     -- Git
     use {
       'tpope/vim-fugitive',
+      event = 'BufEnter',
       setup = require('plugins/config/fugitive').setup,
     }
 
@@ -79,7 +89,7 @@ require('packer').startup({
     use {
       'nvim-telescope/telescope.nvim',
       event = 'BufEnter',
-      requires = 'nvim-lua/plenary.nvim',
+      requires = { {'nvim-lua/plenary.nvim'} },
       config = require('plugins/config/telescope').setup
     }
     -- Telescope extensions
@@ -157,10 +167,15 @@ require('packer').startup({
 
     -- Tasks
     use {
-      'skywind3000/asynctasks.vim',
-      event = 'BufEnter',
-      requires = 'skywind3000/asyncrun.vim',
-      setup = require('plugins/config/asynctasks').setup
+      {
+        'skywind3000/asyncrun.vim',
+        event = 'VimEnter',
+      },
+      {
+        'skywind3000/asynctasks.vim',
+        event = 'BufEnter',
+        setup = require('plugins/config/asynctasks').setup
+      }
     }
 
     -- Markdown
@@ -196,11 +211,15 @@ require('packer').startup({
 
     -- Surround
     use {
-      'tpope/vim-surround',
-      requires = 'tpope/vim-repeat',
-      event = 'BufEnter',
+      {
+        'tpope/vim-repeat',
+        event = 'BufEnter',
+      },
+      {
+        'tpope/vim-surround',
+        event = 'BufEnter',
+      }
     }
-
 
     -- Indent line
     use {
