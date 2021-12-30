@@ -12,11 +12,6 @@ require('packer').startup({
       'wbthomason/packer.nvim',
     }
 
-    -- Icons
-    use {
-      'kyazdani42/nvim-web-devicons',
-    }
-
     -- UI hooks
     use {
       'stevearc/dressing.nvim',
@@ -51,6 +46,7 @@ require('packer').startup({
     use {
       'nvim-lualine/lualine.nvim',
       event = 'VimEnter',
+      requires = 'kyazdani42/nvim-web-devicons',
       config = require('plugins/config/lualine').setup
     }
 
@@ -58,12 +54,14 @@ require('packer').startup({
     use {
       'romgrk/barbar.nvim',
       event = 'VimEnter',
+      requires = 'kyazdani42/nvim-web-devicons',
       setup = require('plugins/config/barbar').setup
     }
 
     -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons',
       cmd = 'NvimTreeToggle',
       config = require('plugins/config/nvim-tree').setup
     }
