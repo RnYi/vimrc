@@ -17,6 +17,7 @@ opt.ttimeoutlen=100
 opt.updatetime=200
 opt.clipboard:append('unnamedplus')
 opt.foldmethod='manual'
+opt.switchbuf = {'usetab','newtab'}
 -- Persistent undo
 opt.undofile=true
 -- Search path of tags file

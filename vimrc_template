@@ -9,6 +9,10 @@ endif
 if has('nvim')
     exe 'set runtimepath^='.g:vimrc_home
     exe 'set runtimepath+='.g:vimrc_home.'/after'
+    " load config of GUI
+    if exists('g:nvui')
+      exe 'so '.g:vimrc_home.'/init/nvui.vim'
+    endif
     lua require('init')
 else
     let &pythonthreedll='python39.dll'

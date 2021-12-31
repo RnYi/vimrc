@@ -60,26 +60,34 @@ map('i', '<4-MiddleMouse>', '<Nop>', map_opt)
 -- map('n', '<C-space>', '<Esc>', map_opt)
 -- map('!', '<C-space>', '<Esc>', map_opt)
 -- Save/delete buffer
-map('n', '<M-s>',  '<Cmd>update<CR>',  {noremap=true, silent=true})
-map('n', '<M-d>',  '<Cmd>bd<CR>',  {noremap=true, silent=true})
+map('n', '<M-s>',  '<Cmd>update<CR>',  map_opt)
+map('n', '<M-d>',  '<Cmd>bd<CR>',  map_opt)
 -- Buffer
-map('n', '[b', '<Cmd>bprevious<CR>', {noremap=true, silent=true})
-map('n', ']b', '<Cmd>bnext<CR>', {noremap=true, silent=true})
-map('n', '[B', '<Cmd>bfirst<CR>', {noremap=true, silent=true})
-map('n', ']B', '<Cmd>blast<CR>', {noremap=true, silent=true})
+map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
+map('n', ']b', '<Cmd>bnext<CR>', map_opt)
+map('n', '[B', '<Cmd>bfirst<CR>', map_opt)
+map('n', ']B', '<Cmd>blast<CR>', map_opt)
+-- Tabpage
+map('n', '[t', '<Cmd>tabprevious<CR>', map_opt)
+map('n', ']t', '<Cmd>tabnext<CR>', map_opt)
+map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
+map('n', ']T', '<Cmd>tablast<CR>', map_opt)
+for i = 1, 10, 1 do
+  map('n', '<M-'..(i%10)..'>', '<Cmd>tabnext '..i..'<CR>', map_opt)
+end
 -- Quickfix
-map('n', '[q', '<Cmd>cprevious<CR>', {noremap=true, silent=true})
-map('n', ']q', '<Cmd>cnext<CR>', {noremap=true, silent=true})
-map('n', '[Q', '<Cmd>cfirst<CR>', {noremap=true, silent=true})
-map('n', ']Q', '<Cmd>clast<CR>', {noremap=true, silent=true})
+map('n', '[q', '<Cmd>cprevious<CR>', map_opt)
+map('n', ']q', '<Cmd>cnext<CR>', map_opt)
+map('n', '[Q', '<Cmd>cfirst<CR>', map_opt)
+map('n', ']Q', '<Cmd>clast<CR>', map_opt)
 -- Location
-map('n', '[l', '<Cmd>lprevious<CR>', {noremap=true, silent=true})
-map('n', ']l', '<Cmd>lnext<CR>', {noremap=true, silent=true})
-map('n', '[L', '<Cmd>lfirst<CR>', {noremap=true, silent=true})
-map('n', ']L', '<Cmd>llast<CR>', {noremap=true, silent=true})
+map('n', '[l', '<Cmd>lprevious<CR>', map_opt)
+map('n', ']l', '<Cmd>lnext<CR>', map_opt)
+map('n', '[L', '<Cmd>lfirst<CR>', map_opt)
+map('n', ']L', '<Cmd>llast<CR>', map_opt)
 -- Space
-map('n', '[<Space>', '<Cmd>put!=nr2char(10)<CR>', {noremap=true, silent=true})
-map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>', {noremap=true, silent=true})
+map('n', '[<Space>', '<Cmd>put!=nr2char(10)<CR>', map_opt)
+map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>', map_opt)
 -- Toggle window maximized
 vim.cmd([[
 function! MaximizeToggle() abort
@@ -161,6 +169,5 @@ require('plugins/config/telescope').keybind()
 require('plugins/config/asynctasks').keybind()
 require('plugins/config/nvim-tree').keybind()
 require('plugins/config/indent-blankline').keybind()
-require('plugins/config/barbar').keybind()
 require('plugins/config/hop').keybind()
 require('plugins/config/fugitive').keybind()

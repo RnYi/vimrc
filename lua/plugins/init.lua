@@ -54,14 +54,6 @@ require('packer').startup({
       config = require('plugins/config/lualine').setup
     }
 
-    -- Tabline
-    use {
-      'romgrk/barbar.nvim',
-      disable=true,
-      event = 'VimEnter',
-      setup = require('plugins/config/barbar').setup
-    }
-
     -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',
