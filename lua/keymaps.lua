@@ -56,12 +56,9 @@ map('', '<3-MiddleMouse>', '<Nop>', map_opt)
 map('i', '<3-MiddleMouse>', '<Nop>', map_opt)
 map('', '<4-MiddleMouse>', '<Nop>', map_opt)
 map('i', '<4-MiddleMouse>', '<Nop>', map_opt)
--- Quit to normal mode
--- map('n', '<C-space>', '<Esc>', map_opt)
--- map('!', '<C-space>', '<Esc>', map_opt)
 -- Save/delete buffer
 map('n', '<M-s>',  '<Cmd>update<CR>',  map_opt)
-map('n', '<M-d>',  '<Cmd>bd<CR>',  map_opt)
+map('i', '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
 -- Buffer
 map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
 map('n', ']b', '<Cmd>bnext<CR>', map_opt)
@@ -72,7 +69,11 @@ map('n', '[t', '<Cmd>tabprevious<CR>', map_opt)
 map('n', ']t', '<Cmd>tabnext<CR>', map_opt)
 map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
 map('n', ']T', '<Cmd>tablast<CR>', map_opt)
-for i = 1, 10, 1 do
+map('n', '<M-t>', '<Cmd>tabnew<CR>', map_opt)
+map('n', '<M-w>', '<Cmd>tabclose<CR>', map_opt)
+map('i', '<M-t>', '<Esc><Cmd>tabnew<CR>', map_opt)
+map('i', '<M-w>', '<Esc><Cmd>tabclose<CR>', map_opt)
+for i = 1, 10, 1 do -- switch tab
   map('n', '<M-'..(i%10)..'>', '<Cmd>tabnext '..i..'<CR>', map_opt)
 end
 -- Quickfix
@@ -99,12 +100,15 @@ endfunction
 map('', '<F11>', '<Cmd>call MaximizeToggle()<CR>', map_opt)
 map('i', '<F11>', '<Cmd>call MaximizeToggle()<CR>', map_opt)
 map('t', '<F11>', '<Cmd>call MaximizeToggle()<CR>', map_opt)
--- Quickly quit
-map('n', 'qq', '<Cmd>cclose<CR>', map_opt)
+-- Fast quit
+map('n', 'q', '<Nop>', map_opt)
+map('x', 'q', '<Nop>', map_opt)
+map('n', 'Q', '<Nop>', map_opt)
+map('n', 'qf', '<Cmd>cclose<CR>', map_opt)
 map('n', 'ql', '<Cmd>lclose<CR>', map_opt)
 map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
--- Open terminal
-map('n', '<M-=>', '<Cmd>terminal<CR>', map_opt)
+-- Open terminal in a tab
+map('n', '<M-=>', '<Cmd>tabnew|terminal<CR>', map_opt)
 -- Single leader key does nothing
 map('n', '<Leader>', '<Nop>', map_opt)
 -- Map meta key

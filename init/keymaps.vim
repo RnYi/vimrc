@@ -35,8 +35,6 @@ inoremap <MiddleMouse> <Nop>
 
 nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Cmd>update<CR>
-nnoremap <silent> <M-d> <Cmd>bd<CR>
-inoremap <silent> <M-d> <Cmd>bd<CR>
 
 nnoremap <silent> [b <Cmd>bprevious<CR>
 nnoremap <silent> ]b <Cmd>bnext<CR>
@@ -53,7 +51,10 @@ nnoremap <silent> ]L <Cmd>llast<CR>
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 " Quickly quit
-nnoremap <silent> qq <Cmd>cclose<CR>
+nnoremap q <Nop>
+xnoremap q <Nop>
+nnoremap Q <Nop>
+nnoremap <silent> qf <Cmd>cclose<CR>
 nnoremap <silent> ql <Cmd>lclose<CR>
 nnoremap <silent> qh <Cmd>helpclose<CR>
 " Open terminal

@@ -8,7 +8,7 @@ local cmd=vim.cmd
 -------------
 --  Basic  --
 -------------
-opt.mouse='a'
+opt.mouse='n'
 opt.autoread=true
 opt.winaltkeys='no'
 opt.backspace={'indent','eol','start'}
@@ -25,6 +25,7 @@ opt.tags={'./.tags;','.tags'}
 -- Font
 opt.guifont = 'FiraCode NF:h14'
 opt.guifontwide = '黑体:h14'
+opt.lazyredraw=true
 -- Diff
 opt.diffopt:append('vertical')
 -- Grepper
@@ -40,6 +41,8 @@ g.loaded_perl_provider=0
 g.loaded_ruby_provider=0
 g.loaded_python_provider=0
 g.python3_host_prog='python'
+-- disable internal plugins
+g.loaded_netrwPlugin=1
 
 --------------
 --  Indent  --
@@ -71,7 +74,7 @@ opt.hidden=true
 -- opt.lazyredraw=true
 opt.wildmenu=true
 opt.showmode=true
-opt.showmatch=true
+-- opt.showmatch=true
 -- opt.matchtime=1
 opt.cursorline=true
 opt.scrolloff=5
@@ -89,6 +92,99 @@ cmd([[
 set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》
 ]])
 
+---------------
+--  Tabline  --
+---------------
+-- Tabline in terminal mode
+cmd [[
+function! NeatTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+  " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T'
+
+    " the label is made by NeatTabLabel()
+    let s .= ' %{NeatTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+  return s
+endfunction
+]]
+
+-- get a single tab name
+cmd[[
+function! NeatBuffer(bufnr, fullname)
+  let l:name = bufname(a:bufnr)
+  let bt = getbufvar(a:bufnr, '&buftype')
+  if getbufvar(a:bufnr, '&modifiable')
+    if l:name == ''
+      return '[No Name]'
+    elseif bt == 'terminal'
+      return '[Terminal]'
+    else
+      if a:fullname 
+        return fnamemodify(l:name, ':p')
+      else
+        let aname = fnamemodify(l:name, ':p')
+        let sname = fnamemodify(aname, ':t')
+        if sname == ''
+          let test = fnamemodify(aname, ':h:t')
+          if test != ''
+            return '<'. test . '>'
+          endif
+        endif
+        return pathshorten(fnamemodify(l:name,':.'))
+      endif
+    endif
+  else
+    let bt = getbufvar(a:bufnr, '&buftype')
+    if bt == 'quickfix'
+      return '[Quickfix]'
+    elseif bt == 'terminal'
+      return '[Terminal]'
+    elseif l:name != ''
+      if a:fullname 
+        return '-'.fnamemodify(l:name, ':p')
+      else
+        return '-'.fnamemodify(l:name, ':t')
+      endif
+    else
+    endif
+    return '[No Name]'
+  endif
+endfunc
+]]
+
+-- get a single tab label
+cmd[[
+function! NeatTabLabel(n)
+  let l:buflist = tabpagebuflist(a:n)
+  let l:winnr = tabpagewinnr(a:n)
+  let l:bufnr = l:buflist[l:winnr - 1]
+  let l:fname = NeatBuffer(l:bufnr, 0)
+  let l:buftype = getbufvar(l:bufnr, '&buftype')
+  let l:num = a:n
+  if getbufvar(l:bufnr, '&modified')
+    return "".l:num.") ".l:fname." +"
+  endif
+  return "".l:num.") ".l:fname
+endfunc
+]]
+
+-- set tabline
+cmd[[
+set tabline=%!NeatTabLine()
+]]
+
 --------------
 --  Search  --
 --------------
@@ -105,20 +201,21 @@ opt.sessionoptions:remove('blank')
 opt.sessionoptions:remove('winpos')
 opt.sessionoptions:remove('terminal')
 opt.sessionoptions:remove('options')
+opt.sessionoptions:remove('help')
 
 ---------------
 --  Autocmd  --
 ---------------
 cmd([[
 augroup rany_aug
-autocmd!
-autocmd FileType markdown hi! Error NONE
-autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
-autocmd BufNewFile,BufRead .gitignore setlocal filetype=gitignore
-autocmd TermOpen * startinsert
-autocmd TermEnter * setlocal nonumber
-autocmd TermLeave * setlocal number
-autocmd CmdlineEnter /,\? :set hlsearch
-autocmd CmdlineLeave /,\? :set nohlsearch
+  autocmd!
+  autocmd FileType markdown hi! Error NONE
+  autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
+  autocmd BufNewFile,BufRead .gitignore setlocal filetype=gitignore
+  autocmd TermOpen * startinsert
+  autocmd TermEnter * setlocal nonumber
+  autocmd TermLeave * setlocal number
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
 ]])

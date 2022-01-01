@@ -2,6 +2,13 @@ local M = {}
 
 M.setup = function()
   vim.opt.showmode=false
+  -- status of 'paste'
+  function PasteStatus()
+    if vim.o.paste then
+      return '[P]'
+    end
+    return ''
+  end
   require('lualine').setup {
     options={
       theme='auto',
@@ -11,6 +18,15 @@ M.setup = function()
     },
     extensions={ 'quickfix', 'nvim-tree', 'fugitive' },
     sections = {
+      lualine_a = {
+        'mode',
+        {
+          PasteStatus,
+          cond = function()
+            return vim.o.paste
+          end
+        }
+      },
       lualine_b = {
         'branch',
         'diff',

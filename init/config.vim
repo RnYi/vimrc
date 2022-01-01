@@ -1,7 +1,7 @@
 """""""""""
 "  Basic  "
 """""""""""
-set mouse=a
+set mouse=n
 set autoread
 set winaltkeys=no
 set mousemodel=extend
@@ -183,6 +183,7 @@ set sessionoptions-=blank
 set sessionoptions-=options
 set sessionoptions-=winpos
 set sessionoptions-=terminal
+set sessionoptions-=help
 
 """"""""""
 "  Fold  "
