@@ -75,6 +75,7 @@ map('i', '<M-t>', '<Esc><Cmd>tabnew<CR>', map_opt)
 map('i', '<M-w>', '<Esc><Cmd>tabclose<CR>', map_opt)
 for i = 1, 10, 1 do -- switch tab
   map('n', '<M-'..(i%10)..'>', '<Cmd>tabnext '..i..'<CR>', map_opt)
+  map('i', '<M-'..(i%10)..'>', '<Esc><Cmd>tabnext '..i..'<CR>', map_opt)
 end
 -- Quickfix
 map('n', '[q', '<Cmd>cprevious<CR>', map_opt)
