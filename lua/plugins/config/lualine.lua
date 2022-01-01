@@ -21,6 +21,10 @@ M.setup = function()
       lualine_b = {
         'branch',
         'diff',
+      },
+      lualine_c = {
+        'filename',
+        PasteStatus,
         {
           'diagnostics',
           symbols = {
@@ -36,10 +40,6 @@ M.setup = function()
             hint = 'DiagnosticSignHint',
           },
         },
-      },
-      lualine_c = {
-        'filename',
-        PasteStatus,
       },
       lualine_y = {},
       lualine_z = {},

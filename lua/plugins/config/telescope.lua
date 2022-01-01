@@ -69,7 +69,7 @@ M.setup=function()
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p:h")
             -- Depending on what you want put `cd`, `lcd`, `tcd`
-            vim.cmd(string.format("tcd %s", dir))
+            vim.cmd(string.format("cd %s", dir))
           end
         },
         i = {
