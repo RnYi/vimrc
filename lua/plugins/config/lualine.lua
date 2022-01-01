@@ -18,15 +18,6 @@ M.setup = function()
     },
     extensions={ 'quickfix', 'nvim-tree', 'fugitive' },
     sections = {
-      lualine_a = {
-        'mode',
-        {
-          PasteStatus,
-          cond = function()
-            return vim.o.paste
-          end
-        }
-      },
       lualine_b = {
         'branch',
         'diff',
@@ -45,6 +36,10 @@ M.setup = function()
             hint = 'DiagnosticSignHint',
           },
         },
+      },
+      lualine_c = {
+        'filename',
+        PasteStatus,
       },
       lualine_y = {},
       lualine_z = {},

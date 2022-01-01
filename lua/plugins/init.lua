@@ -154,7 +154,6 @@ require('packer').startup({
       after = {'nvim-cmp', 'ultisnips'}
     }
 
-
     -- nvim-lspconfig
     use {
       'neovim/nvim-lspconfig',
@@ -213,7 +212,6 @@ require('packer').startup({
       'tpope/vim-surround',
       event = 'VimEnter',
     }
-
 
     -- Indent line
     use {

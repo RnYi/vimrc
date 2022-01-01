@@ -1,7 +1,7 @@
 """""""""""
 "  Basic  "
 """""""""""
-set mouse=n
+set mouse=nv
 set autoread
 set winaltkeys=no
 set mousemodel=extend

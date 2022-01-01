@@ -8,7 +8,7 @@ local cmd=vim.cmd
 -------------
 --  Basic  --
 -------------
-opt.mouse='n'
+opt.mouse='nv'
 opt.autoread=true
 opt.winaltkeys='no'
 opt.backspace={'indent','eol','start'}
