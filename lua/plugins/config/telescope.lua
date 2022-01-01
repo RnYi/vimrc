@@ -88,7 +88,7 @@ M.setup=function()
       buffers = {
         mappings = {
           n = {
-            ['d'] = 'delete_buffer',
+            ['dd'] = 'delete_buffer',
           },
         },
       },
