@@ -179,7 +179,13 @@ if has_key(g:plugs_enabled,'lightline.vim')
   set noshowmode
   let g:special_ft_list=['', 'startify', 'qf', 'fern', 'vim-plug', 'help']
   let g:special_buf_list=['nofile', 'quickfix', 'terminal', 'help']
-  let g:lightline = { 'colorscheme': 'gruvbox_material' }
+  let g:lightline = {
+        \ 'colorscheme': 'gruvbox_material',
+        \ 'tabline': {
+            \ 'left':[['tabs']],
+            \ 'right':[]
+          \}
+      \}
 endif
 
 """"""""""""

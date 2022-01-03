@@ -151,6 +151,93 @@ if 0
   set statusline+=\ 
 endif
 
+"""""""""""""
+"  Tabline  "
+"""""""""""""
+" Tabline in terminal mode
+function! NeatTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+  " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T'
+
+    " the label is made by NeatTabLabel()
+    let s .= ' %{NeatTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+  return s
+endfunction
+
+" get a single tab name
+function! NeatBuffer(bufnr, fullname)
+  let l:name = bufname(a:bufnr)
+  let bt = getbufvar(a:bufnr, '&buftype')
+  if getbufvar(a:bufnr, '&modifiable')
+    if l:name == ''
+      return '[No Name]'
+    elseif bt == 'terminal'
+      return '[Terminal]'
+    else
+      if a:fullname 
+        return fnamemodify(l:name, ':p')
+      else
+        let aname = fnamemodify(l:name, ':p')
+        let sname = fnamemodify(aname, ':t')
+        if sname == ''
+          let test = fnamemodify(aname, ':h:t')
+          if test != ''
+            return '<'. test . '>'
+          endif
+        endif
+        return sname
+      endif
+    endif
+  else
+    let bt = getbufvar(a:bufnr, '&buftype')
+    if bt == 'quickfix'
+      return '[Quickfix]'
+    elseif bt == 'terminal'
+      return '[Terminal]'
+    elseif l:name != ''
+      if a:fullname 
+        return '-'.fnamemodify(l:name, ':p')
+      else
+        return '-'.fnamemodify(l:name, ':t')
+      endif
+    else
+    endif
+    return '[No Name]'
+  endif
+endfunc
+
+" get a single tab label
+function! NeatTabLabel(n)
+  let l:buflist = tabpagebuflist(a:n)
+  let l:winnr = tabpagewinnr(a:n)
+  let l:bufnr = l:buflist[l:winnr - 1]
+  let l:fname = NeatBuffer(l:bufnr, 0)
+  let l:buftype = getbufvar(l:bufnr, '&buftype')
+  let l:num = a:n
+  if getbufvar(l:bufnr, '&modified')
+    return "(".l:num.") ".l:fname." +"
+  endif
+  return "(".l:num.") ".l:fname
+endfunc
+
+" set tabline
+if !has_key(g:plugs_enabled,'lightline.vim')
+  set tabline=%!NeatTabLine()
+endif
+
 """""""""""
 "  Theme  "
 """""""""""
