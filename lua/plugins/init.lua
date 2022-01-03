@@ -198,11 +198,11 @@ require('packer').startup({
     }
 
     -- Latex
-    -- use {
-    --   'lervag/vimtex',
-    --   ft = 'tex',
-    --   setup = require('plugins/config/vimtex').setup
-    -- }
+    use {
+      'lervag/vimtex',
+      ft = 'tex',
+      setup = require('plugins/config/vimtex').setup
+    }
 
     -- Comment
     use {
@@ -232,6 +232,7 @@ require('packer').startup({
     -- Indent line
     use {
       'lukas-reineke/indent-blankline.nvim',
+      event='VimEnter',
       config = require('plugins/config/indent-blankline').setup
     }
 
@@ -261,7 +262,6 @@ require('packer').startup({
         return require('packer.util').float({ border = 'single' })
       end
     },
-    profile = {enable=true},
     git={
       -- github mirror
       default_url_format=GitRepoUrl..'/%s'

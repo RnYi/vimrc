@@ -2,8 +2,6 @@ local M = {}
 
 M.setup = function ()
   vim.cmd[[
-  " tex compiler
-  let g:vimtex_compiler_method='latexmk'
   " change latexmk build_dir
   let g:vimtex_compiler_latexmk={
     \ 'build_dir' : '.tmp',
