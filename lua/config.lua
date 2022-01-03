@@ -14,7 +14,7 @@ opt.winaltkeys='no'
 opt.backspace={'indent','eol','start'}
 opt.ttimeout=true
 opt.ttimeoutlen=100
-opt.updatetime=200
+opt.updatetime=300
 opt.clipboard:append('unnamedplus')
 opt.foldmethod='manual'
 opt.switchbuf = {'usetab','newtab'}
@@ -71,20 +71,15 @@ opt.signcolumn='yes:1'
 opt.title=true
 opt.titlestring='%{getcwd()}'
 opt.hidden=true
--- opt.lazyredraw=true
 opt.wildmenu=true
 opt.showmode=true
--- opt.showmatch=true
--- opt.matchtime=1
 opt.cursorline=true
 opt.scrolloff=5
 opt.sidescrolloff=5
 opt.laststatus=2
-opt.shortmess:append('c')
-opt.shortmess:remove('S')
 opt.termguicolors=true
-opt.formatoptions:remove('o')
-opt.formatoptions:append('mMj')
+opt.shortmess={a=true,o=true,O=true,c=true,t=true,T=true,F=true}
+opt.formatoptions={t=true,c=true,r=true,q=true,l=true,m=true,M=true,j=true}
 opt.list=true
 -- opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
@@ -142,7 +137,7 @@ function! NeatBuffer(bufnr, fullname)
             return '<'. test . '>'
           endif
         endif
-        return pathshorten(fnamemodify(l:name,':.'))
+        return sname
       endif
     endif
   else
@@ -174,9 +169,9 @@ function! NeatTabLabel(n)
   let l:buftype = getbufvar(l:bufnr, '&buftype')
   let l:num = a:n
   if getbufvar(l:bufnr, '&modified')
-    return "".l:num.") ".l:fname." +"
+    return "(".l:num.") ".l:fname." +"
   endif
-  return "".l:num.") ".l:fname
+  return "(".l:num.") ".l:fname
 endfunc
 ]]
 
@@ -197,6 +192,7 @@ opt.ignorecase=true
 ---------------
 --  Session  --
 ---------------
+opt.viewoptions:remove('options')
 opt.sessionoptions:remove('blank')
 opt.sessionoptions:remove('winpos')
 opt.sessionoptions:remove('terminal')

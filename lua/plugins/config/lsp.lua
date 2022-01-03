@@ -11,6 +11,15 @@ M.show_diagnostics = function()
   vim.diagnostic.open_float(nil, opts)
 end
 
+M.show_documentation = function ()
+  local t = {['vim']=true,['help']=true}
+  if t[vim.bo.filetype] then
+    vim.api.nvim_command('h '..vim.fn.expand('<cword>'))
+  else
+    vim.lsp.buf.hover()
+  end
+end
+
 M.setup = function()
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
@@ -23,7 +32,7 @@ M.setup = function()
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'K', [[<cmd>lua require('plugins/config/lsp').show_documentation()<CR>]], opts)
     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
