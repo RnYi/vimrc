@@ -30,10 +30,6 @@ opt.lazyredraw=true
 opt.diffopt:append('vertical')
 -- Grepper
 opt.grepprg = 'rg --vimgrep'
--- Shell
-if OSName=='win' then
-  opt.shell='pwsh'
-end
 -- Specify tex filetype
 g.tex_flavor='latex'
 -- Language support
