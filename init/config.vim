@@ -9,10 +9,7 @@ set backspace=indent,eol,start
 if !exists('g:syntax_on')
   syntax enable
 endif
-let g:tex_flavor='tex'
-let g:mapleader="\<Space>"
-let g:maplocalleader="\<Space>"
-set pastetoggle=<M-p>
+let g:tex_flavor='latex'
 set ttimeout ttimeoutlen=100
 set updatetime=300
 set clipboard+=unnamed,unnamedplus
@@ -25,9 +22,6 @@ let &undodir=s:undo_dir
 set tags=./.tags;,.tags
 set diffopt+=vertical,followwrap
 set grepprg=rg\ --vimgrep
-if g:sys_uname=='win'
-  set shell=pwsh
-endif
 
 """"""""""""
 "  Indent  "

@@ -59,6 +59,8 @@ map('i', '<4-MiddleMouse>', '<Nop>', map_opt)
 -- Save/delete buffer
 map('n', '<M-s>',  '<Cmd>update<CR>',  map_opt)
 map('i', '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
+map('n', '<M-d>',  '<Cmd>bdelete<CR>',  map_opt)
+map('i', '<M-d>',  '<Esc><Cmd>bdelete<CR>',  map_opt)
 -- Buffer
 map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
 map('n', ']b', '<Cmd>bnext<CR>', map_opt)
@@ -110,6 +112,7 @@ map('n', 'ql', '<Cmd>lclose<CR>', map_opt)
 map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
 -- Open terminal in a tab
 map('n', '<M-=>', '<Cmd>tabnew|terminal<CR>', map_opt)
+map('i', '<M-=>', '<Esc><Cmd>tabnew|terminal<CR>', map_opt)
 -- Single leader key does nothing
 map('n', '<Leader>', '<Nop>', map_opt)
 -- Map meta key

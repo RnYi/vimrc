@@ -57,14 +57,15 @@ if has_key(g:bundle_enabled, 'basic')
   " Comment
   Plug 'tpope/vim-commentary'
   " Surround
-  Plug 'machakann/vim-sandwich'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
   " Align
   Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
   Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
   " Markdown
-  " Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+  Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   " Latex
-  " Plug 'lervag/vimtex', {'for': ['tex','latex']}
+  Plug 'lervag/vimtex', {'for': ['tex','latex']}
   " Input method
   if g:sys_uname!='win'
     Plug 'rlue/vim-barbaric'
@@ -124,10 +125,6 @@ if has_key(g:bundle_enabled, 'comp')
   " Tags
   Plug 'ludovicchabant/vim-gutentags' " depending on gtags and pygments(python module)
   Plug 'skywind3000/gutentags_plus'
-  " Treesitter
-  " if has('nvim')
-  "     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  " endif
 endif
 
 call plug#end()

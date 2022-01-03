@@ -133,7 +133,6 @@ require('packer').startup({
     }
     use { "honza/vim-snippets", after = 'ultisnips'}
 
-
     -- nvim-cmp
     use {
       'onsails/lspkind-nvim',
@@ -144,12 +143,21 @@ require('packer').startup({
       after = 'lspkind-nvim',
       config = require('plugins/config/nvim-cmp').setup
     }
-    -- nvim-cmp completion sources
+    -- completion sources
     use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'}
+    use {
+      'hrsh7th/cmp-omni',
+      ft = 'tex',
+      config = function ()
+        -- only for tex file
+        -- vimtex will provide omni completion source
+        vim.api.nvim_command([[lua require('cmp').setup.buffer {sources={{name='omni'}}}]])
+      end
+    }
     use {
       'quangnguyen30192/cmp-nvim-ultisnips',
       after = {'nvim-cmp', 'ultisnips'}
@@ -189,6 +197,13 @@ require('packer').startup({
       end
     }
 
+    -- Latex
+    -- use {
+    --   'lervag/vimtex',
+    --   ft = 'tex',
+    --   setup = require('plugins/config/vimtex').setup
+    -- }
+
     -- Comment
     use {
       'numToStr/Comment.nvim',
@@ -217,7 +232,6 @@ require('packer').startup({
     -- Indent line
     use {
       'lukas-reineke/indent-blankline.nvim',
-      cmd = 'IndentBlanklineToggle',
       config = require('plugins/config/indent-blankline').setup
     }
 

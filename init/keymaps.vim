@@ -1,3 +1,6 @@
+let g:mapleader="\<Space>"
+let g:maplocalleader="\<Space>"
+set pastetoggle=<F12>
 nnoremap H ^
 nnoremap L $
 xnoremap H ^
@@ -34,7 +37,9 @@ noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
 nnoremap <silent> <M-s> <Cmd>update<CR>
-inoremap <silent> <M-s> <Cmd>update<CR>
+inoremap <silent> <M-s> <Esc><Cmd>update<CR>
+nnoremap <silent> <M-d> <Cmd>bdelete<CR>
+inoremap <silent> <M-d> <Esc><Cmd>bdelete<CR>
 
 nnoremap <silent> [b <Cmd>bprevious<CR>
 nnoremap <silent> ]b <Cmd>bnext<CR>
@@ -50,6 +55,23 @@ nnoremap <silent> [L <Cmd>lfirst<CR>
 nnoremap <silent> ]L <Cmd>llast<CR>
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
+" Tab
+nnoremap <silent> [t <Cmd>tabprevious<CR>
+nnoremap <silent> ]t <Cmd>tabnext<CR>
+nnoremap <silent> [T <Cmd>tabfirst<CR>
+nnoremap <silent> ]T <Cmd>tablast<CR>
+nnoremap <silent> <M-t> <Cmd>tabnew<CR>
+inoremap <silent> <M-t> <Esc><Cmd>tabnew<CR>
+nnoremap <silent> <M-w> <Cmd>tabclose<CR>
+inoremap <silent> <M-w> <Esc><Cmd>tabclose<CR>
+function s:switch_tab_keymap()
+  for i in range(10)
+    exec 'nnoremap <M-'.(i%10).'> <Cmd>tabnext '.i.'<CR>'
+    exec 'inoremap <M-'.(i%10).'> <Esc><Cmd>tabnext '.i.'<CR>'
+  endfor
+endfunction
+call s:switch_tab_keymap()
+
 " Quickly quit
 nnoremap q <Nop>
 xnoremap q <Nop>
@@ -58,7 +80,8 @@ nnoremap <silent> qf <Cmd>cclose<CR>
 nnoremap <silent> ql <Cmd>lclose<CR>
 nnoremap <silent> qh <Cmd>helpclose<CR>
 " Open terminal
-nnoremap <silent> <M-=> <Cmd>terminal<CR>
+nnoremap <silent> <M-=> <Cmd>tabnew <bar> terminal<CR>
+inoremap <silent> <M-=> <Esc><Cmd>tabnew <bar> terminal<CR>
 " Single leader key does nothing
 nnoremap <Leader> <Nop>
 
