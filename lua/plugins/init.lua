@@ -148,16 +148,8 @@ require('packer').startup({
     use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp'}
     use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
-    use {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'}
-    use {
-      'hrsh7th/cmp-omni',
-      ft = 'tex',
-      config = function ()
-        -- only for tex file
-        -- vimtex will provide omni completion source
-        vim.api.nvim_command([[lua require('cmp').setup.buffer {sources={{name='omni'}}}]])
-      end
-    }
+    use {'hrsh7th/cmp-nvim-lua', ft='lua'}
+    use { 'hrsh7th/cmp-omni', ft='tex'}
     use {
       'quangnguyen30192/cmp-nvim-ultisnips',
       after = {'nvim-cmp', 'ultisnips'}

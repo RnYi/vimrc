@@ -25,9 +25,12 @@ M.setup = function ()
   " use mappings defined by vimtex
   let g:vimtex_mappings_override_existing=1
 
+  " disable insert mappings
+  let g:vimtex_imaps_enabled=0
+
   " on Windows, use SumatraPDF as viewer
   " inverse search must be configured in advanced setting of SumatraPDF:
-  "   inverseSearchCmdLine = cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
+  "   InverseSearchCmdLine = cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
 
   " communicate to neovim instance via `nvr`
   " function! s:wrtie_server_name() abort

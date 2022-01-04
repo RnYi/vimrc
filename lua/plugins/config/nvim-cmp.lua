@@ -19,18 +19,30 @@ M.setup = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
+      ['<Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+      ['<S-Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
       ['<CR>'] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       },
     },
     sources = {
-      { name = 'path' },
-      { name = 'buffer' },
-      { name = 'cmdline' },
       { name = 'nvim_lsp'},
-      { name = 'nvim_lua'},
       { name = 'ultisnips'},
+      { name = 'buffer' },
+      { name = 'path' },
     },
     completion = {
       completeopt = 'menu,noselect'
@@ -44,11 +56,54 @@ M.setup = function()
           nvim_lua = "[Lua]",
           path = "[Path]",
           buffer = "[Buffer]",
-          latex_symbols = "[Latex]"
+          omni = "[OMNI]"
         },
       }),
     },
   })
+
+  -- `/` cmdline setup.
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+  -- `:` cmdline setup.
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources(
+    {
+      { name = 'path' }
+    },
+    {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- config sources for specific filetye
+  vim.cmd[[
+    augroup NvimCmp
+      autocmd!
+      autocmd FileType tex
+      \  lua require('cmp').setup.buffer{
+        \  sources={
+        \    {name='omni'},
+        \    {name='ultisnips'},
+        \    {name='buffer'},
+        \    {name='path'},
+        \  }
+      \ }
+      autocmd FileType lua
+      \  lua require('cmp').setup.buffer{
+        \  sources={
+        \    {name='nvim_lsp'},
+        \    {name='ultisnips'},
+        \    {name='nvim_lua'},
+        \    {name='buffer'},
+        \    {name='path'},
+        \  }
+      \ }
+    augroup END
+  ]]
 end
 
 return M

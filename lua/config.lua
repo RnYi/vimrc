@@ -63,6 +63,8 @@ opt.fileencodings={'utf-8','usc-bom','chinese','gb18030','gbk','gb2312','cp936'}
 ---------------
 opt.wrap=true
 opt.number=true
+opt.showcmd=false
+opt.pumheight=20
 opt.signcolumn='yes:1'
 opt.title=true
 opt.titlestring='%{getcwd()}'
