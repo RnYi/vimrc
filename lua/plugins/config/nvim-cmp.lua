@@ -62,23 +62,6 @@ M.setup = function()
     },
   })
 
-  -- `/` cmdline setup.
-  cmp.setup.cmdline('/', {
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-  -- `:` cmdline setup.
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources(
-    {
-      { name = 'path' }
-    },
-    {
-      { name = 'cmdline' }
-    })
-  })
-
   -- config sources for specific filetye
   vim.cmd[[
     augroup NvimCmp

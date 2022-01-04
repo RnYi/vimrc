@@ -16,6 +16,7 @@ M.setup = function ()
     \   '-interaction=nonstopmode',
     \ ],
     \}
+
   " it's better to use simple mode for an autocompletion plugin
   let g:vimtex_complete_bib={'simple':1}
 
@@ -31,6 +32,10 @@ M.setup = function ()
   " on Windows, use SumatraPDF as viewer
   " inverse search must be configured in advanced setting of SumatraPDF:
   "   InverseSearchCmdLine = cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
+  if g:sys_uname=='win'
+    " otherwise, `:VimtexInfo` will report an error
+    let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
+  endif
 
   " communicate to neovim instance via `nvr`
   " function! s:wrtie_server_name() abort
@@ -45,13 +50,13 @@ M.setup = function ()
   " use local texdoc
   let g:vimtex_doc_handlers=['VimTexDocHandler']
   function! VimTexDocHandler(context)
-    call vimtex#doc#make_selection(a:context)
-    if !empty(a:context.selected)
-      execute '!texdoc' a:context.selected '&'
+  call vimtex#doc#make_selection(a:context)
+  if !empty(a:context.selected)
+    execute '!texdoc' a:context.selected '&'
     endif
     return 1
-  endfunction
-  ]]
-end
+    endfunction
+    ]]
+  end
 
-return M
+  return M
