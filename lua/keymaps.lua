@@ -97,6 +97,8 @@ vim.cmd([[
 function! MaximizeToggle() abort
   if exists('g:GuiLoaded')
     call GuiWindowMaximized(1-g:GuiWindowMaximized)
+  elseif exists('g:nvui')
+    NvuiToggleFullscreen
   endif
 endfunction
 ]])
@@ -110,6 +112,7 @@ map('n', 'Q', '<Nop>', map_opt)
 map('n', 'qf', '<Cmd>cclose<CR>', map_opt)
 map('n', 'ql', '<Cmd>lclose<CR>', map_opt)
 map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
+map('n', 'qa', '<Cmd>qa<CR>', map_opt)
 -- Open terminal in a tab
 map('n', '<M-=>', '<Cmd>tabnew|terminal<CR>', map_opt)
 map('i', '<M-=>', '<Esc><Cmd>tabnew|terminal<CR>', map_opt)

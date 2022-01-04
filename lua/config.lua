@@ -173,6 +173,7 @@ endfunc
 
 -- set tabline
 cmd[[
+set showtabline=2
 set tabline=%!NeatTabLine()
 ]]
 

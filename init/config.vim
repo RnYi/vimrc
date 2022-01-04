@@ -234,6 +234,7 @@ function! NeatTabLabel(n)
 endfunc
 
 " set tabline
+set showtabline=2
 if !has_key(g:plugs_enabled,'lightline.vim')
   set tabline=%!NeatTabLine()
 endif
