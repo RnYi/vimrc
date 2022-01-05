@@ -62,29 +62,46 @@ M.setup = function()
     },
   })
 
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
   -- config sources for specific filetye
   vim.cmd[[
-    augroup NvimCmp
-      autocmd!
-      autocmd FileType tex
-      \  lua require('cmp').setup.buffer{
-        \  sources={
+  augroup NvimCmp
+    autocmd!
+    autocmd FileType tex
+    \  lua require('cmp').setup.buffer{
+      \  sources={
+        \    {name='omni'},
         \    {name='ultisnips'},
         \    {name='buffer'},
         \    {name='path'},
         \  }
-      \ }
-      autocmd FileType lua
-      \  lua require('cmp').setup.buffer{
-        \  sources={
+        \ }
+    autocmd FileType lua
+    \  lua require('cmp').setup.buffer{
+      \  sources={
         \    {name='nvim_lsp'},
         \    {name='ultisnips'},
         \    {name='nvim_lua'},
         \    {name='buffer'},
         \    {name='path'},
         \  }
-      \ }
-    augroup END
+        \ }
+  augroup END
   ]]
 end
 
