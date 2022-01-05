@@ -215,11 +215,12 @@ if has_key(g:plugs_enabled,'coc.nvim')
   nmap <Leader>fm <Plug>(coc-format)
   xmap <Leader>fm <Plug>(coc-format-selected)
   nnoremap <silent><nowait> <Leader>ol  <Cmd>CocList outline<CR>
-  nnoremap <silent><nowait> <Leader>ds  <Cmd>CocList diagnostics<CR>
+  nnoremap <silent><nowait> <Leader>dl  <Cmd>CocList diagnostics<CR>
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> [d <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]d <Plug>(coc-diagnostic-next)
   nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
   " inoremap <silent><expr> <TAB>
   "       \ pumvisible() ? "\<C-n>" :

@@ -4,7 +4,7 @@
     "suggest.enablePreview": true,
     "suggest.removeDuplicateItems": true,
     "diagnostic.enableSign": true,
-    "diagnostic.warningSign": "!!",
+    "diagnostic.warningSign": ">>",
     "coc.source.buffer.ignoreGitignore": false,
     "coc.preferences.extensionUpdateCheck": "weekly",
     "coc.preferences.rootPatterns": [

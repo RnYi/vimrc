@@ -24,36 +24,38 @@ M.keybind = function()
   [[<Cmd>Telescope sessions save_current=true<CR>]],
   map_opt)
 
-  -- lsp_definitions
-  map('n',
-  'gd',
-  [[<Cmd>Telescope lsp_definitions<CR>]],
-  map_opt)
-  -- lsp_references
-  map('n',
-  'gr',
-  [[<Cmd>Telescope lsp_references<CR>]],
-  map_opt)
-  -- lsp_type_definitions
-  map('n',
-  'gy',
-  [[<Cmd>Telescope lsp_type_definitions<CR>]],
-  map_opt)
-  -- diagnostics in current buffer
-  map('n',
-  '<Leader>dl',
-  [[<Cmd>Telescope diagnostics bufnr=0<CR>]],
-  map_opt)
-  -- diagnostics of all buffers
-  map('n',
-  '<Leader>dL',
-  [[<Cmd>Telescope diagnostics<CR>]],
-  map_opt)
-  -- document symbols in current buffer
-  map('n',
-  '<Leader>ds',
-  [[<Cmd>Telescope lsp_document_symbols<CR>]],
-  map_opt)
+  if CompPlug~='coc' then
+    -- lsp_definitions
+    map('n',
+    'gd',
+    [[<Cmd>Telescope lsp_definitions<CR>]],
+    map_opt)
+    -- lsp_references
+    map('n',
+    'gr',
+    [[<Cmd>Telescope lsp_references<CR>]],
+    map_opt)
+    -- lsp_type_definitions
+    map('n',
+    'gy',
+    [[<Cmd>Telescope lsp_type_definitions<CR>]],
+    map_opt)
+    -- diagnostics in current buffer
+    map('n',
+    '<Leader>dl',
+    [[<Cmd>Telescope diagnostics bufnr=0<CR>]],
+    map_opt)
+    -- diagnostics of all buffers
+    map('n',
+    '<Leader>dL',
+    [[<Cmd>Telescope diagnostics<CR>]],
+    map_opt)
+    -- document symbols in current buffer
+    map('n',
+    '<Leader>ds',
+    [[<Cmd>Telescope lsp_document_symbols<CR>]],
+    map_opt)
+  end
 end
 
 -- setup

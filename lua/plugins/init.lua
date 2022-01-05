@@ -12,6 +12,11 @@ require('packer').startup({
       'wbthomason/packer.nvim',
     }
 
+    -- Faster filetype
+    use {
+      'nathom/filetype.nvim'
+    }
+
     -- UI hooks
     use {
       'stevearc/dressing.nvim',
@@ -34,7 +39,7 @@ require('packer').startup({
 
     -- Icon
     use {
-       'kyazdani42/nvim-web-devicons'
+      'kyazdani42/nvim-web-devicons'
     }
 
     -- Colorscheme
@@ -133,33 +138,43 @@ require('packer').startup({
     }
     use { "honza/vim-snippets", after = 'ultisnips'}
 
-    -- nvim-cmp
-    use {
-      'onsails/lspkind-nvim',
-      event = 'VimEnter',
-    }
-    use {
-      'hrsh7th/nvim-cmp',
-      after = 'lspkind-nvim',
-      config = require('plugins/config/nvim-cmp').setup
-    }
-    -- completion sources
-    use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
-    use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'}
-    use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
-    use {'hrsh7th/cmp-nvim-lua', ft='lua'}
-    use { 'hrsh7th/cmp-omni', ft='tex'}
-    use {
-      'quangnguyen30192/cmp-nvim-ultisnips',
-      after = {'nvim-cmp', 'ultisnips'}
-    }
+    if CompPlug=='nvim-cmp' then
+      -- nvim-cmp
+      use {
+        'onsails/lspkind-nvim',
+        event = 'VimEnter',
+      }
+      use {
+        'hrsh7th/nvim-cmp',
+        after = 'lspkind-nvim',
+        config = require('plugins/config/nvim-cmp').setup
+      }
+      -- completion sources
+      use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
+      use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'}
+      use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
+      use {'hrsh7th/cmp-nvim-lua', ft='lua'}
+      use { 'hrsh7th/cmp-omni', ft='tex'}
+      use {
+        'quangnguyen30192/cmp-nvim-ultisnips',
+        after = {'nvim-cmp', 'ultisnips'}
+      }
 
-    -- nvim-lspconfig
-    use {
-      'neovim/nvim-lspconfig',
-      after = 'cmp-nvim-lsp',
-      config = require('plugins/config/lsp').setup
-    }
+      -- nvim-lspconfig
+      use {
+        'neovim/nvim-lspconfig',
+        after = 'cmp-nvim-lsp',
+        config = require('plugins/config/lsp').setup
+      }
+    else
+      -- coc.nvim
+      use {
+        'neoclide/coc.nvim',
+        branch='release',
+        event = 'VimEnter',
+        setup = require('plugins/config/coc').setup
+      }
+    end
 
     -- Tasks
     use       {

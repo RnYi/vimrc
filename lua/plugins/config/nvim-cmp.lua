@@ -69,7 +69,6 @@ M.setup = function()
       autocmd FileType tex
       \  lua require('cmp').setup.buffer{
         \  sources={
-        \    {name='omni'},
         \    {name='ultisnips'},
         \    {name='buffer'},
         \    {name='path'},

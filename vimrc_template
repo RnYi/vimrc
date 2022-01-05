@@ -1,23 +1,25 @@
 let g:vimrc_home=expand('<sfile>:p:h')
 let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
 let g:repo_url='https://github.com.cnpmjs.org'
+let g:comp_plug='coc'
 if has('windows')
-    let g:sys_uname='win'
+  let g:sys_uname='win'
 else
-    let g:sys_uname='unix'
+  let g:sys_uname='unix'
 endif
 if has('nvim')
-    exe 'set runtimepath^='.g:vimrc_home
-    exe 'set runtimepath+='.g:vimrc_home.'/after'
-    " load config of GUI
-    if exists('g:nvui')
-      exe 'so '.g:vimrc_home.'/init/nvui.vim'
-    endif
-    lua require('init')
+  exe 'set runtimepath^='.g:vimrc_home
+  exe 'set runtimepath+='.g:vimrc_home.'/after'
+  " load config of GUI
+  if exists('g:nvui')
+    exe 'so '.g:vimrc_home.'/init/nvui.vim'
+  endif
+  let g:comp_plug='nvim-cmp'
+  lua require('init')
 else
-    let &pythonthreedll='python39.dll'
-    if !exists('g:bundle_group')
-        let g:bundle_group=['basic', 'textobj']
-    endif
-    runtime rany.vim
+  let &pythonthreedll='python39.dll'
+  if !exists('g:bundle_group')
+    let g:bundle_group=['basic', 'textobj']
+  endif
+  runtime rany.vim
 endif
