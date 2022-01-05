@@ -138,7 +138,7 @@ require('packer').startup({
     }
     use { "honza/vim-snippets", after = 'ultisnips'}
 
-    if CompPlug=='nvim-cmp' then
+    if CompPlug==nil or CompPlug=='nvim-cmp' then
       -- nvim-cmp
       use {
         'onsails/lspkind-nvim',
