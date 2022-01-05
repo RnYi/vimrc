@@ -119,7 +119,9 @@ function! NeatBuffer(bufnr, fullname)
   let l:name = bufname(a:bufnr)
   let bt = getbufvar(a:bufnr, '&buftype')
   if getbufvar(a:bufnr, '&modifiable')
-    if l:name == ''
+    if bt=='prompt'
+      return '[Prompt]'
+    elseif l:name == ''
       return '[No Name]'
     elseif bt == 'terminal'
       return '[Terminal]'
