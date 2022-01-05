@@ -5,7 +5,6 @@ M.show_diagnostics = function()
     focus=false,
     focusable=false,
     scope = 'cursor',
-    border = 'rounded',
     source = 'always',  -- show source in diagnostic popup window
   }
   vim.diagnostic.open_float(nil, opts)
@@ -77,17 +76,18 @@ M.setup = function()
   })
   -- Change border of documentation hover window
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
+    focus=false,
+    focusable=false,
   })
   -- Change diagnostic signs
   vim.fn.sign_define("DiagnosticSignError",
-  {text = "", texthl = "DiagnosticSignError"})
+  {text = ">>", texthl = "DiagnosticSignError", numhl = "DiagnosticSignError"})
   vim.fn.sign_define("DiagnosticSignWarn",
-  {text = "", texthl = "DiagnosticSignWarn"})
+  {text = ">>", texthl = "DiagnosticSignWarn", numhl = "DiagnosticSignWarn"})
   vim.fn.sign_define("DiagnosticSignInfo",
-  {text = "", texthl = "DiagnosticSignInfo"})
+  {text = ">>", texthl = "DiagnosticSignInfo", numhl = "DiagnosticSignInfo"})
   vim.fn.sign_define("DiagnosticSignHint",
-  {text = "", texthl = "DiagnosticSignHint"})
+  {text = ">>", texthl = "DiagnosticSignHint", numhl = "DiagnosticSignHint"})
 
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
