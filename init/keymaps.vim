@@ -79,6 +79,7 @@ nnoremap Q <Nop>
 nnoremap <silent> qf <Cmd>cclose<CR>
 nnoremap <silent> ql <Cmd>lclose<CR>
 nnoremap <silent> qh <Cmd>helpclose<CR>
+nnoremap <silent> qa <Cmd>qa<CR>
 " Open terminal
 nnoremap <silent> <M-=> <Cmd>tabnew <bar> terminal<CR>
 inoremap <silent> <M-=> <Esc><Cmd>tabnew <bar> terminal<CR>
