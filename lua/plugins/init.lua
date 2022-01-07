@@ -264,11 +264,6 @@ require('packer').startup({
   -- Configure packer
   config={
     compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'none' })
-      end
-    },
     git={
       -- github mirror
       default_url_format=GitRepoUrl..'/%s'
