@@ -13,6 +13,7 @@ M.setup = function ()
     \   '-verbose',
     \   '-file-line-error',
     \   '-synctex=1',
+    \   ' -shell-escape',
     \   '-interaction=nonstopmode',
     \ ],
     \}
@@ -30,20 +31,21 @@ M.setup = function ()
   let g:vimtex_imaps_enabled=0
 
   " on Windows, use SumatraPDF as viewer
-  " inverse search must be configured in advanced setting of SumatraPDF:
-  "   InverseSearchCmdLine = cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
   if g:sys_uname=='win'
     " otherwise, `:VimtexInfo` will report an error
     let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
   endif
 
   " communicate to neovim instance via `nvr`
-  " function! s:wrtie_server_name() abort
-  "   let nvim_server_file = (g:sys_uname=='win' ? $TEMP : '/tmp').'vimtexserver.txt'
-  "   call writefile([v:servername], nvim_server_file)
-  " endfunction
-  " " setup server address
-  " call s:wrtie_server_name()
+  "   -> pip install neovim-remote
+  " configure inverse search for pdf viewer with such a command:
+  " in SumatraPDF:cmd /c for /F %i in ('type %temp%\vimtexserver.txt') do nvr --servername %i -c "normal! zzzv" +"%l" "%f"
+  function! s:wrtie_server_name() abort
+    let nvim_server_file = (g:sys_uname=='win' ? $TEMP : '/tmp').'/vimtexserver.txt'
+    call writefile([v:servername], nvim_server_file)
+  endfunction
+  " setup server address
+  call s:wrtie_server_name()
 
   " open file in new tab
   let g:vimtex_view_reverse_search_edit_cmd='tabedit'
@@ -57,6 +59,6 @@ M.setup = function ()
     return 1
     endfunction
     ]]
-  end
+end
 
-  return M
+return M
