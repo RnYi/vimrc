@@ -6,8 +6,10 @@ nnoremap L $
 xnoremap H ^
 xnoremap L $
 
-noremap <M-j> gj
-noremap <M-k> gk
+noremap j gj
+noremap k gk
+noremap <M-j> j
+noremap <M-k> k
 
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
