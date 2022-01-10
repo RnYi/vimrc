@@ -107,13 +107,13 @@ function s:bufferlist() " get all listed buffers
   let res = getbufinfo({'listed':1})
   let bufs = []
   for item in res
-    call add(buf, item.name)
+    call add(bufs, item.name)
   endfor
   return bufs
 endfunction
 
 function GrepOnBuffers(str)
-  silent! exec 'vimgrep/'.a:str.'/g '.join(s:bufferlist())
+  exec 'vimgrep/'.a:str.'/g '.join(s:bufferlist())
   " silent! exec 'grep '.a:str.' '.join(s:bufferlist())
 endfunction
 nnoremap <M-f> <Cmd>call GrepOnBuffers(expand('<cword>'))
