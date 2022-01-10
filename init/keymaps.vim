@@ -85,6 +85,8 @@ nnoremap <silent> <M-=> <Cmd>tabnew <bar> terminal<CR>
 inoremap <silent> <M-=> <Esc><Cmd>tabnew <bar> terminal<CR>
 " Single leader key does nothing
 nnoremap <Leader> <Nop>
+" nohl
+nnoremap <Leader><Leader> <cmd>nohl<CR>
 
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
@@ -114,7 +116,9 @@ endfunction
 
 function GrepOnBuffers(str)
   exec 'vimgrep/'.a:str.'/g '.join(s:bufferlist())
-  " silent! exec 'grep '.a:str.' '.join(s:bufferlist())
+  " highlight matches
+  call clearmatches()
+  silent call matchadd('Search', a:str)
 endfunction
 nnoremap <M-f> <Cmd>call GrepOnBuffers(expand('<cword>'))
       \ <bar> copen

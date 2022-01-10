@@ -118,6 +118,9 @@ map('n', '<M-=>', '<Cmd>tabnew|terminal<CR>', map_opt)
 map('i', '<M-=>', '<Esc><Cmd>tabnew|terminal<CR>', map_opt)
 -- Single leader key does nothing
 map('n', '<Leader>', '<Nop>', map_opt)
+-- Double leader key clear highlight of searching
+map('n', '<Leader><Leader>', '<Cmd>nohl<CR>', map_opt)
+
 -- Map meta key
 vim.cmd([[
 function! Terminal_MetaMode(mode)

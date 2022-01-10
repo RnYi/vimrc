@@ -254,7 +254,7 @@ end
 """"""""""""
 set wrapscan
 set smartcase
-set nohlsearch
+set hlsearch
 set incsearch
 set ignorecase
 
