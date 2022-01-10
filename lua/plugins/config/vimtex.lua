@@ -39,7 +39,8 @@ M.setup = function ()
   " communicate to neovim instance via `nvr`
   "   -> pip install neovim-remote
   " configure inverse search for pdf viewer with such a command:
-  " in SumatraPDF:cmd /c for /F %i in ('type %temp%\vimtexserver.txt') do nvr --servername %i -c "normal! zzzv" +"%l" "%f"
+  " in SumatraPDF:
+  "   InverseSearchCmdLine = cmd /c for /F %i in ('type %temp%\vimtexserver.txt') do nvr --servername %i -c "normal! zzzv" +"%l" "%f"
   function! s:wrtie_server_name() abort
     let nvim_server_file = (g:sys_uname=='win' ? $TEMP : '/tmp').'/vimtexserver.txt'
     call writefile([v:servername], nvim_server_file)
