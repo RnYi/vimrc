@@ -12,7 +12,6 @@ endif
 let g:tex_flavor='latex'
 set ttimeout ttimeoutlen=100
 set updatetime=300
-set clipboard+=unnamed,unnamedplus
 set undofile
 let s:undo_dir=g:vimrc_home.'/undo'
 if !isdirectory(s:undo_dir)

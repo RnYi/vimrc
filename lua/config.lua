@@ -15,7 +15,6 @@ opt.backspace={'indent','eol','start'}
 opt.ttimeout=true
 opt.ttimeoutlen=100
 opt.updatetime=300
-opt.clipboard:append('unnamedplus')
 opt.foldmethod='manual'
 opt.switchbuf = {'usetab','newtab'}
 -- Persistent undo

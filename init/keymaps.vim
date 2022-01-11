@@ -5,6 +5,8 @@ nnoremap H ^
 nnoremap L $
 xnoremap H ^
 xnoremap L $
+onoremap H ^
+onoremap L $
 
 noremap j gj
 noremap k gk
@@ -42,6 +44,10 @@ nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Esc><Cmd>update<CR>
 nnoremap <silent> <M-d> <Cmd>bdelete<CR>
 inoremap <silent> <M-d> <Esc><Cmd>bdelete<CR>
+xnoremap <silent> <M-y> "+y
+inoremap <silent> <M-p> <C-r>+
+nnoremap <silent> <M-p> "+p
+xnoremap <silent> <M-x> "+x
 
 nnoremap <silent> [b <Cmd>bprevious<CR>
 nnoremap <silent> ]b <Cmd>bnext<CR>
