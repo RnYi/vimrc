@@ -117,13 +117,14 @@ function s:bufferlist() " get all listed buffers
 endfunction
 
 function GrepOnBuffers(str)
-  exec 'vimgrep/'.a:str.'/g '.join(s:bufferlist())
+  let pat = '\<'.a:str.'\>'
+  exec 'vimgrep/\C'.l:pat.'/g '.join(s:bufferlist())
   " highlight matches
+  copen
   call clearmatches()
-  silent call matchadd('Search', a:str)
+  silent call matchadd('Search', l:pat)
 endfunction
 nnoremap <M-f> <Cmd>call GrepOnBuffers(expand('<cword>'))
-      \ <bar> copen
       \ <bar> wincmd p<CR>
 
 " map meta key

@@ -54,18 +54,18 @@ M.setup = function()
     ]])
 
     -- Highlight the variable under current cursor
-    if client.resolved_capabilities.document_highlight then
-      vim.cmd([[
-      hi! link LspReferenceRead Visual
-      hi! link LspReferenceText Visual
-      hi! link LspReferenceWrite Visual
-      augroup LspDocumentHighlight
-      autocmd! * <buffer>
-      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved,InsertEnter <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-      ]])
-    end
+    -- if client.resolved_capabilities.document_highlight then
+    --   vim.cmd([[
+    --   hi! link LspReferenceRead Visual
+    --   hi! link LspReferenceText Visual
+    --   hi! link LspReferenceWrite Visual
+    --   augroup LspDocumentHighlight
+    --   autocmd! * <buffer>
+    --   autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --   autocmd CursorMoved,InsertEnter <buffer> lua vim.lsp.buf.clear_references()
+    --   augroup END
+    --   ]])
+    -- end
   end
   -- Global config for diagnostic
   vim.diagnostic.config({
