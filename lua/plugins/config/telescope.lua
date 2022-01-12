@@ -18,6 +18,11 @@ M.keybind = function()
   '<Leader>fb',
   [[<Cmd>Telescope buffers<CR>]],
   map_opt)
+  -- quickfix
+  map('n',
+  '<Leader>fq',
+  [[<Cmd>Telescope quickfix<CR>]],
+  map_opt)
 
   if CompPlug~='coc' then
     -- lsp_definitions
@@ -58,10 +63,14 @@ M.setup=function()
   local action_layout = require('telescope.actions.layout')
   require('telescope').setup {
     defaults = {
+      scroll_strategy = 'limit',
+      selection_strategy = 'closest',
       dynamic_preview_title = true,
       mappings = {
         n = {
           ["<M-p>"] = action_layout.toggle_preview,
+          ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+          ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
           ["cd"] = function(prompt_bufnr)
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p:h")
@@ -70,7 +79,9 @@ M.setup=function()
           end
         },
         i = {
-          ["<M-p>"] = action_layout.toggle_preview
+          ["<M-p>"] = action_layout.toggle_preview,
+          ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+          ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
         },
       },
     },
@@ -78,11 +89,14 @@ M.setup=function()
       find_files = {
         hidden = true,
         no_ignore = true,
-      },
-      file_browser = {
-        initial_mode = 'normal',
+        preview = {
+          hide_on_startup = true,
+        },
       },
       buffers = {
+        preview = {
+          hide_on_startup = true,
+        },
         mappings = {
           n = {
             ['dd'] = 'delete_buffer',

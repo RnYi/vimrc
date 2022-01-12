@@ -48,6 +48,7 @@ map('i', '<S-CR>', '<Esc>O', map_opt)
 map('x', '<M-y>', '"+y', map_opt)
 map('', '<M-p>', '"+p', map_opt)
 map('i', '<M-p>', '<C-r>+', map_opt)
+map('c', '<M-p>', '<C-r>+', map_opt)
 map('x', '<M-x>', '"+x', map_opt)
 -- Disable all <*-MiddleMouse>
 map('', '<MiddleMouse>', '<Nop>', map_opt)

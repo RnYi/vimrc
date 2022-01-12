@@ -46,6 +46,7 @@ nnoremap <silent> <M-d> <Cmd>bdelete<CR>
 inoremap <silent> <M-d> <Esc><Cmd>bdelete<CR>
 xnoremap <silent> <M-y> "*y
 noremap <silent> <M-p> "*p
+cnoremap <silent> <M-p> <C-r>*
 inoremap <silent> <M-p> <C-r>*
 xnoremap <silent> <M-x> "*x
 
