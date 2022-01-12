@@ -63,7 +63,6 @@ set wildmenu
 set noshowcmd
 set showmode
 set showmatch matchtime=1
-set cursorline
 " set showbreak=↪
 set scrolloff=2 sidescrolloff=5
 set laststatus=2

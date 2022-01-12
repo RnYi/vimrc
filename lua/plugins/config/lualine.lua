@@ -2,10 +2,10 @@ local M = {}
 
 M.setup = function()
   vim.opt.showmode=false
-  -- status of 'paste'
-  function PasteStatus()
+  -- paste status
+  function Paste_Indicator()
     if vim.o.paste then
-      return '[P]'
+      return 'PASTE'
     end
     return ''
   end
@@ -18,13 +18,20 @@ M.setup = function()
     },
     extensions={ 'quickfix', 'nvim-tree', 'fugitive' },
     sections = {
+      lualine_a = {
+        {
+          'mode',
+          separator = '|',
+        },
+        Paste_Indicator,
+      },
       lualine_b = {
         'branch',
         'diff',
       },
       lualine_c = {
         'filename',
-        PasteStatus,
+        -- diagnostic
         {
           'diagnostics',
           symbols = {
@@ -39,6 +46,13 @@ M.setup = function()
             info = 'DiagnosticSignInfo',
             hint = 'DiagnosticSignHint',
           },
+        },
+        -- gutentags
+        {
+          "gutentags#statusline('[', ']')",
+          cond = function ()
+            return vim.g.loaded_gutentags ~= nil
+          end
         },
       },
       lualine_y = {},

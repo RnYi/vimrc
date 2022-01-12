@@ -50,8 +50,11 @@ require('packer').startup({
         vim.g.gruvbox_material_better_performance=1
         vim.g.gruvbox_material_enable_bold = 1
         vim.g.gruvbox_material_enable_italic=0
+        vim.g.gruvbox_material_visual = 'blue background'
+        vim.g.gruvbox_material_menu_selection_background='blue'
         vim.g.gruvbox_material_disable_italic_comment=1
         vim.g.gruvbox_material_sign_column_background='none'
+        vim.g.gruvbox_material_transparent_background = 0
         vim.g.gruvbox_material_diagnostic_virtual_text='colored'
         vim.cmd('colorscheme gruvbox-material')
       end
@@ -141,8 +144,10 @@ require('packer').startup({
       'dcampos/nvim-snippy',
       event = 'VimEnter',
       config = function ()
+        local dirs = {vim.fn.stdpath('data')..'/site/pack/packer/opt/vim-snippets/snippets',
+      NvimHome..'/snippets'}
         require('snippy').setup({
-          snippet_dirs = vim.api.nvim_list_runtime_paths(),
+          snippet_dirs = dirs,
           mappings = {
             is = {
               ['<C-j>'] = 'expand_or_advance',
@@ -193,16 +198,38 @@ require('packer').startup({
     end
 
     -- Tag
+    -- install gtags:
+    --  -> http://adoxa.altervista.org/global/  (Windows)
+    -- install ctags:
+    --  -> https://github.com/universal-ctags/ctags-win32/releases  (Windows)
     use {
       'ludovicchabant/vim-gutentags',
       event = 'VimEnter',
-      --setup = require('plugins/config/gutentags').setup
+      setup = require('plugins/config/gutentags').setup
+    }
+    use {
+      'skywind3000/gutentags_plus',
+      after = 'vim-gutentags',
+      setup = function ()
+        -- key map prefix is <Leader>c
+        -- s: Find this symbol
+        -- g: Find this definition
+        -- d: Find functions called by this function
+        -- c: Find functions calling this function
+        -- t: Find this text string
+        -- e: Find this egrep pattern
+        -- f: Find this file
+        -- i: Find files #including this file
+        -- a: Find places where this symbol is assigned a value
+        vim.g.gutentags_plus_switch = 1
+      end
     }
 
     -- Symbol
     use {
       'liuchengxu/vista.vim',
-      after = 'nvim-lspconfig',
+      cmd = 'Vista',
+      setup = require('plugins/config/vista').setup,
     }
 
     -- Tasks
@@ -217,21 +244,6 @@ require('packer').startup({
     }
 
     -- Markdown
-    use {
-      'plasticboy/vim-markdown',
-      ft = 'markdown',
-      setup = function ()
-        -- keymap
-        local map = vim.api.nvim_set_keymap
-        local map_opt = {noremap = true, silent = true}
-        map('n', '<Leader>ml', '<Cmd>Toc<CR>', map_opt)
-        -- config
-        vim.g.markdown_math = 1
-        vim.g.vim_markdown_toc_autofit = 1
-        vim.g.vim_markdown_edit_url_in = 'tab'
-        vim.g.vim_markdown_folding_disabled = 1
-      end
-    }
     use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app && yarn install',
