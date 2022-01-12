@@ -136,17 +136,22 @@ require('packer').startup({
     }
 
     -- Snippet
+    use { "honza/vim-snippets", event = 'VimEnter'}
     use {
-      "SirVer/ultisnips",
+      'dcampos/nvim-snippy',
       event = 'VimEnter',
-      setup = function()
-        vim.g.UltiSnipsExpandTrigger = '<C-j>'
-        vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
-        vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
-        vim.g.UltiSnipsListSnippets='<C-l>'
+      config = function ()
+        require('snippy').setup({
+          snippet_dirs = vim.api.nvim_list_runtime_paths(),
+          mappings = {
+            is = {
+              ['<C-j>'] = 'expand_or_advance',
+              ['<C-k>'] = 'previous',
+            },
+          },
+        })
       end
     }
-    use { "honza/vim-snippets", after = 'ultisnips'}
 
     if CompPlug==nil or CompPlug=='nvim-cmp' then
       -- nvim-cmp
@@ -167,8 +172,8 @@ require('packer').startup({
       use {'hrsh7th/cmp-nvim-lua', ft='lua'}
       use { 'hrsh7th/cmp-omni', ft='tex'}
       use {
-        'quangnguyen30192/cmp-nvim-ultisnips',
-        after = {'nvim-cmp', 'ultisnips'}
+        'dcampos/cmp-snippy',
+        after = {'nvim-cmp', 'nvim-snippy'}
       }
 
       -- nvim-lspconfig
@@ -186,6 +191,19 @@ require('packer').startup({
         setup = require('plugins/config/coc').setup
       }
     end
+
+    -- Tag
+    use {
+      'ludovicchabant/vim-gutentags',
+      event = 'VimEnter',
+      --setup = require('plugins/config/gutentags').setup
+    }
+
+    -- Symbol
+    use {
+      'liuchengxu/vista.vim',
+      after = 'nvim-lspconfig',
+    }
 
     -- Tasks
     use       {
