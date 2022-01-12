@@ -18,11 +18,6 @@ M.keybind = function()
   '<Leader>fb',
   [[<Cmd>Telescope buffers<CR>]],
   map_opt)
-  -- sessions
-  map('n',
-  '<Leader>fs',
-  [[<Cmd>Telescope sessions save_current=true<CR>]],
-  map_opt)
 
   if CompPlug~='coc' then
     -- lsp_definitions

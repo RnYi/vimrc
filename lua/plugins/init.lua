@@ -116,16 +116,22 @@ require('packer').startup({
         config = [[require('telescope').load_extension('fzf')]]
       }
     end
+
     -- Session manager
     use {
       'Shatur/neovim-session-manager',
-      after = 'telescope.nvim',
+      requires = 'nvim-lua/plenary.nvim' ,
       config = function ()
+        -- keymap
+        local map = vim.api.nvim_set_keymap
+        local map_opt = {noremap = true, silent = true}
+        map('n', '<Leader>sl', '<Cmd>SessionManager load_session<CR>', map_opt)
+        map('n', '<Leader>ss', '<Cmd>SessionManager save_current_session<CR>', map_opt)
+        map('n', '<Leader>sd', '<Cmd>SessionManager delete_session<CR>', map_opt)
+        -- config
         require('session_manager').setup({
-          -- autoload_mode = require('session_manager.config').AutoloadMode.Disabled,
-          autosave_only_in_session = true
+          autosave_only_in_session = true,
         })
-        require('telescope').load_extension('sessions')
       end
     }
 
