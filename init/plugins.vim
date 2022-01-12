@@ -32,6 +32,17 @@ if has_key(g:plugs_enabled,'markdown-preview.nvim')
 endif
 
 """"""""""""""""""
+"  vim-markdown  "
+""""""""""""""""""
+if has_key(g:plugs_enabled,'vim-markdown')
+  nnoremap <silent> <Leader>ml <Cmd>Toc<CR>
+  let g:markdown_math = 1
+  let g:vim_markdown_toc_autofit = 1
+  let g:vim_markdown_edit_url_in = 'tab'
+  let g:vim_markdown_folding_disabled = 1
+endif
+
+""""""""""""""""""
 " vim-commentary "
 """"""""""""""""""
 if has_key(g:plugs_enabled, 'vim-commentary')

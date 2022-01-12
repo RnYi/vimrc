@@ -63,6 +63,7 @@ if has_key(g:bundle_enabled, 'basic')
   Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
   Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
   " Markdown
+  Plug 'plasticboy/vim-markdown', {'for':['markdown']}
   Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   " Latex
   Plug 'lervag/vimtex', {'for': ['tex','latex']}
