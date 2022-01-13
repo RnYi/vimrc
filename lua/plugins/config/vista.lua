@@ -9,6 +9,7 @@ end
 
 M.setup = function ()
   vim.g.vista_echo_cursor=0
+  vim.g.vista_blink={0,0}
   vim.g.vista_cursor_delay=300
   vim.g.vista_executive_for = {
     ['markdown'] = 'toc',

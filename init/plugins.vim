@@ -192,11 +192,22 @@ if has_key(g:plugs_enabled,'lightline.vim')
   let g:special_buf_list=['nofile', 'quickfix', 'terminal', 'help']
   let g:lightline = {
         \ 'colorscheme': 'gruvbox_material',
+        \ 'left': [ [ 'mode', 'paste' ],
+        \           [ 'readonly', 'filename', 'modified' ],
+        \           ['gutentags'] ],
         \ 'tabline': {
             \ 'left':[['tabs']],
             \ 'right':[]
+          \},
+        \ 'component': {
+          \   'gutentags': "%{gutentags#statusline('[',']')}"
           \}
       \}
+  augroup GutentagsLightlineRefresher
+    autocmd!
+    autocmd User GutentagsUpdating call lightline#update()
+    autocmd User GutentagsUpdated call lightline#update()
+  augroup END
 endif
 
 """"""""""""
@@ -315,13 +326,7 @@ if has_key(g:plugs_enabled,'vim-gutentags')
   let $GTAGSCONF=expand('~/.globalrc') " copy from gtags.conf
   let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
   let g:gutentags_ctags_tagfile = '.tags'
-  let g:gutentags_modules = []
-  if executable('ctags')
-    let g:gutentags_modules += ['ctags']
-  endif
-  if executable('gtags-cscope') && executable('gtags')
-    let g:gutentags_modules += ['gtags_cscope']
-  endif
+  let g:gutentags_modules = ['ctags', 'gtags_cscope']
   " tags cache dir
   let s:tags_cache_dir = expand('~/.cache/tags')
   let g:gutentags_cache_dir = s:tags_cache_dir
@@ -356,12 +361,14 @@ if has_key(g:plugs_enabled,'gutentags_plus')
 endif
 
 """""""""""""
-" vim-shell "
+" vista.vim "
 """""""""""""
-" let g:shell_mappings_enabled=0
-" let g:shell_fullscrejen_message=0
-" let g:shell_fullscreen_items='mT'
-" let g:shell_fullscreen_always_on_top=0
+if has_key(g:plugs_enabled, 'vista.vim')
+  let g:vista_echo_cursor=0
+  let g:vista_blink=[1,100]
+  let g:vista_executive_for = { 'markdown' : 'toc' }
+  nnoremap <Leader>vv <Cmd>Vista!!<CR>
+endif
 
 """""""""""""""""""
 "  vim-xkbswitch  "
