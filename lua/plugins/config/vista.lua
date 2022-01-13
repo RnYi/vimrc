@@ -11,6 +11,7 @@ M.setup = function ()
   vim.g.vista_blink={0,0}
   vim.g.vista_cursor_delay=300
   vim.g.vista_default_executive = 'nvim_lsp'
+  vim.g.vista_ignore_kinds = {'variable'}
   vim.g.vista_executive_for = {
     ['markdown'] = 'toc',
   }
