@@ -365,7 +365,7 @@ endif
 """""""""""""
 if has_key(g:plugs_enabled, 'vista.vim')
   let g:vista_echo_cursor=0
-  let g:vista_blink=[1,100]
+  let g:vista_blink=[1,300]
   let g:vista_ignore_kinds=['variable']
   let g:vista_executive_for = { 'markdown' : 'toc' }
   nnoremap <Leader>vv <Cmd>Vista!!<CR>
