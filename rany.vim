@@ -35,7 +35,7 @@ let g:python3_host_prog='python'
 """""""""""""""""""
 "  load plug-ins  "
 """""""""""""""""""
-" bundle_group items: basic, textobj, ui, snippet, comp
+" bundle_group items: basic, textobj, ui, snippet, comp, tags
 if !exists('g:bundle_group')
   let g:bundle_group=[]
 endif
@@ -123,9 +123,13 @@ if has_key(g:bundle_enabled, 'comp')
   " Asynctasks
   Plug 'skywind3000/asynctasks.vim'
   Plug 'skywind3000/asyncrun.vim'
+endif
+
+if has_key(g:bundle_enabled, 'tags')
   " Tags
   Plug 'ludovicchabant/vim-gutentags' " depending on gtags and pygments(python module)
   Plug 'skywind3000/gutentags_plus'
+  Plug 'liuchengxu/vista.vim', {'on':['Vista']}
 endif
 
 call plug#end()
