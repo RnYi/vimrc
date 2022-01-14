@@ -1,4 +1,14 @@
 local M = {}
+
+-- grep string
+M.grep_helper = function ()
+  vim.ui.input({prompt='Grep'}, function (search)
+    if search then
+      require('telescope.builtin').grep_string({search=search,use_regex=true})
+    end
+  end)
+end
+
 -- key bindings
 M.keybind = function()
   local map=vim.api.nvim_set_keymap
@@ -8,10 +18,10 @@ M.keybind = function()
   '<Leader>ff',
   [[<Cmd>Telescope find_files<CR>]],
   map_opt)
-  -- live_grep
+  -- grep_string
   map('n',
   '<Leader>fg',
-  [[<Cmd>Telescope live_grep<CR>]],
+  [[<Cmd>lua require('plugins/config/telescope').grep_helper()<CR>]],
   map_opt)
   -- buffers
   map('n',
