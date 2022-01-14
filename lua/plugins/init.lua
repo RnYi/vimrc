@@ -202,28 +202,28 @@ require('packer').startup({
     --  -> http://adoxa.altervista.org/global/  (Windows)
     -- install ctags:
     --  -> https://github.com/universal-ctags/ctags-win32/releases  (Windows)
-    -- use {
-    --   'ludovicchabant/vim-gutentags',
-    --   event = 'VimEnter',
-    --   setup = require('plugins/config/gutentags').setup
-    -- }
-    -- use {
-    --   'skywind3000/gutentags_plus',
-    --   after = 'vim-gutentags',
-    --   setup = function ()
-    --     -- key map prefix is <Leader>c
-    --     -- s: Find this symbol
-    --     -- g: Find this definition
-    --     -- d: Find functions called by this function
-    --     -- c: Find functions calling this function
-    --     -- t: Find this text string
-    --     -- e: Find this egrep pattern
-    --     -- f: Find this file
-    --     -- i: Find files #including this file
-    --     -- a: Find places where this symbol is assigned a value
-    --     vim.g.gutentags_plus_switch = 1
-    --   end
-    -- }
+    use {
+      'ludovicchabant/vim-gutentags',
+      event = 'VimEnter',
+      setup = require('plugins/config/gutentags').setup
+    }
+    use {
+      'skywind3000/gutentags_plus',
+      after = 'vim-gutentags',
+      setup = function ()
+        -- key map prefix is <Leader>c
+        -- s: Find this symbol
+        -- g: Find this definition
+        -- d: Find functions called by this function
+        -- c: Find functions calling this function
+        -- t: Find this text string
+        -- e: Find this egrep pattern
+        -- f: Find this file
+        -- i: Find files #including this file
+        -- a: Find places where this symbol is assigned a value
+        vim.g.gutentags_plus_switch = 1
+      end
+    }
 
     -- Symbol
     use {

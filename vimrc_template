@@ -19,7 +19,7 @@ if has('nvim')
 else
   let &pythonthreedll='python39.dll'
   if !exists('g:bundle_group')
-    let g:bundle_group=['basic', 'textobj', 'tags']
+    let g:bundle_group=['basic', 'textobj']
   endif
   runtime rany.vim
 endif
