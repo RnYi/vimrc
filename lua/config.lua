@@ -3,7 +3,6 @@
 ----------------------------
 local g=vim.g
 local opt=vim.opt
-local cmd=vim.cmd
 
 -------------
 --  Basic  --
@@ -80,7 +79,7 @@ opt.formatoptions={t=true,c=true,r=true,q=true,l=true,m=true,M=true,j=true}
 opt.list=true
 -- opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
-cmd([[
+vim.cmd([[
 set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》
 ]])
 
@@ -88,7 +87,7 @@ set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》
 --  Tabline  --
 ---------------
 -- Tabline in terminal mode
-cmd [[
+vim.cmd [[
 function! NeatTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
@@ -113,7 +112,7 @@ endfunction
 ]]
 
 -- get a single tab name
-cmd[[
+vim.cmd[[
 function! NeatBuffer(bufnr, fullname)
   let l:name = bufname(a:bufnr)
   let bt = getbufvar(a:bufnr, '&buftype')
@@ -159,7 +158,7 @@ endfunc
 ]]
 
 -- get a single tab label
-cmd[[
+vim.cmd[[
 function! NeatTabLabel(n)
   let l:buflist = tabpagebuflist(a:n)
   let l:winnr = tabpagewinnr(a:n)
@@ -175,7 +174,7 @@ endfunc
 ]]
 
 -- set tabline
-cmd[[
+vim.cmd[[
 set showtabline=2
 set tabline=%!NeatTabLine()
 ]]
@@ -202,7 +201,7 @@ opt.sessionoptions:remove('help')
 ---------------
 --  Autocmd  --
 ---------------
-cmd([[
+vim.cmd([[
 augroup rany_aug
   autocmd!
   autocmd FileType markdown hi! Error NONE
