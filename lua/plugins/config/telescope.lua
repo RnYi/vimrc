@@ -98,7 +98,7 @@ M.setup=function()
     pickers = {
       find_files = {
         hidden = true,
-        no_ignore = true,
+        no_ignore = false,
         preview = {
           hide_on_startup = true,
         },
