@@ -71,6 +71,27 @@ require('packer').startup({
       config = conf('lualine')
     }
 
+    -- Quickfix
+    use {
+      'kevinhwang91/nvim-bqf',
+      -- ft = 'qf',
+      event = 'VimEnter',
+      config = function ()
+        require('bqf').setup({
+          preview = {
+            auto_preview = false,
+          },
+          func_map = {
+            tabc = '',
+            tabdrop = '<C-t>',
+            pscrollup = '<C-u>',
+            pscrolldown = '<C-d>',
+            split = '<C-t>'
+          }
+        })
+      end
+    }
+
     -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',

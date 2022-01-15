@@ -71,16 +71,23 @@ end
 -- setup
 M.setup=function()
   local action_layout = require('telescope.actions.layout')
+  local actions = require('telescope.actions')
+  local resolver = require('telescope.config.resolve')
   require('telescope').setup {
     defaults = {
       scroll_strategy = 'limit',
       selection_strategy = 'closest',
       dynamic_preview_title = true,
+      layout_config = {
+        horizontal = {
+          preview_width = resolver.resolve_width(0.5)
+        }
+      },
       mappings = {
         n = {
           ["<M-p>"] = action_layout.toggle_preview,
-          ["<C-Down>"] = require('telescope.actions').cycle_history_next,
-          ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+          ["<C-Down>"] = actions.cycle_history_next,
+          ["<C-Up>"] = actions.cycle_history_prev,
           ["cd"] = function(prompt_bufnr)
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p:h")
@@ -90,8 +97,8 @@ M.setup=function()
         },
         i = {
           ["<M-p>"] = action_layout.toggle_preview,
-          ["<C-Down>"] = require('telescope.actions').cycle_history_next,
-          ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+          ["<C-Down>"] = actions.cycle_history_next,
+          ["<C-Up>"] = actions.cycle_history_prev,
         },
       },
     },
