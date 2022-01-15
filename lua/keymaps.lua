@@ -182,10 +182,13 @@ call Terminal_FunctionKey()
 ---------------
 --  Plugins  --
 ---------------
-require('plugins/config/telescope').keybind()
-require('plugins/config/asynctasks').keybind()
-require('plugins/config/nvim-tree').keybind()
-require('plugins/config/indent-blankline').keybind()
-require('plugins/config/hop').keybind()
-require('plugins/config/fugitive').keybind()
-require('plugins/config/vista').keybind()
+local function keybind(name)
+  require(PlugConfPath..name).keybind()
+end
+keybind('asynctasks')
+keybind('fugitive')
+keybind('hop')
+keybind('indent-blankline')
+keybind('nvim-tree')
+keybind('telescope')
+keybind('vista')

@@ -2,6 +2,10 @@
 require('packer').startup({
   -- add plugins
   function(use)
+    -- load config
+    local function conf(name)
+      return require(PlugConfPath..name).setup
+    end
     -- impatient.nvim
     use {
       'lewis6991/impatient.nvim',
@@ -33,7 +37,7 @@ require('packer').startup({
         'nvim-treesitter/nvim-treesitter',
         event = 'VimEnter',
         run = ':TSUpdate',
-        config = require('plugins/config/treesitter').setup
+        config = conf('treesitter')
       },
     }
 
@@ -64,21 +68,21 @@ require('packer').startup({
     use {
       'nvim-lualine/lualine.nvim',
       event = 'VimEnter',
-      config = require('plugins/config/lualine').setup
+      config = conf('lualine')
     }
 
     -- File Explorer
     use {
       'kyazdani42/nvim-tree.lua',
       cmd = 'NvimTreeToggle',
-      config = require('plugins/config/nvim-tree').setup
+      config = conf('nvim-tree')
     }
 
     -- Searh and Move
     use {
       'phaazon/hop.nvim',
       cmd = {'HopWord', 'HopPattern', 'HopChar1', 'HopChar2', 'HopLine'},
-      config = require('plugins/config/hop').setup
+      config = conf('hop')
     }
 
     -- Git
@@ -86,7 +90,7 @@ require('packer').startup({
       'tpope/vim-fugitive',
       fn = 'fugitive#*',
       cmd = {'G', 'Git', 'Gedit', 'Gread', 'Gwrite', 'Gdiffsplit',  'Gvdiffsplit'},
-      setup = require('plugins/config/fugitive').setup,
+      setup = conf('fugitive')
     }
 
     -- Telescope
@@ -167,7 +171,7 @@ require('packer').startup({
       use {
         'hrsh7th/nvim-cmp',
         after = 'lspkind-nvim',
-        config = require('plugins/config/nvim-cmp').setup
+        config = conf('nvim-cmp')
       }
       -- completion sources
       use {'hrsh7th/cmp-path', after = 'nvim-cmp'}
@@ -185,7 +189,7 @@ require('packer').startup({
       use {
         'neovim/nvim-lspconfig',
         after = 'cmp-nvim-lsp',
-        config = require('plugins/config/lsp').setup
+        config = conf('lsp')
       }
     else
       -- coc.nvim
@@ -193,7 +197,7 @@ require('packer').startup({
         'neoclide/coc.nvim',
         branch='release',
         event = 'VimEnter',
-        setup = require('plugins/config/coc').setup
+        setup = conf('coc')
       }
     end
 
@@ -229,7 +233,7 @@ require('packer').startup({
     use {
       'liuchengxu/vista.vim',
       cmd = 'Vista',
-      setup = require('plugins/config/vista').setup,
+      setup = conf('vista')
     }
 
     -- Tasks
@@ -240,7 +244,7 @@ require('packer').startup({
     use {
       'skywind3000/asynctasks.vim',
       after = 'asyncrun.vim',
-      setup = require('plugins/config/asynctasks').setup
+      setup = conf('asynctasks')
     }
 
     -- Markdown
@@ -263,7 +267,7 @@ require('packer').startup({
     use {
       'lervag/vimtex',
       ft = 'tex',
-      setup = require('plugins/config/vimtex').setup
+      setup = conf('vimtex')
     }
 
     -- Comment
@@ -295,7 +299,7 @@ require('packer').startup({
     use {
       'lukas-reineke/indent-blankline.nvim',
       event='VimEnter',
-      config = require('plugins/config/indent-blankline').setup
+      config = conf('indent-blankline')
     }
 
     -- Auto switch input method
