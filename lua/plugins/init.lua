@@ -52,7 +52,7 @@ require('packer').startup({
       event = 'VimEnter',
       config = function ()
         vim.g.gruvbox_material_better_performance=1
-        vim.g.gruvbox_material_enable_bold = 1
+        vim.g.gruvbox_material_enable_bold = 0
         vim.g.gruvbox_material_enable_italic=0
         vim.g.gruvbox_material_visual = 'blue background'
         vim.g.gruvbox_material_menu_selection_background='blue'

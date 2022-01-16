@@ -4,8 +4,9 @@ M.show_diagnostics = function()
   local opts = {
     focus=false,
     focusable=false,
-    scope = 'cursor',
-    source = 'always',  -- show source in diagnostic popup window
+    close_events = {'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost'},
+    scope = 'line',
+    source = 'if_many',  -- show source in diagnostic popup window
   }
   vim.diagnostic.open_float(nil, opts)
 end
@@ -81,13 +82,13 @@ M.setup = function()
   })
   -- Change diagnostic signs
   vim.fn.sign_define("DiagnosticSignError",
-  {text = ">>", texthl = "DiagnosticSignError", numhl = "DiagnosticSignError"})
+  {text = "", texthl = "DiagnosticSignError", numhl = "DiagnosticSignError"})
   vim.fn.sign_define("DiagnosticSignWarn",
-  {text = ">>", texthl = "DiagnosticSignWarn", numhl = "DiagnosticSignWarn"})
+  {text = "", texthl = "DiagnosticSignWarn", numhl = "DiagnosticSignWarn"})
   vim.fn.sign_define("DiagnosticSignInfo",
-  {text = ">>", texthl = "DiagnosticSignInfo", numhl = "DiagnosticSignInfo"})
+  {text = "", texthl = "DiagnosticSignInfo", numhl = "DiagnosticSignInfo"})
   vim.fn.sign_define("DiagnosticSignHint",
-  {text = ">>", texthl = "DiagnosticSignHint", numhl = "DiagnosticSignHint"})
+  {text = "", texthl = "DiagnosticSignHint", numhl = "DiagnosticSignHint"})
 
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()

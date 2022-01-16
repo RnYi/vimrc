@@ -137,5 +137,4 @@ M.setup=function()
   }
 end
 
--- return function keybind
 return M
