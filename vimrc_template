@@ -1,4 +1,5 @@
 let g:vimrc_home=expand('<sfile>:p:h')
+let g:init_home=g:vimrc_home.'/init'
 let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
 let g:repo_url='https://github.com.cnpmjs.org'
 let g:comp_plug='coc'
@@ -11,8 +12,11 @@ if has('nvim')
   exe 'set runtimepath^='.g:vimrc_home
   exe 'set runtimepath+='.g:vimrc_home.'/after'
   " load config of GUI
+  function s:guiconf(name) abort
+    exe 'so '.g:init_home.'/'.a:name.'.vim'
+  endfunction
   if exists('g:nvui')
-    exe 'so '.g:vimrc_home.'/init/nvui.vim'
+    call s:guiconf('nvui')
   endif
   let g:comp_plug='nvim-cmp'
   lua require('init')

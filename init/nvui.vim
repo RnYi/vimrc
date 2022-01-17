@@ -4,8 +4,7 @@ NvuiSecondsBeforeIdle 0
 NvuiFrameless v:true
 NvuiTitlebarFontFamily FiraCode NF
 " Multigrid
-" NvuiAnimationsEnabled v:false
-NvuiMoveAnimationDuration 0.5
-NvuiScrollAnimationDuration 0.5
+NvuiMoveAnimationDuration 0.3
+NvuiScrollAnimationDuration 0.3
 " Cursor
-NvuiCursorFrametime -1
+NvuiCursorAnimationDuration 0.1
