@@ -128,8 +128,8 @@ function GrepOnBuffers(str)
   exec 'vimgrep/\C'.l:pat.'/g '.join(s:bufferlist())
   " highlight matches
   copen
-  call clearmatches()
-  silent call matchadd('Search', l:pat)
+  " call clearmatches()
+  " silent call matchadd('Search', l:pat)
 endfunction
 nnoremap <M-f> <Cmd>call GrepOnBuffers(expand('<cword>'))
       \ <bar> wincmd p<CR>

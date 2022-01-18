@@ -12,12 +12,15 @@ endif
 let g:tex_flavor='latex'
 set ttimeout ttimeoutlen=100
 set updatetime=300
+" undo
 set undofile
 let s:undo_dir=g:vimrc_home.'/undo'
-if !isdirectory(s:undo_dir)
-  call mkdir(s:undo_dir)
-endif
+call mkdir(s:undo_dir,'p')
 let &undodir=s:undo_dir
+" view
+let s:view_dir=g:vimrc_home.'/view'
+call mkdir(s:view_dir,'p')
+let &viewdir=s:view_dir
 set tags=./.tags;,.tags
 set diffopt+=vertical,followwrap
 set grepprg=rg\ --vimgrep
@@ -254,7 +257,6 @@ end
 """"""""""""
 set wrapscan
 set smartcase
-set hlsearch
 set incsearch
 set ignorecase
 
@@ -276,15 +278,27 @@ set foldmethod=manual
 """""""""""""
 "  Autocmd  "
 """""""""""""
+function s:resume_cursor_position() abort
+  if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    let l:args = v:argv  " command line arguments
+    for l:cur_arg in l:args
+      " Check if a go-to-line command is given.
+      let idx = match(l:cur_arg, '\v^\+(\d){1,}$')
+      if idx != -1
+        return
+      endif
+    endfor
+
+    execute "normal! g`\"zvzz"
+  endif
+endfunction
+
 augroup MyAug
   autocmd!
-  " autocmd BufReadPost *
-  "       \   if line("'\"") > 0 && line ("'\"") <= line("$") |
-  "       \       exe "normal g'\"" |
-  "       \   endif
-  " autocmd BufRead txt if &buftype=='help' | wincmd L | endif
-  " autocmd FileType json syntax match Comment +\/\/.\+$+
-  autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd FileType markdown hi! Error NONE
-  autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
+  autocmd BufReadPost * call s:resume_cursor_position()
+autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType markdown hi! Error NONE
+autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
+autocmd CmdlineEnter /,\? :set hlsearch
+autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END

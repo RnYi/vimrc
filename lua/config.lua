@@ -184,7 +184,6 @@ set tabline=%!NeatTabLine()
 --------------
 opt.wrapscan=true
 opt.smartcase=true
-opt.hlsearch=true
 opt.incsearch=true
 opt.ignorecase=true
 
@@ -201,16 +200,38 @@ opt.sessionoptions:remove('help')
 ---------------
 --  Autocmd  --
 ---------------
-vim.cmd([[
+vim.cmd[[
+function s:resume_cursor_position() abort
+  if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    let l:args = v:argv  " command line arguments
+    for l:cur_arg in l:args
+      " Check if a go-to-line command is given.
+      let idx = match(l:cur_arg, '\v^\+(\d){1,}$')
+      if idx != -1
+        return
+      endif
+    endfor
+
+    execute "normal! g`\"zvzz"
+  endif
+endfunction
+
 augroup rany_aug
   autocmd!
+  " resume cursor position when open a file
+  autocmd BufReadPost * call s:resume_cursor_position()
+  " disable error highlighting
   autocmd FileType markdown hi! Error NONE
+  " tlc
   autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
+  " .gitignore
   autocmd BufNewFile,BufRead .gitignore setlocal filetype=gitignore
+  " terminal
   autocmd TermOpen * startinsert
   autocmd TermEnter * setlocal nonumber
   autocmd TermLeave * setlocal number
+  " highlight when searching
   autocmd CmdlineEnter /,\? :set hlsearch
   autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
-]])
+]]
