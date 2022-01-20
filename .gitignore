@@ -8,9 +8,8 @@
 !lua/
 
 !.gitignore
-!.notags
 !coc-settings.json
-!tasks.ini
+!asynctasks.ini
 !*.vim
 !vimrc_template
 
