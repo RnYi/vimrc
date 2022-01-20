@@ -70,8 +70,6 @@ if has_key(g:bundle_enabled, 'basic')
   " Input method
   if g:sys_uname!='win'
     Plug 'rlue/vim-barbaric'
-  else
-    Plug 'lyokha/vim-xkbswitch'
   endif
   Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}
 endif
