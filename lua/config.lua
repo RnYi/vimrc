@@ -34,7 +34,7 @@ g.tex_flavor='latex'
 g.loaded_perl_provider=0
 g.loaded_ruby_provider=0
 g.loaded_python_provider=0
-g.python3_host_prog='python'
+g.python3_host_prog='python3'
 -- disable internal plugins
 g.loaded_netrwPlugin=1
 

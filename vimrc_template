@@ -1,8 +1,12 @@
+" vimrc home
 let g:vimrc_home=expand('<sfile>:p:h')
 let g:init_home=g:vimrc_home.'/init'
-let g:node_host_prog='C:/Users/Richard/AppData/Roaming/npm/node_modules/neovim'
+" mirror of github
 let g:repo_url='https://github.com.cnpmjs.org'
+" completion plug
 let g:comp_plug='coc'
+" language
+let g:node_host_prog='C:/ProgramData/scoop/persist/nodejs/bin/node_modules/neovim'
 if has('windows')
   let g:sys_uname='win'
 else
@@ -18,10 +22,9 @@ if has('nvim')
   if exists('g:nvui')
     call s:guiconf('nvui')
   endif
-  let g:comp_plug='nvim-cmp'
   lua require('init')
 else
-  let &pythonthreedll='python39.dll'
+  let &pythonthreedll='python310.dll'
   if !exists('g:bundle_group')
     let g:bundle_group=['basic', 'textobj', 'tags']
   endif

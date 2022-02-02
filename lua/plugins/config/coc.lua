@@ -50,7 +50,7 @@ M.setup = function ()
 
   augroup Coc
     autocmd! *
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+    " autocmd CursorHold * silent call CocActionAsync('highlight')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   augroup END
   ]]
