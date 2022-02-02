@@ -6,3 +6,4 @@ GuiPopupmenu 0
 GuiScrollBar 0
 " GuiWindowOpacity 0.9
 GuiAdaptiveStyle windowsvista
+GuiFont FiraCode\ NF:h13
