@@ -251,11 +251,11 @@ require('packer').startup({
     -- }
 
     -- Symbol
-    use {
-      'liuchengxu/vista.vim',
-      cmd = 'Vista',
-      setup = conf('vista')
-    }
+    -- use {
+    --   'liuchengxu/vista.vim',
+    --   cmd = 'Vista',
+    --   setup = conf('vista')
+    -- }
 
     -- Tasks
     use       {
