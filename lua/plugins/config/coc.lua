@@ -6,7 +6,7 @@ M.setup = function ()
   let g:coc_config_home=g:vimrc_home
   let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
   " coc extensions must be installed
-  let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex","coc-sumneko-lua"]
+  let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex","coc-sumneko-lua","coc-toml","coc-yaml"]
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
@@ -46,7 +46,11 @@ M.setup = function ()
   " show documentation
   nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
   " confirm selection
-  inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+  if exists('*complete_info')
+      inoremap <silent><expr> <CR> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
+  else
+    inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+  endif
 
   augroup Coc
     autocmd! *

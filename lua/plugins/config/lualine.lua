@@ -47,6 +47,13 @@ M.setup = function()
             hint = 'DiagnosticSignHint',
           },
         },
+        -- coc
+        {
+          'g:coc_status',
+          cond = function ()
+            return vim.g.did_coc_loaded ~= nil
+          end
+        },
         -- gutentags
         {
           "gutentags#statusline('[', ']')",

@@ -166,22 +166,31 @@ require('packer').startup({
     -- Snippet
     use { "honza/vim-snippets", event = 'VimEnter'}
     use {
-      'dcampos/nvim-snippy',
+      'SirVer/ultisnips',
       event = 'VimEnter',
-      config = function ()
-        local dirs = {vim.fn.stdpath('data')..'/site/pack/packer/opt/vim-snippets/snippets',
-      NvimHome..'/snippets'}
-        require('snippy').setup({
-          snippet_dirs = dirs,
-          mappings = {
-            is = {
-              ['<C-j>'] = 'expand_or_advance',
-              ['<C-k>'] = 'previous',
-            },
-          },
-        })
+      setup = function ()
+        vim.g.UltiSnipsExpandTrigger='<C-j>'
+        vim.g.UltiSnipsJumpForwardTrigger='<C-j>'
+        vim.g.UltiSnipsJumpBackwardTrigger='<C-k>'
       end
     }
+    -- use {
+    --   'dcampos/nvim-snippy',
+    --   event = 'VimEnter',
+    --   config = function ()
+    --     local dirs = {vim.fn.stdpath('data')..'/site/pack/packer/opt/vim-snippets/snippets',
+    --   NvimHome..'/snippets'}
+    --     require('snippy').setup({
+    --       snippet_dirs = dirs,
+    --       mappings = {
+    --         is = {
+    --           ['<C-j>'] = 'expand_or_advance',
+    --           ['<C-k>'] = 'previous',
+    --         },
+    --       },
+    --     })
+    --   end
+    -- }
 
     if CompPlug==nil or CompPlug=='nvim-cmp' then
       -- nvim-cmp
