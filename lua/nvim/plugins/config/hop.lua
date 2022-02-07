@@ -1,7 +1,7 @@
 local M = {}
 
 M.keybind = function ()
- local map = vim.api.nvim_set_keymap
+ local map = vim.keymap.set
   local map_opt = {noremap=true, silent=true}
   map(
     'n',

@@ -1,7 +1,7 @@
 local M = {}
 
 M.keybind = function ()
-  vim.api.nvim_set_keymap(
+  vim.keymap.set(
     'n',
     '<F2>',
     '<Cmd>IndentBlanklineToggle<CR>',

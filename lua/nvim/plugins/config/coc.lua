@@ -16,9 +16,6 @@ M.setup = function ()
       execute '!' . &keywordprg . " " . expand('<cword>')
     endif
   endfunction
-  " use <Tab> and <S-Tab> to navigate in popup
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   " rename
   nmap <Leader>rn <Plug>(coc-rename)
   " autofix
@@ -26,12 +23,26 @@ M.setup = function ()
   " format
   nmap <Leader>fm <Plug>(coc-format)
   xmap <Leader>fm <Plug>(coc-format-selected)
+  " code action
+  nmap <Leader>ac <Plug>(coc-codeaction-cursor)
+  nmap <Leader>aC <Plug>(coc-codeaction)
+  xmap <Leader>ac <Plug>(coc-codeaction-selected)
+  " textobjects
+  xmap if <Plug>(coc-funcobj-i)
+  omap if <Plug>(coc-funcobj-i)
+  xmap af <Plug>(coc-funcobj-a)
+  omap af <Plug>(coc-funcobj-a)
+  xmap ic <Plug>(coc-classobj-i)
+  omap ic <Plug>(coc-classobj-i)
+  xmap ac <Plug>(coc-classobj-a)
+  omap ac <Plug>(coc-classobj-a)
   " outlile
-  nnoremap <silent><nowait> <Leader>ol  <Cmd>CocList outline<CR>
-  " diagnostics list
-  nnoremap <silent><nowait> <Leader>dl  <Cmd>CocList diagnostics<CR>
+  nnoremap <silent><nowait> <Leader>ol  <Cmd>CocOutline<CR>
+  " diagnostics
+  nnoremap <silent><nowait> <Leader>dl  <Cmd>CocList --normal --no-quit diagnostics<CR>
   " navigate
-  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gd <Cmd>call CocAction('definitionHover')<CR>
+  nmap <silent> gD <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gr <Plug>(coc-references)
   nmap <silent> [d <Plug>(coc-diagnostic-prev)
@@ -46,15 +57,15 @@ M.setup = function ()
   " show documentation
   nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
   " confirm selection
-  if exists('*complete_info')
-      inoremap <silent><expr> <CR> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
-  else
-    inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-  endif
+  inoremap <silent><expr> <C-y> pumvisible() ? coc#_select_confirm() : "\<C-y>"
+  " if exists('*complete_info')
+  "     inoremap <silent><expr> <CR> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
+  " else
+  "   inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+  " endif
 
   augroup Coc
-    autocmd! *
-    " autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd!
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   augroup END
   ]]

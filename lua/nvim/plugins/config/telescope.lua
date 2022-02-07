@@ -11,17 +11,22 @@ end
 
 -- key bindings
 M.keybind = function()
-  local map=vim.api.nvim_set_keymap
+  local map=vim.keymap.set
   local map_opt={noremap=true, silent=true}
   -- find_files
   map('n',
   '<Leader>ff',
   [[<Cmd>Telescope find_files<CR>]],
   map_opt)
-  -- grep_string
+  -- live grep
   map('n',
   '<Leader>fg',
-  [[<Cmd>lua require('plugins/config/telescope').grep_helper()<CR>]],
+  [[<Cmd>Telescope live_grep<CR>]],
+  map_opt)
+  -- grep string
+  map('n',
+  '<Leader>fG',
+  [[<Cmd>lua require('nvim.plugins.config.telescope').grep_helper()<CR>]],
   map_opt)
   -- buffers
   map('n',
@@ -32,6 +37,11 @@ M.keybind = function()
   map('n',
   '<Leader>fq',
   [[<Cmd>Telescope quickfix<CR>]],
+  map_opt)
+  -- command
+  map('n',
+  '<Leader>:',
+  [[<Cmd>Telescope commands<CR>]],
   map_opt)
 
   if CompPlug~='coc' then

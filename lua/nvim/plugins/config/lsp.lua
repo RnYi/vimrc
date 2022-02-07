@@ -32,7 +32,7 @@ M.setup = function()
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', [[<cmd>lua require('plugins/config/lsp').show_documentation()<CR>]], opts)
+    buf_set_keymap('n', 'K', [[<cmd>lua require('nvim.plugins.config.lsp').show_documentation()<CR>]], opts)
     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -51,7 +51,7 @@ M.setup = function()
 
     -- Show diagnostics with float window
     vim.cmd([[
-    autocmd CursorHold <buffer> lua require('plugins/config/lsp').show_diagnostics()
+    autocmd CursorHold <buffer> lua require('nvim.plugins.config.lsp').show_diagnostics()
     ]])
 
     -- Highlight the variable under current cursor

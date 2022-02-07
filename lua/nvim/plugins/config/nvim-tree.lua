@@ -1,7 +1,7 @@
 local M = {}
 
 M.keybind = function ()
-  vim.api.nvim_set_keymap(
+  vim.keymap.set(
   'n', '<Leader>e',
   '<Cmd>NvimTreeToggle<CR>',
   {noremap=true, silent=true}

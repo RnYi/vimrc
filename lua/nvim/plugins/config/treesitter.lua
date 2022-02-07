@@ -13,14 +13,8 @@ M.setup = function()
         enable = true,
         lookahead = true,
         keymaps = {
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['al'] = '@class.outer',
-          ['il'] = '@class.inner',
           ['aa'] = '@parameter.outer',
           ['ia'] = '@parameter.inner',
-          ['ac'] = '@call.outer',
-          ['ic'] = '@call.inner',
         },
       },
       move = {
@@ -43,16 +37,7 @@ M.setup = function()
           ['[]'] = '@class.outer',
         },
       },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<Leader>sa'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<Leader>sA'] = '@parameter.inner',
-        },
-      },
-    },
+    }
   }
 end
 

@@ -22,7 +22,7 @@ if has('nvim')
   if exists('g:nvui')
     call s:guiconf('nvui')
   endif
-  lua require('init')
+  lua require('nvim')
 else
   let &pythonthreedll='python310.dll'
   if !exists('g:bundle_group')

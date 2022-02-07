@@ -8,3 +8,4 @@ NvuiMoveAnimationDuration 0.3
 NvuiScrollAnimationDuration 0.3
 " Cursor
 NvuiCursorAnimationDuration 0.1
+set guifont=FiraCode\ NF:h14

@@ -4,7 +4,7 @@ require('packer').startup({
   function(use)
     -- load config
     local function conf(name)
-      return require(PlugConfPath..name).setup
+      return ([[require('nvim.plugins.config.%s').setup()]]):format(name)
     end
     -- impatient.nvim
     use {
@@ -12,27 +12,28 @@ require('packer').startup({
       config = [[require('impatient')]],
     }
     -- Packer can manage itself
-    use {
-      'wbthomason/packer.nvim',
-    }
+    use { 'wbthomason/packer.nvim' }
 
     -- Faster filetype
-    use {
-      'nathom/filetype.nvim'
-    }
+    use { 'nathom/filetype.nvim' }
 
     -- UI hooks
     use {
       'stevearc/dressing.nvim',
       event = 'VimEnter',
+      config = function ()
+        require('dressing').setup({
+        input = {
+          -- window transparency
+          winblend = 0,
+        }
+      })
+      end
     }
 
     -- Treesitter
     use {
-      {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        event = 'VimEnter',
-      },
+      { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'VimEnter' },
       {
         'nvim-treesitter/nvim-treesitter',
         event = 'VimEnter',
@@ -42,9 +43,7 @@ require('packer').startup({
     }
 
     -- Icon
-    use {
-      'kyazdani42/nvim-web-devicons'
-    }
+    use { 'kyazdani42/nvim-web-devicons' }
 
     -- Colorscheme
     use{
@@ -122,7 +121,7 @@ require('packer').startup({
       'nvim-telescope/telescope.nvim',
       event = 'VimEnter',
       requires = 'nvim-lua/plenary.nvim' ,
-      config = require('plugins/config/telescope').setup
+      config = conf('telescope')
     }
     -- Telescope extensions
     -- Telescope-fzf-native
@@ -148,10 +147,11 @@ require('packer').startup({
     -- Session manager
     use {
       'Shatur/neovim-session-manager',
+      event = 'VimEnter',
       requires = 'nvim-lua/plenary.nvim' ,
       config = function ()
         -- keymap
-        local map = vim.api.nvim_set_keymap
+        local map = vim.keymap.set
         local map_opt = {noremap = true, silent = true}
         map('n', '<Leader>sl', '<Cmd>SessionManager load_session<CR>', map_opt)
         map('n', '<Leader>ss', '<Cmd>SessionManager save_current_session<CR>', map_opt)
@@ -192,12 +192,25 @@ require('packer').startup({
     --   end
     -- }
 
+    -- Handle delimiters
+    use {
+      'Raimondi/delimitMate',
+      event = 'VimEnter',
+      setup = function ()
+        vim.g.delimitMate_expand_cr = 1
+      end
+    }
+
+    -- Auto-completion for cmdline
+    use { 'gelguy/wilder.nvim',
+          event='CmdlineEnter',
+          config = conf('wilder')
+    }
+
+    -- Completion
     if CompPlug==nil or CompPlug=='nvim-cmp' then
       -- nvim-cmp
-      use {
-        'onsails/lspkind-nvim',
-        event = 'VimEnter',
-      }
+      use { 'onsails/lspkind-nvim', event = 'VimEnter' }
       use {
         'hrsh7th/nvim-cmp',
         after = 'lspkind-nvim',
@@ -239,7 +252,7 @@ require('packer').startup({
     -- use {
     --   'ludovicchabant/vim-gutentags',
     --   event = 'VimEnter',
-    --   setup = require('plugins/config/gutentags').setup
+    --   setup = require('nvim.plugins.config.gutentags').setup
     -- }
     -- use {
     --   'skywind3000/gutentags_plus',
@@ -267,10 +280,7 @@ require('packer').startup({
     -- }
 
     -- Tasks
-    use       {
-      'skywind3000/asyncrun.vim',
-      event = 'VimEnter',
-    }
+    use { 'skywind3000/asyncrun.vim', event = 'VimEnter' }
     use {
       'skywind3000/asynctasks.vim',
       after = 'asyncrun.vim',
@@ -284,7 +294,7 @@ require('packer').startup({
       ft = 'markdown',
       setup = function()
         vim.g.mkdp_auto_close=0
-        vim.api.nvim_set_keymap(
+        vim.keymap.set(
         'n',
         '<Leader>mp',
         '<Plug>MarkdownPreviewToggle',
@@ -301,29 +311,11 @@ require('packer').startup({
     }
 
     -- Comment
-    use {
-      'numToStr/Comment.nvim',
-      event = 'VimEnter',
-      config = function ()
-        require('Comment').setup {
-          mappings = {
-            basic=true,
-            extra=false,
-            extended=false,
-          },
-        }
-      end
-    }
+    use { 'tpope/vim-commentary', event = 'VimEnter' }
 
     -- Surround
-    use {
-      'tpope/vim-repeat',
-      event = 'VimEnter',
-    }
-    use {
-      'tpope/vim-surround',
-      event = 'VimEnter',
-    }
+    use { 'tpope/vim-repeat', event = 'VimEnter' }
+    use { 'tpope/vim-surround', event = 'VimEnter' }
 
     -- Indent line
     use {
@@ -359,6 +351,23 @@ require('packer').startup({
     }
   }
 })
+
+-- auto-generate packer_compiled.lua
+vim.cmd[[
+augroup AutoPackerCompile
+autocmd!
+autocmd BufWritePost */lua/nvim/plugins/init.lua source <afile> | PackerCompile
+augroup END
+]]
+
+-- keymaps for packer.nvim
+local map = vim.keymap.set
+local map_opt = {noremap = true, silent = true}
+map('n', '<Leader>pc', '<Cmd>PackerCompile<CR>', map_opt)
+map('n', '<Leader>ps', '<Cmd>PackerSync<CR>', map_opt)
+map('n', '<Leader>pt', '<Cmd>PackerStatus<CR>', map_opt)
+map('n', '<Leader>pi', '<Cmd>PackerInstall<CR>', map_opt)
+map('n', '<Leader>pu', '<Cmd>PackerUpdate<CR>', map_opt)
 
 -- impatient.nvim requires to load packer_compiled manually
 local status, _ = pcall(require, 'packer_compiled')

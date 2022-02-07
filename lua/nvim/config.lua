@@ -8,6 +8,8 @@ local opt=vim.opt
 --  Basic  --
 -------------
 opt.mouse='nv'
+opt.backup=false
+opt.writebackup=false
 opt.autoread=true
 opt.winaltkeys='no'
 opt.backspace={'indent','eol','start'}
@@ -15,13 +17,13 @@ opt.ttimeout=true
 opt.ttimeoutlen=100
 opt.updatetime=300
 opt.foldmethod='manual'
-opt.switchbuf = {'usetab','newtab'}
+-- opt.switchbuf = {'usetab','newtab'}
 -- Persistent undo
 opt.undofile=true
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
 -- Font
-opt.guifont = 'FiraCode NF:h14'
+-- opt.guifont = 'FiraCode NF:h14'
 opt.guifontwide = '黑体:h14'
 opt.lazyredraw=true
 -- Diff
@@ -80,7 +82,7 @@ opt.list=true
 -- opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
 vim.cmd([[
-set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》
+set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》,（:）
 ]])
 
 ---------------
