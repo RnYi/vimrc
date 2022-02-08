@@ -45,11 +45,14 @@ map('x', '<M-y>', '"+y', map_opt)
 map('', '<M-p>', '"+p', map_opt)
 map({'i', 'c'}, '<M-p>', '<C-r>+', map_opt)
 map('x', '<M-x>', '"+x', map_opt)
+-- Select paste text
+map({'n', 'x'}, 'gp', '`[v`]', map_opt)
 -- Disable all <*-MiddleMouse>
 map({'', 'i'}, '<MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<2-MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<3-MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<4-MiddleMouse>', '<Nop>', map_opt)
+
 -- Save
 map({'n', 'i'}, '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
 -- Buffer

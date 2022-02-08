@@ -69,7 +69,5 @@
     ".git",
     ".hg",
     ".projections.json"
-  ],
-  "sumneko-lua.enableNvimLuaDev": true,
-  "Lua.diagnostics.globals": ["vim"]
+  ]
 }
