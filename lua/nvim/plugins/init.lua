@@ -204,6 +204,7 @@ require('packer').startup({
     -- Auto-completion for cmdline
     use { 'gelguy/wilder.nvim',
           event='CmdlineEnter',
+          run = ':UpdateRemotePlugins',
           config = conf('wilder')
     }
 
@@ -344,6 +345,7 @@ require('packer').startup({
 
   -- Configure packer
   config={
+    max_jobs = 8,
     compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     git={
       -- github mirror
