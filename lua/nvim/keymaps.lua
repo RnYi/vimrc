@@ -50,9 +50,8 @@ map({'', 'i'}, '<MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<2-MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<3-MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<4-MiddleMouse>', '<Nop>', map_opt)
--- Save/delete buffer
+-- Save
 map({'n', 'i'}, '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
-map({'n', 'i'}, '<M-d>',  '<Esc><Cmd>bdelete<CR>',  map_opt)
 -- Buffer
 map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
 map('n', ']b', '<Cmd>bnext<CR>', map_opt)
@@ -64,7 +63,6 @@ map('n', ']t', '<Cmd>tabnext<CR>', map_opt)
 map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
 map('n', ']T', '<Cmd>tablast<CR>', map_opt)
 map({'n', 'i'}, '<M-t>', '<Esc><Cmd>tabnew<CR>', map_opt)
-map({'n', 'i'}, '<M-w>', '<Esc><Cmd>tabclose<CR>', map_opt)
 for i = 1, 10, 1 do -- switch tab
   map({'n', 'i'}, '<M-'..(i%10)..'>', '<Cmd>tabnext '..i..'<CR>', map_opt)
 end
@@ -99,6 +97,9 @@ map('n', 'qf', '<Cmd>cclose<CR>', map_opt)
 map('n', 'ql', '<Cmd>lclose<CR>', map_opt)
 map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
 map('n', 'qa', '<Cmd>qa<CR>', map_opt)
+map('n', 'qb',  '<Cmd>bdelete<CR>',  map_opt)
+map('n', 'qt',  '<Cmd>tabclose<CR>',  map_opt)
+map('n', 'qw',  '<Cmd>close<CR>',  map_opt)
 -- Open terminal in a tab
 map({'n', 'i'}, '<M-=>', '<Cmd>tabnew|terminal<CR>', map_opt)
 -- Single leader key does nothing
