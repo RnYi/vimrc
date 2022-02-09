@@ -102,8 +102,8 @@ nnoremap <Leader><Leader> <cmd>nohl<CR>
 " Remap <C-x><C-k>
 inoremap <C-x><C-k> <C-x><C-k>
 " Popup
-inoremap <silent><expr> inoremap <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> inoremap <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort

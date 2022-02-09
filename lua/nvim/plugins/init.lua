@@ -209,6 +209,7 @@ require('packer').startup({
 
     -- Auto-completion for cmdline
     use { 'gelguy/wilder.nvim',
+          disable = true,
           event='CmdlineEnter',
           run = ':UpdateRemotePlugins',
           config = conf('wilder')
