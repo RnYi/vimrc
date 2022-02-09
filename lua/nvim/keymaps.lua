@@ -52,7 +52,6 @@ map({'', 'i'}, '<MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<2-MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<3-MiddleMouse>', '<Nop>', map_opt)
 map({'', 'i'}, '<4-MiddleMouse>', '<Nop>', map_opt)
-
 -- Save
 map({'n', 'i'}, '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
 -- Buffer

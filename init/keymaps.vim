@@ -1,18 +1,20 @@
+" Leader key
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
+" pastetoggle
 set pastetoggle=<F12>
+" Move between lines
 nnoremap H ^
 nnoremap L $
 xnoremap H ^
 xnoremap L $
 onoremap H ^
 onoremap L $
-
 noremap j gj
 noremap k gk
 noremap <M-j> j
 noremap <M-k> k
-
+" Window operations
 nnoremap <M-J> <C-w>j
 nnoremap <M-K> <C-w>k
 nnoremap <M-H> <C-w>h
@@ -30,38 +32,39 @@ tnoremap <M-L> <C-\><C-N><C-w>l
 tnoremap <M-Q> <C-\><C-N><Cmd>close<CR>
 tnoremap <M-q> <C-\><C-N>
 tnoremap <C-v> <C-w>"+
-
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
-
+" Newline above/below current position (cannot work in terminal)
 inoremap <C-CR> <Esc>o
 inoremap <S-CR> <Esc>O
-
+" Disable all <*-MiddleMouse>
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
-
-nnoremap <silent> <M-s> <Cmd>update<CR>
+" Save
+nnoremap <silent> <M-s> <Esc><Cmd>update<CR>
 inoremap <silent> <M-s> <Esc><Cmd>update<CR>
-nnoremap <silent> <M-d> <Cmd>bdelete<CR>
-inoremap <silent> <M-d> <Esc><Cmd>bdelete<CR>
+" Copy/Paste/Cut
 xnoremap <silent> <M-y> "*y
 noremap <silent> <M-p> "*p
 cnoremap <silent> <M-p> <C-r>*
 inoremap <silent> <M-p> <C-r>*
 xnoremap <silent> <M-x> "*x
-
+" Buffer
 nnoremap <silent> [b <Cmd>bprevious<CR>
 nnoremap <silent> ]b <Cmd>bnext<CR>
 nnoremap <silent> [B <Cmd>bfirst<CR>
 nnoremap <silent> ]B <Cmd>blast<CR>
+" Quickfix
 nnoremap <silent> [q <Cmd>cprevious<CR>
 nnoremap <silent> ]q <Cmd>cnext<CR>
 nnoremap <silent> [Q <Cmd>cfirst<CR>
 nnoremap <silent> ]Q <Cmd>clast<CR>
+" Location
 nnoremap <silent> [l <Cmd>lprevious<CR>
 nnoremap <silent> ]l <Cmd>lnext<CR>
 nnoremap <silent> [L <Cmd>lfirst<CR>
 nnoremap <silent> ]L <Cmd>llast<CR>
+" Space
 nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
 nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 " Tab
@@ -71,16 +74,13 @@ nnoremap <silent> [T <Cmd>tabfirst<CR>
 nnoremap <silent> ]T <Cmd>tablast<CR>
 nnoremap <silent> <M-t> <Cmd>tabnew<CR>
 inoremap <silent> <M-t> <Esc><Cmd>tabnew<CR>
-nnoremap <silent> <M-w> <Cmd>tabclose<CR>
-inoremap <silent> <M-w> <Esc><Cmd>tabclose<CR>
 function s:switch_tab_keymap()
   for i in range(10)
     exec 'nnoremap <M-'.(i%10).'> <Cmd>tabnext '.i.'<CR>'
-    exec 'inoremap <M-'.(i%10).'> <Esc><Cmd>tabnext '.i.'<CR>'
+    exec 'inoremap <M-'.(i%10).'> <Cmd>tabnext '.i.'<CR>'
   endfor
 endfunction
 call s:switch_tab_keymap()
-
 " Quickly quit
 nnoremap q <Nop>
 xnoremap q <Nop>
@@ -89,6 +89,9 @@ nnoremap <silent> qf <Cmd>cclose<CR>
 nnoremap <silent> ql <Cmd>lclose<CR>
 nnoremap <silent> qh <Cmd>helpclose<CR>
 nnoremap <silent> qa <Cmd>qa<CR>
+nnoremap <silent> qb <Cmd>bdelete<CR>
+nnoremap <silent> qt <Cmd>tabclose<CR>
+nnoremap <silent> qw <Cmd>close<CR>
 " Open terminal
 nnoremap <silent> <M-=> <Cmd>tabnew <bar> terminal<CR>
 inoremap <silent> <M-=> <Esc><Cmd>tabnew <bar> terminal<CR>
@@ -96,6 +99,11 @@ inoremap <silent> <M-=> <Esc><Cmd>tabnew <bar> terminal<CR>
 nnoremap <Leader> <Nop>
 " nohl
 nnoremap <Leader><Leader> <cmd>nohl<CR>
+" Remap <C-x><C-k>
+inoremap <C-x><C-k> <C-x><C-k>
+" Popup
+inoremap <silent><expr> inoremap <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> inoremap <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
