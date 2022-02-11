@@ -70,5 +70,6 @@
     ".hg",
     ".projections.json"
   ],
-  "sumneko-lua.checkUpdate": false
+  "sumneko-lua.checkUpdate": false,
+  "jedi.startupMessage": true
 }

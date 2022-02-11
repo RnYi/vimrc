@@ -82,7 +82,7 @@ opt.list=true
 -- opt.showbreak='↪'
 opt.listchars={trail='·',extends='⟩',precedes='⟨'}
 vim.cmd([[
-set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》,（:）
+set matchpairs+=「:」,『:』,【:】,“:”,‘:’,《:》,（:）
 ]])
 
 ---------------

@@ -6,7 +6,7 @@ M.setup = function ()
   let g:coc_config_home=g:vimrc_home
   let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
   " coc extensions must be installed
-  let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-pyright","coc-html","coc-ultisnips","coc-vimtex","coc-sumneko-lua","coc-toml","coc-yaml"]
+  let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","coc-jedi","coc-html","coc-ultisnips","coc-vimtex","coc-sumneko-lua","coc-toml","coc-yaml"]
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
