@@ -18,7 +18,7 @@ require('packer').startup({
       config = [[require('impatient')]],
     }
     -- Packer can manage itself
-    use { 'wbthomason/packer.nvim' }
+    use { 'wbthomason/packer.nvim', commit = 'c5e98e3ca84843dbae47cd8f3a76bc38c6404241'}
 
     -- Faster filetype
     use { 'nathom/filetype.nvim' }
@@ -230,11 +230,15 @@ require('packer').startup({
       use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'}
       use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'}
       use {'hrsh7th/cmp-nvim-lua', ft='lua'}
-      use { 'hrsh7th/cmp-omni', ft='tex'}
+      use {'hrsh7th/cmp-omni', ft='tex'}
       use {
-        'dcampos/cmp-snippy',
-        after = {'nvim-cmp', 'nvim-snippy'}
-      }
+            'quangnguyen30192/cmp-nvim-ultisnips',
+            after = {'nvim-cmp', 'ultisnips'}
+          }
+      -- use {
+      --   'dcampos/cmp-snippy',
+      --   after = {'nvim-cmp', 'nvim-snippy'}
+      -- }
 
       -- nvim-lspconfig
       use {

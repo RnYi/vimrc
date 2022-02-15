@@ -1,4 +1,5 @@
 {
   "sumneko-lua.enableNvimLuaDev": true,
-  "Lua.diagnostics.globals": ["vim"]
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.diagnostics.globals": ["vim", "NvimHome", "GitRepoUrl", "OSName", "CompPlug"]
 }

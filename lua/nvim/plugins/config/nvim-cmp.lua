@@ -7,7 +7,8 @@ M.setup = function()
     -- MUST specify a snippet engine
     snippet = {
       expand = function (args)
-        require('snippy').expand_snippet(args.body)
+        -- require('snippy').expand_snippet(args.body)
+        vim.fn["UltiSnips#Anon"](args.body)
       end,
     },
     mapping = {
@@ -37,7 +38,7 @@ M.setup = function()
     },
     sources = {
       { name = 'nvim_lsp'},
-      { name = 'snippy'},
+      { name = 'ultisnips'},
       { name = 'buffer' },
       { name = 'path' },
     },
@@ -49,7 +50,7 @@ M.setup = function()
         with_text = true,
         menu = {
           nvim_lsp = "[LSP]",
-          snippy = "[SNP]",
+          ultisnips = "[US]",
           nvim_lua = "[Lua]",
           path = "[Path]",
           buffer = "[Buffer]",
@@ -81,7 +82,7 @@ M.setup = function()
     \  lua require('cmp').setup.buffer{
       \  sources={
         \    {name='omni'},
-        \    {name='snippy'},
+        \    {name='ultisnips'},
         \    {name='buffer'},
         \    {name='path'},
         \  }
@@ -90,7 +91,7 @@ M.setup = function()
     \  lua require('cmp').setup.buffer{
       \  sources={
         \    {name='nvim_lsp'},
-        \    {name='snippy'},
+        \    {name='ultisnips'},
         \    {name='nvim_lua'},
         \    {name='buffer'},
         \    {name='path'},

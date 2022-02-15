@@ -38,7 +38,7 @@
   "diagnostic.enableSign": true,
   "diagnostic.warningSign": ">>",
   "diagnostic.autoRefresh": true,
-  "diagnostic.checkCurrentLine": true,
+  "diagnostic.checkCurrentLine": false,
   "diagnostic.floatConfig": {
     "border": true,
     "focusable": false
@@ -71,5 +71,7 @@
     ".projections.json"
   ],
   "sumneko-lua.checkUpdate": false,
+  "Lua.window.statusBar": false,
+  "Lua.telemetry.enable": false,
   "jedi.startupMessage": true
 }
