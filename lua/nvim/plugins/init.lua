@@ -18,7 +18,7 @@ require('packer').startup({
       config = [[require('impatient')]],
     }
     -- Packer can manage itself
-    use { 'wbthomason/packer.nvim', commit = 'c5e98e3ca84843dbae47cd8f3a76bc38c6404241'}
+    use { 'wbthomason/packer.nvim'}
 
     -- Faster filetype
     use { 'nathom/filetype.nvim' }
@@ -372,9 +372,10 @@ require('packer').startup({
 
 -- auto-generate packer_compiled.lua
 vim.cmd[[
+let g:packer_init = g:vimrc_home.'/lua/nvim/plugins/init.lua'
 augroup AutoPackerCompile
 autocmd!
-autocmd BufWritePost */lua/nvim/plugins/init.lua source <afile> | PackerCompile
+autocmd BufWritePost */lua/nvim/plugins/* exe "so ".g:packer_init| PackerCompile
 augroup END
 ]]
 
