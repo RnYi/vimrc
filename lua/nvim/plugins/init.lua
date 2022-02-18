@@ -4,6 +4,7 @@ local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', GitRepoUrl..'/wbthomason/packer.nvim', install_path})
   end
+
 -- Manage plugins
 require('packer').startup({
   -- add plugins

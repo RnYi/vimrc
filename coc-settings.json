@@ -70,8 +70,10 @@
     ".hg",
     ".projections.json"
   ],
+  // Lua
   "sumneko-lua.checkUpdate": false,
   "Lua.window.statusBar": false,
   "Lua.telemetry.enable": false,
-  "jedi.startupMessage": true
+  // pwsh
+  "powershell.integratedConsole.showOnStartup": false
 }
