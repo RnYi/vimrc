@@ -330,6 +330,9 @@ require('packer').startup({
     use { 'tpope/vim-repeat', event = 'VimEnter' }
     use { 'tpope/vim-surround', event = 'VimEnter' }
 
+    -- Align
+    use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
+
     -- Indent line
     use {
       'lukas-reineke/indent-blankline.nvim',
