@@ -22,7 +22,7 @@ require('packer').startup({
     use { 'wbthomason/packer.nvim'}
 
     -- Faster filetype
-    use { 'nathom/filetype.nvim' }
+    use { 'nathom/filetype.nvim'}
 
     -- UI hooks
     use {
@@ -40,14 +40,12 @@ require('packer').startup({
 
     -- Treesitter
     use {
-      { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'VimEnter' },
-      {
-        'nvim-treesitter/nvim-treesitter',
-        event = 'VimEnter',
-        run = ':TSUpdate',
-        config = conf('treesitter')
-      },
+      'nvim-treesitter/nvim-treesitter',
+      event = 'VimEnter',
+      run = ':TSUpdate',
+      config = conf('treesitter')
     }
+
 
     -- Icon
     use { 'kyazdani42/nvim-web-devicons' }
@@ -209,12 +207,12 @@ require('packer').startup({
     }
 
     -- Auto-completion for cmdline
-    use { 'gelguy/wilder.nvim',
-          disable = true,
-          event='CmdlineEnter',
-          run = ':UpdateRemotePlugins',
-          config = conf('wilder')
-    }
+    -- use { 'gelguy/wilder.nvim',
+    --       disable = true,
+    --       event='CmdlineEnter',
+    --       run = ':UpdateRemotePlugins',
+    --       config = conf('wilder')
+    -- }
 
     -- Completion
     if CompPlug==nil or CompPlug=='nvim-cmp' then
@@ -317,11 +315,12 @@ require('packer').startup({
     }
 
     -- Latex
-    use {
-      'lervag/vimtex',
-      ft = 'tex',
-      setup = conf('vimtex')
-    }
+    -- use {
+    --   'lervag/vimtex',
+    --   disable = true,
+    --   ft = 'tex',
+    --   setup = conf('vimtex')
+    -- }
 
     -- Comment
     use { 'tpope/vim-commentary', event = 'VimEnter' }
@@ -357,6 +356,20 @@ require('packer').startup({
       }
     end
 
+    -- Textobjects
+    use { 'kana/vim-textobj-user', event = 'VimEnter' }
+    use { 'kana/vim-textobj-indent', event = 'VimEnter' }
+    use {
+      'sgur/vim-textobj-parameter',
+      event = 'VimEnter',
+      setup = function()
+        vim.cmd[[
+        let g:vim_textobj_parameter_mapping = 'a'
+        ]]
+      end
+    }
+    use { 'rbonvall/vim-textobj-latex', ft = 'tex' }
+
     -- Auto set up configuration after cloning packer.nvim
     if packer_bootstrap then
       require('packer').sync()
@@ -380,6 +393,7 @@ let g:packer_init = g:vimrc_home.'/lua/nvim/plugins/init.lua'
 augroup AutoPackerCompile
 autocmd!
 autocmd BufWritePost */lua/nvim/plugins/* exe "so ".g:packer_init| PackerCompile
+autocmd User PackerCompileDone lua vim.notify('PackerCompile Done!', 'info', nil)
 augroup END
 ]]
 

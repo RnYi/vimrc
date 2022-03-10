@@ -22,14 +22,10 @@ end
 M.keybind = function ()
     local map=vim.keymap.set
     local map_opt={noremap=true, silent=true}
-    map('n', '<F3>', '<Cmd>AsyncTask build<CR>', map_opt)
-    map('i', '<F3>', '<Esc><Cmd>AsyncTask build<CR>', map_opt)
-    map('n', '<F4>', '<Cmd>AsyncTask run<CR>', map_opt)
-    map('i', '<F4>', '<Esc><Cmd>AsyncTask run<CR>', map_opt)
-    map('n', '<F5>', '<Cmd>AsyncTask debug<CR>', map_opt)
-    map('i', '<F5>', '<Esc><Cmd>AsyncTask debug<CR>', map_opt)
-    map('n', '<F6>', '<Cmd>AsyncTask git-add-commit<CR>', map_opt)
-    map('i', '<F6>', '<Esc><Cmd>AsyncTask git-add-commit<CR>', map_opt)
+    map({'n', 'i'}, '<F3>', '<Esc><Cmd>AsyncTask build<CR>', map_opt)
+    map({'n', 'i'}, '<F4>', '<Esc><Cmd>AsyncTask run<CR>', map_opt)
+    map({'n', 'i'}, '<F5>', '<Esc><Cmd>AsyncTask debug<CR>', map_opt)
+    map({'n', 'i'}, '<F6>', '<Esc><Cmd>AsyncTask git-add-commit<CR>', map_opt)
 end
 
 return M

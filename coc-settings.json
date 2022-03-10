@@ -75,5 +75,25 @@
   "Lua.window.statusBar": false,
   "Lua.telemetry.enable": false,
   // pwsh
-  "powershell.integratedConsole.showOnStartup": false
+  "powershell.integratedConsole.showOnStartup": false,
+  // latex
+  "texlab.build.args": [
+    "-pdfxe",
+    "-file-line-error",
+    "-interaction=batchmode",
+    "-shell-escape",
+    "-synctex=1",
+    "-outdir=.tmp",
+    "%f"
+  ],
+  "texlab.build.forwardSearchAfter": true,
+  "texlab.auxDirectory": ".tmp",
+  "texlab.forwardSearch.executable": "SumatraPDF.exe",
+  "texlab.forwardSearch.args": [
+    "-reuse-instance",
+    "%p",
+    "-forward-search",
+    "%f",
+    "%l"
+  ]
 }

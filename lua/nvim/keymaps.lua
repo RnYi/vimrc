@@ -66,7 +66,7 @@ map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
 map('n', ']T', '<Cmd>tablast<CR>', map_opt)
 map({'n', 'i'}, '<M-t>', '<Esc><Cmd>tabnew<CR>', map_opt)
 for i = 1, 10, 1 do -- switch tab
-  map({'n', 'i'}, '<M-'..(i%10)..'>', '<Cmd>tabnext '..i..'<CR>', map_opt)
+  map({'n', 'i'}, '<M-'..(i%10)..'>', '<Esc><Cmd>tabnext '..i..'<CR>', map_opt)
 end
 -- Quickfix
 map('n', '[q', '<Cmd>cprevious<CR>', map_opt)
@@ -103,7 +103,7 @@ map('n', 'qb',  '<Cmd>bdelete<CR>',  map_opt)
 map('n', 'qt',  '<Cmd>tabclose<CR>',  map_opt)
 map('n', 'qw',  '<Cmd>close<CR>',  map_opt)
 -- Open terminal in a tab
-map({'n', 'i'}, '<M-=>', '<Cmd>tabnew|terminal<CR>', map_opt)
+map({'n', 'i'}, '<M-=>', '<Esc><Cmd>tabnew|terminal<CR>', map_opt)
 -- Single leader key does nothing
 map('n', '<Leader>', '<Nop>', map_opt)
 -- Double leader key clear highlight of searching
