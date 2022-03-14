@@ -97,6 +97,6 @@
     "%l"
   ],
   // markdown
-  "markdown-preview-enhanced.previewTheme": "github-light.css",
+  "markdown-preview-enhanced.previewTheme":"newsprint.css",
   "markdown-preview-enhanced.singlePreview": true
 }

@@ -301,6 +301,7 @@ require('packer').startup({
     -- Markdown
     use {
       'iamcco/markdown-preview.nvim',
+      disable=true,
       run = 'cd app && yarn install',
       ft = 'markdown',
       setup = function()
