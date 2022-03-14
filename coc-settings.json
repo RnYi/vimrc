@@ -95,5 +95,8 @@
     "-forward-search",
     "%f",
     "%l"
-  ]
+  ],
+  // markdown
+  "markdown-preview-enhanced.previewTheme": "github-light.css",
+  "markdown-preview-enhanced.singlePreview": true
 }

@@ -2,7 +2,7 @@
 let g:vimrc_home=expand('<sfile>:p:h')
 let g:init_home=g:vimrc_home.'/init'
 " mirror of github
-let g:repo_url='https://github.com.cnpmjs.org'
+" let g:repo_url='https://github.com.cnpmjs.org'
 " completion plug
 let g:comp_plug='coc'
 " language
