@@ -1,9 +1,19 @@
-GuiRenderLigatures 0
-GuiAdaptiveColor 1
-GuiAdaptiveFont 1
+if exists(':GuiRenderLigatures')
+  GuiRenderLigatures 0
+endif
+if exists(':GuiAdaptiveColor')
+  GuiAdaptiveColor 1
+endif
+if exists(':GuiAdaptiveFont')
+  GuiAdaptiveFont 1
+endif
+if exists(':GuiWindowOpacity')
+  GuiWindowOpacity 1.0
+endif
+if exists(':GuiAdaptiveStyle')
+  GuiAdaptiveStyle windowsvista
+endif
 GuiTabline 0
 GuiPopupmenu 0
 GuiScrollBar 0
-GuiWindowOpacity 1.0
-GuiAdaptiveStyle windowsvista
 GuiFont! FiraCode\ NF:h13
