@@ -31,6 +31,11 @@ M.setup = function ()
         },
       },
     },
+    actions = {
+      change_dir = {
+        global = true
+      }
+    },
     trash = {
       cmd = trash_cmd,
     },
