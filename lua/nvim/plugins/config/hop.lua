@@ -19,7 +19,8 @@ end
 
 M.setup = function ()
   require('hop').setup{
-    char2_fallback_key='<CR>'
+    char2_fallback_key = '<CR>',
+    multi_windows = true
   }
 end
 
