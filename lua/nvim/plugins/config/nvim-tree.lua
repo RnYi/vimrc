@@ -21,6 +21,9 @@ M.setup = function ()
     git = {
       enable = false
     },
+    hijack_directories = {
+      enable = false
+    },
     view = {
       auto_resize = true,
       hide_root_folder = true,

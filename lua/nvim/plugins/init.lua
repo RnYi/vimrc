@@ -98,6 +98,17 @@ require('packer').startup({
 
     -- File Explorer
     use {
+      'elihunter173/dirbuf.nvim',
+      disable = true,
+      cmd = 'Dirbuf',
+      config = function ()
+        require('dirbuf').setup{
+          hash_first = false,
+          sort_order = 'directories_first'
+        }
+      end
+    }
+    use {
       'kyazdani42/nvim-tree.lua',
       cmd = 'NvimTreeToggle',
       config = conf('nvim-tree')

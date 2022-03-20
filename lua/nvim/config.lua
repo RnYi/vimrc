@@ -38,6 +38,7 @@ g.loaded_ruby_provider=0
 g.loaded_python_provider=0
 g.python3_host_prog='python3'
 -- disable internal plugins
+g.loaded_netrw = 1
 g.loaded_netrwPlugin=1
 
 --------------
@@ -65,7 +66,7 @@ opt.wrap=true
 opt.number=true
 opt.showcmd=false
 opt.pumheight=20
-opt.signcolumn='yes:1'
+opt.signcolumn='yes'
 opt.title=true
 opt.titlestring='%{getcwd()}'
 opt.hidden=true
