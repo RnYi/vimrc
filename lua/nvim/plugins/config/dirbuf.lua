@@ -15,6 +15,8 @@ M.setup = function ()
     autocmd FileType dirbuf set nolist
     autocmd FileType dirbuf nnoremap <buffer><nowait> q <Cmd>close<CR>
     autocmd FileType dirbuf nnoremap <buffer> <C-t> <Cmd>lua require('dirbuf').enter('tabedit')<CR>
+    autocmd FileType dirbuf nnoremap <buffer> <C-x> <Cmd>lua require('dirbuf').enter('split')<CR>
+    autocmd FileType dirbuf nnoremap <buffer> <C-v> <Cmd>lua require('dirbuf').enter('vsplit')<CR>
   augroup END
   ]]
 end
