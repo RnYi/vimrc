@@ -71,6 +71,7 @@ require('packer').startup({
     -- Statusline
     use {
       'nvim-lualine/lualine.nvim',
+      after = 'nvim-web-devicons',
       event = 'VimEnter',
       config = conf('lualine')
     }
@@ -99,20 +100,15 @@ require('packer').startup({
     -- File Explorer
     use {
       'elihunter173/dirbuf.nvim',
-      disable = true,
       cmd = 'Dirbuf',
-      config = function ()
-        require('dirbuf').setup{
-          hash_first = false,
-          sort_order = 'directories_first'
-        }
-      end
+      config = conf('dirbuf')
     }
-    use {
-      'kyazdani42/nvim-tree.lua',
-      cmd = 'NvimTreeToggle',
-      config = conf('nvim-tree')
-    }
+    -- use {
+    --   'kyazdani42/nvim-tree.lua',
+    --   disbale = true,
+    --   cmd = 'NvimTreeToggle',
+    --   config = conf('nvim-tree')
+    -- }
 
     -- Searh and Move
     use {
