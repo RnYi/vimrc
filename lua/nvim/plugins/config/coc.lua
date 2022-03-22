@@ -67,6 +67,8 @@ M.setup = function ()
   augroup Coc
     autocmd!
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd FileType markdown nnoremap <buffer> <Leader>mp <Cmd>CocCommand markdown-preview-enhanced.openPreview<CR>
+    autocmd FileType markdown nnoremap <buffer> <Leader>mo <Cmd>CocCommand markdown-preview-enhanced.createTOC<CR>
   augroup END
   ]]
 end
