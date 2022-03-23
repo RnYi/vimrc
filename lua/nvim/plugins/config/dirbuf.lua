@@ -2,7 +2,9 @@ local M = {}
 
 M.trash_file = function ()
   local path = require('dirbuf').get_cursor_path()
-  vim.fn.execute('!trash '..path)
+  local trash_cmd = "!trash "..'"'..path..'"'
+  -- vim.notify(trash_cmd, 'debug')
+  vim.fn.execute(trash_cmd)
   vim.fn.execute('e!')
 end
 
