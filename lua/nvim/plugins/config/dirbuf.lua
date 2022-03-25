@@ -14,7 +14,6 @@ end
 
 M.setup = function ()
   require('dirbuf').setup {
-    hash_first = false,
     sort_order = 'directories_first',
     write_cmd = 'DirbufSync -confirm'
   }
