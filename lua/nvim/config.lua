@@ -23,7 +23,6 @@ opt.undofile=true
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
 -- Font
--- opt.guifont = 'FiraCode NF:h14'
 opt.guifontwide = '黑体:h14'
 opt.lazyredraw=true
 -- Diff
