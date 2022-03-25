@@ -53,6 +53,7 @@ require('packer').startup({
     -- Colorscheme
     use{
       'sainnhe/gruvbox-material',
+      event = 'VimEnter',
       config = function ()
         vim.g.gruvbox_material_better_performance=1
         vim.g.gruvbox_material_enable_bold = 0
@@ -71,7 +72,7 @@ require('packer').startup({
     use {
       'nvim-lualine/lualine.nvim',
       after ={ 'nvim-web-devicons', 'gruvbox-material'},
-      event = 'VimEnter',
+      -- event = 'VimEnter',
       config = conf('lualine')
     }
 
