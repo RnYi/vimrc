@@ -99,7 +99,13 @@ require('packer').startup({
 
     -- File Explorer
     use {
+      'justinmk/vim-dirvish',
+      cmd = 'Dirvish',
+      setup = conf('dirvish')
+    }
+    use {
       'elihunter173/dirbuf.nvim',
+      disable = true,
       cmd = 'Dirbuf',
       config = conf('dirbuf')
     }
