@@ -46,7 +46,6 @@ require('packer').startup({
       config = conf('treesitter')
     }
 
-
     -- Icon
     use { 'kyazdani42/nvim-web-devicons' }
 
@@ -103,12 +102,12 @@ require('packer').startup({
       cmd = 'Dirvish',
       setup = conf('dirvish')
     }
-    use {
-      'elihunter173/dirbuf.nvim',
-      disable = true,
-      cmd = 'Dirbuf',
-      config = conf('dirbuf')
-    }
+    -- use {
+    --   'elihunter173/dirbuf.nvim',
+    --   disable = true,
+    --   cmd = 'Dirbuf',
+    --   config = conf('dirbuf')
+    -- }
     -- use {
     --   'kyazdani42/nvim-tree.lua',
     --   disbale = true,
@@ -121,6 +120,12 @@ require('packer').startup({
       'phaazon/hop.nvim',
       cmd = {'HopWord', 'HopPattern', 'HopChar1', 'HopChar2', 'HopLine'},
       config = conf('hop')
+    }
+
+    -- Keymap
+    use {
+      'tpope/vim-unimpaired',
+      event = 'VimEnter',
     }
 
     -- Git

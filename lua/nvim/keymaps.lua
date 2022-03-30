@@ -55,32 +55,32 @@ map({'', 'i'}, '<4-MiddleMouse>', '<Nop>', map_opt)
 -- Save
 map({'n', 'i'}, '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
 -- Buffer
-map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
-map('n', ']b', '<Cmd>bnext<CR>', map_opt)
-map('n', '[B', '<Cmd>bfirst<CR>', map_opt)
-map('n', ']B', '<Cmd>blast<CR>', map_opt)
+-- map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
+-- map('n', ']b', '<Cmd>bnext<CR>', map_opt)
+-- map('n', '[B', '<Cmd>bfirst<CR>', map_opt)
+-- map('n', ']B', '<Cmd>blast<CR>', map_opt)
 -- Tabpage
-map('n', '[t', '<Cmd>tabprevious<CR>', map_opt)
-map('n', ']t', '<Cmd>tabnext<CR>', map_opt)
-map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
-map('n', ']T', '<Cmd>tablast<CR>', map_opt)
+-- map('n', '[t', '<Cmd>tabprevious<CR>', map_opt)
+-- map('n', ']t', '<Cmd>tabnext<CR>', map_opt)
+-- map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
+-- map('n', ']T', '<Cmd>tablast<CR>', map_opt)
 map({'n', 'i'}, '<M-t>', '<Esc><Cmd>tabnew<CR>', map_opt)
 for i = 1, 10, 1 do -- switch tab
   map({'n', 'i'}, '<M-'..(i%10)..'>', '<Esc><Cmd>tabnext '..i..'<CR>', map_opt)
 end
 -- Quickfix
-map('n', '[q', '<Cmd>cprevious<CR>', map_opt)
-map('n', ']q', '<Cmd>cnext<CR>', map_opt)
-map('n', '[Q', '<Cmd>cfirst<CR>', map_opt)
-map('n', ']Q', '<Cmd>clast<CR>', map_opt)
+-- map('n', '[q', '<Cmd>cprevious<CR>', map_opt)
+-- map('n', ']q', '<Cmd>cnext<CR>', map_opt)
+-- map('n', '[Q', '<Cmd>cfirst<CR>', map_opt)
+-- map('n', ']Q', '<Cmd>clast<CR>', map_opt)
 -- Location
-map('n', '[l', '<Cmd>lprevious<CR>', map_opt)
-map('n', ']l', '<Cmd>lnext<CR>', map_opt)
-map('n', '[L', '<Cmd>lfirst<CR>', map_opt)
-map('n', ']L', '<Cmd>llast<CR>', map_opt)
+-- map('n', '[l', '<Cmd>lprevious<CR>', map_opt)
+-- map('n', ']l', '<Cmd>lnext<CR>', map_opt)
+-- map('n', '[L', '<Cmd>lfirst<CR>', map_opt)
+-- map('n', ']L', '<Cmd>llast<CR>', map_opt)
 -- Space
-map('n', '[<Space>', '<Cmd>put!=nr2char(10)<CR>', map_opt)
-map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>', map_opt)
+-- map('n', '[<Space>', '<Cmd>put!=nr2char(10)<CR>', map_opt)
+-- map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>', map_opt)
 -- Toggle window maximized
 vim.cmd([[
 function! MaximizeToggle() abort
