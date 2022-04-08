@@ -50,28 +50,28 @@ cnoremap <silent> <M-p> <C-r>*
 inoremap <silent> <M-p> <C-r>*
 xnoremap <silent> <M-x> "*x
 " Buffer
-nnoremap <silent> [b <Cmd>bprevious<CR>
-nnoremap <silent> ]b <Cmd>bnext<CR>
-nnoremap <silent> [B <Cmd>bfirst<CR>
-nnoremap <silent> ]B <Cmd>blast<CR>
+" nnoremap <silent> [b <Cmd>bprevious<CR>
+" nnoremap <silent> ]b <Cmd>bnext<CR>
+" nnoremap <silent> [B <Cmd>bfirst<CR>
+" nnoremap <silent> ]B <Cmd>blast<CR>
 " Quickfix
-nnoremap <silent> [q <Cmd>cprevious<CR>
-nnoremap <silent> ]q <Cmd>cnext<CR>
-nnoremap <silent> [Q <Cmd>cfirst<CR>
-nnoremap <silent> ]Q <Cmd>clast<CR>
+" nnoremap <silent> [q <Cmd>cprevious<CR>
+" nnoremap <silent> ]q <Cmd>cnext<CR>
+" nnoremap <silent> [Q <Cmd>cfirst<CR>
+" nnoremap <silent> ]Q <Cmd>clast<CR>
 " Location
-nnoremap <silent> [l <Cmd>lprevious<CR>
-nnoremap <silent> ]l <Cmd>lnext<CR>
-nnoremap <silent> [L <Cmd>lfirst<CR>
-nnoremap <silent> ]L <Cmd>llast<CR>
+" nnoremap <silent> [l <Cmd>lprevious<CR>
+" nnoremap <silent> ]l <Cmd>lnext<CR>
+" nnoremap <silent> [L <Cmd>lfirst<CR>
+" nnoremap <silent> ]L <Cmd>llast<CR>
 " Space
-nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
-nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
+" nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
+" nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 " Tab
-nnoremap <silent> [t <Cmd>tabprevious<CR>
-nnoremap <silent> ]t <Cmd>tabnext<CR>
-nnoremap <silent> [T <Cmd>tabfirst<CR>
-nnoremap <silent> ]T <Cmd>tablast<CR>
+" nnoremap <silent> [t <Cmd>tabprevious<CR>
+" nnoremap <silent> ]t <Cmd>tabnext<CR>
+" nnoremap <silent> [T <Cmd>tabfirst<CR>
+" nnoremap <silent> ]T <Cmd>tablast<CR>
 nnoremap <silent> <M-t> <Cmd>tabnew<CR>
 inoremap <silent> <M-t> <Esc><Cmd>tabnew<CR>
 function s:switch_tab_keymap()
