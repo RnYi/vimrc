@@ -111,8 +111,8 @@ map('n', '<Leader><Leader>', '<Cmd>nohl<CR>', map_opt)
 -- Remap <C-x><C-k>
 map('i', '<C-x><C-k>', '<C-x><C-k>', map_opt)
 -- Popup
-map('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], {noremap=true, silent=true, expr=true})
-map('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], {noremap=true, silent=true, expr=true})
+-- map('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], {noremap=true, silent=true, expr=true})
+-- map('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], {noremap=true, silent=true, expr=true})
 -- Map meta key
 vim.cmd([[
 function! Terminal_MetaMode(mode)

@@ -8,6 +8,7 @@ local opt=vim.opt
 --  Basic  --
 -------------
 opt.mouse='nv'
+opt.mousemodel='extend'
 opt.backup=false
 opt.writebackup=false
 opt.autoread=true
@@ -23,7 +24,7 @@ opt.undofile=true
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
 -- Font
-opt.guifontwide = '黑体:h14'
+opt.guifontwide = '黑体:h10'
 opt.lazyredraw=true
 -- Diff
 opt.diffopt:append('vertical')
