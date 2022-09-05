@@ -377,17 +377,21 @@ require('packer').startup({
 
     -- Textobjects
     use { 'kana/vim-textobj-user', event = 'VimEnter' }
-    use { 'kana/vim-textobj-indent', event = 'VimEnter' }
+    use { 'kana/vim-textobj-indent', after = 'vim-textobj-user' }
     use {
       'sgur/vim-textobj-parameter',
-      event = 'VimEnter',
+      after = 'vim-textobj-user',
       setup = function()
         vim.cmd[[
         let g:vim_textobj_parameter_mapping = 'a'
         ]]
       end
     }
-    use { 'rbonvall/vim-textobj-latex', ft = 'tex' }
+    use {
+      'rbonvall/vim-textobj-latex',
+      after = 'vim-textobj-user',
+      ft = 'tex'
+    }
 
     -- Auto set up configuration after cloning packer.nvim
     if packer_bootstrap then
