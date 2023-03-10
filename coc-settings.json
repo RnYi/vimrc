@@ -1,11 +1,15 @@
 {
-  "suggest.labelMaxLength": 100,
-  "suggest.detailMaxLength": 100,
+ // "http.proxy": "http://127.0.0.1:7890",
+  "suggest.noselect": false,
+  "suggest.enablePreselect": false,
+  "suggest.labelMaxLength": 50,
+  "suggest.detailMaxLength": 50,
   "suggest.removeDuplicateItems": true,
-  "suggest.floatConfig": {
-    "border": true,
-    "shadow": true
-  },
+  "suggest.autoTrigger": "none",
+ // "suggest.floatConfig": {
+ //   "border": true,
+ //   "shadow": true
+ // },
   "suggest.completionItemKindLabels": {
     "class": "ﴯ Class",
     "color": " Color",
@@ -38,14 +42,15 @@
   "diagnostic.warningSign": ">>",
   "diagnostic.autoRefresh": true,
   "diagnostic.checkCurrentLine": false,
-  "diagnostic.floatConfig": {
-    "border": true,
-    "focusable": false
-  },
+  // "diagnostic.floatConfig": {
+  //   "border": true,
+  //   "focusable": false
+  // },
   "hover.floatConfig": {
     "border": true,
     "focusable": false
   },
+  
   "signature.floatConfig": {
     "border": true,
     "focusable": false
@@ -71,6 +76,7 @@
   ],
   // Lua
   "sumneko-lua.checkUpdate": false,
+  //"sumneko-lua.serverDir": "~\\software\\lua-language-server",
   "Lua.window.statusBar": false,
   "Lua.telemetry.enable": false,
   // pwsh
@@ -94,8 +100,5 @@
     "-forward-search",
     "%f",
     "%l"
-  ],
-  // markdown
-  "markdown-preview-enhanced.previewTheme":"gothic.css",
-  "markdown-preview-enhanced.singlePreview": true
+  ]
 }

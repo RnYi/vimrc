@@ -31,8 +31,11 @@ require('packer').startup({
       config = function ()
         require('dressing').setup({
         input = {
-          -- window transparency
-          winblend = 0,
+          win_options = {
+              -- window transparency
+              winblend = 0,
+          }
+
         }
       })
       end
@@ -90,7 +93,7 @@ require('packer').startup({
             tabdrop = '<C-t>',
             pscrollup = '<C-u>',
             pscrolldown = '<C-d>',
-            split = '<C-t>'
+            split = '<C-s>'
           }
         })
       end
@@ -102,20 +105,20 @@ require('packer').startup({
       cmd = 'Dirvish',
       setup = conf('dirvish')
     }
-    -- use {
-    --   'elihunter173/dirbuf.nvim',
-    --   disable = true,
-    --   cmd = 'Dirbuf',
-    --   config = conf('dirbuf')
-    -- }
-    -- use {
-    --   'kyazdani42/nvim-tree.lua',
-    --   disbale = true,
-    --   cmd = 'NvimTreeToggle',
-    --   config = conf('nvim-tree')
-    -- }
+    use {
+      'elihunter173/dirbuf.nvim',
+      disable = true,
+      cmd = 'Dirbuf',
+      config = conf('dirbuf')
+    }
+    use {
+      'kyazdani42/nvim-tree.lua',
+      disbale = true,
+      cmd = 'NvimTreeToggle',
+      config = conf('nvim-tree')
+    }
 
-    -- Searh and Move
+    -- Search and Move
     use {
       'phaazon/hop.nvim',
       cmd = {'HopWord', 'HopPattern', 'HopChar1', 'HopChar2', 'HopLine'},
@@ -217,12 +220,20 @@ require('packer').startup({
 
     -- Handle delimiters
     use {
-      'Raimondi/delimitMate',
-      event = 'VimEnter',
-      setup = function ()
-        vim.g.delimitMate_expand_cr = 1
-      end
+        'windwp/nvim-autopairs',
+        event = 'VimEnter',
+        config = function()
+            require('nvim-autopairs').setup{
+            }
+        end
     }
+    -- use {
+    --   'Raimondi/delimitMate',
+    --   event = 'VimEnter',
+    --   setup = function ()
+    --     vim.g.delimitMate_expand_cr = 1
+    --   end
+    -- }
 
     -- Auto-completion for cmdline
     -- use { 'gelguy/wilder.nvim',
@@ -268,7 +279,7 @@ require('packer').startup({
       use {
         'neoclide/coc.nvim',
         branch='release',
-        event = 'VimEnter',
+        opt=false,
         setup = conf('coc')
       }
     end
@@ -319,7 +330,7 @@ require('packer').startup({
     -- Markdown
     use {
       'iamcco/markdown-preview.nvim',
-      disable=true,
+      -- disable=true,
       run = 'cd app && yarn install',
       ft = 'markdown',
       setup = function()
@@ -342,11 +353,29 @@ require('packer').startup({
     -- }
 
     -- Comment
-    use { 'tpope/vim-commentary', event = 'VimEnter' }
+    -- use { 'tpope/vim-commentary', event = 'VimEnter' }
+    use {
+        'numToStr/Comment.nvim',
+        event = 'VimEnter',
+        config = function()
+            require('Comment').setup{
+                mappings = {
+                    extra = false
+                }
+            }
+        end
+    }
 
     -- Surround
-    use { 'tpope/vim-repeat', event = 'VimEnter' }
-    use { 'tpope/vim-surround', event = 'VimEnter' }
+    -- use { 'tpope/vim-repeat', event = 'VimEnter' }
+    -- use { 'tpope/vim-surround', event = 'VimEnter' }
+    use {
+        "kylechui/nvim-surround",
+        tag = '*',
+        config = function()
+            require('nvim-surround').setup{ }
+        end
+    }
 
     -- Align
     use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
@@ -376,22 +405,22 @@ require('packer').startup({
     end
 
     -- Textobjects
-    use { 'kana/vim-textobj-user', event = 'VimEnter' }
-    use { 'kana/vim-textobj-indent', after = 'vim-textobj-user' }
-    use {
-      'sgur/vim-textobj-parameter',
-      after = 'vim-textobj-user',
-      setup = function()
-        vim.cmd[[
-        let g:vim_textobj_parameter_mapping = 'a'
-        ]]
-      end
-    }
-    use {
-      'rbonvall/vim-textobj-latex',
-      after = 'vim-textobj-user',
-      ft = 'tex'
-    }
+   use { 'kana/vim-textobj-user', event = 'VimEnter' }
+   use { 'kana/vim-textobj-indent', after = 'vim-textobj-user' }
+   use {
+     'sgur/vim-textobj-parameter',
+     after = 'vim-textobj-user',
+     setup = function()
+       vim.cmd[[
+       let g:vim_textobj_parameter_mapping = 'a'
+       ]]
+     end
+   }
+   use {
+     'rbonvall/vim-textobj-latex',
+     after = 'vim-textobj-user',
+     ft = 'tex'
+   }
 
     -- Auto set up configuration after cloning packer.nvim
     if packer_bootstrap then

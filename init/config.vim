@@ -47,7 +47,8 @@ set fileencoding=utf-8
 set fileencodings=utf-8,ucs-bom,chinese,gb18030,gbk,gb2312,cp936
 if has('gui_running')
   if g:sys_uname=='win'
-    set guifont=FiraCode\ NF:h14
+    set guifont=FiraCode\ NFM:h14
+    " set guifont=*
     set guifontwide=黑体:h14
   elseif g:sys_uname=='unix'
     set guifont=MesloLGS\ Nerd\ Font\ 14

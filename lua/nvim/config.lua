@@ -24,7 +24,7 @@ opt.undofile=true
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
 -- Font
-opt.guifontwide = '黑体:h10'
+opt.guifontwide = '黑体:h12'
 opt.lazyredraw=true
 -- Diff
 opt.diffopt:append('vertical')
@@ -45,7 +45,7 @@ g.loaded_netrwPlugin=1
 --  Indent  --
 --------------
 -- opt.tabstop=4
-opt.shiftwidth=2
+opt.shiftwidth=4
 opt.softtabstop=-1
 opt.expandtab=true
 opt.autoindent=true

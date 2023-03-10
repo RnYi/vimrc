@@ -6,7 +6,7 @@ M.setup = function ()
   let g:coc_config_home=g:vimrc_home
   let g:markdown_fenced_languages= ["vim","help","css", "js=javascript"]
   " coc extensions must be installed
-  let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","@yaegassy/coc-pylsp","coc-html","coc-ultisnips","coc-texlab","coc-sumneko-lua","coc-toml","coc-yaml","coc-powershell","coc-markdown-preview-enhanced","coc-webview"]
+  let g:coc_global_extensions=["coc-clangd","coc-json","coc-vimlsp","coc-cmake","coc-tasks","@yaegassy/coc-pylsp","coc-html","coc-ultisnips","coc-texlab","coc-sumneko-lua","coc-toml","coc-yaml","coc-powershell"]
   " function! s:show_documentation()
   "   if (index(['vim','help'], &filetype) >= 0)
   "     execute 'h '.expand('<cword>')
@@ -65,19 +65,14 @@ M.setup = function ()
   inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
   inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
   inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+  " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <C-space> coc#refresh()
   " show documentation
   nnoremap <silent> K <Cmd>call ShowDocumentation()<CR>
-  " if exists('*complete_info')
-  "     inoremap <silent><expr> <CR> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
-  " else
-  "   inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-  " endif
 
   augroup Coc
     autocmd!
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    autocmd FileType markdown nnoremap <buffer> <Leader>mp <Cmd>CocCommand markdown-preview-enhanced.openPreview<CR>
-    autocmd FileType markdown nnoremap <buffer> <Leader>mo <Cmd>CocCommand markdown-preview-enhanced.createTOC<CR>
   augroup END
   ]]
 end
