@@ -6,6 +6,7 @@
 !init/
 !lua/
 !.vim/
+!.vscode/
 
 !.gitignore
 !coc-settings.json

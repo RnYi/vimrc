@@ -24,7 +24,7 @@ opt.undofile=true
 -- Search path of tags file
 opt.tags={'./.tags;','.tags'}
 -- Font
-opt.guifontwide = '黑体:h12'
+opt.guifontwide = '黑体:h13'
 opt.lazyredraw=true
 -- Diff
 opt.diffopt:append('vertical')

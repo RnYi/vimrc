@@ -11,7 +11,7 @@ require('packer').startup({
   function(use)
     -- load config
     local function conf(name)
-      return ([[require('nvim.plugins.config.%s').setup()]]):format(name)
+      return ([[require('rany_nvim.plugins.config.%s').setup()]]):format(name)
     end
     -- impatient.nvim
     use {
@@ -23,6 +23,9 @@ require('packer').startup({
 
     -- Faster filetype
     use { 'nathom/filetype.nvim'}
+
+    -- Icon
+    use { 'kyazdani42/nvim-web-devicons', event='VimEnter' }
 
     -- UI hooks
     use {
@@ -48,9 +51,6 @@ require('packer').startup({
       run = ':TSUpdate',
       config = conf('treesitter')
     }
-
-    -- Icon
-    use { 'kyazdani42/nvim-web-devicons' }
 
     -- Colorscheme
     use{
@@ -372,6 +372,7 @@ require('packer').startup({
     use {
         "kylechui/nvim-surround",
         tag = '*',
+        event = 'VimEnter',
         config = function()
             require('nvim-surround').setup{ }
         end
@@ -441,10 +442,10 @@ require('packer').startup({
 
 -- auto-generate packer_compiled.lua
 vim.cmd[[
-let g:packer_init = g:vimrc_home.'/lua/nvim/plugins/init.lua'
+let g:packer_init = g:vimrc_home.'/lua/rany_nvim/plugins/init.lua'
 augroup AutoPackerCompile
 autocmd!
-autocmd BufWritePost */lua/nvim/plugins/* exe "so ".g:packer_init| PackerCompile
+autocmd BufWritePost */lua/rany_nvim/plugins/* exe "so ".g:packer_init| PackerCompile
 autocmd User PackerCompileDone lua vim.notify('PackerCompile Done!', 'info', nil)
 augroup END
 ]]
@@ -461,5 +462,5 @@ map('n', '<Leader>pu', '<Cmd>PackerUpdate<CR>', map_opt)
 -- impatient.nvim requires to load packer_compiled manually
 local status, _ = pcall(require, 'packer_compiled')
 if not status then
-  vim.notify('Failed to require packer_compiled.lua!', 'error', nil)
+  vim.notify('Failed to require packer_compiled.lua!', vim.log.levels.ERROR, nil)
 end

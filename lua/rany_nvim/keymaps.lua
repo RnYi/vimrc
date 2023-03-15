@@ -172,7 +172,7 @@ call Terminal_FunctionKey()
 --  Plugins  --
 ---------------
 local function keybind(name)
-  local path = ('nvim.plugins.config.%s'):format(name)
+  local path = ('rany_nvim.plugins.config.%s'):format(name)
   require(path).keybind()
 end
 keybind('asynctasks')
