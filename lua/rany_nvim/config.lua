@@ -1,87 +1,99 @@
 ----------------------------
 --  Aliases for Nvim API  --
 ----------------------------
-local g=vim.g
-local opt=vim.opt
+local g = vim.g
+local opt = vim.opt
 
 -------------
 --  Basic  --
 -------------
-opt.mouse='nv'
-opt.mousemodel='extend'
-opt.backup=false
-opt.writebackup=false
-opt.autoread=true
-opt.winaltkeys='no'
-opt.backspace={'indent','eol','start'}
-opt.ttimeout=true
-opt.ttimeoutlen=100
-opt.updatetime=300
-opt.foldmethod='manual'
+opt.mouse = 'nv'
+opt.mousemodel = 'extend'
+opt.backup = false
+opt.writebackup = false
+opt.autoread = true
+opt.winaltkeys = 'no'
+opt.backspace = { 'indent', 'eol', 'start' }
+opt.ttimeout = true
+opt.ttimeoutlen = 100
+opt.updatetime = 300
+opt.foldmethod = 'manual'
 -- opt.switchbuf = {'usetab','newtab'}
 -- Persistent undo
-opt.undofile=true
+opt.undofile = true
 -- Search path of tags file
-opt.tags={'./.tags;','.tags'}
+opt.tags = { './.tags;', '.tags' }
 -- Font
 opt.guifontwide = '黑体:h13'
-opt.lazyredraw=true
+opt.lazyredraw = true
 -- Diff
 opt.diffopt:append('vertical')
 -- Grepper
 opt.grepprg = 'rg --vimgrep'
 -- Specify tex filetype
-g.tex_flavor='latex'
+g.tex_flavor = 'latex'
 -- Language support
-g.loaded_perl_provider=0
-g.loaded_ruby_provider=0
-g.loaded_python_provider=0
-g.python3_host_prog='python3'
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_python_provider = 0
+g.python3_host_prog = 'python3'
 -- disable internal plugins
 g.loaded_netrw = 1
-g.loaded_netrwPlugin=1
+g.loaded_netrwPlugin = 1
+
+-----------
+-- Shell --
+-----------
+if OSName == 'win' then
+    opt.shell = g.pwsh_path
+    opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    opt.shellredir='2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    opt.shellpipe='2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    opt.shellquote = ''
+    opt.shellxquote = ''
+end
 
 --------------
 --  Indent  --
 --------------
 -- opt.tabstop=4
-opt.shiftwidth=4
-opt.softtabstop=-1
-opt.expandtab=true
-opt.autoindent=true
-opt.smartindent=true
-opt.shiftround=true
+opt.shiftwidth = 4
+opt.softtabstop = -1
+opt.expandtab = true
+opt.autoindent = true
+opt.smartindent = true
+opt.shiftround = true
 
 ----------------
 --  Encoding  --
 ----------------
-opt.encoding='utf-8'
-opt.fileencoding='utf-8'
-opt.fileencodings={'utf-8','usc-bom','chinese','gb18030','gbk','gb2312','cp936'}
+opt.encoding = 'utf-8'
+opt.fileencoding = 'utf-8'
+opt.fileencodings = { 'utf-8', 'usc-bom', 'chinese', 'gb18030', 'gbk', 'gb2312', 'cp936' }
 
 ---------------
 --  Display  --
 ---------------
-opt.wrap=true
-opt.number=true
-opt.showcmd=false
-opt.pumheight=20
-opt.signcolumn='yes'
-opt.title=true
-opt.titlestring='%{getcwd()}'
-opt.hidden=true
-opt.wildmenu=true
-opt.showmode=true
-opt.cursorline=false
-opt.scrolloff=5
-opt.sidescrolloff=5
-opt.laststatus=2
-opt.termguicolors=true
-opt.shortmess={a=true,o=true,O=true,c=true,t=true,T=true,F=true}
-opt.formatoptions={t=true,c=true,r=true,q=true,l=true,m=true,M=true,j=true}
-opt.list=true
+opt.wrap = true
+opt.number = true
+opt.showcmd = false
+opt.pumheight = 20
+opt.signcolumn = 'yes'
+opt.title = true
+opt.titlestring = '%{getcwd()}'
+opt.hidden = true
+opt.wildmenu = true
+opt.showmode = true
+opt.cursorline = false
+opt.scrolloff = 5
+opt.sidescrolloff = 5
+opt.laststatus = 2
+opt.termguicolors = true
+opt.shortmess = { a = true, o = true, O = true, c = true, t = true, T = true, F = true }
+opt.formatoptions = { t = true, c = true, r = true, q = true, l = true, m = true, M = true, j = true }
+opt.list = true
 -- opt.showbreak='↪'
-opt.listchars={trail='·',extends='⟩',precedes='⟨'}
+opt.listchars = { trail = '·', extends = '⟩', precedes = '⟨' }
 vim.cmd([[
 set matchpairs+=「:」,『:』,【:】,“:”,‘:’,《:》,（:）
 ]])
@@ -115,7 +127,7 @@ endfunction
 ]]
 
 -- get a single tab name
-vim.cmd[[
+vim.cmd [[
 function! NeatBuffer(bufnr, fullname)
   let l:name = bufname(a:bufnr)
   let bt = getbufvar(a:bufnr, '&buftype')
@@ -161,7 +173,7 @@ endfunc
 ]]
 
 -- get a single tab label
-vim.cmd[[
+vim.cmd [[
 function! NeatTabLabel(n)
   let l:buflist = tabpagebuflist(a:n)
   let l:winnr = tabpagewinnr(a:n)
@@ -177,7 +189,7 @@ endfunc
 ]]
 
 -- set tabline
-vim.cmd[[
+vim.cmd [[
 set showtabline=2
 set tabline=%!NeatTabLine()
 ]]
@@ -185,10 +197,10 @@ set tabline=%!NeatTabLine()
 --------------
 --  Search  --
 --------------
-opt.wrapscan=true
-opt.smartcase=true
-opt.incsearch=true
-opt.ignorecase=true
+opt.wrapscan = true
+opt.smartcase = true
+opt.incsearch = true
+opt.ignorecase = true
 
 ---------------
 --  Session  --
@@ -203,7 +215,7 @@ opt.sessionoptions:remove('help')
 ---------------
 --  Autocmd  --
 ---------------
-vim.cmd[[
+vim.cmd [[
 function s:resume_cursor_position() abort
   if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
     let l:args = v:argv  " command line arguments

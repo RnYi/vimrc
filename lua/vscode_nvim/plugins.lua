@@ -16,7 +16,6 @@ require('packer').startup({
     use {
         'numToStr/Comment.nvim',
         event = 'VimEnter',
-        disable = true,
         config = function()
             require('Comment').setup{
                 mappings = {

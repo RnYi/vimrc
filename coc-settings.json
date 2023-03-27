@@ -1,104 +1,104 @@
 {
- // "http.proxy": "http://127.0.0.1:7890",
-  "suggest.noselect": false,
-  "suggest.enablePreselect": false,
-  "suggest.labelMaxLength": 50,
-  "suggest.detailMaxLength": 50,
-  "suggest.removeDuplicateItems": true,
-  "suggest.autoTrigger": "always",
- // "suggest.floatConfig": {
- //   "border": true,
- //   "shadow": true
- // },
-  "suggest.completionItemKindLabels": {
-    "class": "ﴯ Class",
-    "color": " Color",
-    "constant": " Constant",
-    "constructor": " Constructor",
-    "enum": " Enum",
-    "enumMember": " EnumMember",
-    "event": " Event",
-    "field": "ﰠ Field",
-    "file": " File",
-    "folder": " Folder",
-    "function": " Function",
-    "interface": " Interface",
-    "keyword": " Keyword",
-    "method": " Method",
-    "module": " Module",
-    "operator": " Operator",
-    "property": "ﰠ Property",
-    "reference": " Reference",
-    "snippet": " Snippet",
-    "struct": "פּ Struct",
-    "text": " Text",
-    "typeParameter": " TypeParameter",
-    "unit": "塞 Unit",
-    "value": " Value",
-    "variable": " Variable",
-    "default": ""
-  },
-  "diagnostic.enableSign": true,
-  "diagnostic.warningSign": ">>",
-  "diagnostic.autoRefresh": true,
-  "diagnostic.checkCurrentLine": false,
-  // "diagnostic.floatConfig": {
-  //   "border": true,
-  //   "focusable": false
-  // },
-  "hover.floatConfig": {
-    "border": true,
-    "focusable": false
-  },
-  
-  "signature.floatConfig": {
-    "border": true,
-    "focusable": false
-  },
-  "list.nextKeymap": "<C-n>",
-  "list.previousKeymap": "<C-p>",
-  "list.source.diagnostics.pathFormat": "short",
-  "tree.key.toggle": "o",
-  "tree.key.selectNext": "<C-n>",
-  "tree.key.selectPrevious": "<C-p>",
-  "outline.splitCommand": "botright 40vs",
-  "callHierarchy.openCommand": "tab drop",
-  "coc.source.buffer.ignoreGitignore": false,
-  "coc.preferences.extensionUpdateCheck": "weekly",
-  "coc.preferences.jumpCommand": "tab drop",
-  "coc.preferences.rootPatterns": [
-    ".root",
-    ".project",
-    ".svn",
-    ".git",
-    ".hg",
-    ".projections.json"
-  ],
-  // Lua
-  "sumneko-lua.checkUpdate": false,
-  //"sumneko-lua.serverDir": "~\\software\\lua-language-server",
-  "Lua.window.statusBar": false,
-  "Lua.telemetry.enable": false,
-  // pwsh
-  "powershell.integratedConsole.showOnStartup": false,
-  // latex
-  "texlab.build.args": [
-    "-pdfxe",
-    "-file-line-error",
-    "-interaction=batchmode",
-    "-shell-escape",
-    "-synctex=1",
-    "-outdir=.tmp",
-    "%f"
-  ],
-  "texlab.build.forwardSearchAfter": true,
-  "texlab.auxDirectory": ".tmp",
-  "texlab.forwardSearch.executable": "SumatraPDF.exe",
-  "texlab.forwardSearch.args": [
-    "-reuse-instance",
-    "%p",
-    "-forward-search",
-    "%f",
-    "%l"
-  ]
+    // "http.proxy": "http://127.0.0.1:7890",
+    "suggest.noselect": false,
+    "suggest.enablePreselect": false,
+    "suggest.labelMaxLength": 50,
+    "suggest.detailMaxLength": 50,
+    "suggest.removeDuplicateItems": true,
+    "suggest.autoTrigger": "trigger",
+    // "suggest.floatConfig": {
+    //   "border": true,
+    //   "shadow": true
+    // },
+    "suggest.completionItemKindLabels": {
+        "class": "ﴯ Class",
+        "color": " Color",
+        "constant": " Constant",
+        "constructor": " Constructor",
+        "enum": " Enum",
+        "enumMember": " EnumMember",
+        "event": " Event",
+        "field": "ﰠ Field",
+        "file": " File",
+        "folder": " Folder",
+        "function": " Function",
+        "interface": " Interface",
+        "keyword": " Keyword",
+        "method": " Method",
+        "module": " Module",
+        "operator": " Operator",
+        "property": "ﰠ Property",
+        "reference": " Reference",
+        "snippet": " Snippet",
+        "struct": "פּ Struct",
+        "text": " Text",
+        "typeParameter": " TypeParameter",
+        "unit": "塞 Unit",
+        "value": " Value",
+        "variable": " Variable",
+        "default": ""
+    },
+    "diagnostic.enableSign": true,
+    "diagnostic.warningSign": ">>",
+    "diagnostic.autoRefresh": true,
+    "diagnostic.checkCurrentLine": false,
+    // "diagnostic.floatConfig": {
+    //   "border": true,
+    //   "focusable": false
+    // },
+    "hover.floatConfig": {
+        "border": true,
+        "focusable": false
+    },
+    "inlayHint.enable": false,
+    "signature.floatConfig": {
+        "border": true,
+        "focusable": false
+    },
+    "list.nextKeymap": "<C-n>",
+    "list.previousKeymap": "<C-p>",
+    "list.source.diagnostics.pathFormat": "short",
+    "tree.key.toggle": "o",
+    "tree.key.selectNext": "<C-n>",
+    "tree.key.selectPrevious": "<C-p>",
+    "outline.splitCommand": "botright 40vs",
+    "callHierarchy.openCommand": "tab drop",
+    "coc.source.buffer.ignoreGitignore": false,
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.jumpCommand": "tab drop",
+    "coc.preferences.rootPatterns": [
+        ".root",
+        ".project",
+        ".svn",
+        ".git",
+        ".hg",
+        ".projections.json"
+    ],
+    // Lua
+    "sumneko-lua.checkUpdate": false,
+    //"sumneko-lua.serverDir": "~\\software\\lua-language-server",
+    "Lua.window.statusBar": false,
+    "Lua.telemetry.enable": false,
+    // pwsh
+    "powershell.integratedConsole.showOnStartup": false,
+    // latex
+    "texlab.build.args": [
+        "-pdfxe",
+        "-file-line-error",
+        "-interaction=batchmode",
+        "-shell-escape",
+        "-synctex=1",
+        "-outdir=.tmp",
+        "%f"
+    ],
+    "texlab.build.forwardSearchAfter": true,
+    "texlab.auxDirectory": ".tmp",
+    "texlab.forwardSearch.executable": "SumatraPDF.exe",
+    "texlab.forwardSearch.args": [
+        "-reuse-instance",
+        "%p",
+        "-forward-search",
+        "%f",
+        "%l"
+    ]
 }

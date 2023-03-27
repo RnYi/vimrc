@@ -1,48 +1,89 @@
 local M = {}
 
-M.keybind = function ()
-  vim.keymap.set(
-  'n', '<Leader>e',
-  '<Cmd>NvimTreeToggle<CR>',
-  {noremap=true, silent=true}
-  )
+M.keybind = function()
+    vim.keymap.set(
+        'n', '<Leader>e',
+        '<Cmd>NvimTreeToggle<CR>',
+        { noremap = true, silent = true }
+    )
 end
 
-M.setup = function ()
-  local trash_cmd = 'trash'
-  if vim.g.sys_uname=='win' then
-    -- Install trash cmd on Powershell
-    --    -> Install-Module -Name Recycle
-    trash_cmd = 'Remove-ItemSafely'
-  end
-  local tree_cb = require('nvim-tree.config').nvim_tree_callback
-  require('nvim-tree').setup {
-    update_cwd = true,
-    git = {
-      enable = false
-    },
-    hijack_directories = {
-      enable = false
-    },
-    view = {
-      auto_resize = true,
-      hide_root_folder = true,
-      mappings = {
-        list = {
-          { key = 'd', cb = tree_cb('trash') },
-          { key = 'D', cb = tree_cb('remove') },
+M.on_attach = function(bufnr)
+    local api = require('nvim-tree.api')
+    api.config.mappings.default_on_attach(bufnr)
+    if OSName ~= 'win' then
+        return
+    end
+    local function trash_path()
+        local node = api.tree.get_node_under_cursor()
+        local notify = require('nvim-tree.notify')
+        local events = require('nvim-tree.events')
+        local err_msg = ''
+        local function on_stderr(_, data)
+            err_msg = err_msg .. (data and table.concat(data, " "))
+        end
+
+        local function on_exit(_, rc)
+            if rc ~= 0 then
+                notify.warn("trash failed: " .. err_msg)
+                return
+            end
+            if node.nodes ~= nil and not node.link_to then
+                events._dispatch_folder_removed(node.absolute_path)
+            else
+                events._dispatch_file_removed(node.absolute_path)
+                -- clear_buffer(node.absolute_path)
+            end
+            require('nvim-tree.actions.reloaders.reloaders').reload_explorer()
+        end
+
+        local trash_cmd = '!Remove-ItemSafely' .. ' "' .. node.absolute_path .. '"'
+        vim.api.nvim_command('silent '..trash_cmd)
+        -- vim.fn.jobstart(trash_cmd, {
+        --     detach = true,
+        --     on_exit = on_exit,
+        --     on_stderr = on_stderr,
+        -- })
+    end
+
+    local function opts(desc) -- option of keymap
+        return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- Customize keymaps
+    vim.keymap.set('n', 'd', trash_path, opts('Trash'))
+end
+
+M.setup = function()
+    -- local tree_cb = require('nvim-tree.config').nvim_tree_callback
+    require('nvim-tree').setup {
+        on_attach = M.on_attach,
+        sync_root_with_cwd = true,
+        select_prompts = true,
+        git = {
+            ignore = false,
         },
-      },
-    },
-    actions = {
-      change_dir = {
-        global = true
-      }
-    },
-    trash = {
-      cmd = trash_cmd,
-    },
-  }
+        view = {
+            hide_root_folder = true,
+        },
+        renderer = {
+            group_empty = true,
+            icons = {
+                git_placement = 'signcolumn',
+            },
+        },
+        actions = {
+            change_dir = {
+                global = true
+            }
+        },
+        tab = {
+            sync = {
+                open = true,
+                close = true,
+            },
+        },
+    }
 end
 
 

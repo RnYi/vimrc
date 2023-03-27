@@ -34,6 +34,9 @@ map('n', '<Leader>', '<Nop>', map_opt)
 -- Double leader key clear highlight of searching
 map('n', '<Leader><Leader>', '<Cmd>nohl<CR>', map_opt)
 -- Comment
-map({'n','x','o'},'gc','<Plug>VSCodeCommentary',map_opt)
-map('n','gcc','<Plug>VSCodeCommentaryLine',map_opt)
+-- map({'n','x','o'},'gc','<Plug>VSCodeCommentary',map_opt)
+-- map('n','gcc','<Plug>VSCodeCommentaryLine',map_opt)
 -- map('x','gC',"<Cmd>call VSCodeNotifyVisual('editor.action.blockComment',1)<CR>",map_opt)
+-- Yank&Paste
+map('x','<M-y>','"+y')
+map({'n','x'},'<M-p>','"+p')
