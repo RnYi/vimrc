@@ -10,9 +10,6 @@ local map_opt={noremap=true, silent=true}
 -- Leader key
 vim.g.mapleader=' '
 vim.g.maplocalleader=' '
--- pastetoggle
-vim.opt.pastetoggle='<F12>'
--- vim.opt.pastetoggle=vim.api.nvim_replace_termcodes('<F12>', true, true, true)
 -- Move between lines
 map({'n', 'x', 'o'}, 'H', '^', map_opt)
 map({'n', 'x', 'o'}, 'L', '$', map_opt)
