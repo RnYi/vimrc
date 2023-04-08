@@ -62,7 +62,9 @@ if has_key(g:bundle_enabled, 'basic')
   " Keymap
   Plug 'tpope/vim-unimpaired'
   " Align
-  Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
+  " Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
+  Plug 'junegunn/vim-easy-align', {'on':'EasyAlign'}
+  " Startup
   Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
   " Markdown
   Plug 'plasticboy/vim-markdown', {'for':['markdown']}

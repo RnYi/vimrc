@@ -37,8 +37,8 @@ M.on_attach = function(bufnr)
             require('nvim-tree.actions.reloaders.reloaders').reload_explorer()
         end
 
-        local trash_cmd = '!Remove-ItemSafely' .. ' "' .. node.absolute_path .. '"'
-        vim.api.nvim_command('silent '..trash_cmd)
+        local trash_cmd = '!pwsh.exe' .. ' -WindowStyle Hidden -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'.. ' "' .. 'Remove-ItemSafely ' .. node.absolute_path .. '"'
+        vim.api.nvim_command('silent ' .. trash_cmd)
         -- vim.fn.jobstart(trash_cmd, {
         --     detach = true,
         --     on_exit = on_exit,
@@ -59,6 +59,8 @@ M.setup = function()
     require('nvim-tree').setup {
         on_attach = M.on_attach,
         sync_root_with_cwd = true,
+        -- reload_on_bufenter = true,
+        respect_buf_cwd = true,
         select_prompts = true,
         git = {
             ignore = false,

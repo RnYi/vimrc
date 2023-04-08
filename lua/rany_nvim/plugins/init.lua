@@ -381,12 +381,16 @@ require('packer').startup({
         }
 
         -- Align
+        -- use {
+        --     'godlygeek/tabular',
+        --     cmd = { 'Tabularize', 'AddTabularPatter', 'AddTabularPipeline' }
+        -- }
         use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
 
         -- Indent line
         use {
             'lukas-reineke/indent-blankline.nvim',
-            event = 'VimEnter',
+            after = 'gruvbox-material',
             config = conf('indent-blankline')
         }
 
