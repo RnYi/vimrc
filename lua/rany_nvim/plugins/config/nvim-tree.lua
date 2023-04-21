@@ -65,10 +65,8 @@ M.setup = function()
         git = {
             ignore = false,
         },
-        view = {
-            hide_root_folder = true,
-        },
         renderer = {
+            root_folder_label=false,
             group_empty = true,
             icons = {
                 git_placement = 'signcolumn',

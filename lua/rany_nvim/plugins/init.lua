@@ -1,8 +1,10 @@
 -- Auto download packer.nvim
 local fn = vim.fn
+local g = vim.g
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', GitRepoUrl .. '/wbthomason/packer.nvim', install_path })
+    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', g.repo_url .. '/wbthomason/packer.nvim',
+        install_path })
 end
 
 -- Manage plugins
@@ -58,16 +60,16 @@ require('packer').startup({
             'sainnhe/gruvbox-material',
             event = 'VimEnter',
             config = function()
-                vim.g.gruvbox_material_better_performance = 1
-                vim.g.gruvbox_material_enable_bold = 1
-                vim.g.gruvbox_material_enable_italic = 1
-                vim.g.gruvbox_material_disable_italic_comment = 1
-                vim.g.gruvbox_material_visual = 'blue background'
-                vim.g.gruvbox_material_menu_selection_background = 'blue'
-                vim.g.gruvbox_material_disable_italic_comment = 1
-                vim.g.gruvbox_material_sign_column_background = 'none'
-                vim.g.gruvbox_material_transparent_background = 0
-                vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
+                g.gruvbox_material_better_performance = 1
+                g.gruvbox_material_enable_bold = 1
+                g.gruvbox_material_enable_italic = 1
+                g.gruvbox_material_disable_italic_comment = 1
+                g.gruvbox_material_visual = 'blue background'
+                g.gruvbox_material_menu_selection_background = 'blue'
+                g.gruvbox_material_disable_italic_comment = 1
+                g.gruvbox_material_sign_column_background = 'none'
+                g.gruvbox_material_transparent_background = 0
+                g.gruvbox_material_diagnostic_virtual_text = 'colored'
                 vim.cmd('colorscheme gruvbox-material')
             end
         }
@@ -102,18 +104,6 @@ require('packer').startup({
         }
 
         -- File Explorer
-        use {
-            'justinmk/vim-dirvish',
-            disable = true,
-            cmd = 'Dirvish',
-            setup = conf('dirvish')
-        }
-        use {
-            'elihunter173/dirbuf.nvim',
-            disable = true,
-            cmd = 'Dirbuf',
-            config = conf('dirbuf')
-        }
         use {
             'kyazdani42/nvim-tree.lua',
             cmd = 'NvimTreeToggle',
@@ -153,7 +143,7 @@ require('packer').startup({
         }
         -- Telescope extensions
         -- Telescope-fzf-native
-        if OSName == 'win' then
+        if g.sys_uname == 'win' then
             use {
                 'Leandros/telescope-fzf-native.nvim',
                 branch = 'feature/windows_build_support',
@@ -192,22 +182,25 @@ require('packer').startup({
         }
 
         -- Snippet
-        use { "honza/vim-snippets", event = 'VimEnter' }
-        use {
-            'SirVer/ultisnips',
-            event = 'VimEnter',
-            setup = function()
-                vim.g.UltiSnipsExpandTrigger = '<C-j>'
-                vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
-                vim.g.UltiSnipsJumpBackwardTrigger = '<C-k>'
-            end
-        }
+        if g.comp_plug == 'lsp' then
+        else
+            use { "honza/vim-snippets", event = 'VimEnter' }
+            use {
+                'SirVer/ultisnips',
+                event = 'VimEnter',
+                setup = function()
+                    g.UltiSnipsExpandTrigger = '<C-j>'
+                    g.UltiSnipsJumpForwardTrigger = '<C-j>'
+                    g.UltiSnipsJumpBackwardTrigger = '<C-k>'
+                end
+            }
+        end
         -- use {
         --   'dcampos/nvim-snippy',
         --   event = 'VimEnter',
         --   config = function ()
         --     local dirs = {vim.fn.stdpath('data')..'/site/pack/packer/opt/vim-snippets/snippets',
-        --   NvimHome..'/snippets'}
+        --   g.vimrc_home..'/snippets'}
         --     require('snippy').setup({
         --       snippet_dirs = dirs,
         --       mappings = {
@@ -229,24 +222,9 @@ require('packer').startup({
                 }
             end
         }
-        -- use {
-        --   'Raimondi/delimitMate',
-        --   event = 'VimEnter',
-        --   setup = function ()
-        --     vim.g.delimitMate_expand_cr = 1
-        --   end
-        -- }
-
-        -- Auto-completion for cmdline
-        -- use { 'gelguy/wilder.nvim',
-        --       disable = true,
-        --       event='CmdlineEnter',
-        --       run = ':UpdateRemotePlugins',
-        --       config = conf('wilder')
-        -- }
 
         -- Completion
-        if CompPlug == nil or CompPlug == 'nvim-cmp' then
+        if g.comp_plug == 'lsp' then
             -- nvim-cmp
             use { 'onsails/lspkind-nvim', event = 'VimEnter' }
             use {
@@ -310,7 +288,7 @@ require('packer').startup({
         --     -- f: Find this file
         --     -- i: Find files #including this file
         --     -- a: Find places where this symbol is assigned a value
-        --     vim.g.gutentags_plus_switch = 1
+        --     g.gutentags_plus_switch = 1
         --   end
         -- }
 
@@ -336,7 +314,7 @@ require('packer').startup({
             run = 'cd app && yarn install',
             ft = 'markdown',
             setup = function()
-                vim.g.mkdp_auto_close = 0
+                g.mkdp_auto_close = 0
                 vim.keymap.set(
                     'n',
                     '<Leader>mp',
@@ -355,7 +333,6 @@ require('packer').startup({
         -- }
 
         -- Comment
-        -- use { 'tpope/vim-commentary', event = 'VimEnter' }
         use {
             'numToStr/Comment.nvim',
             event = 'VimEnter',
@@ -369,8 +346,6 @@ require('packer').startup({
         }
 
         -- Surround
-        -- use { 'tpope/vim-repeat', event = 'VimEnter' }
-        -- use { 'tpope/vim-surround', event = 'VimEnter' }
         use {
             "kylechui/nvim-surround",
             tag = '*',
@@ -395,13 +370,13 @@ require('packer').startup({
         }
 
         -- Auto switch input method
-        if OSName == 'win' then
+        if g.sys_uname == 'win' then
             use {
                 'lyokha/vim-xkbswitch',
                 event = 'VimEnter',
                 setup = function()
-                    vim.g.XkbSwitchEnabled = 1
-                    vim.g.XkbSwitchLib = NvimHome .. '/libxkbswitch64.dll'
+                    g.XkbSwitchEnabled = 1
+                    g.XkbSwitchLib = g.vimrc_home .. '/libxkbswitch64.dll'
                 end
             }
         else
@@ -438,22 +413,25 @@ require('packer').startup({
     -- Configure packer
     config = {
         max_jobs = 8,
-        compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
+        compile_path = fn.stdpath('config') .. '/lua/packer_compiled.lua',
         git = {
             -- github mirror
-            default_url_format = GitRepoUrl .. '/%s'
+            default_url_format = g.repo_url .. '/%s'
         }
     }
 })
 
 -- auto-generate packer_compiled.lua
+-- vim.cmd [[
+-- let g:packer_init = g:vimrc_home.'/lua/rany_nvim/plugins/init.lua'
+-- augroup AutoPackerCompile
+-- autocmd!
+-- autocmd BufWritePost */lua/rany_nvim/plugins/* exe "so ".g:packer_init| PackerCompile
+-- autocmd User PackerCompileDone lua vim.notify('PackerCompile Done!', 'info', nil)
+-- augroup END
+-- ]]
 vim.cmd [[
-let g:packer_init = g:vimrc_home.'/lua/rany_nvim/plugins/init.lua'
-augroup AutoPackerCompile
-autocmd!
-autocmd BufWritePost */lua/rany_nvim/plugins/* exe "so ".g:packer_init| PackerCompile
 autocmd User PackerCompileDone lua vim.notify('PackerCompile Done!', 'info', nil)
-augroup END
 ]]
 
 -- keymaps for packer.nvim
