@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
   require('nvim-treesitter.configs').setup{
     ensure_installed = {'c', 'cpp', 'cmake', 'python',
-                        'latex', 'lua', 'make','markdown', 'vim',
+                        'latex', 'lua', 'make','markdown', 'vim','vimdoc',
                         'toml', 'yaml', 'bibtex',},
     highlight = {
       enable = true,

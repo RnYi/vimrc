@@ -13,7 +13,7 @@ M.setup = function()
     vim.g.asynctasks_term_reuse=1
     vim.g.asynctasks_config_name='.asynctasks'
     vim.g.asynctasks_rtp_config='asynctasks.ini'
-    vim.g.asynctasks_extra_config={NvimHome..'/asynctasks.ini'}
+    vim.g.asynctasks_extra_config={vim.g.vimrc_home .. '/asynctasks.ini'}
     vim.g.asyncrun_rootmarks={'.root','.project','.git','.hg',
                               '.svn','.projections.json'}
     vim.g.asynctasks_template={}
