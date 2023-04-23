@@ -15,3 +15,4 @@
 !vimrc_template
 
 !/libxkbswitch64.dll
+package-lock.json
