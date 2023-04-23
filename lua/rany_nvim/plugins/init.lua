@@ -1,62 +1,62 @@
--- Auto download packer.nvim
-local fn = vim.fn
-local g = vim.g
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', g.repo_url .. '/wbthomason/packer.nvim',
-        install_path })
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        vim.g.repo_url .. "/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
-
--- Manage plugins
-require('packer').startup({
-    -- add plugins
-    function(use)
-        -- load config
-        local function conf(name)
-            return ([[require('rany_nvim.plugins.config.%s').setup()]]):format(name)
-        end
+vim.opt.rtp:prepend(lazypath)
+local function conf(name)
+    local conf_path = ([[rany_nvim.plugins.config.%s]]):format(name)
+    return require(conf_path).setup
+end
+require('lazy').setup({
+        -- plugins
 
         -- impatient.nvim
-        use {
+        {
             'lewis6991/impatient.nvim',
-            config = [[require('impatient')]],
-        }
-        -- Packer can manage itself
-        use { 'wbthomason/packer.nvim' }
-
+            lazy = false,
+            config = function()
+                require('impatient')
+            end
+        },
         -- Faster filetype
-        use { 'nathom/filetype.nvim' }
-
-        -- Icon
-        use { 'kyazdani42/nvim-web-devicons', event = 'VimEnter' }
+        { 'nathom/filetype.nvim',    lazy = false },
 
         -- UI hooks
-        use {
+        {
             'stevearc/dressing.nvim',
             event = 'VimEnter',
-            config = function()
-                require('dressing').setup({
-                    input = {
-                        win_options = {
-                            -- window transparency
-                            winblend = 0,
-                        }
-
+            opts = {
+                input = {
+                    win_options = {
+                        -- window transparency
+                        winblend = 0,
                     }
-                })
-            end
-        }
+                }
+            }
+        },
 
         -- Treesitter
-        use {
+        {
             'nvim-treesitter/nvim-treesitter',
             event = 'VimEnter',
-            run = ':TSUpdate',
+            build = ':TSUpdate',
             config = conf('treesitter')
-        }
+        },
+        {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            dependencies = { 'nvim-treesitter/nvim-treesitter' },
+            event = 'VimEnter'
+        },
 
         -- Colorscheme
-        use {
+        {
             'sainnhe/gruvbox-material',
             event = 'VimEnter',
             config = function()
@@ -72,209 +72,245 @@ require('packer').startup({
                 g.gruvbox_material_diagnostic_virtual_text = 'colored'
                 vim.cmd('colorscheme gruvbox-material')
             end
-        }
+        },
 
         -- Statusline
-        use {
+        {
             'nvim-lualine/lualine.nvim',
-            after = { 'nvim-web-devicons', 'gruvbox-material' },
-            -- event = 'VimEnter',
+            dependencies = {
+                'nvim-tree/nvim-web-devicons',
+                'sainnhe/gruvbox-material'
+            },
+            event = 'VimEnter',
             config = conf('lualine')
-        }
+        },
+
+        -- Tabline
+        {
+            'crispgm/nvim-tabline',
+            event = 'VimEnter',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
+            config = function()
+                require('tabline').setup({
+                    show_icon = true,
+                    brackets = { '', '' }
+                })
+            end,
+        },
+
+        -- Lsp status
+        {
+            'j-hui/fidget.nvim',
+            enabled = function()
+                return vim.g.comp_plug == 'lsp'
+            end,
+            event = 'VimEnter',
+            dependencies = { 'neovim/nvim-lspconfig' },
+            config = true,
+        },
 
         -- Quickfix
-        use {
+        {
             'kevinhwang91/nvim-bqf',
-            -- ft = 'qf',
-            event = 'VimEnter',
-            config = function()
-                require('bqf').setup({
-                    preview = {
-                        auto_preview = false,
-                    },
-                    func_map = {
-                        tabc = '',
-                        tabdrop = '<C-t>',
-                        pscrollup = '<C-u>',
-                        pscrolldown = '<C-d>',
-                        split = '<C-s>'
-                    }
-                })
-            end
-        }
+            ft = 'qf',
+            opts = {
+                preview = {
+                    auto_preview = false,
+                },
+                func_map = {
+                    tabc = '',
+                    tabdrop = '<C-t>',
+                    pscrollup = '<C-u>',
+                    pscrolldown = '<C-d>',
+                    split = '<C-s>'
+                }
+            }
+        },
 
         -- File Explorer
-        use {
-            'kyazdani42/nvim-tree.lua',
-            cmd = 'NvimTreeToggle',
-            config = conf('nvim-tree')
-        }
+        {
+            'stevearc/oil.nvim',
+            cmd = 'Oil',
+            config = conf('oil')
+        },
+        -- {
+        --     "nvim-neo-tree/neo-tree.nvim",
+        --     branch = 'v2.x',
+        --     cmd='Neotree',
+        --     dependencies = {
+        --         'nvim-lua/plenary.nvim',
+        --         'nvim-tree/nvim-web-devicons',
+        --         "MunifTanjim/nui.nvim",
+        --     },
+        --     config=conf('neo-tree')
+        -- },
+        -- {
+        --     'kyazdani42/nvim-tree.lua',
+        --     cmd = 'NvimTreeToggle',
+        --     config = conf('nvim-tree')
+        -- },
 
         -- Search and Move
-        use {
+        {
             'phaazon/hop.nvim',
             cmd = { 'HopWord', 'HopPattern', 'HopChar1', 'HopChar2', 'HopLine' },
             config = conf('hop')
-        }
-
-        -- Keymap
-        use {
-            'tpope/vim-unimpaired',
-            event = 'VimEnter',
-        }
+        },
 
         -- Git
-        use {
+        {
             'tpope/vim-fugitive',
-            fn = 'fugitive#*',
             cmd = { 'G', 'Git', 'Gedit', 'Gread', 'Gwrite', 'Gdiffsplit', 'Gvdiffsplit' },
-            setup = conf('fugitive')
-        }
+            init = conf('fugitive')
+        },
 
         -- Telescope
         -- install rg and fd to improve performance:
         --     rg -> https://github.com/BurntSushi/ripgrep/releases
         --     fd -> https://github.com/sharkdp/fd/releases
-        use {
+        {
             'nvim-telescope/telescope.nvim',
             event = 'VimEnter',
-            requires = 'nvim-lua/plenary.nvim',
+            dependencies = { 'nvim-lua/plenary.nvim' },
             config = conf('telescope')
-        }
+        },
         -- Telescope extensions
         -- Telescope-fzf-native
-        if g.sys_uname == 'win' then
-            use {
-                'Leandros/telescope-fzf-native.nvim',
-                branch = 'feature/windows_build_support',
-                run = 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && ' ..
-                    'cmake --build build --config Release && ' ..
-                    'cmake --install build',
-                after = 'telescope.nvim',
-                config = [[require('telescope').load_extension('fzf')]]
-            }
-        else
-            use {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                run = 'make',
-                after = 'telescope.nvim',
-                config = [[require('telescope').load_extension('fzf')]]
-            }
-        end
+        -- {
+        --    'Leandros/telescope-fzf-native.nvim',
+        --    branch = 'feature/windows_build_support',
+        --    enabled=function()
+        --        return vim.g.sys_uname=='win'
+        --    end,
+        --    build = 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && ' ..
+        --        'cmake --build build --config Release && ' ..
+        --        'cmake --install build',
+        --    dependencies = {'telescope.nvim'},
+        --    config=function ()
+        --        require('telescope').load_extension('fzf')
+        --    end,
+        -- },
+
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make',
+            event = 'VimEnter',
+            dependencies = { 'telescope.nvim' },
+            config = function()
+                require('telescope').load_extension('fzf')
+            end,
+        },
 
         -- Session manager
-        use {
+        {
             'Shatur/neovim-session-manager',
             event = 'VimEnter',
-            requires = 'nvim-lua/plenary.nvim',
+            dependencies = { 'nvim-lua/plenary.nvim' },
             config = function()
                 -- keymap
-                local map = vim.keymap.set
-                local map_opt = { noremap = true, silent = true }
-                map('n', '<Leader>sl', '<Cmd>SessionManager load_session<CR>', map_opt)
-                map('n', '<Leader>ss', '<Cmd>SessionManager save_current_session<CR>', map_opt)
-                map('n', '<Leader>sd', '<Cmd>SessionManager delete_session<CR>', map_opt)
+                vim.keymap.set('n', '<Leader>sl', '<Cmd>SessionManager load_session<CR>', { desc = 'Load session' })
+                vim.keymap.set('n', '<Leader>ss', '<Cmd>SessionManager save_current_session<CR>',
+                    { desc = 'Save session' })
+                vim.keymap.set('n', '<Leader>sd', '<Cmd>SessionManager delete_session<CR>', { desc = 'Delete session' })
                 -- config
                 require('session_manager').setup({
                     autosave_only_in_session = true,
                 })
             end
-        }
-
-        -- Snippet
-        if g.comp_plug == 'lsp' then
-        else
-            use { "honza/vim-snippets", event = 'VimEnter' }
-            use {
-                'SirVer/ultisnips',
-                event = 'VimEnter',
-                setup = function()
-                    g.UltiSnipsExpandTrigger = '<C-j>'
-                    g.UltiSnipsJumpForwardTrigger = '<C-j>'
-                    g.UltiSnipsJumpBackwardTrigger = '<C-k>'
-                end
-            }
-        end
-        -- use {
-        --   'dcampos/nvim-snippy',
-        --   event = 'VimEnter',
-        --   config = function ()
-        --     local dirs = {vim.fn.stdpath('data')..'/site/pack/packer/opt/vim-snippets/snippets',
-        --   g.vimrc_home..'/snippets'}
-        --     require('snippy').setup({
-        --       snippet_dirs = dirs,
-        --       mappings = {
-        --         is = {
-        --           ['<C-j>'] = 'expand_or_advance',
-        --           ['<C-k>'] = 'previous',
-        --         },
-        --       },
-        --     })
-        --   end
-        -- }
+        },
 
         -- Handle delimiters
-        use {
+        {
             'windwp/nvim-autopairs',
             event = 'VimEnter',
+            config = true
+        },
+
+        -- Snippet
+        {
+            'dcampos/nvim-snippy',
+            dependencies = { 'honza/vim-snippets' },
+            enabled = function()
+                return vim.g.comp_plug == 'lsp'
+            end,
             config = function()
-                require('nvim-autopairs').setup {
-                }
+                require('snippy').setup({
+                    mappings = {
+                        is = {
+                            ['<C-j>'] = 'expand_or_advance',
+                            ['<C-k>'] = 'previous',
+                        },
+                    }
+                })
             end
-        }
+        },
+        {
+            'SirVer/ultisnips',
+            dependencies = { 'honza/vim-snippets' },
+            enabled = function()
+                return vim.g.comp_plug == 'coc'
+            end,
+            init = function()
+                vim.g.UltiSnipsExpandTrigger = "<C-j>"
+                vim.g.UltiSnipsJumpForwardTrigger = "<C-j>"
+                vim.g.UltiSnipsJumpBackwardTrigger = "<C-k>"
+            end
+        },
 
-        -- Completion
-        if g.comp_plug == 'lsp' then
-            -- nvim-cmp
-            use { 'onsails/lspkind-nvim', event = 'VimEnter' }
-            use {
-                'hrsh7th/nvim-cmp',
-                after = 'lspkind-nvim',
-                config = conf('nvim-cmp')
-            }
-            -- completion sources
-            use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
-            use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
-            use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
-            use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
-            use { 'hrsh7th/cmp-nvim-lua', ft = 'lua' }
-            use { 'hrsh7th/cmp-omni', ft = 'tex' }
-            use {
-                'quangnguyen30192/cmp-nvim-ultisnips',
-                after = { 'nvim-cmp', 'ultisnips' }
-            }
-            -- use {
-            --   'dcampos/cmp-snippy',
-            --   after = {'nvim-cmp', 'nvim-snippy'}
-            -- }
-
-            -- nvim-lspconfig
-            use {
+        ----------------
+        -- Completion --
+        ----------------
+        -- nvim-lspconfig
+        {
+            'neovim/nvim-lspconfig',
+            dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+            enabled = function()
+                return vim.g.comp_plug == 'lsp'
+            end,
+            config = conf('lsp')
+        },
+        -- nvim-cmp
+        {
+            'hrsh7th/nvim-cmp',
+            enabled = function()
+                return vim.g.comp_plug == 'lsp'
+            end,
+            event = 'VimEnter',
+            dependencies = {
                 'neovim/nvim-lspconfig',
-                after = 'cmp-nvim-lsp',
-                config = conf('lsp')
-            }
-        else
-            -- coc.nvim
-            use {
-                'neoclide/coc.nvim',
-                branch = 'release',
-                opt = false,
-                setup = conf('coc')
-            }
-        end
+                'onsails/lspkind-nvim',
+                'dcampos/nvim-snippy',
+                'dcampos/cmp-snippy',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-nvim-lua'
+            },
+            config = conf('nvim-cmp')
+        },
+
+        -- coc.nvim
+        {
+            'neoclide/coc.nvim',
+            branch = 'release',
+            enabled = function()
+                return vim.g.comp_plug == 'coc'
+            end,
+            init = conf('coc')
+        },
 
         -- Tag
         -- install gtags:
         --  -> http://adoxa.altervista.org/global/  (Windows)
         -- install ctags:
         --  -> https://github.com/universal-ctags/ctags-win32/releases  (Windows)
-        -- use {
+        --  {
         --   'ludovicchabant/vim-gutentags',
         --   event = 'VimEnter',
         --   setup = require('nvim.plugins.config.gutentags').setup
         -- }
-        -- use {
+        --  {
         --   'skywind3000/gutentags_plus',
         --   after = 'vim-gutentags',
         --   setup = function ()
@@ -293,39 +329,38 @@ require('packer').startup({
         -- }
 
         -- Symbol
-        -- use {
+        --  {
         --   'liuchengxu/vista.vim',
         --   cmd = 'Vista',
         --   setup = conf('vista')
         -- }
 
         -- Tasks
-        use { 'skywind3000/asyncrun.vim', event = 'VimEnter' }
-        use {
+        {
             'skywind3000/asynctasks.vim',
-            after = 'asyncrun.vim',
-            setup = conf('asynctasks')
-        }
+            dependencies = { 'skywind3000/asyncrun.vim' },
+            event = 'VimEnter',
+            init = conf('asynctasks')
+        },
 
         -- Markdown
-        use {
+        {
             'iamcco/markdown-preview.nvim',
-            -- disable=true,
-            run = 'cd app && yarn install',
+            build = 'cd app && yarn install',
             ft = 'markdown',
-            setup = function()
-                g.mkdp_auto_close = 0
+            init = function()
+                vim.g.mkdp_auto_close = 0
                 vim.keymap.set(
                     'n',
                     '<Leader>mp',
                     '<Plug>MarkdownPreviewToggle',
-                    { noremap = false }
+                    { desc = 'Preview markdown' }
                 )
             end
-        }
+        },
 
         -- Latex
-        -- use {
+        --  {
         --   'lervag/vimtex',
         --   disable = true,
         --   ft = 'tex',
@@ -333,118 +368,81 @@ require('packer').startup({
         -- }
 
         -- Comment
-        use {
+        {
             'numToStr/Comment.nvim',
             event = 'VimEnter',
-            config = function()
-                require('Comment').setup {
-                    mappings = {
-                        extra = false
-                    }
+            opts = {
+                mappings = {
+                    extra = false
                 }
-            end
-        }
+            },
+        },
 
         -- Surround
-        use {
+        {
             "kylechui/nvim-surround",
             tag = '*',
             event = 'VimEnter',
-            config = function()
-                require('nvim-surround').setup {}
-            end
-        }
+            config = true
+        },
 
         -- Align
-        -- use {
-        --     'godlygeek/tabular',
-        --     cmd = { 'Tabularize', 'AddTabularPatter', 'AddTabularPipeline' }
-        -- }
-        use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
+        { 'junegunn/vim-easy-align', cmd = 'EasyAlign' },
 
         -- Indent line
-        use {
+        {
             'lukas-reineke/indent-blankline.nvim',
-            after = 'gruvbox-material',
+            cmd = 'IndentBlanklineToggle',
+            dependencies = { 'sainnhe/gruvbox-material' },
             config = conf('indent-blankline')
-        }
+        },
 
         -- Auto switch input method
-        if g.sys_uname == 'win' then
-            use {
-                'lyokha/vim-xkbswitch',
-                event = 'VimEnter',
-                setup = function()
-                    g.XkbSwitchEnabled = 1
-                    g.XkbSwitchLib = g.vimrc_home .. '/libxkbswitch64.dll'
-                end
-            }
-        else
-            use {
-                'rlue/vim-barbaric',
-                event = 'VimEnter'
-            }
-        end
+        {
+            'lyokha/vim-xkbswitch',
+            event = 'VimEnter',
+            enabled = function()
+                return vim.g.sys_uname == 'win'
+            end,
+            init = function()
+                vim.g.XkbSwitchEnabled = 1
+                vim.g.XkbSwitchLib = vim.g.vimrc_home .. '/libxkbswitch64.dll'
+            end
+        },
+        {
+            'rlue/vim-barbaric',
+            event = 'VimEnter',
+            enabled = function()
+                return vim.g.sys_uname ~= 'win'
+            end
+        },
 
         -- Textobjects
-        use { 'kana/vim-textobj-user', event = 'VimEnter' }
-        use { 'kana/vim-textobj-indent', after = 'vim-textobj-user' }
-        use {
-            'sgur/vim-textobj-parameter',
-            after = 'vim-textobj-user',
-            setup = function()
-                vim.cmd [[
-       let g:vim_textobj_parameter_mapping = 'a'
-       ]]
-            end
-        }
-        use {
-            'rbonvall/vim-textobj-latex',
-            after = 'vim-textobj-user',
-            ft = 'tex'
-        }
-
-        -- Auto set up configuration after cloning packer.nvim
-        if packer_bootstrap then
-            require('packer').sync()
-        end
-    end,
-
-    -- Configure packer
-    config = {
-        max_jobs = 8,
-        compile_path = fn.stdpath('config') .. '/lua/packer_compiled.lua',
+        -- {
+        --     'kana/vim-textobj-indent',
+        --     event = 'VimEnter',
+        --     dependencies = { 'kana/vim-textobj-user' }
+        -- },
+        -- {
+        --     'sgur/vim-textobj-parameter',
+        --     event = 'VimEnter',
+        --     dependencies = { 'kana/vim-textobj-user' },
+        --     init = function()
+        --         vim.g.vim_textobj_parameter_mapping = 'a'
+        --     end
+        -- },
+        -- {
+        --     'rbonvall/vim-textobj-latex',
+        --     dependencies = { 'kana/vim-textobj-user' },
+        --     ft = 'tex'
+        -- },
+    },
+    -- configuration
+    {
+        defaults = {
+            lazy = true,
+        },
         git = {
-            -- github mirror
-            default_url_format = g.repo_url .. '/%s'
-        }
-    }
-})
-
--- auto-generate packer_compiled.lua
--- vim.cmd [[
--- let g:packer_init = g:vimrc_home.'/lua/rany_nvim/plugins/init.lua'
--- augroup AutoPackerCompile
--- autocmd!
--- autocmd BufWritePost */lua/rany_nvim/plugins/* exe "so ".g:packer_init| PackerCompile
--- autocmd User PackerCompileDone lua vim.notify('PackerCompile Done!', 'info', nil)
--- augroup END
--- ]]
-vim.cmd [[
-autocmd User PackerCompileDone lua vim.notify('PackerCompile Done!', 'info', nil)
-]]
-
--- keymaps for packer.nvim
-local map = vim.keymap.set
-local map_opt = { noremap = true, silent = true }
-map('n', '<Leader>pc', '<Cmd>PackerCompile<CR>', map_opt)
-map('n', '<Leader>ps', '<Cmd>PackerSync<CR>', map_opt)
-map('n', '<Leader>pt', '<Cmd>PackerStatus<CR>', map_opt)
-map('n', '<Leader>pi', '<Cmd>PackerInstall<CR>', map_opt)
-map('n', '<Leader>pu', '<Cmd>PackerUpdate<CR>', map_opt)
-
--- impatient.nvim requires to load packer_compiled manually
-local status, _ = pcall(require, 'packer_compiled')
-if not status then
-    vim.notify('Failed to require packer_compiled.lua!', vim.log.levels.ERROR, nil)
-end
+            url_format = vim.g.repo_url .. "/%s.git",
+        },
+    })

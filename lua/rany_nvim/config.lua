@@ -24,6 +24,7 @@ opt.undofile = true
 -- Search path of tags file
 opt.tags = { './.tags;', '.tags' }
 -- Font
+opt.guifont="FiraCode NFM:h13"
 opt.guifontwide = '黑体:h13'
 opt.lazyredraw = true
 -- Diff
@@ -191,7 +192,7 @@ endfunc
 -- set tabline
 vim.cmd [[
 set showtabline=2
-set tabline=%!NeatTabLine()
+" set tabline=%!NeatTabLine()
 ]]
 
 --------------

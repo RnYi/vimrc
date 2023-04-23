@@ -2,8 +2,6 @@
 --  Aliases for Nvim API  --
 ----------------------------
 local map=vim.keymap.set
-local map_opt={noremap=true, silent=true}
-
 ----------------
 --  Internal  --
 ----------------
@@ -11,73 +9,73 @@ local map_opt={noremap=true, silent=true}
 vim.g.mapleader=' '
 vim.g.maplocalleader=' '
 -- Move between lines
-map({'n', 'x', 'o'}, 'H', '^', map_opt)
-map({'n', 'x', 'o'}, 'L', '$', map_opt)
-map('', 'j', 'gj', map_opt)
-map('', 'k', 'gk', map_opt)
-map('', '<M-j>', 'j', map_opt)
-map('', '<M-k>', 'k', map_opt)
+map({'n', 'x', 'o'}, 'H', '^')
+map({'n', 'x', 'o'}, 'L', '$')
+map('', 'j', 'gj')
+map('', 'k', 'gk')
+map('', '<M-j>', 'j')
+map('', '<M-k>', 'k')
 -- Window operations
-map('n', '<M-J>', '<C-w>j', map_opt)
-map('n', '<M-K>', '<C-w>k', map_opt)
-map('n', '<M-H>', '<C-w>h', map_opt)
-map('n', '<M-L>', '<C-w>l', map_opt)
-map('n', '<M-Q>', '<Cmd>close<CR>', map_opt)
-map('i', '<M-J>', '<Esc><C-w>j', map_opt)
-map('i', '<M-K>', '<Esc><C-w>k', map_opt)
-map('i', '<M-H>', '<Esc><C-w>h', map_opt)
-map('i', '<M-L>', '<Esc><C-w>l', map_opt)
-map('i', '<M-Q>', '<Cmd>close<CR>', map_opt)
-map('t', '<M-J>', '<C-\\><C-N><C-w>j', map_opt)
-map('t', '<M-K>', '<C-\\><C-N><C-w>k', map_opt)
-map('t', '<M-H>', '<C-\\><C-N><C-w>h', map_opt)
-map('t', '<M-L>', '<C-\\><C-N><C-w>l', map_opt)
-map('t', '<M-Q>', '<C-\\><C-N><Cmd>close<CR>', map_opt)
-map('t', '<M-q>', '<C-\\><C-N>', map_opt)
+map('n', '<M-J>', '<C-w>j')
+map('n', '<M-K>', '<C-w>k')
+map('n', '<M-H>', '<C-w>h')
+map('n', '<M-L>', '<C-w>l')
+map('n', '<M-Q>', '<Cmd>close<CR>')
+map('i', '<M-J>', '<Esc><C-w>j')
+map('i', '<M-K>', '<Esc><C-w>k')
+map('i', '<M-H>', '<Esc><C-w>h')
+map('i', '<M-L>', '<Esc><C-w>l')
+map('i', '<M-Q>', '<Cmd>close<CR>')
+map('t', '<M-J>', '<C-\\><C-N><C-w>j')
+map('t', '<M-K>', '<C-\\><C-N><C-w>k')
+map('t', '<M-H>', '<C-\\><C-N><C-w>h')
+map('t', '<M-L>', '<C-\\><C-N><C-w>l')
+map('t', '<M-Q>', '<C-\\><C-N><Cmd>close<CR>')
+map('t', '<M-q>', '<C-\\><C-N>')
 -- Newline above/below current position (cannot work in terminal)
-map('i', '<C-CR>', '<Esc>o', map_opt)
-map('i', '<S-CR>', '<Esc>O', map_opt)
+map('i', '<C-CR>', '<Esc>o')
+map('i', '<S-CR>', '<Esc>O')
 -- Copy/Paste/Cut
-map('x', '<M-y>', '"+y', map_opt)
-map('', '<M-p>', '"+p', map_opt)
-map({'i', 'c'}, '<M-p>', '<C-r>+', map_opt)
-map('x', '<M-x>', '"+x', map_opt)
+map('x', '<M-y>', '"+y')
+map('', '<M-p>', '"+p')
+map({'i', 'c'}, '<M-p>', '<C-r>+')
+map('x', '<M-x>', '"+x')
 -- Select paste text
-map({'n', 'x'}, 'gp', '`[v`]', map_opt)
+map({'n', 'x'}, 'gp', '`[v`]')
 -- Disable all <*-MiddleMouse>
-map({'', 'i'}, '<MiddleMouse>', '<Nop>', map_opt)
-map({'', 'i'}, '<2-MiddleMouse>', '<Nop>', map_opt)
-map({'', 'i'}, '<3-MiddleMouse>', '<Nop>', map_opt)
-map({'', 'i'}, '<4-MiddleMouse>', '<Nop>', map_opt)
+map({'', 'i'}, '<MiddleMouse>', '<Nop>')
+map({'', 'i'}, '<2-MiddleMouse>', '<Nop>')
+map({'', 'i'}, '<3-MiddleMouse>', '<Nop>')
+map({'', 'i'}, '<4-MiddleMouse>', '<Nop>')
 -- Save
-map({'n', 'i'}, '<M-s>',  '<Esc><Cmd>update<CR>',  map_opt)
+map({'n', 'i'}, '<M-s>',  '<Esc><Cmd>update<CR>')
 -- Buffer
-map('n', '[b', '<Cmd>bprevious<CR>', map_opt)
-map('n', ']b', '<Cmd>bnext<CR>', map_opt)
-map('n', '[B', '<Cmd>bfirst<CR>', map_opt)
-map('n', ']B', '<Cmd>blast<CR>', map_opt)
+map('n', '[b', '<Cmd>bprevious<CR>')
+map('n', ']b', '<Cmd>bnext<CR>')
+map('n', '[B', '<Cmd>bfirst<CR>')
+map('n', ']B', '<Cmd>blast<CR>')
 -- Tabpage
-map('n', '[t', '<Cmd>tabprevious<CR>', map_opt)
-map('n', ']t', '<Cmd>tabnext<CR>', map_opt)
-map('n', '[T', '<Cmd>tabfirst<CR>', map_opt)
-map('n', ']T', '<Cmd>tablast<CR>', map_opt)
-map({'n', 'i'}, '<M-t>', '<Esc><Cmd>tabnew<CR>', map_opt)
+map('n', '[t', '<Cmd>tabprevious<CR>')
+map('n', ']t', '<Cmd>tabnext<CR>')
+map('n', '[T', '<Cmd>tabfirst<CR>')
+map('n', ']T', '<Cmd>tablast<CR>')
+map({'n', 'i'}, '<M-t>', '<Esc><Cmd>tabnew<CR>')
 for i = 1, 10, 1 do -- switch tab
-  map({'n', 'i'}, '<M-'..(i%10)..'>', '<Esc><Cmd>tabnext '..i..'<CR>', map_opt)
+  map({'n', 'i'}, '<M-'..(i%10)..'>', '<Esc><Cmd>tabnext '..i..'<CR>')
 end
 -- Quickfix
-map('n', '[q', '<Cmd>cprevious<CR>', map_opt)
-map('n', ']q', '<Cmd>cnext<CR>', map_opt)
-map('n', '[Q', '<Cmd>cfirst<CR>', map_opt)
-map('n', ']Q', '<Cmd>clast<CR>', map_opt)
+map('n', '[q', '<Cmd>cprevious<CR>')
+map('n', ']q', '<Cmd>cnext<CR>')
+map('n', '[Q', '<Cmd>cfirst<CR>')
+map('n', ']Q', '<Cmd>clast<CR>')
 -- Location
-map('n', '[l', '<Cmd>lprevious<CR>', map_opt)
-map('n', ']l', '<Cmd>lnext<CR>', map_opt)
-map('n', '[L', '<Cmd>lfirst<CR>', map_opt)
-map('n', ']L', '<Cmd>llast<CR>', map_opt)
+map('n', '[l', '<Cmd>lprevious<CR>')
+map('n', ']l', '<Cmd>lnext<CR>')
+map('n', '[L', '<Cmd>lfirst<CR>')
+map('n', ']L', '<Cmd>llast<CR>')
 -- Space
-map('n', '[<Space>', '<Cmd>put!=nr2char(10)<CR>', map_opt)
-map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>', map_opt)
+map('n', '[<Space>', '<Cmd>put!=nr2char(10)<CR>')
+map('n', ']<Space>', '<Cmd>put=nr2char(10)<CR>')
 -- Toggle window maximized
 vim.cmd([[
 function! MaximizeToggle() abort
@@ -88,25 +86,25 @@ function! MaximizeToggle() abort
   endif
 endfunction
 ]])
-map({'', 'i', 't'}, '<F11>', '<Cmd>call MaximizeToggle()<CR>', map_opt)
+map({'', 'i', 't'}, '<F11>', '<Cmd>call MaximizeToggle()<CR>')
 -- Fast quit
-map({'n', 'x'}, 'q', '<Nop>', map_opt)
-map('n', 'Q', '<Nop>', map_opt)
-map('n', 'qf', '<Cmd>cclose<CR>', map_opt)
-map('n', 'ql', '<Cmd>lclose<CR>', map_opt)
-map('n', 'qh', '<Cmd>helpclose<CR>', map_opt)
-map('n', 'qa', '<Cmd>qa<CR>', map_opt)
-map('n', 'qb',  '<Cmd>bdelete<CR>',  map_opt)
-map('n', 'qt',  '<Cmd>tabclose<CR>',  map_opt)
-map('n', 'qw',  '<Cmd>close<CR>',  map_opt)
+map({'n', 'x'}, 'q', '<Nop>')
+map('n', 'Q', '<Nop>')
+map('n', 'qf', '<Cmd>cclose<CR>')
+map('n', 'ql', '<Cmd>lclose<CR>')
+map('n', 'qh', '<Cmd>helpclose<CR>')
+map('n', 'qa', '<Cmd>qa<CR>')
+map('n', 'qb',  '<Cmd>bdelete<CR>')
+map('n', 'qt',  '<Cmd>tabclose<CR>')
+map('n', 'qw',  '<Cmd>close<CR>')
 -- Open terminal in a tab
-map({'n', 'i'}, '<M-=>', '<Esc><Cmd>tabnew|terminal<CR>', map_opt)
+map({'n', 'i'}, '<M-=>', '<Esc><Cmd>tabnew|terminal<CR>')
 -- Single leader key does nothing
-map('n', '<Leader>', '<Nop>', map_opt)
+map('n', '<Leader>', '<Nop>')
 -- Double leader key clear highlight of searching
-map('n', '<Leader><Leader>', '<Cmd>nohl<CR>', map_opt)
+map('n', '<Leader><Leader>', '<Cmd>nohl<CR>')
 -- Remap <C-x><C-k>
-map('i', '<C-x><C-k>', '<C-x><C-k>', map_opt)
+map('i', '<C-x><C-k>', '<C-x><C-k>')
 -- Popup
 -- map('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], {noremap=true, silent=true, expr=true})
 -- map('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], {noremap=true, silent=true, expr=true})
@@ -176,6 +174,5 @@ keybind('asynctasks')
 keybind('fugitive')
 keybind('hop')
 keybind('indent-blankline')
-keybind('nvim-tree')
+keybind('oil')
 keybind('telescope')
--- keybind('vista')
