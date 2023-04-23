@@ -60,16 +60,16 @@ require('lazy').setup({
             'sainnhe/gruvbox-material',
             event = 'VimEnter',
             config = function()
-                g.gruvbox_material_better_performance = 1
-                g.gruvbox_material_enable_bold = 1
-                g.gruvbox_material_enable_italic = 1
-                g.gruvbox_material_disable_italic_comment = 1
-                g.gruvbox_material_visual = 'blue background'
-                g.gruvbox_material_menu_selection_background = 'blue'
-                g.gruvbox_material_disable_italic_comment = 1
-                g.gruvbox_material_sign_column_background = 'none'
-                g.gruvbox_material_transparent_background = 0
-                g.gruvbox_material_diagnostic_virtual_text = 'colored'
+                vim.g.gruvbox_material_better_performance = 1
+                vim.g.gruvbox_material_enable_bold = 1
+                vim.g.gruvbox_material_enable_italic = 1
+                vim.g.gruvbox_material_disable_italic_comment = 1
+                vim.g.gruvbox_material_visual = 'blue background'
+                vim.g.gruvbox_material_menu_selection_background = 'blue'
+                vim.g.gruvbox_material_disable_italic_comment = 1
+                vim.g.gruvbox_material_sign_column_background = 'none'
+                vim.g.gruvbox_material_transparent_background = 0
+                vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
                 vim.cmd('colorscheme gruvbox-material')
             end
         },
@@ -294,6 +294,8 @@ require('lazy').setup({
         {
             'neoclide/coc.nvim',
             branch = 'release',
+            event='VimEnter',
+            dependencies={'SirVer/ultisnips'},
             enabled = function()
                 return vim.g.comp_plug == 'coc'
             end,

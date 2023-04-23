@@ -35,14 +35,14 @@ M.setup = function ()
   nmap <Leader>aC <Plug>(coc-codeaction)
   xmap <Leader>ac <Plug>(coc-codeaction-selected)
   " textobjects
-  xmap if <Plug>(coc-funcobj-i)
-  omap if <Plug>(coc-funcobj-i)
-  xmap af <Plug>(coc-funcobj-a)
-  omap af <Plug>(coc-funcobj-a)
-  xmap ic <Plug>(coc-classobj-i)
-  omap ic <Plug>(coc-classobj-i)
-  xmap ac <Plug>(coc-classobj-a)
-  omap ac <Plug>(coc-classobj-a)
+  " xmap if <Plug>(coc-funcobj-i)
+  " omap if <Plug>(coc-funcobj-i)
+  " xmap af <Plug>(coc-funcobj-a)
+  " omap af <Plug>(coc-funcobj-a)
+  " xmap ic <Plug>(coc-classobj-i)
+  " omap ic <Plug>(coc-classobj-i)
+  " xmap ac <Plug>(coc-classobj-a)
+  " omap ac <Plug>(coc-classobj-a)
   " outlile
   nnoremap <silent><nowait> <Leader>ol  <Cmd>CocOutline<CR>
   " diagnostics
