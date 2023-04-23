@@ -11,71 +11,36 @@ end
 
 -- key bindings
 M.keybind = function()
-  local map=vim.keymap.set
-  local map_opt={noremap=true, silent=true}
   -- find_files
-  map('n',
+  vim.keymap.set('n',
   '<Leader>ff',
   [[<Cmd>Telescope find_files<CR>]],
-  map_opt)
+  {desc='Find files'})
   -- live grep
-  map('n',
+  vim.keymap.set('n',
   '<Leader>fg',
   [[<Cmd>Telescope live_grep<CR>]],
-  map_opt)
+  {desc='Live grep'})
   -- grep string
-  map('n',
+  vim.keymap.set('n',
   '<Leader>fG',
-  [[<Cmd>lua require('nvim.plugins.config.telescope').grep_helper()<CR>]],
-  map_opt)
+  [[<Cmd>lua require('rany_nvim.plugins.config.telescope').grep_helper()<CR>]],
+  {desc='String grep'})
   -- buffers
-  map('n',
+  vim.keymap.set('n',
   '<Leader>fb',
   [[<Cmd>Telescope buffers<CR>]],
-  map_opt)
+  {desc='Buffer list'})
   -- quickfix
-  map('n',
+  vim.keymap.set('n',
   '<Leader>fq',
   [[<Cmd>Telescope quickfix<CR>]],
-  map_opt)
+  {desc='Quickfix list'})
   -- command
-  map('n',
+  vim.keymap.set('n',
   '<Leader>:',
   [[<Cmd>Telescope commands<CR>]],
-  map_opt)
-
-  if CompPlug~='coc' then
-    -- lsp_definitions
-    map('n',
-    'gd',
-    [[<Cmd>Telescope lsp_definitions<CR>]],
-    map_opt)
-    -- lsp_references
-    map('n',
-    'gr',
-    [[<Cmd>Telescope lsp_references<CR>]],
-    map_opt)
-    -- lsp_type_definitions
-    map('n',
-    'gy',
-    [[<Cmd>Telescope lsp_type_definitions<CR>]],
-    map_opt)
-    -- diagnostics in current buffer
-    map('n',
-    '<Leader>dl',
-    [[<Cmd>Telescope diagnostics bufnr=0<CR>]],
-    map_opt)
-    -- diagnostics of all buffers
-    map('n',
-    '<Leader>dL',
-    [[<Cmd>Telescope diagnostics<CR>]],
-    map_opt)
-    -- document symbols in current buffer
-    map('n',
-    '<Leader>ds',
-    [[<Cmd>Telescope lsp_document_symbols<CR>]],
-    map_opt)
-  end
+  {desc='Commands list'})
 end
 
 -- setup
