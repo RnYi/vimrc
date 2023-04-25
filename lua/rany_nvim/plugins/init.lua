@@ -26,7 +26,7 @@ require('lazy').setup({
             end
         },
         -- Faster filetype
-        { 'nathom/filetype.nvim',    lazy = false },
+        -- { 'nathom/filetype.nvim',    lazy = false },
 
         -- UI hooks
         {

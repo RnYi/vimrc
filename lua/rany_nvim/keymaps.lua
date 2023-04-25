@@ -176,3 +176,6 @@ keybind('hop')
 keybind('indent-blankline')
 keybind('oil')
 keybind('telescope')
+if vim.g.comp_plug == 'coc' then
+    keybind('coc')
+end
