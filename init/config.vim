@@ -1,7 +1,7 @@
 """""""""""
 "  Basic  "
 """""""""""
-set mouse=nv
+set mouse=nvi
 set autoread
 set winaltkeys=no
 set mousemodel=extend
@@ -247,11 +247,12 @@ endif
 """""""""""
 if has_key(g:plugs_enabled, 'gruvbox-material')
   let g:gruvbox_material_better_performance=1
-  let g:gruvbox_material_enable_bold=1
-  let g:gruvbox_material_enable_italic=0
+  let g:gruvbox_material_enable_bold=0
+  let g:gruvbox_material_enable_italic=1
   let g:gruvbox_material_disable_italic_comment=1
   let g:gruvbox_material_sign_column_background='none'
   colorscheme gruvbox-material
+  hi clear CursorLine
 end
 
 """"""""""""

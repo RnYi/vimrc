@@ -7,7 +7,7 @@ local opt = vim.opt
 -------------
 --  Basic  --
 -------------
-opt.mouse = 'nv'
+opt.mouse = 'nvi'
 opt.mousemodel = 'extend'
 opt.backup = false
 opt.writebackup = false
@@ -24,7 +24,7 @@ opt.undofile = true
 -- Search path of tags file
 opt.tags = { './.tags;', '.tags' }
 -- Font
-opt.guifont="FiraCode NFM:h13"
+opt.guifont = "FiraCode NFM:h13"
 opt.guifontwide = '黑体:h13'
 opt.lazyredraw = true
 -- Diff
@@ -86,6 +86,7 @@ opt.hidden = true
 opt.wildmenu = true
 opt.showmode = true
 opt.cursorline = true
+opt.showtabline = 2
 opt.scrolloff = 5
 opt.sidescrolloff = 5
 opt.laststatus = 2
@@ -98,102 +99,6 @@ opt.listchars = { trail = '·', extends = '⟩', precedes = '⟨' }
 vim.cmd([[
 set matchpairs+=「:」,『:』,【:】,“:”,‘:’,《:》,（:）
 ]])
-
----------------
---  Tabline  --
----------------
--- Tabline in terminal mode
-vim.cmd [[
-function! NeatTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-  " select the highlighting
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T'
-
-    " the label is made by NeatTabLabel()
-    let s .= ' %{NeatTabLabel(' . (i + 1) . ')} '
-  endfor
-
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s .= '%#TabLineFill#%T'
-  return s
-endfunction
-]]
-
--- get a single tab name
-vim.cmd [[
-function! NeatBuffer(bufnr, fullname)
-  let l:name = bufname(a:bufnr)
-  let bt = getbufvar(a:bufnr, '&buftype')
-  if getbufvar(a:bufnr, '&modifiable')
-    if bt=='prompt'
-      return '[Prompt]'
-    elseif l:name == ''
-      return '[No Name]'
-    elseif bt == 'terminal'
-      return '[Terminal]'
-    else
-      if a:fullname 
-        return fnamemodify(l:name, ':p')
-      else
-        let aname = fnamemodify(l:name, ':p')
-        let sname = fnamemodify(aname, ':t')
-        if sname == ''
-          let test = fnamemodify(aname, ':h:t')
-          if test != ''
-            return '<'. test . '>'
-          endif
-        endif
-        return sname
-      endif
-    endif
-  else
-    let bt = getbufvar(a:bufnr, '&buftype')
-    if bt == 'quickfix'
-      return '[Quickfix]'
-    elseif bt == 'terminal'
-      return '[Terminal]'
-    elseif l:name != ''
-      if a:fullname 
-        return '-'.fnamemodify(l:name, ':p')
-      else
-        return '-'.fnamemodify(l:name, ':t')
-      endif
-    else
-    endif
-    return '[No Name]'
-  endif
-endfunc
-]]
-
--- get a single tab label
-vim.cmd [[
-function! NeatTabLabel(n)
-  let l:buflist = tabpagebuflist(a:n)
-  let l:winnr = tabpagewinnr(a:n)
-  let l:bufnr = l:buflist[l:winnr - 1]
-  let l:fname = NeatBuffer(l:bufnr, 0)
-  let l:buftype = getbufvar(l:bufnr, '&buftype')
-  let l:num = a:n
-  if getbufvar(l:bufnr, '&modified')
-    return "(".l:num.") ".l:fname." +"
-  endif
-  return "(".l:num.") ".l:fname
-endfunc
-]]
-
--- set tabline
-vim.cmd [[
-set showtabline=2
-" set tabline=%!NeatTabLine()
-]]
 
 --------------
 --  Search  --
@@ -216,38 +121,76 @@ opt.sessionoptions:remove('help')
 ---------------
 --  Autocmd  --
 ---------------
-vim.cmd [[
-function s:resume_cursor_position() abort
-  if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-    let l:args = v:argv  " command line arguments
-    for l:cur_arg in l:args
-      " Check if a go-to-line command is given.
-      let idx = match(l:cur_arg, '\v^\+(\d){1,}$')
-      if idx != -1
+local function resume_cursor_pos(ev)
+    local ignore_buftype = { 'quickfix', 'nofile', 'help' }
+    local ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcyommit' }
+    -- ignore buftypes
+    if vim.tbl_contains(ignore_buftype, vim.api.nvim_buf_get_option(0, 'buftype')) then
         return
-      endif
-    endfor
+    end
+    -- ignore filetypes
+    if vim.tbl_contains(ignore_filetype, vim.api.nvim_buf_get_option(0, 'filetype')) then
+        vim.api.nvim_command([[normal! gg]])
+        return
+    end
+    if vim.fn.line('.') > 1 then
+        return
+    end
+    -- resume cursor position
+    local last_line = vim.fn.line([['"]])
+    local buff_last_line = vim.fn.line('$')
+    local window_last_line = vim.fn.line('w$')
+    local window_first_line = vim.fn.line('w0')
+    if last_line > 0 and last_line <= buff_last_line then
+        if window_last_line == buff_last_line then
+            vim.api.nvim_command([[normal! g`"]])
+        elseif buff_last_line - last_line > ((window_last_line - window_first_line) / 2) - 1 then
+            vim.api.nvim_command([[normal! g`"zz]])
+        else
+            vim.api.nvim_command([[normal! zvzz]])
+        end
+    end
+end
 
-    execute "normal! g`\"zvzz"
-  endif
-endfunction
-
-augroup rany_aug
-  autocmd!
-  " resume cursor position when open a file
-  autocmd BufReadPost * call s:resume_cursor_position()
-  " disable error highlighting
-  autocmd FileType markdown hi! Error NONE
-  " tlc
-  autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
-  " .gitignore
-  autocmd BufNewFile,BufRead .gitignore setlocal filetype=gitignore
-  " terminal
-  autocmd TermOpen * startinsert
-  autocmd TermEnter * setlocal nonumber
-  autocmd TermLeave * setlocal number
-  " highlight when searching
-  autocmd CmdlineEnter /,\? :set hlsearch
-  autocmd CmdlineLeave /,\? :set nohlsearch
-augroup END
-]]
+vim.api.nvim_create_augroup('UserFileAug', {})
+--  Resume cursor position
+vim.api.nvim_create_autocmd('BufRead', {
+    group = 'UserFileAug',
+    pattern = '*',
+    callback = resume_cursor_pos,
+})
+-- Surpress error in markdown
+vim.api.nvim_create_autocmd('FileType', {
+    group = 'UserFileAug',
+    pattern = 'markdown',
+    callback = function(ev)
+        vim.api.nvim_set_hl(0, 'Error', {})
+    end
+})
+vim.api.nvim_create_augroup('UserTermAug', {})
+-- Term autocmds
+vim.api.nvim_create_autocmd({ 'TermOpen', 'TermEnter', 'TermLeave' }, {
+    group = 'UserTermAug',
+    pattern = '*',
+    callback = function(ev)
+        if ev.event == 'TermOpen' then
+            vim.api.nvim_command('startinsert')
+        elseif ev.event == 'TermEnter' then
+            vim.opt_local.number = false
+        else
+            vim.opt_local.number = true
+        end
+    end
+})
+vim.api.nvim_create_augroup('UserSearchAug', {})
+vim.api.nvim_create_autocmd({ 'CmdlineEnter', 'CmdlineLeave' }, {
+    group = 'UserSearchAug',
+    pattern = { '/', '?' },
+    callback = function(ev)
+        if ev.event == 'CmdlineEnter' then
+            vim.o.hlsearch = true
+        else
+            vim.o.hlsearch = false
+        end
+    end
+})
