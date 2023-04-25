@@ -383,7 +383,7 @@ require('lazy').setup({
         -- Surround
         {
             "kylechui/nvim-surround",
-            tag = '*',
+           version = '*',
             event = 'VimEnter',
             config = true
         },
