@@ -80,25 +80,31 @@ opt.number = true
 opt.showcmd = false
 opt.pumheight = 20
 opt.signcolumn = 'yes'
-opt.title = true
-opt.titlestring = '%{getcwd()}'
+if vim.g.nvim_env == 'nvim' then
+    opt.title = true
+    opt.titlestring = '%{getcwd()}'
+end
 opt.hidden = true
 opt.wildmenu = true
 opt.showmode = true
-opt.cursorline = true
-opt.showtabline = 2
+if vim.g.nvim_env == 'nvim' then
+    opt.cursorline = true
+    opt.showtabline = 2
+end
 opt.scrolloff = 5
 opt.sidescrolloff = 5
 opt.laststatus = 2
 opt.termguicolors = true
 opt.shortmess = { a = true, o = true, O = true, c = true, t = true, T = true, F = true }
 opt.formatoptions = { t = true, c = true, r = true, q = true, l = true, m = true, M = true, j = true }
-opt.list = true
--- opt.showbreak='↪'
-opt.listchars = { trail = '·', extends = '⟩', precedes = '⟨' }
-vim.cmd([[
+if vim.g.nvim_env == 'nvim' then
+    opt.list = true
+    -- opt.showbreak='↪'
+    opt.listchars = { trail = '·', extends = '⟩', precedes = '⟨' }
+    vim.cmd([[
 set matchpairs+=「:」,『:』,【:】,“:”,‘:’,《:》,（:）
-]])
+]]   )
+end
 
 --------------
 --  Search  --
@@ -121,6 +127,9 @@ opt.sessionoptions:remove('help')
 ---------------
 --  Autocmd  --
 ---------------
+if vim.g.nvim_env == 'vscode' then
+    return
+end
 local function resume_cursor_pos(ev)
     local ignore_buftype = { 'quickfix', 'nofile', 'help' }
     local ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcyommit' }

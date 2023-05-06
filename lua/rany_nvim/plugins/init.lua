@@ -22,6 +22,7 @@ require('lazy').setup({
     {
         'lewis6991/impatient.nvim',
         lazy = false,
+        cond=true,
         config = function()
             require('impatient')
         end
@@ -46,12 +47,15 @@ require('lazy').setup({
     -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
-        event = 'VimEnter',
+        lazy = false,
         build = ':TSUpdate',
+        cond=true,
         config = conf('treesitter')
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        lazy=false,
+        cond=true,
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         event = 'VimEnter'
     },
@@ -59,7 +63,7 @@ require('lazy').setup({
     -- Colorscheme
     {
         'sainnhe/gruvbox-material',
-        event = 'VimEnter',
+        lazy=false,
         config = function()
             vim.g.gruvbox_material_better_performance = 1
             vim.g.gruvbox_material_enable_bold = 0
@@ -72,7 +76,7 @@ require('lazy').setup({
             vim.g.gruvbox_material_transparent_background = 0
             vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
             vim.cmd('colorscheme gruvbox-material')
-            vim.api.nvim_set_hl(0, 'CursorLine', {})
+            -- vim.api.nvim_set_hl(0, 'CursorLine', {})
         end
     },
 
@@ -387,6 +391,7 @@ require('lazy').setup({
         "kylechui/nvim-surround",
         version = '*',
         event = 'VimEnter',
+        cond=true,
         config = true
     },
 
@@ -445,6 +450,9 @@ require('lazy').setup({
     {
         defaults = {
             lazy = true,
+            cond = function ()
+                return vim.g.nvim_env~='vscode'
+            end
         },
         git = {
             url_format = vim.g.repo_url .. "/%s.git",
