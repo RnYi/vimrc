@@ -16,4 +16,4 @@ endif
 GuiTabline 0
 GuiPopupmenu 0
 GuiScrollBar 0
-GuiFont! FiraCode\ NFM:h13
+GuiFont! FiraCode\ Nerd\ Font\ Mono:h13

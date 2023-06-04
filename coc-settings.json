@@ -5,7 +5,8 @@
     "suggest.labelMaxLength": 30,
     "suggest.detailMaxLength": 30,
     "suggest.removeDuplicateItems": true,
-    "suggest.autoTrigger": "trigger",
+    "suggest.autoTrigger": "always",
+    "suggest.preview":false,
     // "suggest.floatConfig": {
     //   "border": true,
     //   "shadow": true
