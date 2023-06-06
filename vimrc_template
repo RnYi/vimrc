@@ -1,20 +1,23 @@
 " vimrc home
-let g:vimrc_home=expand('<sfile>:p:h')
+let g:vimrc_home=resolve(expand('<sfile>:p'))
+let g:vimrc_home=fnamemodify(g:vimrc_home,':h')
 let g:init_home=g:vimrc_home.'/init'
 " mirror of github
-" let g:repo_url='https://github.com.cnpmjs.org'
+let g:repo_url='https://github.com'
 " completion plug
 let g:comp_plug='coc'
 " language
-let g:node_host_prog='C:/ProgramData/scoop/persist/nodejs/bin/node_modules/neovim'
-if has('windows')
+" let g:node_host_prog='C:/ProgramData/scoop/persist/nodejs/bin/node_modules/neovim'
+if has('win32')
   let g:sys_uname='win'
-else
-  let g:sys_uname='unix'
+elseif has('mac')
+  let g:sys_uname='mac'
+else 
+  let g:sys_uname='linux'
 endif
+exe 'set runtimepath^='.g:vimrc_home
+exe 'set runtimepath+='.g:vimrc_home.'/after'
 if has('nvim')
-  exe 'set runtimepath^='.g:vimrc_home
-  exe 'set runtimepath+='.g:vimrc_home.'/after'
   " load config of GUI
   function s:guiconf(name) abort
     exe 'so '.g:init_home.'/'.a:name.'.vim'
@@ -24,7 +27,9 @@ if has('nvim')
   endif
   lua require('nvim')
 else
-  let &pythonthreedll='python310.dll'
+  if g:sys_uname == 'win'
+    let &pythonthreedll='python310.dll'
+  endif
   if !exists('g:bundle_group')
     let g:bundle_group=['basic', 'textobj', 'tags']
   endif

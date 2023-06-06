@@ -59,8 +59,6 @@ if has_key(g:bundle_enabled, 'basic')
   " Surround
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
-  " Keymap
-  Plug 'tpope/vim-unimpaired'
   " Align
   " Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
   Plug 'junegunn/vim-easy-align', {'on':'EasyAlign'}

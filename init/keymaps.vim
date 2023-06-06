@@ -1,4 +1,7 @@
 " Leader key
+if has('gui_running') && g:sys_uname=='mac'
+  set macmeta
+endif
 let g:mapleader="\<Space>"
 let g:maplocalleader="\<Space>"
 " pastetoggle
@@ -31,9 +34,9 @@ tnoremap <M-H> <C-\><C-N><C-w>h
 tnoremap <M-L> <C-\><C-N><C-w>l
 tnoremap <M-Q> <C-\><C-N><Cmd>close<CR>
 tnoremap <M-q> <C-\><C-N>
-tnoremap <C-v> <C-w>"+
 cnoremap <M-h> <Left>
 cnoremap <M-l> <Right>
+tnoremap <C-v> <C-w>"+
 " Newline above/below current position (cannot work in terminal)
 inoremap <C-CR> <Esc>o
 inoremap <S-CR> <Esc>O
@@ -41,7 +44,7 @@ inoremap <S-CR> <Esc>O
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 " Save
-nnoremap <silent> <M-s> <Esc><Cmd>update<CR>
+nnoremap <silent> <M-s> <Cmd>update<CR>
 inoremap <silent> <M-s> <Esc><Cmd>update<CR>
 " Copy/Paste/Cut
 xnoremap <silent> <M-y> "*y
@@ -49,29 +52,30 @@ noremap <silent> <M-p> "*p
 cnoremap <silent> <M-p> <C-r>*
 inoremap <silent> <M-p> <C-r>*
 xnoremap <silent> <M-x> "*x
+
 " Buffer
-" nnoremap <silent> [b <Cmd>bprevious<CR>
-" nnoremap <silent> ]b <Cmd>bnext<CR>
-" nnoremap <silent> [B <Cmd>bfirst<CR>
-" nnoremap <silent> ]B <Cmd>blast<CR>
+nnoremap <silent> [b <Cmd>bprevious<CR>
+nnoremap <silent> ]b <Cmd>bnext<CR>
+nnoremap <silent> [B <Cmd>bfirst<CR>
+nnoremap <silent> ]B <Cmd>blast<CR>
 " Quickfix
-" nnoremap <silent> [q <Cmd>cprevious<CR>
-" nnoremap <silent> ]q <Cmd>cnext<CR>
-" nnoremap <silent> [Q <Cmd>cfirst<CR>
-" nnoremap <silent> ]Q <Cmd>clast<CR>
+nnoremap <silent> [q <Cmd>cprevious<CR>
+nnoremap <silent> ]q <Cmd>cnext<CR>
+nnoremap <silent> [Q <Cmd>cfirst<CR>
+nnoremap <silent> ]Q <Cmd>clast<CR>
 " Location
-" nnoremap <silent> [l <Cmd>lprevious<CR>
-" nnoremap <silent> ]l <Cmd>lnext<CR>
-" nnoremap <silent> [L <Cmd>lfirst<CR>
-" nnoremap <silent> ]L <Cmd>llast<CR>
+nnoremap <silent> [l <Cmd>lprevious<CR>
+nnoremap <silent> ]l <Cmd>lnext<CR>
+nnoremap <silent> [L <Cmd>lfirst<CR>
+nnoremap <silent> ]L <Cmd>llast<CR>
 " Space
-" nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
-" nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
+nnoremap <silent> [<Space> <Cmd>put!=nr2char(10)<CR>
+nnoremap <silent> ]<Space> <Cmd>put=nr2char(10)<CR>
 " Tab
-" nnoremap <silent> [t <Cmd>tabprevious<CR>
-" nnoremap <silent> ]t <Cmd>tabnext<CR>
-" nnoremap <silent> [T <Cmd>tabfirst<CR>
-" nnoremap <silent> ]T <Cmd>tablast<CR>
+nnoremap <silent> [t <Cmd>tabprevious<CR>
+nnoremap <silent> ]t <Cmd>tabnext<CR>
+nnoremap <silent> [T <Cmd>tabfirst<CR>
+nnoremap <silent> ]T <Cmd>tablast<CR>
 nnoremap <silent> <M-t> <Cmd>tabnew<CR>
 inoremap <silent> <M-t> <Esc><Cmd>tabnew<CR>
 function s:switch_tab_keymap()
@@ -92,28 +96,27 @@ nnoremap <silent> qa <Cmd>qa<CR>
 nnoremap <silent> qb <Cmd>bdelete<CR>
 nnoremap <silent> qt <Cmd>tabclose<CR>
 nnoremap <silent> qw <Cmd>close<CR>
-" Open terminal
-nnoremap <silent> <M-=> <Cmd>tabnew <bar> terminal<CR>
-inoremap <silent> <M-=> <Esc><Cmd>tabnew <bar> terminal<CR>
 " Single leader key does nothing
 nnoremap <Leader> <Nop>
 " nohl
 nnoremap <Leader><Leader> <cmd>nohl<CR>
 " Remap <C-x><C-k>
 inoremap <C-x><C-k> <C-x><C-k>
-" Popup
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let g:wmctrl_exec=executable('wmctrl')
 function! MaximizeToggle() abort
   " neovim-qt
   if exists('g:GuiLoaded')
     call GuiWindowMaximized(1-g:GuiWindowMaximized)
+  elseif has('gui_running')
     " linux gvim
-  elseif has('gui_running') && g:wmctrl_exec
-    call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
-    redraw!
+    if g:sys_uname=='linux' && g:wmctrl_exec
+      call system("wmctrl -ir ".v:windowid." -b toggle,maximized_vert,maximized_horz")
+      redraw!
+    " macvim
+    elseif g:sys_uname=='mac'
+      set fu!
+    endif
   endif
 endfunction
 
