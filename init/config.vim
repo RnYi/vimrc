@@ -29,9 +29,9 @@ set grepprg=rg\ --vimgrep
 "  Indent  "
 """"""""""""
 set expandtab
-" set tabstop=4
-set shiftwidth=2
-set softtabstop=-1
+set tabstop=4
+set shiftwidth=4
+" set softtabstop=-1
 set shiftround
 set autoindent smartindent
 
@@ -50,7 +50,7 @@ if has('gui_running')
     set guifont=FiraCode\ Nerd\ Font\ Mono:h14
     set guifontwide=黑体:h14
   elseif g:sys_uname == 'mac'
-    set guifont=Menlo:h14
+    set guifont=Menlo:h16
   else
     set guifont=*
   endif
@@ -246,6 +246,7 @@ endif
 """""""""""
 "  Theme  "
 """""""""""
+
 if has_key(g:plugs_enabled, 'gruvbox-material')
   let g:gruvbox_material_better_performance=1
   let g:gruvbox_material_enable_bold=0
@@ -255,7 +256,7 @@ if has_key(g:plugs_enabled, 'gruvbox-material')
   set bg=dark
   colorscheme gruvbox-material
   hi clear CursorLine
-end
+endif
 
 """"""""""""
 "  Search  "

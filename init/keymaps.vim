@@ -196,5 +196,7 @@ function! Terminal_FunctionKey()
     exe "set <F4>=\eOS"
   endif
 endfunction
-call Terminal_MetaMode(0)
-call Terminal_FunctionKey()
+if g:sys_uname !='mac'
+    call Terminal_MetaMode(0)
+    call Terminal_FunctionKey()
+endif

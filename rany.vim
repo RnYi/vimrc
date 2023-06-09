@@ -135,7 +135,7 @@ endif
 call plug#end()
 
 """""""""""""""""""
-"  plug-ins list  "
+"  plugins list  "
 """""""""""""""""""
 let g:plugs_enabled={}
 if exists('g:loaded_plug')
