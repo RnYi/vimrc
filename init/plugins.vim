@@ -1,3 +1,10 @@
+"""""""""""""""
+" delimitMate "
+"""""""""""""""
+if has_key(g:plugs_enabled,'delimitMate')
+    let g:delimitMate_expand_cr=2
+endif
+
 """"""""""""""
 " indentLien "
 """"""""""""""

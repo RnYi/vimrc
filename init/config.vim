@@ -80,8 +80,8 @@ set formatoptions-=o
 set formatoptions+=mMj
 set list listchars=trail:·,extends:⟩,precedes:⟨
 set guicursor+=a:blinkon0
-let &t_EI .= "\<Esc>[1 q"
-let &t_SI .= "\<Esc>[5 q"
+" let &t_EI .= "\<Esc>[1 q"
+" let &t_SI .= "\<Esc>[5 q"
 " if &term =~ '^xterm'
 "   let &t_SI .= "\<Esc>[5 q"
 " 1 or 0 -> blinking block
@@ -250,7 +250,11 @@ endif
 if has_key(g:plugs_enabled, 'gruvbox-material')
   let g:gruvbox_material_better_performance=1
   let g:gruvbox_material_enable_bold=0
-  let g:gruvbox_material_enable_italic=1
+  if g:sys_uname=='mac' && !has('gui_running')
+      let g:gruvbox_material_enable_italic=0
+  else
+      let g:gruvbox_material_enable_italic=1
+  endif
   let g:gruvbox_material_disable_italic_comment=1
   let g:gruvbox_material_sign_column_background='none'
   set bg=dark
@@ -302,9 +306,9 @@ endfunction
 augroup MyAug
   autocmd!
   autocmd BufReadPost * call s:resume_cursor_position()
-autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType markdown hi! Error NONE
-autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
-autocmd CmdlineEnter /,\? :set hlsearch
-autocmd CmdlineLeave /,\? :set nohlsearch
+  autocmd FileType html,htmldjango setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType markdown hi! Error NONE
+  autocmd BufNewFile,BufRead *.tlc setlocal filetype=tlc
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END

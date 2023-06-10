@@ -59,8 +59,9 @@ if has_key(g:bundle_enabled, 'basic')
   " Surround
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
+  " Delimit
+  Plug 'Raimondi/delimitMate'
   " Align
-  " Plug 'godlygeek/tabular', {'on':['Tabularize','AddTabularPatter','AddTabularPipeline']}
   Plug 'junegunn/vim-easy-align', {'on':'EasyAlign'}
   " Startup
   Plug 'tweekmonster/startuptime.vim', {'on':'StartupTime'}
