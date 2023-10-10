@@ -15,4 +15,5 @@
 !vimrc_template
 
 !/libxkbswitch64.dll
+!/libInputSourceSwitcher.dylib
 package-lock.json

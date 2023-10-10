@@ -17,7 +17,9 @@ else
 endif
 exe 'set runtimepath^='.g:vimrc_home
 exe 'set runtimepath+='.g:vimrc_home.'/after'
-if has('nvim')
+if has('ide') " ideavim
+    runtime ideavimrc
+elseif has('nvim') "neovim
   " load config of GUI
   function s:guiconf(name) abort
     exe 'so '.g:init_home.'/'.a:name.'.vim'
@@ -26,7 +28,7 @@ if has('nvim')
     call s:guiconf('nvui')
   endif
   lua require('nvim')
-else
+else "vim
   if g:sys_uname == 'win'
     let &pythonthreedll='python310.dll'
   endif

@@ -72,7 +72,7 @@ if has_key(g:bundle_enabled, 'basic')
   Plug 'lervag/vimtex', {'for': ['tex','latex']}
   " Input method
   if g:sys_uname!='win'
-    Plug 'rlue/vim-barbaric'
+    Plug 'lyokha/vim-xkbswitch'
   endif
   Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}
 endif

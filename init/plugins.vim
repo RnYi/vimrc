@@ -383,5 +383,9 @@ endif
 """""""""""""""""""
 if has_key(g:plugs_enabled,'vim-xkbswitch')
   let g:XkbSwitchEnabled=1
-  let g:XkbSwitchLib=g:vimrc_home."/libxkbswitch64.dll"
+  if g:sys_uname=='mac'
+      let g:XkbSwitchLib=g:vimrc_home."/libInputSourceSwitcher.dylib"
+  elseif g:sys_uname=='win'
+      let g:XkbSwitchLib=g:vimrc_home."/libxkbswitch64.dll"
+  endif
 endif
