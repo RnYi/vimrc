@@ -1,0 +1,45 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set commentary
+set argtextobj
+set textobj-indent
+" set keep-english-in-normal-and-restore-in-insert
+" let context_aware = 1
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+nnoremap H ^
+nnoremap L $
+xnoremap H ^
+xnoremap L $
+onoremap H ^
+onoremap L $
+nnoremap q <Nop>
+xnoremap q <Nop>
+nnoremap Q <Nop>
+nnoremap <leader> <Nop>
+map gh <Action>(ShowErrorDescription)
+map gd <Action>(GotoDeclaration)
+map gr <Action>(FindUsages)
+map <leader>rn <Action>(RenameElement)
+map <leader>ac <Action>(ShowIntentionActions)
+map <leader>rf <Action>(ShowIntentionActions)
+nmap <leader>fm <Action>(ReformatCode)
+xmap <leader>fm <Action>(ReformatCode)
+

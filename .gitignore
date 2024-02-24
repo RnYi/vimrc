@@ -13,6 +13,7 @@
 !asynctasks.ini
 !*.vim
 !vimrc_template
+!ideavimrc
 
 !/libxkbswitch64.dll
 !/libInputSourceSwitcher.dylib
